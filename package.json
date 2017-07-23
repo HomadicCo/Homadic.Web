@@ -1,0 +1,62 @@
+{
+  "name": "homadic-web",
+  "version": "1.0.0",
+  "description": "The frontend for Homadic.",
+  "scripts": {
+    "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
+    "build": "npm run clean && npm run build:webpack",
+    "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
+    "clean": "rimraf dist",
+    "start": "node devServer.js",
+    "tunnel": "browser-sync start --proxy localhost:7770 --tunnel homadic"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NickBrooks/Homadic.Web.git"
+  },
+  "author": "Homadic",
+  "license": "MIT",
+  "homepage": "https://github.com/NickBrooks/HomadicWeb",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-display-name": "^6.25.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.1.1",
+    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "express": "^4.13.4",
+    "react": "^15.6.1",
+    "react-addons-css-transition-group": "^15.0.2",
+    "react-dom": "^15.6.1",
+    "react-fontawesome": "^1.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^3.0.5",
+    "react-router-redux": "^4.0.8",
+    "react-transform-hmr": "^1.0.4",
+    "redux": "^3.7.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.0.0",
+    "webpack-dev-middleware": "^1.11.0",
+    "webpack-hot-middleware": "^2.18.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.4",
+    "expect": "^1.20.2",
+    "expect-jsx": "^3.0.0",
+    "file-loader": "^0.11.2",
+    "json-loader": "^0.5.4",
+    "mocha": "^3.4.2",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.2"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "presets": [
+    "react",
+    "es2015"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "transform-object-rest-spread"
+        ],
+        [
+          "transform-react-display-name"
+        ],
+        [
+          "react-transform",
+          {
+            "transforms": [
+              {
+                "transform": "react-transform-hmr",
+                "imports": [
+                  "react"
+                ],
+                "locals": [
+                  "module"
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "transform-object-rest-spread"
+        ],
+        [
+          "transform-react-display-name"
+        ]
+      ]
+    }
+  }
+}
