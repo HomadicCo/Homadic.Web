@@ -6,6 +6,7 @@ import Style from './styles/App.scss';
 
 // Import Components
 import { App, FullScreen } from './store/App';
+import SigninFacebook from './components/SigninFacebook/SigninFacebook';
 import Note from './store/Note/Note';
 
 // Import Router
@@ -18,6 +19,7 @@ const router = (
         <Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
             <Route path="/" component={App}>
                 <IndexRoute component={Note}></IndexRoute>
+                <Route path="/signin-facebook" component={SigninFacebook} />
             </Route>
         </Router>
     </Provider>

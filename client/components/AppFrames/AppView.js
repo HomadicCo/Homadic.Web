@@ -9,7 +9,6 @@ class AppView extends React.Component {
     render() {
         return (
             <div>
-                <p>Hey</p>
                 {React.cloneElement(this.props.children, this.props)}
             </div>
         )
