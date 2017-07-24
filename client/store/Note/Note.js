@@ -10,7 +10,7 @@ class Note extends React.Component {
     render() {
         return (
             <div>
-                <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&redirect_uri=http://localhost:7770/signin-facebook">Login</a>
+                <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=http://localhost:9990/signin-facebook">Login</a>
             </div>
         )
     }

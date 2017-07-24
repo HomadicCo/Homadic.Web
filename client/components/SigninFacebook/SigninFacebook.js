@@ -5,15 +5,21 @@ import queryString from 'query-string';
 class SigninFacebook extends React.Component {
     constructor(props) {
         super(props);
+        let parsedQueryString = queryString.parse(location.search);
+
+        props.handlePerformLogin(parsedQueryString.code).then(() => {
+            props.handleGetProfile();
+        });
     }
 
     render() {
-        const parsed = queryString.parse(location.search);
-        console.log(parsed);
+        let { profile } = this.props;
+
         return (
             <div>
-                <p>Logging in</p>
-                <p>{parsed.code}</p>
+                <h3>{!!profile.data.email ? "Logged in" : "Logging in"}</h3>
+                <p>{profile.data.name}</p>
+                <p>{profile.data.email}</p>
             </div>
         )
     }

@@ -6,12 +6,15 @@ import { combineReducers } from 'redux';
 
 // reducers
 import notes from './Note/reducer';
+import profile from './Profile/reducer';
 
 const defaultState = {
+  profile: { data: {} }
 };
 
 const appReducer = combineReducers({
   notes,
+  profile,
   routing: routerReducer
 });
 
