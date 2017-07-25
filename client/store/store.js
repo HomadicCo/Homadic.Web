@@ -5,14 +5,18 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 
 // reducers
+import authentication from './Authentication/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
 
 const defaultState = {
+  authentication: {},
+  map: { data: {} },
   profile: { data: {} }
 };
 
 const appReducer = combineReducers({
+  authentication,
   map,
   profile,
   routing: routerReducer

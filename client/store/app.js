@@ -9,6 +9,7 @@ import * as ProfileActions from './Profile/actions';
 
 function mapStateToProps(state) {
     return {
+        authentication: state.authentication,
         map: state.map,
         profile: state.profile
     }
