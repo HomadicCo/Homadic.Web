@@ -1,7 +1,21 @@
-.search-bar {
+.map {
+    height: 100vh;
+}
+
+.search-container {
+    position: fixed;
+    z-index: 9999;
+}
+
+.search {
     background: #fff;
     border-radius: $radius;
     input {
         border: none;
+        padding: 15px 20px;
     }
+}
+
+#map {
+    height: 200px;
 }

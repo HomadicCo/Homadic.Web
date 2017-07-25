@@ -16,7 +16,7 @@ class SearchBar extends React.Component {
 
     renderLoggedOut() {
         return (
-            <p>Logged out</p>
+            <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=http://localhost:9990/signin-facebook">Login</a>
         );
     }
 
@@ -24,16 +24,16 @@ class SearchBar extends React.Component {
         let { authentication } = this.props;
 
         return (
-            <div className="d-flex justify-content-start">
+            <div className="search-container d-flex justify-content-start">
                 <div className="ml-auto p-3">
-                    <div className="search-bar ml-auto">
+                    <div className="search">
                         <form className="form-inline">
                             <input className="form-control mr-sm-3" type="text" placeholder="Search" />
                         </form>
                     </div>
-                    <div className="ml-auto p-3">
-                        {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
-                    </div>
+                </div>
+                <div className="ml-auto p-3">
+                    {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
                 </div>
             </div>
         )
