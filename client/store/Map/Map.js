@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
-class Note extends React.Component {
+class Map extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -16,4 +16,4 @@ class Note extends React.Component {
     }
 }
 
-export default Note;
+export default Map;

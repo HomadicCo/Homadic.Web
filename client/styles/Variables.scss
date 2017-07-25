@@ -1,0 +1,23 @@
+//spacing/structure
+$navbar-padding: 60px;
+$box-padding: 20px;
+$box-margin: 20px;
+$hr-border: 1px solid #f2f2f2;
+//text
+$font-family: "Open Sans",
+sans-serif;
+$font-family-fancy: 'Sanchez',
+serif;
+$font-weight: 400;
+$font-size: 0.9em;
+$line-height: 1.75em;
+$font-weight-light: 300;
+$font-weight-bold: bold;
+//components
+$box-shadow: 0 0px 6px 0px rgba(0, 0, 0, 0.02),
+0 2px 6px 0px rgba(0, 0, 0, 0.01),
+0 6px 2px -5px rgba(0, 0, 0, 0.05);
+$box-shadow-bold: 0 0px 11px 2px rgba(0, 0, 0, 0.04),
+0 6px 20px 5px rgba(0, 0, 0, 0.02),
+0 8px 7px -5px rgba(0, 0, 0, 0.1);
+$radius: 5px;

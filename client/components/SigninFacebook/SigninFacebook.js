@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
 import queryString from 'query-string';
 
 class SigninFacebook extends React.Component {
@@ -7,19 +7,16 @@ class SigninFacebook extends React.Component {
         super(props);
         let parsedQueryString = queryString.parse(location.search);
 
+        // handle the login and redirect
         props.handlePerformLogin(parsedQueryString.code).then(() => {
-            props.handleGetProfile();
-        });
+            browserHistory.push("/");
+        }).catch((e) => console.log(e));
     }
 
     render() {
-        let { profile } = this.props;
-
         return (
             <div>
-                <h3>{!!profile.data.email ? "Logged in" : "Logging in"}</h3>
-                <p>{profile.data.name}</p>
-                <p>{profile.data.email}</p>
+                <h3>Logging in...</h3>
             </div>
         )
     }

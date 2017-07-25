@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 
 // reducers
-import notes from './Note/reducer';
+import map from './Map/reducer';
 import profile from './Profile/reducer';
 
 const defaultState = {
@@ -13,7 +13,7 @@ const defaultState = {
 };
 
 const appReducer = combineReducers({
-  notes,
+  map,
   profile,
   routing: routerReducer
 });
