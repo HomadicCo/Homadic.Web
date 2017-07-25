@@ -20,6 +20,7 @@ const router = (
             <Route path="/" component={App}>
                 <IndexRoute component={Map}></IndexRoute>
                 <Route path="/signin-facebook" component={SigninFacebook} />
+                <Route path="/:citySlug" component={Map} />
             </Route>
         </Router>
     </Provider>

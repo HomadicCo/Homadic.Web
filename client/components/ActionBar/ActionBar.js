@@ -1,8 +1,9 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import Avatar from '../../../components/Avatar/Avatar';
+import Avatar from '../Avatar/Avatar';
+import SearchBar from './components/SearchBar';
 
-class SearchBar extends React.Component {
+class ActionBar extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -26,11 +27,7 @@ class SearchBar extends React.Component {
         return (
             <div className="search-container d-flex justify-content-start">
                 <div className="ml-auto p-3">
-                    <div className="search">
-                        <form className="form-inline">
-                            <input className="form-control mr-sm-3" type="text" placeholder="Search" />
-                        </form>
-                    </div>
+                    <SearchBar {...this.props} />
                 </div>
                 <div className="ml-auto p-3">
                     {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
@@ -40,4 +37,4 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar;
+export default ActionBar;

@@ -40,3 +40,9 @@ export function apiPerformLogin(code) {
 export function apiGetProfile() {
     return Axios.get("profile", getAuthHeader());
 }
+
+// google maps
+
+export function apiSearchAutocomplete(query) {
+    return Axios.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + query + "&types=(cities)&key=AIzaSyCH7lJaKLHKo-uchWFd0WRMlLPx9Yuab18");
+}
