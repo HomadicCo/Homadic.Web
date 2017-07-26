@@ -1,41 +1,60 @@
+$input-color: #fff;
+$input-background: rgba(26, 145, 161, 0.6);
 .home {
-    h3 {
-        color: gray-medium;
+    h4 {
+        color: $gray-medium;
+        line-height: 1.5;
     }
     .home-typeahead {
         input {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: $input-background;
             border: none;
             padding: 15px 20px;
             font-family: $font-family-fancy;
             font-size: 3em;
-            color: #fff;
+            color: $input-color;
             text-align: center;
             &:focus {
                 outline: none;
             }
         }
+        @media (max-width: 991px) {
+            input {
+                font-size: 2em;
+            }
+        }
+        @media (max-width: 767px) {
+            input {
+                padding: 7px 10px;
+                font-size: 1.3em;
+            }
+        }
          ::-webkit-input-placeholder {
             text-align: center;
-            color: #fff;
+            color: $input-color;
         }
          :-moz-placeholder {
             /* Firefox 18- */
             text-align: center;
-            color: #fff;
+            color: $input-color;
         }
          ::-moz-placeholder {
             /* Firefox 19+ */
             text-align: center;
-            color: #fff;
+            color: $input-color;
         }
          :-ms-input-placeholder {
             text-align: center;
-            color: #fff;
+            color: $input-color;
         }
         .results {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: $input-background;
         }
+    }
+    .how-it-works {
+        position: absolute;
+        right: 0;
+        bottom: 0;
     }
 }
 

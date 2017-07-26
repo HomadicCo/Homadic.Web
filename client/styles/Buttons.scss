@@ -1,0 +1,17 @@
+.btn-success {
+    background-color: $green-light;
+    border: 1px solid $green-light;
+}
+
+.btn-action {
+    color: #fff;
+    background-color: $blue;
+    border: 1px solid $blue;
+    &:hover,
+    &:active,
+    &:focus {
+        color: #fff;
+        background-color: $blue-light;
+        border: 1px solid $blue-light;
+    }
+}

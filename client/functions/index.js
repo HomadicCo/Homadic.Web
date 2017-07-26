@@ -1,3 +1,5 @@
+import removeAccents from 'remove-accents';
+
 export function setDocumentTitle(value) {
     document.title = (value === undefined ? "Abstrack" : value + " // Abstrack");
 }
@@ -47,7 +49,7 @@ export const removeLocalStorage = (key) => {
 }
 
 export function convertToSlug(text) {
-    return text
+    return removeAccents(text)
         .toLowerCase()
         .replace(/[^\w ]+/g, '')
         .replace(/ +/g, '-')

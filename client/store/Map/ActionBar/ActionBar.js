@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import Avatar from '../Avatar/Avatar';
-import PlacesTypeahead from '../PlacesTypeahead/PlacesTypeahead';
+import Avatar from '../../../Components/Avatar/Avatar';
+import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead';
 
 class ActionBar extends React.Component {
     constructor(props) {

@@ -1,6 +1,8 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
+import HomeHeader from './components/HomeHeader';
 
 class Home extends React.Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class Home extends React.Component {
             },
             autocompleteItem: {
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                padding: '20px 10px',
+                padding: '15px 7px',
                 fontFamily: 'Sanchez',
                 fontSize: '1.2em',
                 color: '#fff',
@@ -42,15 +44,21 @@ class Home extends React.Component {
         }
 
         return (
-            <div className="home">
-                <div className="home-bg"></div>
-                <div className="container text-center">
-                    <div className="col-8 offset-2">
-                        <h3>Crowdsourced monthly rentals around the globe.</h3>
+            <div>
+                <HomeHeader {...this.props} />
+                <div className="home">
+                    <div className="container text-center">
+                        <div className="col-12 mb-5 mt-3">
+                            <h4>Crowdsourced monthly rentals around the globe - a slow traveller's best friend.</h4>
+                        </div>
+                        <div className="col-12 my-5">
+                            <PlacesTypeahead {...this.props} classNames={classNames} styles={homeStyles} inputProps={inputProps} />
+                        </div>
                     </div>
-                    <div className="col-12">
-                        <PlacesTypeahead {...this.props} classNames={classNames} styles={homeStyles} inputProps={inputProps} />
+                    <div className="how-it-works">
+                        <Link to="https://nickbrooks.co/" target="_blank" className="btn btn-action"><FontAwesome name="question-circle" /> How Homadic works</Link>
                     </div>
+                    <div className="home-bg"></div>
                 </div>
             </div>
         )

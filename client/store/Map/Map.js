@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import FontAwesome from 'react-fontawesome';
-import Header from '../../Components/ActionBar/ActionBar';
+import Header from './ActionBar/ActionBar';
 import MapStyle from './Components/MapStyle';
 
 class Map extends React.Component {
@@ -42,7 +42,7 @@ class Map extends React.Component {
             key: `Bliss Hotel`
         }];
 
-        const GettingStartedGoogleMap = withGoogleMap(props => (
+        const RenderMap = withGoogleMap(props => (
             <GoogleMap
                 defaultZoom={13}
                 center={this.state.coordinates}
@@ -60,7 +60,7 @@ class Map extends React.Component {
         return (
             <div className="map">
                 <Header {...this.props} />
-                <GettingStartedGoogleMap
+                <RenderMap
                     containerElement={
                         <div style={{ height: `100%` }} />
                     }
