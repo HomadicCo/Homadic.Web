@@ -18,6 +18,12 @@ class SearchBar extends React.Component {
     }
 
     render() {
+        const cssClasses = {
+            root: 'form-group search',
+            input: 'form-control',
+            autocompleteContainer: ''
+        }
+
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange,
@@ -33,8 +39,9 @@ class SearchBar extends React.Component {
                 <PlacesAutocomplete
                     inputProps={inputProps}
                     options={options}
+                    classes={cssClasses}
                     onSelect={this.handleSelect} />
-            </form>
+                 </form> 
         )
     }
 }
