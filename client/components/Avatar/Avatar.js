@@ -18,6 +18,8 @@ class Avatar extends React.Component {
         // select sizes
         if (size > 160) {
             avatarSrc = "https://graph.facebook.com/v2.10/" + profile.id + "/picture?type=large";
+        } else if (size > 50) {
+            avatarSrc = "https://graph.facebook.com/v2.10/" + profile.id + "/picture?type=normal";
         } else {
             avatarSrc = "https://graph.facebook.com/v2.10/" + profile.id + "/picture";
         }

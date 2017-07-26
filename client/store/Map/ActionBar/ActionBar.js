@@ -1,5 +1,6 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import Avatar from '../../../Components/Avatar/Avatar';
 import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead';
 
@@ -22,7 +23,7 @@ class ActionBar extends React.Component {
     }
 
     render() {
-        let { authentication } = this.props;
+        let { authentication, params } = this.props;
         const classNames = {
             root: 'form-group map-typeahead',
             input: 'form-control',
@@ -30,12 +31,19 @@ class ActionBar extends React.Component {
         }
 
         return (
-            <div className="search-container d-flex justify-content-start">
-                <div className="ml-auto p-3">
-                    <PlacesTypeahead {...this.props} classNames={classNames} placeholder="Search cities..." />
+            <div>
+                <div className="d-flex search-container mt-3 mr-3">
+                    <div className="ml-3">
+                        <PlacesTypeahead {...this.props} classNames={classNames} placeholder="Search cities..." />
+                    </div>
                 </div>
-                <div className="ml-auto p-3">
-                    {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
+                <div className="d-flex profile-actions mt-3 mr-3">
+                    <div className="ml-3 mt-2">
+                        <Link className="btn btn-sm btn-success" to={"/add/" + params.citySlug}><FontAwesome name="plus" /> Add</Link>
+                    </div>
+                    <div className="ml-3 mt-2">
+                        {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
+                    </div>
                 </div>
             </div>
         )

@@ -8,6 +8,7 @@ import Style from './styles/App.scss';
 import { App, FullScreen } from './store/App';
 import SigninFacebook from './components/SigninFacebook/SigninFacebook';
 import Home from './store/Home/Home';
+import AddPlace from './store/AddPlace/AddPlace';
 import Map from './store/Map/Map';
 
 // Import Router
@@ -21,6 +22,7 @@ const router = (
             <Route path="/" component={App}>
                 <IndexRoute component={Home}></IndexRoute>
                 <Route path="/signin-facebook" component={SigninFacebook} />
+                <Route path="/add/:citySlug" component={AddPlace} />
                 <Route path="/:citySlug" component={Map} />
             </Route>
         </Router>

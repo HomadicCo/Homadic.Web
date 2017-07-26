@@ -1,17 +1,33 @@
-.map {
-    height: 100vh;
+.profile-actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9999;
+    img,
+    .btn {
+        box-shadow: $box-shadow-bold;
+    }
 }
 
 .search-container {
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 9999;
 }
 
-.search {
+.map-typeahead {
     background: #fff;
     border-radius: $radius;
     input {
+        padding: 12px 15px;
         border: none;
         padding: 15px 20px;
+        width: 350px;
+        box-shadow: $box-shadow-bold;
     }
+}
+
+.map {
+    height: 100vh;
 }

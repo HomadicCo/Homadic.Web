@@ -46,7 +46,7 @@ class Map extends React.Component {
             <GoogleMap
                 defaultZoom={13}
                 center={this.state.coordinates}
-                defaultOptions={{ styles: MapStyle }}>
+                defaultOptions={{ styles: MapStyle, mapTypeControl: false }}>
                 {
                     props.markers.map(marker => (
                         <Marker
