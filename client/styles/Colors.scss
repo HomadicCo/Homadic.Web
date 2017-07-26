@@ -1,29 +1,29 @@
 $font-color: #424242;
 $white: #fff;
 $off-white: #f5f5f5;
-$note-gray: #eee;
-$note-gray-medium: #ddd;
-$note-gray-dark: #ccc;
-$note-gray-active: #bbb;
-$new-note-footer: #d0d6da;
-$note-blue: #2491e8;
-$note-blue-light: #389ef0;
-$note-header-blue-text: #f2f9ff;
-$note-dark-blue: #2c3e50;
-$note-dark-blue-active: #34495e;
-$note-faded-blue: #e0e8ec;
-$note-green: #2ecc71;
-$note-green-light: #00CC6A;
-$note-green-text: #deffec;
-$note-red: #c0392b;
-$note-red-light: #e74c3c;
-$note-orange: #FF5722;
-$note-orange-light: #FF7043;
-$note-yellow: #FFEE58;
-$note-orange-text: #ffdace;
-$note-purple: #BA68C8;
-$note-purple-text: #E1BEE7;
-$note-pink: #EC407A;
+$gray: #eee;
+$gray-medium: #ddd;
+$gray-dark: #ccc;
+$gray-active: #bbb;
+$new-footer: #d0d6da;
+$blue: #2491e8;
+$blue-light: #389ef0;
+$header-blue-text: #f2f9ff;
+$dark-blue: #2c3e50;
+$dark-blue-active: #34495e;
+$faded-blue: #e0e8ec;
+$green: #2ecc71;
+$green-light: #00CC6A;
+$green-text: #deffec;
+$red: #c0392b;
+$red-light: #e74c3c;
+$orange: #FF5722;
+$orange-light: #FF7043;
+$yellow: #FFEE58;
+$orange-text: #ffdace;
+$purple: #BA68C8;
+$purple-text: #E1BEE7;
+$pink: #EC407A;
 .white {
     color: $white;
 }
@@ -32,58 +32,66 @@ $note-pink: #EC407A;
     background: $white;
 }
 
-.note-header-blue {
-    color: $note-blue;
+.header-blue {
+    color: $blue;
 }
 
-.bg-note-header-blue {
-    background: $note-blue;
+.bg-header-blue {
+    background: $blue;
 }
 
-.note-gray-active {
-    color: $note-gray-active;
+.gray-active {
+    color: $gray-active;
 }
 
-.bg-note-gray-active {
-    background: $note-gray-active;
+.bg-gray-active {
+    background: $gray-active;
 }
 
-.note-green {
-    color: $note-green;
+.green {
+    color: $green;
 }
 
-.bg-note-green {
-    background: $note-green;
+.bg-green {
+    background: $green;
 }
 
-.note-green-light {
-    color: $note-green-light;
+.green-light {
+    color: $green-light;
 }
 
-.bg-note-green-light {
-    background: $note-green-light;
+.bg-green-light {
+    background: $green-light;
 }
 
-.note-orange {
-    color: $note-orange;
+.orange {
+    color: $orange;
 }
 
-.bg-note-orange {
-    background: $note-orange;
+.bg-orange {
+    background: $orange;
 }
 
-.note-orange-light {
-    color: $note-orange-light;
+.orange-light {
+    color: $orange-light;
 }
 
-.bg-note-orange-light {
-    background: $note-orange-light;
+.bg-orange-light {
+    background: $orange-light;
 }
 
-.note-purple {
-    color: $note-purple;
+.red-light {
+    color: $red-light;
 }
 
-.bg-note-purple {
-    background: $note-purple;
+.bg-red-light {
+    background: $red-light;
+}
+
+.purple {
+    color: $purple;
+}
+
+.bg-purple {
+    background: $purple;
 }

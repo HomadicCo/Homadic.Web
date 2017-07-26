@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import Avatar from '../Avatar/Avatar';
-import SearchBar from './components/SearchBar';
+import PlacesTypeahead from '../PlacesTypeahead/PlacesTypeahead';
 
 class ActionBar extends React.Component {
     constructor(props) {
@@ -23,11 +23,16 @@ class ActionBar extends React.Component {
 
     render() {
         let { authentication } = this.props;
+        const classNames = {
+            root: 'form-group map-typeahead',
+            input: 'form-control',
+            autocompleteContainer: ''
+        }
 
         return (
             <div className="search-container d-flex justify-content-start">
                 <div className="ml-auto p-3">
-                    <SearchBar {...this.props} />
+                    <PlacesTypeahead {...this.props} classNames={classNames} placeholder="Search cities..." />
                 </div>
                 <div className="ml-auto p-3">
                     {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}

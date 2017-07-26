@@ -3,7 +3,7 @@
  */
 
 body {
-    background: green;
+    background: $off-white;
     font-family: $font-family;
     letter-spacing: 0.01rem;
     font-size: $font-size;
@@ -39,7 +39,7 @@ a,
 a.active,
 a.focus,
 a:hover {
-    color: $note-blue;
+    color: $blue;
 }
 
 pre {
@@ -51,14 +51,14 @@ pre {
 
 blockquote {
     background: #f9f9f9;
-    border-left: 10px solid $note-green;
+    border-left: 10px solid $green;
     margin: 1.5em 10px;
     padding: 0.5em 10px;
     quotes: "\201C""\201D""\2018""\2019";
 }
 
 blockquote:before {
-    color: $note-green-light;
+    color: $green-light;
     content: open-quote;
     font-size: 4em;
     line-height: 0.1em;
@@ -79,7 +79,7 @@ textarea {
     width: 100%;
     box-sizing: border-box;
     padding: 5px 10px;
-    border: 1px solid $note-gray-dark;
+    border: 1px solid $gray-dark;
     background: $off-white;
     border-radius: 3px;
     height: 160px;
@@ -88,7 +88,7 @@ textarea {
 textarea:focus,
 textarea:active {
     outline: none !important;
-    border: 1px solid $note-gray-active;
+    border: 1px solid $gray-active;
 }
 
 .btn:active,
@@ -102,7 +102,7 @@ textarea:active {
 }
 
 .light {
-    color: $note-gray-dark;
+    color: $gray-dark;
 }
 
 .fancy {

@@ -1,10 +1,10 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import PlacesAutocomplete from 'react-places-autocomplete'
-import { apiSearchAutocomplete } from "../../../api";
-import { convertToSlug } from "../../../functions";
+import { convertToSlug } from '../../functions';
+import FontAwesome from 'react-fontawesome';
 
-class SearchBar extends React.Component {
+class PlacesTypeahead extends React.Component {
     constructor(props) {
         super(props)
         this.state = { address: "" }
@@ -18,32 +18,30 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        const cssClasses = {
-            root: 'form-group search',
-            input: 'form-control',
-            autocompleteContainer: ''
-        }
-
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange,
-            placeholder: "Search cities"
+            ...this.props.inputProps
         }
 
         const options = {
             types: ['(cities)']
         }
 
+        const AutocompleteItem = ({ suggestion }) => (<div className="result"><FontAwesome name="map-marker" size="lg" className="red-light" /> {suggestion}</div>)
+
         return (
             <form onSubmit={this.handleFormSubmit}>
                 <PlacesAutocomplete
                     inputProps={inputProps}
                     options={options}
-                    classes={cssClasses}
-                    onSelect={this.handleSelect} />
-                 </form> 
+                    styles={this.props.styles}
+                    classNames={this.props.classNames}
+                    onSelect={this.handleSelect}
+                    autocompleteItem={AutocompleteItem} />
+            </form>
         )
     }
 }
 
-export default SearchBar;
+export default PlacesTypeahead;
