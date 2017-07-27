@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
 import Header from './ActionBar/ActionBar';
 import MapStyle from './Components/MapStyle';
+import { icons } from '../../Images/Images'
 
 class Map extends React.Component {
     constructor(props) {
@@ -47,8 +48,9 @@ class Map extends React.Component {
     render() {
         let { center } = this.state;
         const markers = [{
-            position: { lat: 18.802512, lng: 98.963678 },
-            key: `Bliss Hotel`
+            position: { lat: -37.73622, lng: 144.730286 },
+            key: "Jessie's Hostel",
+            icon: "hostel"
         }];
 
         const RenderMap = withGoogleMap(props => (
@@ -61,6 +63,7 @@ class Map extends React.Component {
                     props.markers.map(marker => (
                         <Marker
                             {...marker}
+                            options={{ icon: icons[marker.icon] }}
                         />
                     ))
                 }
