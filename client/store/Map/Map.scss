@@ -20,14 +20,41 @@
     background: #fff;
     border-radius: $radius;
     input {
+        font-family: $font-family;
         padding: 12px 15px;
         border: none;
         padding: 15px 20px;
         width: 350px;
         box-shadow: $box-shadow-bold;
     }
+    @media (max-width: 767px) {
+        input {
+            width: 210px;
+        }
+    }
+     ::-webkit-input-placeholder {
+        color: $gray-dark;
+    }
+     :-moz-placeholder {
+        /* Firefox 18- */
+        color: $gray-dark;
+    }
+     ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: $gray-dark;
+    }
+     :-ms-input-placeholder {
+        color: $gray-dark;
+    }
 }
 
 .map {
     height: 100vh;
+}
+
+.loading-map {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

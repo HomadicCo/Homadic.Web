@@ -9,12 +9,13 @@ import MapStyle from './Components/MapStyle';
 class Map extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            lat: 18.7061,
-            lng: 98.9817
-        }
-
+        this.state = { center: undefined };
+        this.handleMapLoad = this.handleMapLoad.bind(this);
         this.updateLatLong(this.props.params.citySlug);
+    }
+
+    handleMapLoad(map) {
+        this._map = map;
     }
 
     updateLatLong(slug) {
@@ -22,13 +23,20 @@ class Map extends React.Component {
             .then(results =>
                 getLatLng(results[0])
             ).then(({ lat, lng }) => {
-                console.log({ lat, lng });
-                this.setState({ coordinates: { lat, lng } });
+                this.setState({ center: { lat, lng } });
             });
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.state == nextState) {
+            return false;
+        }
+
+        return true;
+    }
+
     componentWillReceiveProps(nextProps) {
-        let { location, params } = this.props;
+        let { location } = this.props;
 
         // check if route has changed
         if (location != nextProps.location) {
@@ -37,6 +45,7 @@ class Map extends React.Component {
     }
 
     render() {
+        let { center } = this.state;
         const markers = [{
             position: { lat: 18.802512, lng: 98.963678 },
             key: `Bliss Hotel`
@@ -44,9 +53,10 @@ class Map extends React.Component {
 
         const RenderMap = withGoogleMap(props => (
             <GoogleMap
+                ref={props.onMapLoad}
                 defaultZoom={13}
-                center={this.state.coordinates}
-                defaultOptions={{ styles: MapStyle, mapTypeControl: false }}>
+                defaultCenter={props.center}
+                defaultOptions={{ styles: MapStyle, mapTypeControl: false, streetViewControl: false, minZoom: 12 }}>
                 {
                     props.markers.map(marker => (
                         <Marker
@@ -58,17 +68,21 @@ class Map extends React.Component {
         ));
 
         return (
-            <div className="map">
-                <Header {...this.props} />
-                <RenderMap
-                    containerElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                    mapElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                    markers={markers}
-                />
+            <div>
+                {!!center ? <div className="map">
+                    <Header {...this.props} />
+                    <RenderMap
+                        onMapLoad={this.handleMapLoad}
+                        center={new google.maps.LatLng(center)}
+                        containerElement={
+                            <div style={{ height: `100%` }} />
+                        }
+                        mapElement={
+                            <div style={{ height: `100%` }} />
+                        }
+                        markers={markers}
+                    /> </div> :
+                    <div className="loading-map"><h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2></div>}
             </div>
         )
     }

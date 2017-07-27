@@ -30,11 +30,15 @@ class ActionBar extends React.Component {
             autocompleteContainer: ''
         }
 
+        const inputProps = {
+            placeholder: "Search cities..."
+        }
+
         return (
             <div>
                 <div className="d-flex search-container mt-3 mr-3">
                     <div className="ml-3">
-                        <PlacesTypeahead {...this.props} classNames={classNames} placeholder="Search cities..." />
+                        <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
                     </div>
                 </div>
                 <div className="d-flex profile-actions mt-3 mr-3">
