@@ -9,9 +9,11 @@ class SigninFacebook extends React.Component {
         const params = queryString.parse(location.search);
 
         // handle the login and redirect
-        props.handlePerformLogin(params.code).then(() => {
-            browserHistory.push(!!params.state ? params.state : "/");
-        }).catch((e) => console.log(e));
+        props.handlePerformLogin(params.code).then(() =>
+            props.handleGetProfile().then(() =>
+                browserHistory.push(!!params.state ? params.state : "/")
+            )
+        ).catch((e) => console.log(e));
     }
 
     render() {
