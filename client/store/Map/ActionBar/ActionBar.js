@@ -1,6 +1,7 @@
 import React from 'react';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { getLoginUrl } from '../../../functions';
 import Avatar from '../../../Components/Avatar/Avatar';
 import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead';
 
@@ -17,8 +18,10 @@ class ActionBar extends React.Component {
     }
 
     renderLoggedOut() {
+        const loginUrl = getLoginUrl(window.location.pathname);
+
         return (
-            <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=http://localhost:9990/signin-facebook">Login</a>
+            <a href={loginUrl}>Login</a>
         );
     }
 

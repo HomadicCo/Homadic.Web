@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { getLoginUrl } from '../../../functions';
 import Avatar from '../../../Components/Avatar/Avatar';
 
 class HomeHeader extends React.Component {
@@ -23,10 +24,12 @@ class HomeHeader extends React.Component {
     }
 
     renderLoggedOut() {
+        const loginUrl = getLoginUrl(window.location.pathname);
+
         return (
             <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
                 <div className="ml-3">
-                    <Link className="btn btn-sm btn-success" to="https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=http://localhost:9990/signin-facebook"><FontAwesome name="plus" /> Add a place</Link>
+                    <a className="btn btn-sm btn-success" href={loginUrl}><FontAwesome name="plus" /> Add a place</a>
                 </div>
             </div>
         );

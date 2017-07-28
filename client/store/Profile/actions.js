@@ -25,11 +25,11 @@ export function handleGetProfile() {
             request.then(response => {
                 dispatch(updateProfileStore(response.data));
                 dispatch(updatingProfileStatus(false));
-                resolve();
+                resolve(response.data);
             }).catch(error => {
                 dispatch(updatingProfileStatus(false));
                 console.log(error);
-                reject();
+                reject(error);
             });
         });
     };

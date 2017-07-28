@@ -1,22 +1,25 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import FontAwesome from 'react-fontawesome';
 import queryString from 'query-string';
 
 class SigninFacebook extends React.Component {
     constructor(props) {
         super(props);
-        let parsedQueryString = queryString.parse(location.search);
+        const params = queryString.parse(location.search);
 
         // handle the login and redirect
-        props.handlePerformLogin(parsedQueryString.code).then(() => {
-            browserHistory.push("/");
+        props.handlePerformLogin(params.code).then(() => {
+            browserHistory.push(!!params.state ? params.state : "/");
         }).catch((e) => console.log(e));
     }
 
     render() {
         return (
             <div>
-                <h3>Logging in...</h3>
+                <div className="loading-screen">
+                    <h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2>
+                </div>
             </div>
         )
     }

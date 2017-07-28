@@ -105,12 +105,15 @@ textarea:active {
     color: $gray-dark;
 }
 
-.fancy {
-    font-family: $font-family-fancy;
-}
-
 .uppercase {
     text-transform: uppercase;
+}
+
+.loading-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (max-width: 767px) {

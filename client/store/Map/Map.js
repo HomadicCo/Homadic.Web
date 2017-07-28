@@ -85,7 +85,7 @@ class Map extends React.Component {
                         }
                         markers={markers}
                     /> </div> :
-                    <div className="loading-map"><h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2></div>}
+                    <div className="loading-screen"><h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2></div>}
             </div>
         )
     }
