@@ -12,6 +12,7 @@ class ActionBar extends React.Component {
 
     renderLoggedIn() {
         let { profile } = this.props;
+
         return (
             <Avatar size={30} profile={profile.data} />
         );

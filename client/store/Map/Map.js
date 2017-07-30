@@ -12,6 +12,7 @@ class Map extends React.Component {
         super(props);
         this.state = { center: undefined };
         this.handleMapLoad = this.handleMapLoad.bind(this);
+        this.isLoading = this.isLoading.bind(this);
         this.updateLatLong(this.props.params.citySlug);
     }
 
@@ -28,7 +29,20 @@ class Map extends React.Component {
             });
     }
 
+    isLoading() {
+        let { center } = this.state;
+        let { profile } = this.props;
+
+        if (profile.updating) return true;
+
+        if (!!center) return false;
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.profile != nextProps.profile) {
+            return true;
+        }
+
         if (this.state == nextState) {
             return false;
         }
@@ -72,20 +86,20 @@ class Map extends React.Component {
 
         return (
             <div>
-                {!!center ? <div className="map">
-                    <Header {...this.props} />
-                    <RenderMap
-                        onMapLoad={this.handleMapLoad}
-                        center={new google.maps.LatLng(center)}
-                        containerElement={
-                            <div style={{ height: `100%` }} />
-                        }
-                        mapElement={
-                            <div style={{ height: `100%` }} />
-                        }
-                        markers={markers}
-                    /> </div> :
-                    <div className="loading-screen"><h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2></div>}
+                {this.isLoading() ? <div className="loading-screen"><h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2></div> :
+                    <div className="map">
+                        <Header {...this.props} />
+                        <RenderMap
+                            onMapLoad={this.handleMapLoad}
+                            center={new google.maps.LatLng(center)}
+                            containerElement={
+                                <div style={{ height: `100%` }} />
+                            }
+                            mapElement={
+                                <div style={{ height: `100%` }} />
+                            }
+                            markers={markers}
+                        /> </div>}
             </div>
         )
     }
