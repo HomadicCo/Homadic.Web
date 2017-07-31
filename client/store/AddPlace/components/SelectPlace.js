@@ -2,6 +2,7 @@ import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 import FontAwesome from 'react-fontawesome';
 import queryString from 'query-string';
+import SelectPlaceTypeahead from './SelectPlaceTypeahead';
 import Avatar from '../../../Components/Avatar/Avatar';
 
 class SelectPlace extends React.Component {
@@ -21,7 +22,11 @@ class SelectPlace extends React.Component {
     getFullCityName(slug) {
         geocodeByAddress(slug)
             .then(results =>
-                this.setState({ city: results[0]["address_components"][0]["long_name"] })
+                this.setState({
+                    city: results[0]["address_components"][0]["long_name"],
+                    lat: results[0]["geometry"]["location"]["lat"](),
+                    lng: results[0]["geometry"]["location"]["lng"]()
+                })
             );
     }
 
@@ -77,7 +82,7 @@ class SelectPlace extends React.Component {
 
     renderCitySelected() {
         let { profile } = this.props;
-        let { city } = this.state;
+        let { city, lat, lng } = this.state;
 
         return (
             <div className="col-12 text-center">
@@ -87,6 +92,7 @@ class SelectPlace extends React.Component {
                 <button onClick={this.handleClearCity} className="btn btn-sm btn-action mb-3">Change city</button>
                 <h5>Add a place to <strong>{city}</strong> as <strong>{profile.data.name}</strong>.</h5>
                 <p>Your first name is shown on the listing as the creator.</p>
+                 <SelectPlaceTypeahead {...this.props} lat={lat} lng={lng} /> 
             </div>
         )
     }
