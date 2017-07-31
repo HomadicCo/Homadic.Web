@@ -9,30 +9,6 @@ class HomeHeader extends React.Component {
         super(props);
     }
 
-    renderLoggedIn() {
-        let { profile } = this.props;
-        return (
-            <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
-                <div className="ml-3">
-                    <Link className="btn btn-sm btn-success" to="/add"><FontAwesome name="plus" /> Add a place</Link>
-                </div>
-                <div className="ml-3">
-                    <Avatar size={30} profile={profile.data} />
-                </div>
-            </div>
-        );
-    }
-
-    renderLoggedOut() {
-        return (
-            <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
-                <div className="ml-3">
-                    <Link className="btn btn-sm btn-success" to="/add"><FontAwesome name="plus" /> Add a place</Link>
-                </div>
-            </div>
-        );
-    }
-
     render() {
         let { authentication, profile } = this.props;
 
@@ -44,7 +20,7 @@ class HomeHeader extends React.Component {
                     </div>
                     <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
                         <div className="ml-3">
-                            <Link className="btn btn-sm btn-success" to="/add"><FontAwesome name="plus" /> Add a place</Link>
+                            <Link className="btn btn-sm btn-success" to="/add/place"><FontAwesome name="plus" /> Add a place</Link>
                         </div>
                         {authentication.isLoggedIn ?
                             <div className="ml-3">
