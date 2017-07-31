@@ -47,7 +47,7 @@ class ActionBar extends React.Component {
                 </div>
                 <div className="d-flex profile-actions mt-3 mr-3">
                     <div className="ml-3 mt-2">
-                        <Link className="btn btn-sm btn-success" to={"/add/" + params.citySlug}><FontAwesome name="plus" /> Add</Link>
+                        <Link className="btn btn-sm btn-success" to={"/add/place/" + params.citySlug}><FontAwesome name="plus" /> Add</Link>
                     </div>
                     <div className="ml-3 mt-2">
                         {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}

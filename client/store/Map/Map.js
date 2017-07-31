@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
-import Header from './ActionBar/ActionBar';
+import Header from './Components/ActionBar';
 import MapStyle from './Components/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images'

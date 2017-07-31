@@ -1,22 +1,21 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 import FontAwesome from 'react-fontawesome';
-import { convertToSlug } from '../../functions';
-import Avatar from '../../Components/Avatar/Avatar';
+import queryString from 'query-string';
+import Avatar from '../../../Components/Avatar/Avatar';
 
-class PlacesTypeahead extends React.Component {
+class SelectPlace extends React.Component {
     constructor(props) {
         super(props)
         this.handleSelect = this.handleSelect.bind(this);
-        this.onChange = (address) => this.setState({ address })
+        this.handleClearCity = this.handleClearCity.bind(this);
+        this.state = { address: "", city: "" };
+        this.onChange = (address) => this.setState({ address });
 
-        this.state = {
-            address: "",
-            slug: props.params.citySlug,
-            city: ""
+        // set preselected city
+        if (props.params.citySlug) {
+            this.getFullCityName(props.params.citySlug);
         }
-
-        this.getFullCityName(this.state.slug);
     }
 
     getFullCityName(slug) {
@@ -26,17 +25,28 @@ class PlacesTypeahead extends React.Component {
             );
     }
 
-    handleSelect(e) {
-        this.setState({ address: "" });
-        browserHistory.push("/" + convertToSlug(e));
+    handleClearCity(e) {
+        e.preventDefault();
+        this.setState({ address: "", city: "" })
     }
 
-    render() {
+    handleSelect(e) {
+        this.getFullCityName(e);
+    }
+
+    renderNothingSelected() {
         let { profile } = this.props;
+
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange,
-            ...this.props.inputProps
+            placeholder: "Select city..."
+        }
+
+        const classNames = {
+            root: 'form-group add-typeahead',
+            input: 'form-control',
+            autocompleteContainer: ''
         }
 
         const options = {
@@ -46,26 +56,50 @@ class PlacesTypeahead extends React.Component {
         const AutocompleteItem = ({ suggestion }) => (<div className="result"><FontAwesome name="map-marker" size="lg" className="red-light" /> {suggestion}</div>)
 
         return (
-            <div className="container">
-                <div className="col-12 text-center">
-                    <div className="my-3">
-                        <Avatar size={100} profile={profile.data} />
-                    </div>
-                    <h5>You are adding a place to <strong>{this.state.city}</strong> as <strong>{profile.data.name}</strong>.</h5>
-                    <p>Only your first name is shown as the creator.</p>
-                    <form onSubmit={this.handleFormSubmit}>
-                        <PlacesAutocomplete
-                            inputProps={inputProps}
-                            options={options}
-                            styles={this.props.styles}
-                            classNames={this.props.classNames}
-                            onSelect={this.handleSelect}
-                            autocompleteItem={AutocompleteItem} />
-                    </form>
+            <div className="col-12 text-center">
+                <div className="my-3">
+                    <Avatar size={60} profile={profile.data} />
                 </div>
+                <h5>Add a place to Homadic as <strong>{profile.data.name}</strong>.</h5>
+                <p>Your first name is shown on the listing as the creator.</p>
+                <form onSubmit={this.handleFormSubmit}>
+                    <PlacesAutocomplete
+                        inputProps={inputProps}
+                        options={options}
+                        styles={this.props.styles}
+                        classNames={classNames}
+                        onSelect={this.handleSelect}
+                        autocompleteItem={AutocompleteItem} />
+                </form>
+            </div>
+        )
+    }
+
+    renderCitySelected() {
+        let { profile } = this.props;
+        let { city } = this.state;
+
+        return (
+            <div className="col-12 text-center">
+                <div className="my-3">
+                    <Avatar size={60} profile={profile.data} />
+                </div>
+                <button onClick={this.handleClearCity} className="btn btn-sm btn-action mb-3">Change city</button>
+                <h5>Add a place to <strong>{city}</strong> as <strong>{profile.data.name}</strong>.</h5>
+                <p>Your first name is shown on the listing as the creator.</p>
+            </div>
+        )
+    }
+
+    render() {
+        let { city } = this.state;
+
+        return (
+            <div className="container">
+                {!!city ? this.renderCitySelected() : this.renderNothingSelected()}
             </div>
         )
     }
 }
 
-export default PlacesTypeahead;
+export default SelectPlace;
