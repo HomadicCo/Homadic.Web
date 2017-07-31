@@ -24,19 +24,17 @@ class HomeHeader extends React.Component {
     }
 
     renderLoggedOut() {
-        const loginUrl = getLoginUrl(window.location.pathname);
-
         return (
             <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
                 <div className="ml-3">
-                    <a className="btn btn-sm btn-success" href={loginUrl}><FontAwesome name="plus" /> Add a place</a>
+                    <Link className="btn btn-sm btn-success" to="/add"><FontAwesome name="plus" /> Add a place</Link>
                 </div>
             </div>
         );
     }
 
     render() {
-        let { authentication } = this.props;
+        let { authentication, profile } = this.props;
 
         return (
             <div className="container-fluid">
@@ -44,7 +42,17 @@ class HomeHeader extends React.Component {
                     <div className="col-4 px-4 py-3">
                         <a className="navbar-brand" href="#">Project name</a>
                     </div>
-                    {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
+                    <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
+                        <div className="ml-3">
+                            <Link className="btn btn-sm btn-success" to="/add"><FontAwesome name="plus" /> Add a place</Link>
+                        </div>
+                        {authentication.isLoggedIn ?
+                            <div className="ml-3">
+                                <Avatar size={30} profile={profile.data} />
+                            </div> :
+                            undefined
+                        }
+                    </div>
                 </div>
             </div>
         )

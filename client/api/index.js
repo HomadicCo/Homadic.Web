@@ -30,11 +30,11 @@ Axios.defaults.baseURL = getApiUrl();
 // login
 
 export function apiPerformLogin(code) {
-    return Axios.post("login", { code });
+    return Axios.post("token", { code });
 }
 
 export function apiValidateToken() {
-    return Axios.get("check", getAuthHeader())
+    return Axios.get("token/validate", getAuthHeader())
 }
 
 // profile

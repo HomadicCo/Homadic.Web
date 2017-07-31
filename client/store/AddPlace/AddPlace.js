@@ -1,8 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { browserHistory } from 'react-router';
 import { apiValidateToken } from '../../api';
 import { getLoginUrl } from '../../functions';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 
 class AddPlace extends React.Component {
     constructor(props) {
@@ -12,21 +12,27 @@ class AddPlace extends React.Component {
 
         if (props.authentication.isLoggedIn) {
             apiValidateToken().catch(() => {
-                browserHistory.push(loginUrl);
+                window.location.replace(loginUrl);
             });
         } else {
-            browser.push(loginUrl);
+            window.location.replace(loginUrl);
         }
 
     }
 
-    render() {
-        let { profile } = this.props;
-
+    renderComponents() {
         return (
             <div className="container">
                 <p>Hey</p>
             </div>
+        )
+    }
+
+    render() {
+        let { authentication } = this.props;
+
+        return (
+            authentication.isLoggedIn ? this.renderComponents() : <LoadingScreen />
         )
     }
 }

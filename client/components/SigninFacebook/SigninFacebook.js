@@ -2,6 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import queryString from 'query-string';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 class SigninFacebook extends React.Component {
     constructor(props) {
@@ -18,11 +19,7 @@ class SigninFacebook extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="loading-screen">
-                    <h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2>
-                </div>
-            </div>
+            <LoadingScreen />
         )
     }
 }

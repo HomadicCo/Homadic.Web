@@ -5,6 +5,7 @@ import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
 import Header from './ActionBar/ActionBar';
 import MapStyle from './Components/MapStyle';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images'
 
 class Map extends React.Component {
@@ -86,7 +87,7 @@ class Map extends React.Component {
 
         return (
             <div>
-                {this.isLoading() ? <div className="loading-screen"><h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2></div> :
+                {this.isLoading() ? <LoadingScreen /> :
                     <div className="map">
                         <Header {...this.props} />
                         <RenderMap
