@@ -28,6 +28,7 @@ const RenderMap = withGoogleMap(props => (
                 <Marker
                     {...marker}
                     options={{ icon: icons[marker.icon] }}
+                    onDragEnd={e => console.log(e)}
                 />
             ))
         }
@@ -74,7 +75,7 @@ class Map extends React.Component {
         };
 
         this.props.setAddNewPlaceMarker(addPlaceMarker);
-        this.setState({ center: { lat, lng }, zoom: 17 });
+        this.setState({ center: { lat, lng }, zoom: 18 });
     }
 
     handleZoomChanged() {
