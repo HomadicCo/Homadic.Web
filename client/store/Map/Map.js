@@ -8,6 +8,24 @@ import MapStyle from './Components/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images'
 
+const RenderMap = withGoogleMap(props => (
+    <GoogleMap
+        ref={props.onMapLoad}
+        onClick={props.onMapClick}
+        defaultZoom={13}
+        defaultCenter={props.center}
+        defaultOptions={{ styles: MapStyle, mapTypeControl: false, streetViewControl: false, minZoom: 12 }}>
+        {
+            props.markers.map(marker => (
+                <Marker
+                    {...marker}
+                    options={{ icon: icons[marker.icon] }}
+                />
+            ))
+        }
+    </GoogleMap >
+));
+
 class Map extends React.Component {
     constructor(props) {
         super(props);
@@ -48,22 +66,8 @@ class Map extends React.Component {
         if (profile.updating) return true;
 
         if (!!center) return false;
-    }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.profile != nextProps.profile) {
-            return true;
-        }
-
-        if (this.props.map != nextProps.map) {
-            return true;
-        }
-
-        if (this.state == nextState) {
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     componentWillReceiveProps(nextProps) {
@@ -78,24 +82,6 @@ class Map extends React.Component {
     render() {
         let { center } = this.state;
         let { map } = this.props;
-
-        const RenderMap = withGoogleMap(props => (
-            <GoogleMap
-                ref={props.onMapLoad}
-                onClick={props.onMapClick}
-                defaultZoom={13}
-                defaultCenter={props.center}
-                defaultOptions={{ styles: MapStyle, mapTypeControl: false, streetViewControl: false, minZoom: 12 }}>
-                {
-                    props.markers.map(marker => (
-                        <Marker
-                            {...marker}
-                            options={{ icon: icons[marker.icon] }}
-                        />
-                    ))
-                }
-            </GoogleMap >
-        ));
 
         return (
             <div>
@@ -113,7 +99,8 @@ class Map extends React.Component {
                                 <div style={{ height: `100%` }} />
                             }
                             markers={map.markers}
-                        /> </div>}
+                        />
+                    </div>}
             </div>
         )
     }
