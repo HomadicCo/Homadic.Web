@@ -23,6 +23,10 @@ function map(state = [], action) {
     switch (action.type) {
         case 'SET_ADD_NEW_PLACE_MARKER':
             return addNewPlaceMarker(state, action);
+        case 'SET_ADD_NEW_PLACE_MODE':
+            var newState = Object.assign({}, state);
+            newState.addNewPlaceMode = action.value;
+            return newState;
     }
     return state;
 }

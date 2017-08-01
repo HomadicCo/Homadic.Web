@@ -8,6 +8,7 @@ import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead
 class ActionBar extends React.Component {
     constructor(props) {
         super(props);
+        this.setAddNewPlaceMode = this.setAddNewPlaceMode.bind(this);
     }
 
     renderLoggedIn() {
@@ -16,6 +17,11 @@ class ActionBar extends React.Component {
         return (
             <Avatar size={30} profile={profile.data} />
         );
+    }
+
+    setAddNewPlaceMode(value, e) {
+        e.preventDefault();
+        this.props.setAddNewPlaceMode(value);
     }
 
     renderLoggedOut() {
@@ -27,7 +33,7 @@ class ActionBar extends React.Component {
     }
 
     render() {
-        let { authentication, params } = this.props;
+        let { authentication, map, params } = this.props;
         const classNames = {
             root: 'form-group map-typeahead',
             input: 'form-control',
@@ -40,14 +46,17 @@ class ActionBar extends React.Component {
 
         return (
             <div>
-                <div className="d-flex search-container mt-3 mr-3">
+                <div className="d-flex search-container mr-3 mt-3">
                     <div className="ml-3">
                         <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
                     </div>
                 </div>
-                <div className="d-flex profile-actions mt-3 mr-3">
+                <div className="d-flex profile-actions mr-3 mt-3">
                     <div className="ml-3 mt-2">
-                        <Link className="btn btn-sm btn-success" to={"/add/place/" + params.citySlug}><FontAwesome name="plus" /> Add</Link>
+                        {map.addNewPlaceMode ?
+                            <button onClick={this.setAddNewPlaceMode.bind(null, false)} className="btn btn-sm btn-error"><FontAwesome name="remove" /> Cancel</button> :
+                            <button onClick={this.setAddNewPlaceMode.bind(null, true)} className="btn btn-sm btn-success"><FontAwesome name="plus" /> Add</button>
+                        }
                     </div>
                     <div className="ml-3 mt-2">
                         {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
-import Header from './Components/ActionBar';
+import ActionBar from './Components/ActionBar';
 import MapStyle from './Components/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images'
@@ -14,7 +14,13 @@ const RenderMap = withGoogleMap(props => (
         onClick={props.onMapClick}
         defaultZoom={13}
         center={props.center}
-        defaultOptions={{ styles: MapStyle, mapTypeControl: false, streetViewControl: false, minZoom: 12 }}>
+        defaultOptions={{
+            styles: MapStyle,
+            mapTypeControl: false,
+            streetViewControl: false,
+            minZoom: 12,
+            draggableCursor: props.draggableCursor
+        }}>
         {
             props.markers.map(marker => (
                 <Marker
@@ -29,7 +35,9 @@ const RenderMap = withGoogleMap(props => (
 class Map extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { center: undefined };
+        this.state = {
+            center: undefined
+        };
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
         this.isLoading = this.isLoading.bind(this);
@@ -50,6 +58,10 @@ class Map extends React.Component {
     }
 
     handleMapClick(event) {
+        if (!this.props.map.addNewPlaceMode) return;
+        const lat = event.latLng.lat();
+        const lng = event.latLng.lng();
+
         const addPlaceMarker = {
             position: event.latLng,
             draggable: true,
@@ -57,6 +69,7 @@ class Map extends React.Component {
         };
 
         this.props.setAddNewPlaceMarker(addPlaceMarker);
+        this.setState({ center: { lat, lng } });
     }
 
     isLoading() {
@@ -64,9 +77,7 @@ class Map extends React.Component {
         let { profile } = this.props;
 
         if (profile.updating) return true;
-
-        if (!!center) return false;
-
+        if (!center) return true;
         return false;
     }
 
@@ -87,11 +98,12 @@ class Map extends React.Component {
             <div>
                 {this.isLoading() ? <LoadingScreen /> :
                     <div className="map">
-                        <Header {...this.props} />
+                        <ActionBar {...this.props} />
                         <RenderMap
                             onMapLoad={this.handleMapLoad}
                             onMapClick={this.handleMapClick}
                             center={new google.maps.LatLng(center)}
+                            draggableCursor={map.addNewPlaceMode ? 'crosshair' : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />
                             }

@@ -5,3 +5,11 @@ export function setAddNewPlaceMarker(marker) {
         marker
     }
 }
+
+// the market for adding a new place
+export function setAddNewPlaceMode(value) {
+    return {
+        type: 'SET_ADD_NEW_PLACE_MODE',
+        value
+    }
+}
