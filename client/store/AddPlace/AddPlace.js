@@ -11,18 +11,19 @@ class AddPlace extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            isLoading: true
+        };
+
         // and we're logged in
         const loginUrl = getLoginUrl(window.location.pathname);
-        console.log(props.authentication, props.map.addNewPlaceCoordinates);
         if (props.authentication.isLoggedIn && !!props.map.addNewPlaceCoordinates) {
             props.handleGetNearbyResults(props.map.addNewPlaceCoordinates).then(() => {
-
+                this.setState({ isLoading: false });
             }).catch(() => {
-                console.log('here');
                 browserHistory.push("/");
             });
         } else {
-            console.log("no here");
             browserHistory.push("/");
         }
     }
@@ -59,9 +60,10 @@ class AddPlace extends React.Component {
 
     render() {
         let { authentication } = this.props;
+        let { isLoading } = this.state;
 
         return (
-            authentication.isLoggedIn ? this.renderComponents() : <LoadingScreen />
+            authentication.isLoggedIn && !isLoading ? this.renderComponents() : <LoadingScreen />
         )
     }
 }
