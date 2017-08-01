@@ -12,9 +12,9 @@ const RenderMap = withGoogleMap(props => (
     <GoogleMap
         ref={props.onMapLoad}
         onClick={props.onMapClick}
-        defaultZoom={13}
+        zoom={props.zoom}
         center={props.center}
-        defaultOptions={{
+        options={{
             styles: MapStyle,
             mapTypeControl: false,
             streetViewControl: false,
@@ -36,7 +36,8 @@ class Map extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            center: undefined
+            center: undefined,
+            zoom: 13
         };
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
@@ -69,7 +70,7 @@ class Map extends React.Component {
         };
 
         this.props.setAddNewPlaceMarker(addPlaceMarker);
-        this.setState({ center: { lat, lng } });
+        this.setState({ center: { lat, lng }, zoom: 17 });
     }
 
     isLoading() {
@@ -91,7 +92,7 @@ class Map extends React.Component {
     }
 
     render() {
-        let { center } = this.state;
+        let { center, zoom } = this.state;
         let { map } = this.props;
 
         return (
@@ -103,7 +104,8 @@ class Map extends React.Component {
                             onMapLoad={this.handleMapLoad}
                             onMapClick={this.handleMapClick}
                             center={new google.maps.LatLng(center)}
-                            draggableCursor={map.addNewPlaceMode ? 'crosshair' : undefined}
+                            zoom={zoom}
+                            draggableCursor={map.addNewPlaceMode ? "crosshair" : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />
                             }

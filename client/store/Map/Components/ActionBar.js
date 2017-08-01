@@ -22,6 +22,9 @@ class ActionBar extends React.Component {
     setAddNewPlaceMode(value, e) {
         e.preventDefault();
         this.props.setAddNewPlaceMode(value);
+        if (!value) {
+            this.props.removeAddNewPlaceMarker();
+        }
     }
 
     renderLoggedOut() {
@@ -54,7 +57,7 @@ class ActionBar extends React.Component {
                 <div className="d-flex profile-actions mr-3 mt-3">
                     <div className="ml-3 mt-2">
                         {map.addNewPlaceMode ?
-                            <button onClick={this.setAddNewPlaceMode.bind(null, false)} className="btn btn-sm btn-error"><FontAwesome name="remove" /> Cancel</button> :
+                            <button onClick={this.setAddNewPlaceMode.bind(null, false)} className="btn btn-sm btn-danger"><FontAwesome name="remove" /> Cancel</button> :
                             <button onClick={this.setAddNewPlaceMode.bind(null, true)} className="btn btn-sm btn-success"><FontAwesome name="plus" /> Add</button>
                         }
                     </div>

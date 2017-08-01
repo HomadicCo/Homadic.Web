@@ -1,4 +1,4 @@
-// the market for adding a new place
+// the marker for adding a new place
 export function setAddNewPlaceMarker(marker) {
     return {
         type: 'SET_ADD_NEW_PLACE_MARKER',
@@ -6,7 +6,14 @@ export function setAddNewPlaceMarker(marker) {
     }
 }
 
-// the market for adding a new place
+// remove marker for adding a new place
+export function removeAddNewPlaceMarker(marker) {
+    return {
+        type: 'REMOVE_ADD_NEW_PLACE_MARKER'
+    }
+}
+
+// toggle add new place mode
 export function setAddNewPlaceMode(value) {
     return {
         type: 'SET_ADD_NEW_PLACE_MODE',
