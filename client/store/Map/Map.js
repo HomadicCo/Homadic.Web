@@ -13,6 +13,8 @@ const RenderMap = withGoogleMap(props => (
         ref={props.onMapLoad}
         onClick={props.onMapClick}
         zoom={props.zoom}
+        onZoomChanged={props.onZoomChanged}
+        onCenterChanged={props.onCenterChanged}
         center={props.center}
         options={{
             styles: MapStyle,
@@ -41,6 +43,8 @@ class Map extends React.Component {
         };
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
+        this.handleZoomChanged = this.handleZoomChanged.bind(this);
+        this.handleCenterChanged = this.handleCenterChanged.bind(this);
         this.isLoading = this.isLoading.bind(this);
         this.updateLatLong(this.props.params.citySlug);
     }
@@ -50,7 +54,7 @@ class Map extends React.Component {
             .then(results =>
                 getLatLng(results[0])
             ).then(({ lat, lng }) => {
-                this.setState({ center: { lat, lng } });
+                this.setState({ center: { lat, lng }, zoom: 13 });
             });
     }
 
@@ -71,6 +75,28 @@ class Map extends React.Component {
 
         this.props.setAddNewPlaceMarker(addPlaceMarker);
         this.setState({ center: { lat, lng }, zoom: 17 });
+    }
+
+    handleZoomChanged() {
+        const nextZoom = this._map.getZoom();
+        if (nextZoom !== this.state.zoom) {
+            this.setState({
+                zoom: nextZoom,
+            });
+        }
+    }
+
+    handleCenterChanged() {
+        const centerObj = this._map.getCenter();
+        const lat = centerObj.lat();
+        const lng = centerObj.lng();
+
+        const nextCenter = { lat, lng };
+        if (nextCenter !== this.state.center) {
+            this.setState({
+                center: nextCenter,
+            });
+        }
     }
 
     isLoading() {
@@ -105,6 +131,8 @@ class Map extends React.Component {
                             onMapClick={this.handleMapClick}
                             center={new google.maps.LatLng(center)}
                             zoom={zoom}
+                            onZoomChanged={this.handleZoomChanged}
+                            onCenterChanged={this.handleCenterChanged}
                             draggableCursor={map.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />
