@@ -13,12 +13,9 @@ class Map extends React.Component {
         super(props);
         this.state = { center: undefined };
         this.handleMapLoad = this.handleMapLoad.bind(this);
+        this.handleMapClick = this.handleMapClick.bind(this);
         this.isLoading = this.isLoading.bind(this);
         this.updateLatLong(this.props.params.citySlug);
-    }
-
-    handleMapLoad(map) {
-        this._map = map;
     }
 
     updateLatLong(slug) {
@@ -28,6 +25,20 @@ class Map extends React.Component {
             ).then(({ lat, lng }) => {
                 this.setState({ center: { lat, lng } });
             });
+    }
+
+    handleMapLoad(map) {
+        this._map = map;
+    }
+
+    handleMapClick(event) {
+        const addPlaceMarker = {
+            position: event.latLng,
+            draggable: true,
+            key: "add-new-place"
+        };
+
+        this.props.setAddNewPlaceMarker(addPlaceMarker);
     }
 
     isLoading() {
@@ -41,6 +52,10 @@ class Map extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         if (this.props.profile != nextProps.profile) {
+            return true;
+        }
+
+        if (this.props.map != nextProps.map) {
             return true;
         }
 
@@ -62,15 +77,12 @@ class Map extends React.Component {
 
     render() {
         let { center } = this.state;
-        const markers = [{
-            position: { lat: -37.73622, lng: 144.730286 },
-            key: "Jessie's Hostel",
-            icon: "hostel"
-        }];
+        let { map } = this.props;
 
         const RenderMap = withGoogleMap(props => (
             <GoogleMap
                 ref={props.onMapLoad}
+                onClick={props.onMapClick}
                 defaultZoom={13}
                 defaultCenter={props.center}
                 defaultOptions={{ styles: MapStyle, mapTypeControl: false, streetViewControl: false, minZoom: 12 }}>
@@ -92,6 +104,7 @@ class Map extends React.Component {
                         <Header {...this.props} />
                         <RenderMap
                             onMapLoad={this.handleMapLoad}
+                            onMapClick={this.handleMapClick}
                             center={new google.maps.LatLng(center)}
                             containerElement={
                                 <div style={{ height: `100%` }} />
@@ -99,7 +112,7 @@ class Map extends React.Component {
                             mapElement={
                                 <div style={{ height: `100%` }} />
                             }
-                            markers={markers}
+                            markers={map.markers}
                         /> </div>}
             </div>
         )

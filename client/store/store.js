@@ -11,7 +11,7 @@ import profile from './Profile/reducer';
 
 const defaultState = {
   authentication: {},
-  map: { data: {} },
+  map: { markers: [] },
   profile: { data: {} }
 };
 
