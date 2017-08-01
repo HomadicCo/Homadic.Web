@@ -28,7 +28,7 @@ const RenderMap = withGoogleMap(props => (
                 <Marker
                     {...marker}
                     options={{ icon: icons[marker.icon] }}
-                    onDragEnd={e => console.log(e)}
+                    onDragEnd={props.onMarkerDragged}
                 />
             ))
         }
@@ -46,6 +46,7 @@ class Map extends React.Component {
         this.handleMapClick = this.handleMapClick.bind(this);
         this.handleZoomChanged = this.handleZoomChanged.bind(this);
         this.handleCenterChanged = this.handleCenterChanged.bind(this);
+        this.handleMarkerDrag = this.handleMarkerDrag.bind(this);
         this.isLoading = this.isLoading.bind(this);
         this.updateLatLong(this.props.params.citySlug);
     }
@@ -63,18 +64,28 @@ class Map extends React.Component {
         this._map = map;
     }
 
-    handleMapClick(event) {
-        if (!this.props.map.addNewPlaceMode) return;
-        const lat = event.latLng.lat();
-        const lng = event.latLng.lng();
+    handleMarkerDrag(e) {
+        let { setAddNewPlaceCoordinates } = this.props;
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
+
+        setAddNewPlaceCoordinates(lat, lng);
+    }
+
+    handleMapClick(e) {
+        let { map, setAddNewPlaceMarker, setAddNewPlaceCoordinates } = this.props;
+        if (!map.addNewPlaceMode) return;
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
 
         const addPlaceMarker = {
-            position: event.latLng,
+            position: e.latLng,
             draggable: true,
             key: "add-new-place"
         };
 
-        this.props.setAddNewPlaceMarker(addPlaceMarker);
+        setAddNewPlaceMarker(addPlaceMarker);
+        setAddNewPlaceCoordinates(lat, lng);
         this.setState({ center: { lat, lng }, zoom: 18 });
     }
 
@@ -134,6 +145,7 @@ class Map extends React.Component {
                             zoom={zoom}
                             onZoomChanged={this.handleZoomChanged}
                             onCenterChanged={this.handleCenterChanged}
+                            onMarkerDragged={this.handleMarkerDrag}
                             draggableCursor={map.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />

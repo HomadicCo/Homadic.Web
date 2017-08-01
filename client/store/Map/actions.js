@@ -20,3 +20,12 @@ export function setAddNewPlaceMode(value) {
         value
     }
 }
+
+export function setAddNewPlaceCoordinates(lat, lng) {
+    return {
+        type: 'SET_ADD_NEW_PLACE_COORDINATES',
+        coordinates: {
+            lat, lng
+        }
+    }
+}

@@ -32,7 +32,7 @@ function removeNewPlaceMarker(state) {
     if (i >= 0) {
         newState.markers.splice(i, 1)
     }
-    
+
     return newState;
 }
 
@@ -45,6 +45,10 @@ function map(state = [], action) {
         case 'SET_ADD_NEW_PLACE_MODE':
             var newState = Object.assign({}, state);
             newState.addNewPlaceMode = action.value;
+            return newState;
+        case 'SET_ADD_NEW_PLACE_COORDINATES':
+            var newState = Object.assign({}, state);
+            newState.addNewPlaceCoordinates = action.coordinates;
             return newState;
     }
     return state;
