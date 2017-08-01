@@ -13,7 +13,7 @@ const RenderMap = withGoogleMap(props => (
         ref={props.onMapLoad}
         onClick={props.onMapClick}
         defaultZoom={13}
-        defaultCenter={props.center}
+        center={props.center}
         defaultOptions={{ styles: MapStyle, mapTypeControl: false, streetViewControl: false, minZoom: 12 }}>
         {
             props.markers.map(marker => (
