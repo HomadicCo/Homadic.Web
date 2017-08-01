@@ -1,3 +1,4 @@
 export const icons = {
-    hostel: require('!!file-loader!./icons/icon-hostel.svg')
+    hostel: require('!!file-loader!./icons/icon-hostel.svg'),
+    dart: require('!!file-loader!./icons/icon-dart.svg')
 }

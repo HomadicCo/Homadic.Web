@@ -105,7 +105,7 @@ class Map extends React.Component {
                             onMapClick={this.handleMapClick}
                             center={new google.maps.LatLng(center)}
                             zoom={zoom}
-                            draggableCursor={map.addNewPlaceMode ? "crosshair" : undefined}
+                            draggableCursor={map.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />
                             }

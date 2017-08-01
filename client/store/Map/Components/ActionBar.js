@@ -15,7 +15,7 @@ class ActionBar extends React.Component {
         let { profile } = this.props;
 
         return (
-            <Avatar size={30} profile={profile.data} />
+            <Avatar size={40} profile={profile.data} />
         );
     }
 
@@ -51,17 +51,21 @@ class ActionBar extends React.Component {
             <div>
                 <div className="d-flex search-container mr-3 mt-3">
                     <div className="ml-3">
-                        <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
+                        {map.addNewPlaceMode ?
+                            <button className="btn btn-success"><FontAwesome name="check" /> Add new place here</button> :
+                            <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
+                        }
+
                     </div>
                 </div>
                 <div className="d-flex profile-actions mr-3 mt-3">
-                    <div className="ml-3 mt-2">
+                    <div className="ml-3">
                         {map.addNewPlaceMode ?
-                            <button onClick={this.setAddNewPlaceMode.bind(null, false)} className="btn btn-sm btn-danger"><FontAwesome name="remove" /> Cancel</button> :
-                            <button onClick={this.setAddNewPlaceMode.bind(null, true)} className="btn btn-sm btn-success"><FontAwesome name="plus" /> Add</button>
+                            <button onClick={this.setAddNewPlaceMode.bind(null, false)} className="btn btn-danger"><FontAwesome name="remove" /> Cancel</button> :
+                            <button onClick={this.setAddNewPlaceMode.bind(null, true)} className="btn btn-success"><FontAwesome name="plus" /> Add</button>
                         }
                     </div>
-                    <div className="ml-3 mt-2">
+                    <div className="ml-3">
                         {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
                     </div>
                 </div>
