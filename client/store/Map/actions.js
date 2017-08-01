@@ -21,11 +21,9 @@ export function setAddNewPlaceMode(value) {
     }
 }
 
-export function setAddNewPlaceCoordinates(lat, lng) {
+export function setAddNewPlaceCoordinates(coordinates) {
     return {
         type: 'SET_ADD_NEW_PLACE_COORDINATES',
-        coordinates: {
-            lat, lng
-        }
+        coordinates
     }
 }

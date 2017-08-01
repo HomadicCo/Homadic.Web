@@ -21,9 +21,13 @@ class ActionBar extends React.Component {
 
     setAddNewPlaceMode(value, e) {
         e.preventDefault();
-        this.props.setAddNewPlaceMode(value);
+        let { setAddNewPlaceCoordinates, setAddNewPlaceMode, removeAddNewPlaceMarker } = this.props;
+
+        setAddNewPlaceMode(value);
+
         if (!value) {
-            this.props.removeAddNewPlaceMarker();
+            setAddNewPlaceCoordinates(undefined);
+            removeAddNewPlaceMarker();
         }
     }
 
@@ -52,7 +56,7 @@ class ActionBar extends React.Component {
                 <div className="d-flex search-container mr-3 mt-3">
                     <div className="ml-3">
                         {map.addNewPlaceMode ?
-                            <button className="btn btn-success"><FontAwesome name="check" /> Add new place here</button> :
+                            map.addNewPlaceCoordinates ? <button className="btn btn-success"><FontAwesome name="check" /> Add new place here</button> : undefined :
                             <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
                         }
 
