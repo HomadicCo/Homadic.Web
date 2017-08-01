@@ -22,7 +22,7 @@ const router = (
             <Route path="/" component={App}>
                 <IndexRoute component={Home}></IndexRoute>
                 <Route path="/signin-facebook" component={SigninFacebook} />
-                <Route path="/add/:step(/:citySlug)" component={AddPlace} />
+                <Route path="/add(/:step)" component={AddPlace} />
                 <Route path="/:citySlug" component={Map} />
             </Route>
         </Router>

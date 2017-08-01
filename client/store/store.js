@@ -5,18 +5,28 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 
 // reducers
+import addPlace from './AddPlace/reducer';
 import authentication from './Authentication/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
 
 const defaultState = {
   authentication: {},
-  map: { markers: [], addNewPlaceMode: false },
+  addPlace: {
+    nearbyResults: [],
+    place: {},
+    ui: {}
+  },
+  map: {
+    markers: [],
+    addNewPlaceMode: false
+  },
   profile: { data: {} }
 };
 
 const appReducer = combineReducers({
   authentication,
+  addPlace,
   map,
   profile,
   routing: routerReducer

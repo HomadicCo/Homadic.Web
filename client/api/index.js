@@ -49,6 +49,6 @@ export function apiSearchAutocomplete(query) {
     return Axios.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + query + "&types=(cities)&key=AIzaSyCH7lJaKLHKo-uchWFd0WRMlLPx9Yuab18");
 }
 
-export function apiNearbyAutocomplete(lat, lng, query) {
-    return Axios.get("nearby?lat=" + lat + "&lng=" + lng + "&query=" + query);
+export function apiNearbyResults(coordinates) {
+    return Axios.get("nearby?lat=" + coordinates.lat + "&lng=" + coordinates.lng);
 }

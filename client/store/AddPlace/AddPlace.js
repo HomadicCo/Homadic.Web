@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { apiValidateToken } from '../../api';
+import { browserHistory } from 'react-router';
 import { getLoginUrl } from '../../functions';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import AddHeader from './components/AddHeader';
@@ -11,16 +11,20 @@ class AddPlace extends React.Component {
     constructor(props) {
         super(props)
 
+        // and we're logged in
         const loginUrl = getLoginUrl(window.location.pathname);
+        console.log(props.authentication, props.map.addNewPlaceCoordinates);
+        if (props.authentication.isLoggedIn && !!props.map.addNewPlaceCoordinates) {
+            props.handleGetNearbyResults(props.map.addNewPlaceCoordinates).then(() => {
 
-        if (props.authentication.isLoggedIn) {
-            apiValidateToken().catch(() => {
-                window.location.replace(loginUrl);
+            }).catch(() => {
+                console.log('here');
+                browserHistory.push("/");
             });
         } else {
-            window.location.replace(loginUrl);
+            console.log("no here");
+            browserHistory.push("/");
         }
-
     }
 
     componentSelector() {
