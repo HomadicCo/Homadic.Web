@@ -14,11 +14,15 @@ class AddPlace extends React.Component {
         this.state = {
             isLoading: true
         };
+    }
 
-        // and we're logged in
+    componentWillMount() {
+        let { authentication, map, handleGetNearbyResults } = this.props;
+
+        // check logged in
         const loginUrl = getLoginUrl(window.location.pathname);
-        if (props.authentication.isLoggedIn && !!props.map.addNewPlaceCoordinates) {
-            props.handleGetNearbyResults(props.map.addNewPlaceCoordinates).then(() => {
+        if (authentication.isLoggedIn && !!map.addNewPlaceCoordinates) {
+            handleGetNearbyResults(map.addNewPlaceCoordinates).then(() => {
                 this.setState({ isLoading: false });
             }).catch(() => {
                 browserHistory.push("/");
@@ -48,7 +52,7 @@ class AddPlace extends React.Component {
 
     renderComponents() {
         return (
-            <div>
+            <div className="footer-padding">
                 <AddHeader {...this.props} />
                 <div className="container">
                     {this.componentSelector()}

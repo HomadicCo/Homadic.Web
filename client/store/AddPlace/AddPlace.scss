@@ -1,5 +1,5 @@
 .footer {
-    position: absolute;
+    position: fixed;
     color: #fff;
     bottom: 0;
     width: 100%;
@@ -8,33 +8,15 @@
     background-color: $blue;
 }
 
-.add-typeahead {
-    background: #fff;
-    border-radius: $radius;
-    input {
-        font-family: $font-family;
-        padding: 12px 15px;
-        border: none;
-        padding: 15px 20px;
-        box-shadow: $box-shadow-bold;
-    }
-    @media (max-width: 767px) {
-        input {
-            width: 210px;
+.footer-padding {
+    padding-bottom: 60px;
+}
+
+.content-box {
+    .place-name,
+    .place-address {
+        &:hover {
+            text-decoration: none;
         }
-    }
-     ::-webkit-input-placeholder {
-        color: $gray-dark;
-    }
-     :-moz-placeholder {
-        /* Firefox 18- */
-        color: $gray-dark;
-    }
-     ::-moz-placeholder {
-        /* Firefox 19+ */
-        color: $gray-dark;
-    }
-     :-ms-input-placeholder {
-        color: $gray-dark;
     }
 }

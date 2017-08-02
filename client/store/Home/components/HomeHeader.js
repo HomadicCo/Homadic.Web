@@ -20,11 +20,11 @@ class HomeHeader extends React.Component {
                     </div>
                     <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
                         <div className="ml-3">
-                            <Link className="btn btn-sm btn-success" to="/add/place"><FontAwesome name="plus" /> Add a place</Link>
+                            <Link className="btn btn-success" to="/add/place"><FontAwesome name="plus" /> Add a place</Link>
                         </div>
                         {authentication.isLoggedIn ?
                             <div className="ml-3">
-                                <Avatar size={30} profile={profile.data} />
+                                <Avatar size={40} profile={profile.data} />
                             </div> :
                             undefined
                         }

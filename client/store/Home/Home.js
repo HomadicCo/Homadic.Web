@@ -56,7 +56,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div className="how-it-works">
-                        <Link to="https://nickbrooks.co/" target="_blank" className="btn btn-action"><FontAwesome name="question-circle" /> How Homadic works</Link>
+                        <Link to="https://nickbrooks.co/" target="_blank" className="btn btn-sm btn-action"><FontAwesome name="question-circle" /> How Homadic works</Link>
                     </div>
                     <div className="home-bg"></div>
                 </div>

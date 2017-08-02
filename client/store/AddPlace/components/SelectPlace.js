@@ -1,8 +1,41 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
+import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import queryString from 'query-string';
+import { icons } from '../../../Images/Images';
 import Avatar from '../../../Components/Avatar/Avatar';
+
+class NearbyResult extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        let { place } = this.props;
+        const link = "/add/details/" + place.id;
+
+        return (
+            <Link to={link}>
+                <div className="content-box content-box-sm nearby-result text-truncate">
+                    <div className="d-flex flex-row">
+                        <div className="mr-3 mt-2">
+                            <img src={icons.house} height="30" width="30" />
+                        </div>
+                        <div>
+                            <div className="place-name">
+                                <span><strong>{place.name}</strong></span>
+                            </div>
+                            <div className="place-address">
+                                <span className="small"><em>{place.vicinity}</em></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Link>
+        )
+    }
+}
 
 class SelectPlace extends React.Component {
     constructor(props) {
@@ -11,16 +44,13 @@ class SelectPlace extends React.Component {
 
     renderNearbyResults() {
         let { nearbyResults } = this.props.addPlace;
-        console.log(nearbyResults);
 
         return (
-            <div>
-                <h3>Select nearby</h3>
-                <ul>
-                    {nearbyResults.map((result, i) =>
-                        <li key={i}>{result.name}</li>
-                    )}
-                </ul>
+            <div className="col-12">
+                <h5 className="mb-4">Select from places on Google Maps within 200m of pin. Not here? Try moving your pin more accurately or <Link to="/add/details">add manually</Link>.</h5>
+                {nearbyResults.map((result, i) =>
+                    <NearbyResult place={result} key={i} />
+                )}
             </div>
         )
     }
@@ -29,15 +59,7 @@ class SelectPlace extends React.Component {
         let { profile } = this.props;
         return (
             <div className="container">
-                <div className="col-12 text-center">
-                    <div className="my-3">
-                        <Avatar size={60} profile={profile.data} />
-                    </div>
-                    <h5>Add a place to <strong>Homadic</strong> as <strong>{profile.data.name}</strong>. Your first name is shown on the listing as the creator.</h5>
-                </div>
-                <div className="col-12">
-                    {this.renderNearbyResults()}
-                </div>
+                {this.renderNearbyResults()}
             </div>
         )
     }

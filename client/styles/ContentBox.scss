@@ -1,0 +1,21 @@
+.content-box {
+    background: $white;
+    padding: $box-padding;
+    margin: 0 0 $box-margin;
+    box-shadow: $box-shadow;
+    &.content-box-sm {
+        padding: $box-padding/2 $box-padding;
+        margin: 0 0 $box-margin/2;
+    }
+}
+
+a .content-box {
+    color: $font-color;
+    &:hover,
+    &:active,
+    &:focus {
+        background: $blue-light;
+        text-decoration: none;
+        color: $white;
+    }
+}

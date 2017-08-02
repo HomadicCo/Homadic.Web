@@ -8,13 +8,18 @@ class AddHeader extends React.Component {
     }
 
     render() {
-        let { authentication, profile } = this.props;
+        let { profile } = this.props;
 
         return (
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-4 px-4 py-3">
                         <a className="navbar-brand" href="#">Project name</a>
+                    </div>
+                    <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
+                        <div className="ml-3">
+                            <Avatar size={40} profile={profile.data} />
+                        </div>
                     </div>
                 </div>
             </div>
