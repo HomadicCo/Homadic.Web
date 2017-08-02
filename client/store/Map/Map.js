@@ -69,7 +69,7 @@ class Map extends React.Component {
         const lat = e.latLng.lat();
         const lng = e.latLng.lng();
 
-        setAddNewPlaceCoordinates({lat, lng});
+        setAddNewPlaceCoordinates({ lat, lng });
     }
 
     handleMapClick(e) {
@@ -85,7 +85,7 @@ class Map extends React.Component {
         };
 
         setAddNewPlaceMarker(addPlaceMarker);
-        setAddNewPlaceCoordinates({lat, lng});
+        setAddNewPlaceCoordinates({ lat, lng });
         this.setState({ center: { lat, lng }, zoom: 18 });
     }
 
@@ -127,6 +127,10 @@ class Map extends React.Component {
         if (location != nextProps.location) {
             this.updateLatLong(nextProps.params.citySlug);
         }
+    }
+
+    componentWillMount() {
+        this.props.setAddNewPlaceMode(false);
     }
 
     render() {

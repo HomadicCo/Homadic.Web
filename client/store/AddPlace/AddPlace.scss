@@ -12,11 +12,6 @@
     padding-bottom: 60px;
 }
 
-.content-box {
-    .place-name,
-    .place-address {
-        &:hover {
-            text-decoration: none;
-        }
-    }
+.nearby-result a:hover {
+    text-decoration: none;
 }

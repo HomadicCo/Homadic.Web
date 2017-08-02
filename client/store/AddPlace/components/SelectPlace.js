@@ -13,7 +13,7 @@ class NearbyResult extends React.Component {
 
     render() {
         let { place } = this.props;
-        const link = "/add/details/" + place.id;
+        const link = "/add/details/" + place.place_id;
 
         return (
             <Link to={link}>
