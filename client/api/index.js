@@ -52,3 +52,9 @@ export function apiSearchAutocomplete(query) {
 export function apiNearbyResults(coordinates) {
     return Axios.get("nearby?lat=" + coordinates.lat + "&lng=" + coordinates.lng);
 }
+
+// homees
+
+export function apiGetHomes(query) {
+    return Axios.get("homes");
+}

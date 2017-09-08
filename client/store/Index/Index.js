@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory, Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
-import HomeHeader from './components/HomeHeader';
+import IndexHeader from './components/IndexHeader';
 
 class Home extends React.Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class Home extends React.Component {
 
         return (
             <div>
-                <HomeHeader {...this.props} />
+                <IndexHeader {...this.props} />
                 <div className="home">
                     <div className="container text-center">
                         <div className="col-12 mb-5 mt-3">

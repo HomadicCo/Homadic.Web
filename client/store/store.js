@@ -7,6 +7,7 @@ import { combineReducers } from 'redux';
 // reducers
 import addPlace from './AddPlace/reducer';
 import authentication from './Authentication/reducer';
+import homes from './Homes/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
 
@@ -17,6 +18,7 @@ const defaultState = {
     place: {},
     ui: {}
   },
+  homes: [],
   map: {
     markers: [],
     addNewPlaceMode: false
@@ -25,8 +27,9 @@ const defaultState = {
 };
 
 const appReducer = combineReducers({
-  authentication,
   addPlace,
+  authentication,
+  homes,
   map,
   profile,
   routing: routerReducer

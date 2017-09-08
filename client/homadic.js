@@ -7,7 +7,7 @@ import Style from './styles/App.scss';
 // Import Components
 import { App, FullScreen } from './store/App';
 import SigninFacebook from './components/SigninFacebook/SigninFacebook';
-import Home from './store/Home/Home';
+import Home from './store/Index/Index';
 import AddPlace from './store/AddPlace/AddPlace';
 import Map from './store/Map/Map';
 
