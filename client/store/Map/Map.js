@@ -26,8 +26,11 @@ const RenderMap = withGoogleMap(props => (
         {
             props.markers.map(marker => (
                 <Marker
-                    {...marker}
-                    options={{ icon: icons[marker.icon] }}
+                    position={{
+                        lat: marker.location.coordinates[0],
+                        lng: marker.location.coordinates[1],
+                    }}
+                    options={{ icon: icons[marker.type] }}
                     onDragEnd={props.onMarkerDragged}
                 />
             ))
