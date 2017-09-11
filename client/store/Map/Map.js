@@ -56,6 +56,7 @@ class Map extends React.Component {
             .then(results =>
                 getLatLng(results[0])
             ).then(({ lat, lng }) => {
+                this.props.handleGetHomes();
                 this.setState({ center: { lat, lng }, zoom: 13 });
             });
     }
@@ -135,7 +136,7 @@ class Map extends React.Component {
 
     render() {
         let { center, zoom } = this.state;
-        let { map } = this.props;
+        let { homes, map } = this.props;
 
         return (
             <div>
@@ -157,7 +158,7 @@ class Map extends React.Component {
                             mapElement={
                                 <div style={{ height: `100%` }} />
                             }
-                            markers={map.markers}
+                            markers={map.addNewPlaceMode ? map.markers : homes.data}
                         />
                     </div>}
             </div>

@@ -18,7 +18,10 @@ const defaultState = {
     place: {},
     ui: {}
   },
-  homes: [],
+  homes: {
+    data: [],
+    fetching: false
+  },
   map: {
     markers: [],
     addNewPlaceMode: false

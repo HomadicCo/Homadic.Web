@@ -19,15 +19,15 @@ export function updateFetchingHomesStatus(value) {
 export function handleGetHomes() {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
-            dispatch(updatingFetchingHomesStatus(true));
-            const request = apiGetProfile();
+            dispatch(updateFetchingHomesStatus(true));
+            const request = apiGetHomes();
 
             request.then(response => {
                 dispatch(updateHomesStore(response.data));
-                dispatch(updatingFetchingHomesStatus(false));
+                dispatch(updateFetchingHomesStatus(false));
                 resolve(response.data);
             }).catch(error => {
-                dispatch(updatingFetchingHomesStatus(false));
+                dispatch(updateFetchingHomesStatus(false));
                 console.log(error);
                 reject(error);
             });
