@@ -25,6 +25,12 @@
     border-radius: $radius;
     box-shadow: $box-shadow-bold;
     width: 350px;
+    p {
+        margin: 0;
+    }
+    .fa {
+        margin: 0 5px 0 0;
+    }
 }
 
 .map-typeahead {

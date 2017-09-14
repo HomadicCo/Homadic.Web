@@ -1,6 +1,7 @@
 const MapStyle = [
     {
-        featureType: "poi.business",
+        featureType: "poi",
+        elementType: "labels",
         stylers: [
             {
                 visibility: "off"
@@ -8,11 +9,11 @@ const MapStyle = [
         ]
     },
     {
-        featureType: "poi.park",
-        elementType: "labels.text",
+        featureType: "poi.medical",
+        elementType: "labels",
         stylers: [
             {
-                visibility: "off"
+                visibility: "on"
             }
         ]
     }
