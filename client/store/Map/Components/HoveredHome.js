@@ -1,5 +1,5 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
+import { icons } from '../../../Images/Images';
 import RatingBadge from '../../../components/RatingBadge/RatingBadge';
 
 class HoveredHome extends React.Component {
@@ -9,10 +9,11 @@ class HoveredHome extends React.Component {
 
     renderAmenityIcons() {
         return (
-            <p>
-                <FontAwesome name="wifi" />
-                <FontAwesome name="motorcycle" />
-                <FontAwesome name="bluetooth" />
+            <p className="icons">
+                <img src={icons.wifiStrong} />
+                <img src={icons.gym} />
+                <img src={icons.pool} />
+                <img src={icons.laundry} />
             </p>
         )
     }

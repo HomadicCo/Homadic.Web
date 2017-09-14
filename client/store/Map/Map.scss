@@ -26,10 +26,12 @@
     box-shadow: $box-shadow-bold;
     width: 350px;
     p {
-        margin: 0;
+        margin: 5px 0;
     }
-    .fa {
-        margin: 0 5px 0 0;
+    .icons img {
+        height: 24px;
+        width: 24px;
+        margin: 0 8px 0 0;
     }
 }
 
