@@ -20,6 +20,7 @@ const RenderMap = withGoogleMap(props => (
             styles: MapStyle,
             mapTypeControl: false,
             streetViewControl: false,
+            fullscreenControl: false,
             minZoom: 12,
             draggableCursor: props.draggableCursor
         }}>
@@ -30,6 +31,10 @@ const RenderMap = withGoogleMap(props => (
                         lat: marker.location.coordinates[0],
                         lng: marker.location.coordinates[1],
                     }}
+                    key={marker.id}
+                    onClick={() => console.log(marker.name)}
+                    onMouseOver={() => props.setHoveredHome(marker)}
+                    onMouseOut={() => props.setHoveredHome(null)}
                     options={{ icon: icons[marker.type] }}
                     onDragEnd={props.onMarkerDragged}
                 />
@@ -43,7 +48,7 @@ class Map extends React.Component {
         super(props);
         this.state = {
             center: undefined,
-            zoom: 13
+            zoom: 14
         };
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
@@ -60,7 +65,7 @@ class Map extends React.Component {
                 getLatLng(results[0])
             ).then(({ lat, lng }) => {
                 this.props.handleGetHomes();
-                this.setState({ center: { lat, lng }, zoom: 13 });
+                this.setState({ center: { lat, lng }, zoom: 14 });
             });
     }
 
@@ -115,6 +120,10 @@ class Map extends React.Component {
         }
     }
 
+    handleMarkerMouseOver(home) {
+        this.props.setHoveredHome(home);
+    }
+
     isLoading() {
         let { center } = this.state;
         let { profile } = this.props;
@@ -154,6 +163,7 @@ class Map extends React.Component {
                             onZoomChanged={this.handleZoomChanged}
                             onCenterChanged={this.handleCenterChanged}
                             onMarkerDragged={this.handleMarkerDrag}
+                            setHoveredHome={this.props.setHoveredHome}
                             draggableCursor={map.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />

@@ -42,6 +42,10 @@ function map(state = [], action) {
             return addNewPlaceMarker(state, action);
         case 'REMOVE_ADD_NEW_PLACE_MARKER':
             return removeNewPlaceMarker(state, action);
+        case 'SET_HOVERED_HOME':
+            var newState = Object.assign({}, state);
+            newState.hoveredHome = action.home;
+            return newState;
         case 'SET_ADD_NEW_PLACE_MODE':
             var newState = Object.assign({}, state);
             newState.addNewPlaceMode = action.value;

@@ -13,6 +13,14 @@ export function removeAddNewPlaceMarker(marker) {
     }
 }
 
+// hover over places
+export function setHoveredHome(home) {
+    return {
+        type: 'SET_HOVERED_HOME',
+        home
+    }
+}
+
 // toggle add new place mode
 export function setAddNewPlaceMode(value) {
     return {

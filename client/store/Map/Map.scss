@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 1111;
     img,
     .btn {
         box-shadow: $box-shadow-bold;
@@ -13,7 +13,18 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 1111;
+}
+
+.hovered-home {
+    position: absolute;
+    top: 0;
+    left: $box-margin - 4px;
+    z-index: 1111;
+    padding: $box-padding/2 $box-padding;
+    border-radius: $radius;
+    box-shadow: $box-shadow-bold;
+    width: 350px;
 }
 
 .map-typeahead {
@@ -21,7 +32,6 @@
     border-radius: $radius;
     input {
         font-family: $font-family;
-        padding: 12px 15px;
         border: none;
         padding: 15px 20px;
         width: 350px;
