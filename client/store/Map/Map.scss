@@ -23,6 +23,7 @@
     z-index: 1111;
     padding: $box-padding/2 $box-padding;
     border-radius: $radius;
+    border-top: 3px solid $dark-blue-active;
     box-shadow: $box-shadow-bold;
     width: 350px;
     p {

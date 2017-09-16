@@ -54,6 +54,14 @@ class Home extends React.Component {
                         <div className="col-12 my-5">
                             <PlacesTypeahead {...this.props} classNames={classNames} styles={homeStyles} inputProps={inputProps} />
                         </div>
+                        <div className="col-12 my-5">
+                            <Link to={{
+                                pathname: '/home/0',
+                                state: { modal: true, returnTo: this.props.location.pathname }
+                            }}>
+                                Link to fake home
+                            </Link>
+                        </div>
                     </div>
                     <div className="how-it-works">
                         <Link to="https://nickbrooks.co/" target="_blank" className="btn btn-sm btn-action"><FontAwesome name="question-circle" /> How Homadic works</Link>
