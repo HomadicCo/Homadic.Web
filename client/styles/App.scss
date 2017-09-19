@@ -3,10 +3,12 @@
 @import "./Variables";
 @import "./Base";
 @import "./Buttons";
+@import "./Content";
 @import "./ContentBox";
 //components
 @import "../components/Avatar/Avatar";
 //store
 @import "../store/Index/Index";
 @import "../store/Map/Map";
+@import "../store/Home/Home";
 @import "../store/AddPlace/AddPlace";

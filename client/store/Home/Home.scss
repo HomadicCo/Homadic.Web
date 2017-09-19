@@ -1,0 +1,20 @@
+.home-header {
+    box-shadow: $box-shadow;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+    }
+}
+
+.home-content {
+    margin-top: 80px;
+    p {
+        font-size: 1.2em;
+        line-height: 1.2;
+        text-transform: capitalize;
+    }
+}
