@@ -5,7 +5,7 @@ import AppView from '../components/AppFrames/AppView';
 // import all action creators
 import * as AddPlaceActions from './AddPlace/actions';
 import * as AuthenticationActions from './Authentication/actions';
-import * as HomesActions from './Homes/actions';
+import * as HomeActions from './Home/actions';
 import * as MapActions from './Map/actions';
 import * as ProfileActions from './Profile/actions';
 
@@ -23,7 +23,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         ...AuthenticationActions,
         ...AddPlaceActions,
-        ...HomesActions,
+        ...HomeActions,
         ...MapActions,
         ...ProfileActions
     }, dispatch)

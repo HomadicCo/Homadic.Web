@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 // reducers
 import addPlace from './AddPlace/reducer';
 import authentication from './Authentication/reducer';
-import homes from './Homes/reducer';
+import homes from './Home/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
 
@@ -20,7 +20,8 @@ const defaultState = {
   },
   homes: {
     data: [],
-    fetching: false
+    fetching: false,
+    selected: {}
   },
   map: {
     markers: [],

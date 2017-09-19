@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
 import IndexHeader from './components/IndexHeader';
 
-class Home extends React.Component {
+class Index extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -65,4 +65,4 @@ class Home extends React.Component {
     }
 }
 
-export default Home;
+export default Index;

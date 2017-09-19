@@ -58,3 +58,7 @@ export function apiNearbyResults(coordinates) {
 export function apiGetHomes(query) {
     return Axios.get("homes");
 }
+
+export function apiGetHome(homeSlug) {
+    return Axios.get("homes/" + homeSlug);
+}

@@ -32,7 +32,7 @@ const RenderMap = withGoogleMap(props => (
                         lng: marker.location.coordinates[1],
                     }}
                     key={marker.id}
-                    onClick={() => console.log(marker.name)}
+                    onClick={() => props.openHomeInNewWindow(marker.slug)}
                     onMouseOver={() => props.setHoveredHome(marker)}
                     onMouseOut={() => props.setHoveredHome(null)}
                     options={{ icon: icons[marker.type] }}
@@ -120,8 +120,10 @@ class Map extends React.Component {
         }
     }
 
-    handleMarkerMouseOver(home) {
-        this.props.setHoveredHome(home);
+    openHomeInNewWindow(slug) {
+        if (slug) {
+            window.open(window.location.origin + "/home/" + slug);
+        }
     }
 
     isLoading() {
@@ -164,6 +166,7 @@ class Map extends React.Component {
                             onCenterChanged={this.handleCenterChanged}
                             onMarkerDragged={this.handleMarkerDrag}
                             setHoveredHome={this.props.setHoveredHome}
+                            openHomeInNewWindow={this.openHomeInNewWindow}
                             draggableCursor={map.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />
