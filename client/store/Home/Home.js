@@ -1,17 +1,25 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import RatingBadge from '../../components/RatingBadge/RatingBadge';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            fetching: true
+        };
     }
 
     componentWillMount() {
         let { handleGetHome, params } = this.props;
 
         if (params.homeSlug) {
-            this.props.handleGetHome(params.homeSlug);
+            this.setState({ fetching: true });
+            this.props.handleGetHome(params.homeSlug).then(() => {
+                this.setState({ fetching: false });
+            });
         }
     }
 
@@ -79,11 +87,11 @@ class Home extends React.Component {
 
     render() {
         let { homes } = this.props;
-        console.log(homes);
+        let { fetching } = this.state;
 
         return (
             <div>
-                {homes.fetching ? <LoadingScreen /> : this.renderHomeDetails()}
+                {fetching ? <LoadingScreen /> : this.renderHomeDetails()}
             </div>
         )
     }

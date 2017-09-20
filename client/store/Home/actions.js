@@ -46,15 +46,12 @@ export function handleGetHomes() {
 export function handleGetHome(homeSlug) {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
-            dispatch(updateFetchingHomesStatus(true));
             const request = apiGetHome(homeSlug);
 
             request.then(response => {
                 dispatch(updateSelectedHome(response.data));
-                dispatch(updateFetchingHomesStatus(false));
                 resolve(response.data);
             }).catch(error => {
-                dispatch(updateFetchingHomesStatus(false));
                 console.log(error);
                 reject(error);
             });
