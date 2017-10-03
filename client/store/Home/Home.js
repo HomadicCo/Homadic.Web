@@ -1,7 +1,12 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { icons } from '../../Images/Images';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import RatingBadge from '../../components/RatingBadge/RatingBadge';
+import Amenities from './components/Amenities';
+import Internet from './components/Internet';
+import Contact from './components/Contact';
+import Pricing from './components/Pricing';
 
 class Home extends React.Component {
     constructor(props) {
@@ -29,57 +34,28 @@ class Home extends React.Component {
         return (
             <div>
                 <div className="navbar fixed-top bg-white px-3 home-header">
-                    <div className="d-flex justify-content-start">
-                        <div>
-                            <h3>{selected.name} <RatingBadge rating={selected.rating} /></h3>
-                        </div>
-                        <div className="ml-auto mt-1">
-                            <h4><FontAwesome name="thumbs-o-up" /> <FontAwesome name="thumbs-o-down" /></h4>
+                    <div className="container">
+                        <div className="d-flex justify-content-start">
+                            <div>
+                                <h4><strong>{selected.name}</strong> <RatingBadge rating={selected.rating} /></h4>
+                                <p className="icons mb-1">
+                                    <img src={icons.wifiStrong} />
+                                    <img src={icons.gym} />
+                                    <img src={icons.pool} />
+                                    <img src={icons.laundry} />
+                                </p>
+                            </div>
+                            <div className="ml-auto mt-1">
+                                <h5 className="blue"><FontAwesome name="thumbs-up" /> <FontAwesome name="thumbs-o-down" /> <span className="btn btn-sm btn-outline-primary ml-2"><FontAwesome name="pencil" /> Edit</span></h5>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className="container home-content">
-                    <div className="content-header">
-                        <h5><FontAwesome name="dollar" /> Monthly Price ({selected.currency})</h5>
-                    </div>
-                    <div className="m-3">
-                        <p><strong>Monthly:</strong> {selected.rental_details.one_month.base_price}</p>
-                        <p><strong>3 months:</strong> {selected.rental_details.three_months.base_price}</p>
-                        <p><strong>6 months:</strong> {selected.rental_details.six_months.base_price}</p>
-                    </div>
-                    <div className="content-header">
-                        <h5><FontAwesome name="hotel" /> Amenities</h5>
-                    </div>
-                    <div className="m-3">
-                        <p><strong>Monthly:</strong> {selected.rental_details.one_month.base_price}</p>
-                        <p><strong>3 months:</strong> {selected.rental_details.three_months.base_price}</p>
-                        <p><strong>6 months:</strong> {selected.rental_details.six_months.base_price}</p>
-                    </div>
-                    <div className="content-header">
-                        <h5><FontAwesome name="wifi" /> Internets</h5>
-                    </div>
-                    <div className="m-3">
-                        <div className="row">
-                            <div className="col-md-4">
-                                <p><FontAwesome name="dollar" /> {selected.wifi.type}</p>
-                            </div>
-                            <div className="col-md-4">
-                                <p><FontAwesome name="download" /> {selected.wifi.download}mbps</p>
-                            </div>
-                            <div className="col-md-4">
-                                <p><FontAwesome name="upload" /> {selected.wifi.upload}mbps</p>
-                            </div>
-                        </div>
-                        <p><strong>Notes:</strong> {selected.wifi.notes}</p>
-                    </div>
-                    <div className="content-header">
-                        <h5><FontAwesome name="map-marker" /> Location</h5>
-                    </div>
-                    <div className="m-3">
-                        <p><strong>Monthly:</strong> {selected.rental_details.one_month.base_price}</p>
-                        <p><strong>3 months:</strong> {selected.rental_details.three_months.base_price}</p>
-                        <p><strong>6 months:</strong> {selected.rental_details.six_months.base_price}</p>
-                    </div>
+                    <Pricing home={selected} />
+                    <Amenities home={selected} />
+                    <Internet home={selected} />
+                    <Contact home={selected} />
                 </div>
             </div>
         )
