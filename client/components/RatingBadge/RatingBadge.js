@@ -10,9 +10,9 @@ class RatingBadge extends React.Component {
 
         var badgeClass;
 
-        if (rating >= 4) {
+        if (rating >= 3.5) {
             badgeClass = "badge badge-success";
-        } else if (rating >= 3) {
+        } else if (rating >= 2.5) {
             badgeClass = "badge badge-warning";
         } else if (rating >= 2) {
             badgeClass = "badge badge-default";

@@ -28,6 +28,12 @@
     p {
         margin: 5px 0;
     }
+    .property-type {
+        margin: -15px 0 0;
+        padding: 0;
+        text-transform: capitalize;
+        color: $dark-blue;
+    }
     .icons img {
         height: 24px;
         width: 24px;
