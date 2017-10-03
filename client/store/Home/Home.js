@@ -1,8 +1,8 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { icons } from '../../Images/Images';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import RatingBadge from '../../components/RatingBadge/RatingBadge';
+import IconsBar from '../../components/IconsBar/IconsBar';
 import Amenities from './components/Amenities';
 import Internet from './components/Internet';
 import Contact from './components/Contact';
@@ -38,12 +38,7 @@ class Home extends React.Component {
                         <div className="d-flex justify-content-start">
                             <div>
                                 <h4><strong>{selected.name}</strong> <RatingBadge rating={selected.rating} /></h4>
-                                <p className="icons mb-1">
-                                    <img src={icons.wifiStrong} />
-                                    <img src={icons.gym} />
-                                    <img src={icons.pool} />
-                                    <img src={icons.laundry} />
-                                </p>
+                                <IconsBar home={selected} className="mb-1" />
                             </div>
                             <div className="ml-auto mt-1">
                                 <h5 className="blue"><FontAwesome name="thumbs-up" /> <FontAwesome name="thumbs-o-down" /> <span className="btn btn-sm btn-outline-primary ml-2"><FontAwesome name="pencil" /> Edit</span></h5>

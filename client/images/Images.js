@@ -5,6 +5,7 @@ export const icons = {
     gym: require('!!file-loader!./icons/icon-gym.svg'),
     hostel: require('!!file-loader!./icons/icon-hostel.svg'),
     house: require('!!file-loader!./icons/icon-house.svg'),
+    kitchen: require('!!file-loader!./icons/icon-kitchen.svg'),
     laundry: require('!!file-loader!./icons/icon-laundry.svg'),
     location: require('!!file-loader!./icons/icon-location.svg'),
     pool: require('!!file-loader!./icons/icon-pool.svg'),
