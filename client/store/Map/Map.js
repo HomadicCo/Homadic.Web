@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withGoogleMap, GoogleMap } from "react-google-maps";
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
 import ActionBar from './Components/ActionBar';
 import MapStyle from './Components/MapStyle';
+import { AddPlaceMarker, HomeMarker } from './Components/Markers';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
-import { icons } from '../../Images/Images'
+import { icons } from '../../Images/Images';
 
 const RenderMap = withGoogleMap(props => (
     <GoogleMap
@@ -22,23 +23,16 @@ const RenderMap = withGoogleMap(props => (
             streetViewControl: false,
             fullscreenControl: false,
             minZoom: 12,
-            draggableCursor: props.draggableCursor
+            draggableCursor: props.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined
         }}>
         {
-            props.markers.map(marker => (
-                <Marker
-                    position={{
-                        lat: marker.location.coordinates[0],
-                        lng: marker.location.coordinates[1],
-                    }}
-                    key={marker.id}
-                    onClick={() => props.openHomeInNewWindow(marker.slug)}
-                    onMouseOver={() => props.setHoveredHome(marker)}
-                    onMouseOut={() => props.setHoveredHome(null)}
-                    options={{ icon: icons[marker.type] }}
-                    onDragEnd={props.onMarkerDragged}
-                />
-            ))
+            props.addNewPlaceMode ?
+                <AddPlaceMarker {...props} />
+                :
+                props.homes.map(home => (
+                    <HomeMarker home={home} key={home.id} {...props} />
+                ))
+
         }
     </GoogleMap >
 ));
@@ -82,18 +76,11 @@ class Map extends React.Component {
     }
 
     handleMapClick(e) {
-        let { map, setAddNewPlaceMarker, setAddNewPlaceCoordinates } = this.props;
+        let { map, setAddNewPlaceCoordinates } = this.props;
         if (!map.addNewPlaceMode) return;
         const lat = e.latLng.lat();
         const lng = e.latLng.lng();
 
-        const addPlaceMarker = {
-            position: e.latLng,
-            draggable: true,
-            key: "add-new-place"
-        };
-
-        setAddNewPlaceMarker(addPlaceMarker);
         setAddNewPlaceCoordinates({ lat, lng });
         this.setState({ center: { lat, lng }, zoom: 18 });
     }
@@ -162,19 +149,20 @@ class Map extends React.Component {
                             onMapClick={this.handleMapClick}
                             center={new google.maps.LatLng(center)}
                             zoom={zoom}
+                            addNewPlaceMode={map.addNewPlaceMode}
                             onZoomChanged={this.handleZoomChanged}
                             onCenterChanged={this.handleCenterChanged}
                             onMarkerDragged={this.handleMarkerDrag}
                             setHoveredHome={this.props.setHoveredHome}
                             openHomeInNewWindow={this.openHomeInNewWindow}
-                            draggableCursor={map.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined}
                             containerElement={
                                 <div style={{ height: `100%` }} />
                             }
                             mapElement={
                                 <div style={{ height: `100%` }} />
                             }
-                            markers={map.addNewPlaceMode ? map.markers : homes.data}
+                            homes={homes.data}
+                            map={map}
                         />
                     </div>}
             </div>

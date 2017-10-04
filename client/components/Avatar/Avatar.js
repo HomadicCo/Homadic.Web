@@ -6,14 +6,14 @@ class Avatar extends React.Component {
     }
 
     render() {
-        let { profile, size, customClass } = this.props;
+        let { profile, size, className } = this.props;
         let pixelSize = String(size) + "px";
         let avatarSrc = "";
 
         //handle customClasses
-        let className = "avatar ";
-        if (customClass) {
-            className = className + customClass;
+        let customClass = "avatar ";
+        if (className) {
+            customClass = customClass + className;
         }
         // select sizes
         if (size > 160) {
@@ -25,7 +25,7 @@ class Avatar extends React.Component {
         }
 
         return (
-            <img className={className} alt={profile.name} src={avatarSrc} height={pixelSize} width={pixelSize} />
+            <img className={customClass} alt={profile.name} src={avatarSrc} height={pixelSize} width={pixelSize} />
         )
     }
 }

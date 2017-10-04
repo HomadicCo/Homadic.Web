@@ -14,13 +14,12 @@ class ActionBar extends React.Component {
 
     setAddNewPlaceMode(value, e) {
         e.preventDefault();
-        let { setAddNewPlaceCoordinates, setAddNewPlaceMode, removeAddNewPlaceMarker } = this.props;
+        let { setAddNewPlaceCoordinates, setAddNewPlaceMode } = this.props;
 
         setAddNewPlaceMode(value);
 
         if (!value) {
             setAddNewPlaceCoordinates(undefined);
-            removeAddNewPlaceMarker();
         }
     }
 
