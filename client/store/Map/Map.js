@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import { withGoogleMap, GoogleMap } from "react-google-maps";
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
@@ -14,15 +14,15 @@ const RenderMap = withGoogleMap(props => (
         ref={props.onMapLoad}
         onClick={props.onMapClick}
         zoom={props.zoom}
-        onZoomChanged={props.onZoomChanged}
-        onCenterChanged={props.onCenterChanged}
+        onZoomChanged={props.onMapChanged}
+        onCenterChanged={props.onMapChanged}
         center={props.center}
         options={{
             styles: MapStyle,
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
-            minZoom: 12,
+            minZoom: 13,
             draggableCursor: props.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined
         }}>
         {
@@ -40,27 +40,33 @@ const RenderMap = withGoogleMap(props => (
 class Map extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             center: undefined,
             zoom: 14
         };
+
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
         this.handleZoomChanged = this.handleZoomChanged.bind(this);
-        this.handleCenterChanged = this.handleCenterChanged.bind(this);
+        this.handleMapChanged = this.handleMapChanged.bind(this);
         this.handleMarkerDrag = this.handleMarkerDrag.bind(this);
         this.isLoading = this.isLoading.bind(this);
-        this.updateLatLong(this.props.params.citySlug);
     }
 
-    updateLatLong(slug) {
-        geocodeByAddress(slug)
-            .then(results =>
-                getLatLng(results[0])
-            ).then(({ lat, lng }) => {
-                this.props.handleGetHomes();
-                this.setState({ center: { lat, lng }, zoom: 14 });
-            });
+    updateLatLong(params) {
+        if (!params.lat || !params.lng) {
+            geocodeByAddress(params.slug)
+                .then(results =>
+                    getLatLng(results[0])
+                ).then(({ lat, lng }) => {
+                    this.props.handleGetHomes();
+                    this.setState({ center: { lat, lng }, zoom: 14 });
+                });
+        } else {
+            this.props.handleGetHomes();
+            this.setState({ center: { lat: params.lat, lng: params.lng }, zoom: params.zoom ? params.zoom : 14 });
+        }
     }
 
     handleMapLoad(map) {
@@ -94,8 +100,10 @@ class Map extends React.Component {
         }
     }
 
-    handleCenterChanged() {
+    handleMapChanged() {
+        let { location } = this.props;
         const centerObj = this._map.getCenter();
+        const zoom = this._map.getZoom();
         const lat = centerObj.lat();
         const lng = centerObj.lng();
 
@@ -104,6 +112,8 @@ class Map extends React.Component {
             this.setState({
                 center: nextCenter,
             });
+            // update route
+            browserHistory.push(location.pathname + "?lat=" + lat.toFixed(6) + "&lng=" + lng.toFixed(6) + "&z=" + zoom);
         }
     }
 
@@ -126,13 +136,22 @@ class Map extends React.Component {
         let { location } = this.props;
 
         // check if route has changed
-        if (location != nextProps.location) {
-            this.updateLatLong(nextProps.params.citySlug);
+        if (location.pathname != nextProps.location.pathname) {
+            this.updateLatLong({ slug: nextProps.params.citySlug });
         }
     }
 
     componentWillMount() {
+        let { query } = this.props.location;
+
         this.props.setAddNewPlaceMode(false);
+
+        this.updateLatLong({
+            slug: this.props.params.citySlug,
+            lat: parseFloat(query.lat),
+            lng: parseFloat(query.lng),
+            zoom: parseFloat(query.z)
+        });
     }
 
     render() {
@@ -150,8 +169,7 @@ class Map extends React.Component {
                             center={new google.maps.LatLng(center)}
                             zoom={zoom}
                             addNewPlaceMode={map.addNewPlaceMode}
-                            onZoomChanged={this.handleZoomChanged}
-                            onCenterChanged={this.handleCenterChanged}
+                            onMapChanged={this.handleMapChanged}
                             onMarkerDragged={this.handleMarkerDrag}
                             setHoveredHome={this.props.setHoveredHome}
                             openHomeInNewWindow={this.openHomeInNewWindow}
