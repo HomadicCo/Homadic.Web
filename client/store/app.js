@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import AppView from '../components/AppFrames/AppView';
+import AppViewAuthenticated from '../components/AppFrames/AppViewAuthenticated';
 
 // import all action creators
 import * as AddPlaceActions from './AddPlace/actions';
@@ -30,4 +31,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export const App = connect(mapStateToProps,
-    mapDispatchToProps)(AppView);
+    mapDispatchToProps)(AppView); 
+
+export const AppAuthenticated = connect(mapStateToProps,
+    mapDispatchToProps)(AppViewAuthenticated);

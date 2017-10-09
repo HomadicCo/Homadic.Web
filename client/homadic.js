@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 import Style from './styles/App.scss';
 
 // Import Components
-import { App, FullScreen } from './store/App';
+import { App, AppAuthenticated } from './store/App';
 import SigninFacebook from './components/SigninFacebook/SigninFacebook';
 import Index from './store/Index/Index';
 import AddPlace from './store/AddPlace/AddPlace';
@@ -23,9 +23,11 @@ const router = (
             <Route path="/" component={App}>
                 <IndexRoute component={Index}></IndexRoute>
                 <Route path="/signin-facebook" component={SigninFacebook} />
-                <Route path="/add(/:step)" component={AddPlace} />
                 <Route path="/home/:homeSlug" component={Home} />
                 <Route path="/:citySlug" component={Map} />
+            </Route>
+            <Route component={AppAuthenticated}>
+                <Route path="/add(/:step)" component={AddPlace} />
             </Route>
         </Router>
     </Provider>
