@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import { getLoginUrl } from '../../functions';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import AddHeader from './components/AddHeader';
-import AddFooter from './components/AddFooter';
+import ProgressFooter from './components/ProgressFooter';
 import SelectPlace from './components/SelectPlace';
 
 class AddPlace extends React.Component {
@@ -57,7 +57,7 @@ class AddPlace extends React.Component {
                 <div className="container">
                     {this.componentSelector()}
                 </div>
-                <AddFooter {...this.props} />
+                <ProgressFooter {...this.props} />
             </div>
         )
     }
