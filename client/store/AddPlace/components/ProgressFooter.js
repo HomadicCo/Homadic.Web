@@ -17,17 +17,17 @@ class ProgressFooter extends React.Component {
                             <span className="triangle"></span>
                         </div>
                         <div className="col-md-3 current-step">
-                            <span className="triangle2"></span>
+                            <span className="triangle-left"></span>
                             <a href="#">Rooms</a>
                             <span className="triangle"></span>
                         </div>
                         <div className="col-md-3">
-                            <span className="triangle2"></span>
+                            <span className="triangle-left"></span>
                             <a href="#">Amenities</a>
                             <span className="triangle"></span>
                         </div>
                         <div className="col-md-3">
-                            <span className="triangle2"></span>
+                            <span className="triangle-left"></span>
                             <a href="#">Publish</a>
                             <span className="triangle"></span>
                         </div>

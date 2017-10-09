@@ -31,7 +31,7 @@ $step-width: 5px;
             color: $white;
         }
         .triangle,
-        .triangle2 {
+        .triangle-left {
             display: block;
             position: absolute;
             top: 0;
@@ -43,7 +43,7 @@ $step-width: 5px;
             border-bottom: $footer-height/2 solid transparent;
             z-index: 1;
         }
-        .triangle2 {
+        .triangle-left {
             border-left-color: $purple;
             left: 0;
         }
