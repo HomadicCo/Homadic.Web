@@ -18,7 +18,7 @@ class HomeHeader extends React.Component {
                     <div className="col-4 px-4 py-3">
                         <a className="navbar-brand" href="#">Project name</a>
                     </div>
-                    <div className="col-4 offset-4 px-4 py-3 d-flex justify-content-end">
+                    <div className="col-4 ml-auto px-4 py-3 d-flex justify-content-end">
                         <div className="ml-3">
                             <Link className="btn btn-success" to="/add/place"><FontAwesome name="plus" /> Add a place</Link>
                         </div>
