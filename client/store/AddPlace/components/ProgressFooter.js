@@ -13,7 +13,7 @@ class ProgressFooter extends React.Component {
                 <div className="container-fluid">
                     <div className="row progress-steps">
                         <div className="col-md-3 visited-step">
-                            <a href="#">Place</a>
+                            <a href="#">Listing</a>
                             <span className="triangle"></span>
                         </div>
                         <div className="col-md-3 current-step">

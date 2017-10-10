@@ -7,7 +7,7 @@ import ProgressFooter from './components/ProgressFooter';
 
 // steps
 import SelectFromGoogleMaps from './Steps/SelectFromGoogleMaps';
-import PlaceDetails from './Steps/PlaceDetails';
+import ListingDetails from './Steps/ListingDetails';
 
 class AddPlace extends React.Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class AddPlace extends React.Component {
                 )
             case 'place':
                 return (
-                    <PlaceDetails {...this.props} />
+                    <ListingDetails {...this.props} />
                 )
             default:
                 return (
