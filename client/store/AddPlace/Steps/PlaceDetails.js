@@ -12,8 +12,15 @@ class PlaceDetails extends React.Component {
 
         return (
             <div>
-                <p>hey</p>
+                <div className="content-header">
+                    <h5>Place Details</h5>
+                </div>
+                <div className="m-3">
+                    <p>Hey</p>
+                </div>
             </div>
         )
     }
 }
+
+export default PlaceDetails;
