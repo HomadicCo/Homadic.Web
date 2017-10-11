@@ -1,23 +1,15 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 
-class ListingDetails extends React.Component {
+class Rooms extends React.Component {
     constructor(props) {
         super(props)
-
-        this.handleNextClick = this.handleNextClick.bind(this);
-    }
-
-    handleNextClick(e) {
-        e.preventDefault();
-        browserHistory.push("/add/rooms");
     }
 
     render() {
         return (
             <form autoComplete="off">
-                <h3>Listing details</h3>
+                <h3>Rooms</h3>
                 <div className="form-row">
                     <div className="form-group col-md-9">
                         <label htmlFor="inputListingName" className="col-form-label">Listing name*</label>
@@ -70,7 +62,7 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-auto ml-auto">
-                        <button type="button" onClick={this.handleNextClick} className="btn btn-success">Next <FontAwesome name="caret-right" /></button>
+                        <button className="btn btn-success">Next <FontAwesome name="caret-right" /></button>
                     </div>
                 </div>
             </form>
@@ -78,4 +70,4 @@ class ListingDetails extends React.Component {
     }
 }
 
-export default ListingDetails;
+export default Rooms;

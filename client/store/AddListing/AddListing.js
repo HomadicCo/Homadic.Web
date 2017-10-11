@@ -8,6 +8,7 @@ import ProgressFooter from './components/ProgressFooter';
 // steps
 import SelectFromGoogleMaps from './Steps/SelectFromGoogleMaps';
 import ListingDetails from './Steps/ListingDetails';
+import Rooms from './Steps/Rooms';
 
 class AddListing extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class AddListing extends React.Component {
         switch (step) {
             case 'rooms':
                 return (
-                    <p>Hello</p>
+                    <Rooms {...this.props} />
                 )
             case 'listing':
                 return (
