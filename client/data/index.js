@@ -54,15 +54,18 @@ export const kitchen = [
 export const rentalLengths = [
     {
         length: 1,
-        value: "one_month"
+        value: "one_month",
+        label: "One month"
     },
     {
         length: 3,
-        value: "three_months"
+        value: "three_months",
+        label: "Three months"
     },
     {
         length: 6,
-        value: "six_months"
+        value: "six_months",
+        label: "Six months"
     }
 ]
 
