@@ -18,8 +18,8 @@ class ListingDetails extends React.Component {
                         <input type="text" className="form-control" id="inputListingName" placeholder="Listing name" />
                     </div>
                     <div className="form-group col-md-3">
-                        <label htmlFor="inputPlaceType" className="col-form-label">Listing type*</label>
-                        <select id="inputPlaceType" className="form-control">
+                        <label htmlFor="inputListingType" className="col-form-label">Listing type*</label>
+                        <select id="inputListingType" className="form-control">
                             <option className="text-muted">Listing type</option>
                             <option value="condo">Condo/apartment</option>
                             <option value="hotel">Hotel</option>

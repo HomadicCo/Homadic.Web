@@ -1,4 +1,4 @@
-// hover over places
+// hover over listings
 export function setHoveredHome(home) {
     return {
         type: 'SET_HOVERED_HOME',
@@ -6,15 +6,15 @@ export function setHoveredHome(home) {
     }
 }
 
-// toggle add new place mode
-export function setAddNewPlaceMode(value) {
+// toggle add new listing mode
+export function setAddNewListingMode(value) {
     return {
         type: 'SET_ADD_NEW_PLACE_MODE',
         value
     }
 }
 
-export function setAddNewPlaceCoordinates(coordinates) {
+export function setAddNewListingCoordinates(coordinates) {
     return {
         type: 'SET_ADD_NEW_PLACE_COORDINATES',
         coordinates

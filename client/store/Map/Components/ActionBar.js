@@ -9,17 +9,17 @@ import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead
 class ActionBar extends React.Component {
     constructor(props) {
         super(props);
-        this.setAddNewPlaceMode = this.setAddNewPlaceMode.bind(this);
+        this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
     }
 
-    setAddNewPlaceMode(value, e) {
+    setAddNewListingMode(value, e) {
         e.preventDefault();
-        let { setAddNewPlaceCoordinates, setAddNewPlaceMode } = this.props;
+        let { setAddNewListingCoordinates, setAddNewListingMode } = this.props;
 
-        setAddNewPlaceMode(value);
+        setAddNewListingMode(value);
 
         if (!value) {
-            setAddNewPlaceCoordinates(undefined);
+            setAddNewListingCoordinates(undefined);
         }
     }
 
@@ -29,9 +29,9 @@ class ActionBar extends React.Component {
         return (
             <div className="d-flex profile-actions mr-3 mt-3">
                 <div className="ml-3 mt-1">
-                    {map.addNewPlaceMode ?
-                        <button onClick={this.setAddNewPlaceMode.bind(null, false)} className="btn btn-sm btn-danger"><FontAwesome name="remove" /> Cancel</button> :
-                        <button onClick={this.setAddNewPlaceMode.bind(null, true)} className="btn btn-sm btn-success"><FontAwesome name="plus" /> Add</button>
+                    {map.addNewListingMode ?
+                        <button onClick={this.setAddNewListingMode.bind(null, false)} className="btn btn-sm btn-danger"><FontAwesome name="remove" /> Cancel</button> :
+                        <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-sm btn-success"><FontAwesome name="plus" /> Add</button>
                     }
                 </div>
                 <div className="ml-3">
@@ -80,8 +80,8 @@ class ActionBar extends React.Component {
             <div>
                 <div className="d-flex search-container mr-3 mt-3">
                     <div className="ml-3">
-                        {map.addNewPlaceMode ?
-                            map.addNewPlaceCoordinates ? <Link to="/add" className="btn btn-success"><FontAwesome name="check" /> Add new place here</Link> : undefined :
+                        {map.addNewListingMode ?
+                            map.addNewListingCoordinates ? <Link to="/add" className="btn btn-success"><FontAwesome name="check" /> Add new listing here</Link> : undefined :
                             this.renderSearchHoverToggle()
                         }
 

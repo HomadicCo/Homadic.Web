@@ -26,7 +26,7 @@ export class HomeMarker extends React.Component {
     }
 }
 
-export class AddPlaceMarker extends React.Component {
+export class AddListingMarker extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -35,11 +35,11 @@ export class AddPlaceMarker extends React.Component {
         let { onMarkerDragged, map } = this.props;
 
         return (
-            map.addNewPlaceCoordinates ?
+            map.addNewListingCoordinates ?
                 <Marker
                     position={{
-                        lat: map.addNewPlaceCoordinates.lat,
-                        lng: map.addNewPlaceCoordinates.lng,
+                        lat: map.addNewListingCoordinates.lat,
+                        lng: map.addNewListingCoordinates.lng,
                     }}
                     draggable={true}
                     onDragEnd={onMarkerDragged}

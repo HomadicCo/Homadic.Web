@@ -5,7 +5,7 @@ import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
 import ActionBar from './Components/ActionBar';
 import MapStyle from './Components/MapStyle';
-import { AddPlaceMarker, HomeMarker } from './Components/Markers';
+import { AddListingMarker, HomeMarker } from './Components/Markers';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images';
 
@@ -23,11 +23,11 @@ const RenderMap = withGoogleMap(props => (
             streetViewControl: false,
             fullscreenControl: false,
             minZoom: 13,
-            draggableCursor: props.addNewPlaceMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined
+            draggableCursor: props.addNewListingMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined
         }}>
         {
-            props.addNewPlaceMode ?
-                <AddPlaceMarker {...props} />
+            props.addNewListingMode ?
+                <AddListingMarker {...props} />
                 :
                 props.homes.map(home => (
                     <HomeMarker home={home} key={home.id} {...props} />
@@ -74,20 +74,20 @@ class Map extends React.Component {
     }
 
     handleMarkerDrag(e) {
-        let { setAddNewPlaceCoordinates } = this.props;
+        let { setAddNewListingCoordinates } = this.props;
         const lat = e.latLng.lat();
         const lng = e.latLng.lng();
 
-        setAddNewPlaceCoordinates({ lat, lng });
+        setAddNewListingCoordinates({ lat, lng });
     }
 
     handleMapClick(e) {
-        let { map, setAddNewPlaceCoordinates } = this.props;
-        if (!map.addNewPlaceMode) return;
+        let { map, setAddNewListingCoordinates } = this.props;
+        if (!map.addNewListingMode) return;
         const lat = e.latLng.lat();
         const lng = e.latLng.lng();
 
-        setAddNewPlaceCoordinates({ lat, lng });
+        setAddNewListingCoordinates({ lat, lng });
         this.setState({ center: { lat, lng }, zoom: 18 });
     }
 
@@ -144,7 +144,7 @@ class Map extends React.Component {
     componentWillMount() {
         let { query } = this.props.location;
 
-        this.props.setAddNewPlaceMode(false);
+        this.props.setAddNewListingMode(false);
 
         this.updateLatLong({
             slug: this.props.params.citySlug,
@@ -168,7 +168,7 @@ class Map extends React.Component {
                             onMapClick={this.handleMapClick}
                             center={new google.maps.LatLng(center)}
                             zoom={zoom}
-                            addNewPlaceMode={map.addNewPlaceMode}
+                            addNewListingMode={map.addNewListingMode}
                             onMapChanged={this.handleMapChanged}
                             onMarkerDragged={this.handleMarkerDrag}
                             setHoveredHome={this.props.setHoveredHome}

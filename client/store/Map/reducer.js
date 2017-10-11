@@ -6,11 +6,11 @@ function map(state = [], action) {
             return newState;
         case 'SET_ADD_NEW_PLACE_MODE':
             var newState = Object.assign({}, state);
-            newState.addNewPlaceMode = action.value;
+            newState.addNewListingMode = action.value;
             return newState;
         case 'SET_ADD_NEW_PLACE_COORDINATES':
             var newState = Object.assign({}, state);
-            newState.addNewPlaceCoordinates = action.coordinates;
+            newState.addNewListingCoordinates = action.coordinates;
             return newState;
     }
     return state;

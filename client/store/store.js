@@ -15,7 +15,7 @@ const defaultState = {
   authentication: {},
   AddListing: {
     nearbyResults: [],
-    place: {},
+    listing: {},
     ui: {}
   },
   homes: {
@@ -25,7 +25,7 @@ const defaultState = {
   },
   map: {
     markers: [],
-    addNewPlaceMode: false
+    addNewListingMode: false
   },
   profile: { data: {} }
 };

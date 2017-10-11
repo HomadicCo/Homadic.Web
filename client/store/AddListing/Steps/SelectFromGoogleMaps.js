@@ -12,8 +12,8 @@ class NearbyResult extends React.Component {
     }
 
     render() {
-        let { place } = this.props;
-        const link = "/add/listing?gmid=" + place.place_id;
+        let { listing } = this.props;
+        const link = "/add/listing?gmid=" + listing.place_id;
 
         return (
             <Link to={link}>
@@ -23,11 +23,11 @@ class NearbyResult extends React.Component {
                             <img src={icons.house} height="30" width="30" />
                         </div>
                         <div>
-                            <div className="place-name">
-                                <span><strong>{place.name}</strong></span>
+                            <div className="listing-name">
+                                <span><strong>{listing.name}</strong></span>
                             </div>
-                            <div className="place-address">
-                                <span className="small"><em>{place.vicinity}</em></span>
+                            <div className="listing-address">
+                                <span className="small"><em>{listing.vicinity}</em></span>
                             </div>
                         </div>
                     </div>
@@ -49,8 +49,8 @@ class SelectFromGoogleMaps extends React.Component {
     componentWillMount() {
         let { map, handleGetNearbyResults } = this.props;
 
-        if (!!map.addNewPlaceCoordinates) {
-            handleGetNearbyResults(map.addNewPlaceCoordinates).then(() => {
+        if (!!map.addNewListingCoordinates) {
+            handleGetNearbyResults(map.addNewListingCoordinates).then(() => {
                 this.setState({ isLoading: false });
             }).catch(() => {
                 browserHistory.push("/");
@@ -68,9 +68,9 @@ class SelectFromGoogleMaps extends React.Component {
             isLoading ?
                 <LoadingScreen /> :
                 <div className="container">
-                    <h5 className="mb-4">Select from places on Google Maps within 200m of pin. Not here? Try moving your pin more accurately or <Link to="/add/details">add manually</Link>.</h5>
+                    <h5 className="mb-4">Select from listings on Google Maps within 200m of pin. Not here? Try moving your pin more accurately or <Link to="/add/details">add manually</Link>.</h5>
                     {AddListing.nearbyResults.map((result, i) =>
-                        <NearbyResult place={result} key={i} />
+                        <NearbyResult listing={result} key={i} />
                     )}
                 </div>
         )
