@@ -8,7 +8,7 @@ class ProgressFooter extends React.Component {
 
         this.state = {
             classes: {
-                listing: "current-step",
+                listing: "",
                 rooms: "",
                 amenities: "",
                 publish: ""
@@ -16,9 +16,7 @@ class ProgressFooter extends React.Component {
         }
     }
 
-    stepSelector() {
-        let { step } = this.props.params;
-
+    setStepClasses(step) {
         switch (step) {
             case 'listing':
                 this.setState({
@@ -29,6 +27,7 @@ class ProgressFooter extends React.Component {
                         publish: ""
                     }
                 })
+                break;
             case 'rooms':
                 this.setState({
                     classes: {
@@ -38,6 +37,7 @@ class ProgressFooter extends React.Component {
                         publish: ""
                     }
                 })
+                break;
             case 'amenities':
                 this.setState({
                     classes: {
@@ -47,6 +47,7 @@ class ProgressFooter extends React.Component {
                         publish: ""
                     }
                 })
+                break;
             case 'publish':
                 this.setState({
                     classes: {
@@ -56,6 +57,29 @@ class ProgressFooter extends React.Component {
                         publish: "current-step"
                     }
                 })
+                break;
+            default:
+                this.setState({
+                    classes: {
+                        listing: "current-step",
+                        rooms: "",
+                        amenities: "",
+                        publish: ""
+                    }
+                })
+        }
+    }
+
+    componentWillMount() {
+        this.setStepClasses(this.props.params.step);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let { step } = this.props.params;
+        const nextStep = nextProps.params.step;
+
+        if (step != nextStep) {
+            this.setStepClasses(nextStep);
         }
     }
 

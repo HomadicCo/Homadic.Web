@@ -71,9 +71,9 @@ class Rooms extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-2">
                         <label htmlFor="inputCurrency" className="col-form-label"><FontAwesome name="money" /> Currency</label>
-                        <select id="inputCurrency" className="form-control">
+                        <select id="inputCurrency" defaultValue="USD" className="form-control">
                             {currencies.map((currency, i) => (
-                                <option key={i} value={currency} selected={currency == "USD" ? true : false}>{currency}</option>)
+                                <option key={i} value={currency}>{currency}</option>)
                             )}
                         </select>
                     </div>
