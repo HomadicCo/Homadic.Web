@@ -8,15 +8,21 @@ class RentalRate extends React.Component {
     }
 
     render() {
-        let { length } = this.props;
+        let { currency, length } = this.props;
 
         return (
             <div className="form-inline my-2">
                 <label htmlFor="inputRate" className="col-form-label mr-2">Monthly rate</label>
-                <input type="number" className="form-control mr-3" id="inputRate" />
+                <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div className="input-group-addon">{currency}</div>
+                    <input type="number" className="form-control mr-3" id="inputRate" />
+                </div>
 
                 <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit</label>
-                <input type="number" className="form-control mr-3" id="inputDeposit" />
+                <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div className="input-group-addon">{currency}</div>
+                    <input type="number" className="form-control mr-3" id="inputDeposit" />
+                </div>
 
                 <label className="custom-control custom-checkbox">
                     <input type="checkbox" className="custom-control-input" />
@@ -31,6 +37,16 @@ class RentalRate extends React.Component {
 class Rooms extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            currency: "USD"
+        }
+
+        this.changeCurrency = this.changeCurrency.bind(this);
+    }
+
+    changeCurrency(e) {
+        this.setState({ currency: e.target.value });
     }
 
     renderDetailsEditor() {
@@ -65,13 +81,14 @@ class Rooms extends React.Component {
     }
 
     render() {
+        let { currency } = this.state;
         return (
             <form autoComplete="off">
                 <h3>Rooms</h3>
                 <div className="form-row">
                     <div className="form-group col-md-2">
                         <label htmlFor="inputCurrency" className="col-form-label"><FontAwesome name="money" /> Currency</label>
-                        <select id="inputCurrency" defaultValue="USD" className="form-control">
+                        <select id="inputCurrency" defaultValue="USD" className="form-control" onChange={this.changeCurrency}>
                             {currencies.map((currency, i) => (
                                 <option key={i} value={currency}>{currency}</option>)
                             )}
@@ -79,16 +96,22 @@ class Rooms extends React.Component {
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputElectricity" className="col-form-label"><FontAwesome name="plug" /> Electricity</label>
-                        <input type="number" className="form-control" id="inputElectricity" />
+                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div className="input-group-addon">{currency}</div>
+                            <input type="number" className="form-control" id="inputElectricity" />
+                        </div>
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputWater" className="col-form-label"><FontAwesome name="shower" /> Water</label>
-                        <input type="number" className="form-control" id="inputWater" />
+                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div className="input-group-addon">{currency}</div>
+                            <input type="number" className="form-control" id="inputWater" />
+                        </div>
                     </div>
                 </div>
                 {this.renderDetailsEditor()}
                 <h5>Rates</h5>
-                {rentalLengths.map((length, i) => (<RentalRate key={i} length={length} />))}
+                {rentalLengths.map((length, i) => (<RentalRate key={i} length={length} currency={currency} />))}
             </form>
         )
     }
