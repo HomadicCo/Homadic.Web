@@ -9,7 +9,7 @@ import ProgressFooter from './components/ProgressFooter';
 import SelectFromGoogleMaps from './Steps/SelectFromGoogleMaps';
 import ListingDetails from './Steps/ListingDetails';
 
-class AddPlace extends React.Component {
+class AddListing extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -22,7 +22,7 @@ class AddPlace extends React.Component {
                 return (
                     <p>Hello</p>
                 )
-            case 'place':
+            case 'listing':
                 return (
                     <ListingDetails {...this.props} />
                 )
@@ -46,4 +46,4 @@ class AddPlace extends React.Component {
     }
 }
 
-export default AddPlace;
+export default AddListing;

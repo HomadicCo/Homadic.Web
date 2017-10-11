@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
 
 // reducers
-import addPlace from './AddPlace/reducer';
+import AddListing from './AddListing/reducer';
 import authentication from './Authentication/reducer';
 import homes from './Home/reducer';
 import map from './Map/reducer';
@@ -13,7 +13,7 @@ import profile from './Profile/reducer';
 
 const defaultState = {
   authentication: {},
-  addPlace: {
+  AddListing: {
     nearbyResults: [],
     place: {},
     ui: {}
@@ -31,7 +31,7 @@ const defaultState = {
 };
 
 const appReducer = combineReducers({
-  addPlace,
+  AddListing,
   authentication,
   homes,
   map,

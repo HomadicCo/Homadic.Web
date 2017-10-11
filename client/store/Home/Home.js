@@ -37,12 +37,12 @@ class Home extends React.Component {
             <div>
                 <div className="navbar fixed-top bg-white px-3 home-header">
                     <div className="container">
-                        <div className="d-flex justify-content-start">
-                            <div>
+                        <div className="row">
+                            <div className="col-auto mr-auto">
                                 <h4><strong>{selected.name}</strong> <RatingBadge rating={selected.rating} /></h4>
                                 <IconsBar home={selected} className="mb-1" />
                             </div>
-                            <div className="ml-auto mt-1">
+                            <div className="col-auto mt-1">
                                 <h5 className="blue"><FontAwesome name="thumbs-up" /> <FontAwesome name="thumbs-o-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><FontAwesome name="pencil" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
                             </div>
                         </div>

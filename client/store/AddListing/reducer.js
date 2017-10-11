@@ -1,4 +1,4 @@
-function addPlace(state = [], action) {
+function AddListing(state = [], action) {
     switch (action.type) {
         case 'UPDATE_NEARBY_RESULTS':
             var newState = Object.assign({}, state);
@@ -12,4 +12,4 @@ function addPlace(state = [], action) {
     return state;
 }
 
-export default addPlace;
+export default AddListing;

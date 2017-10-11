@@ -8,7 +8,7 @@ import Style from './styles/App.scss';
 import { App, AppAuthenticated } from './store/App';
 import SigninFacebook from './components/SigninFacebook/SigninFacebook';
 import Index from './store/Index/Index';
-import AddPlace from './store/AddPlace/AddPlace';
+import AddListing from './store/AddListing/AddListing';
 import Home from './store/Home/Home';
 import Map from './store/Map/Map';
 
@@ -21,7 +21,7 @@ const router = (
     <Provider store={store}>
         <Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
             <Route component={AppAuthenticated}>
-                <Route path="/add(/:step)" component={AddPlace} />
+                <Route path="/add(/:step)" component={AddListing} />
             </Route>
             <Route path="/" component={App}>
                 <IndexRoute component={Index}></IndexRoute>

@@ -13,7 +13,7 @@ class NearbyResult extends React.Component {
 
     render() {
         let { place } = this.props;
-        const link = "/add/place?gmid=" + place.place_id;
+        const link = "/add/listing?gmid=" + place.place_id;
 
         return (
             <Link to={link}>
@@ -61,7 +61,7 @@ class SelectFromGoogleMaps extends React.Component {
     }
 
     render() {
-        let { addPlace } = this.props;
+        let { AddListing } = this.props;
         let { isLoading } = this.state;
 
         return (
@@ -69,7 +69,7 @@ class SelectFromGoogleMaps extends React.Component {
                 <LoadingScreen /> :
                 <div className="container">
                     <h5 className="mb-4">Select from places on Google Maps within 200m of pin. Not here? Try moving your pin more accurately or <Link to="/add/details">add manually</Link>.</h5>
-                    {addPlace.nearbyResults.map((result, i) =>
+                    {AddListing.nearbyResults.map((result, i) =>
                         <NearbyResult place={result} key={i} />
                     )}
                 </div>

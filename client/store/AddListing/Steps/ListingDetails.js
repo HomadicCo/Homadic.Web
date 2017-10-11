@@ -14,11 +14,11 @@ class ListingDetails extends React.Component {
                 <h3>Listing details</h3>
                 <div className="form-row">
                     <div className="form-group col-md-9">
-                        <label htmlFor="inputListingName" className="col-form-label">Listing name</label>
+                        <label htmlFor="inputListingName" className="col-form-label">Listing name*</label>
                         <input type="text" className="form-control" id="inputListingName" placeholder="Listing name" />
                     </div>
                     <div className="form-group col-md-3">
-                        <label htmlFor="inputPlaceType" className="col-form-label">Listing type</label>
+                        <label htmlFor="inputPlaceType" className="col-form-label">Listing type*</label>
                         <select id="inputPlaceType" className="form-control">
                             <option className="text-muted">Listing type</option>
                             <option value="condo">Condo/apartment</option>
@@ -32,7 +32,7 @@ class ListingDetails extends React.Component {
                     <h5>Contact details</h5>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="inputAddress" className="col-form-label">Address</label>
+                    <label htmlFor="inputAddress" className="col-form-label">Address*</label>
                     <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
                 </div>
                 <div className="form-row">
@@ -50,7 +50,7 @@ class ListingDetails extends React.Component {
                     </div>
                 </div>
                 <div className="content-header">
-                    <h5>Social details</h5>
+                    <h5>Social</h5>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-4">
@@ -62,7 +62,11 @@ class ListingDetails extends React.Component {
                         <input type="email" className="form-control" id="inputTwitter" />
                     </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Sign in</button>
+                <div className="row">
+                    <div className="col-auto ml-auto">
+                        <button type="submit" className="btn btn-success">Next <FontAwesome name="caret-right" /></button>
+                    </div>
+                </div>
             </form>
         )
     }

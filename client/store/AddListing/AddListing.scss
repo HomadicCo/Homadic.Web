@@ -15,7 +15,7 @@ $step-width: 5px;
 }
 
 .footer-padding {
-    padding-bottom: $footer-height;
+    padding-bottom: $footer-height + $box-padding;
 }
 
 .progress-steps {
