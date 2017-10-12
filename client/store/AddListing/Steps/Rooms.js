@@ -1,6 +1,7 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import { bedrooms, bathrooms, currencies, kitchen, rentalLengths } from '../../../data';
+import { bedrooms, bathrooms, currencies, kitchen, rentalLengths, serviced } from '../../../data';
 
 class RentalRate extends React.Component {
     constructor(props) {
@@ -43,10 +44,22 @@ class Rooms extends React.Component {
         }
 
         this.changeCurrency = this.changeCurrency.bind(this);
+        this.handleNextClick = this.handleNextClick.bind(this);
+        this.handlePrevClick = this.handlePrevClick.bind(this);
     }
 
     changeCurrency(e) {
         this.setState({ currency: e.target.value });
+    }
+
+    handleNextClick(e) {
+        e.preventDefault();
+        browserHistory.push("/add/amenities");
+    }
+
+    handlePrevClick(e) {
+        e.preventDefault();
+        browserHistory.push("/add/listing");
     }
 
     renderDetailsEditor() {
@@ -57,22 +70,28 @@ class Rooms extends React.Component {
                 </div>
                 <h5>Details</h5>
                 <div className="form-row">
-                    <div className="form-group col-md-4">
-                        <label htmlFor="inputBedrooms" className="col-form-label"><FontAwesome name="bed" /> Bedrooms</label>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputBedrooms" className="col-form-label">Bedrooms <FontAwesome className="text-muted" name="bed" /></label>
                         <select id="inputBedrooms" className="form-control">
                             {bedrooms.map((bedroom, i) => (<option key={i} value={bedroom.value}>{bedroom.value}</option>))}
                         </select>
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="inputBathrooms" className="col-form-label"><FontAwesome name="bath" /> Bathrooms</label>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputBathrooms" className="col-form-label">Bathrooms <FontAwesome className="text-muted" name="bath" /></label>
                         <select id="inputBathrooms" className="form-control">
                             {bathrooms.map((bathroom, i) => (<option key={i} value={bathroom.value}>{bathroom.value}</option>))}
                         </select>
                     </div>
-                    <div className="form-group col-md-4">
-                        <label htmlFor="inputKitchen" className="col-form-label"><FontAwesome name="cutlery" /> Kitchen</label>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputKitchen" className="col-form-label">Kitchen <FontAwesome className="text-muted" name="cutlery" /></label>
                         <select id="inputKitchen" className="form-control">
                             {kitchen.map((item, i) => (<option key={i} value={item.value}>{item.value}</option>))}
+                        </select>
+                    </div>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputServiced" className="col-form-label">Serviced <FontAwesome className="text-muted" name="user" /></label>
+                        <select id="inputServiced" className="form-control">
+                            {serviced.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
                         </select>
                     </div>
                 </div>
@@ -87,7 +106,7 @@ class Rooms extends React.Component {
                 <h3>Rooms</h3>
                 <div className="form-row">
                     <div className="form-group col-md-2">
-                        <label htmlFor="inputCurrency" className="col-form-label"><FontAwesome name="money" /> Currency</label>
+                        <label htmlFor="inputCurrency" className="col-form-label">Currency <FontAwesome className="text-muted" name="money" /></label>
                         <select id="inputCurrency" defaultValue="USD" className="form-control" onChange={this.changeCurrency}>
                             {currencies.map((currency, i) => (
                                 <option key={i} value={currency}>{currency}</option>)
@@ -95,14 +114,14 @@ class Rooms extends React.Component {
                         </select>
                     </div>
                     <div className="form-group col-md-3">
-                        <label htmlFor="inputElectricity" className="col-form-label"><FontAwesome name="plug" /> Electricity</label>
+                        <label htmlFor="inputElectricity" className="col-form-label">Electricity <FontAwesome className="text-muted" name="plug" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{currency}</div>
                             <input type="number" className="form-control" id="inputElectricity" />
                         </div>
                     </div>
                     <div className="form-group col-md-3">
-                        <label htmlFor="inputWater" className="col-form-label"><FontAwesome name="shower" /> Water</label>
+                        <label htmlFor="inputWater" className="col-form-label">Water <FontAwesome className="text-muted" name="shower" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{currency}</div>
                             <input type="number" className="form-control" id="inputWater" />
@@ -112,6 +131,12 @@ class Rooms extends React.Component {
                 {this.renderDetailsEditor()}
                 <h5>Rates</h5>
                 {rentalLengths.map((length, i) => (<RentalRate key={i} length={length} currency={currency} />))}
+                <div className="row justify-content-center mt-4">
+                    <div className="col-auto">
+                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Listing</button>
+                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Amenities <FontAwesome name="caret-right" /></button>
+                    </div>
+                </div>
             </form>
         )
     }

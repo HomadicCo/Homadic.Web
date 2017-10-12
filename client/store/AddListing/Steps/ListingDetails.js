@@ -60,17 +60,17 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputFacebook" className="col-form-label">Facebook <FontAwesome name="facebook-square" /></label>
+                        <label htmlFor="inputFacebook" className="col-form-label">Facebook <FontAwesome className="text-muted" name="facebook-square" /></label>
                         <input type="tel" className="form-control" id="inputFacebook" />
                     </div>
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputTwitter" className="col-form-label">Twitter <FontAwesome name="twitter" /></label>
+                        <label htmlFor="inputTwitter" className="col-form-label">Twitter <FontAwesome className="text-muted" name="twitter" /></label>
                         <input type="email" className="form-control" id="inputTwitter" />
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-auto ml-auto">
-                        <button type="button" onClick={this.handleNextClick} className="btn btn-success">Next <FontAwesome name="caret-right" /></button>
+                <div className="row justify-content-center mt-4">
+                    <div className="col-auto">
+                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Next <FontAwesome name="caret-right" /></button>
                     </div>
                 </div>
             </form>

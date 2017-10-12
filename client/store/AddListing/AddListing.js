@@ -9,6 +9,7 @@ import ProgressFooter from './components/ProgressFooter';
 import SelectFromGoogleMaps from './Steps/SelectFromGoogleMaps';
 import ListingDetails from './Steps/ListingDetails';
 import Rooms from './Steps/Rooms';
+import Amenities from './Steps/Amenities';
 
 class AddListing extends React.Component {
     constructor(props) {
@@ -19,13 +20,17 @@ class AddListing extends React.Component {
         let { step } = this.props.params;
 
         switch (step) {
+            case 'listing':
+                return (
+                    <ListingDetails {...this.props} />
+                )
             case 'rooms':
                 return (
                     <Rooms {...this.props} />
                 )
-            case 'listing':
+            case 'amenities':
                 return (
-                    <ListingDetails {...this.props} />
+                    <Amenities {...this.props} />
                 )
             default:
                 return (

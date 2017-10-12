@@ -1,6 +1,11 @@
 .form-control {
     border: 1px solid #eee;
-    box-shadow: $box-shadow
+}
+
+.input-group-addon {
+    color: #fff;
+    background-color: #90A4AE;
+    border: 1px solid #eee;
 }
 
 form {

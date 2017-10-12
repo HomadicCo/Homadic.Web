@@ -11,7 +11,7 @@ class ProgressFooter extends React.Component {
                 listing: "",
                 rooms: "",
                 amenities: "",
-                publish: ""
+                preview: ""
             }
         }
     }
@@ -24,7 +24,7 @@ class ProgressFooter extends React.Component {
                         listing: "current-step",
                         rooms: "",
                         amenities: "",
-                        publish: ""
+                        preview: ""
                     }
                 })
                 break;
@@ -34,7 +34,7 @@ class ProgressFooter extends React.Component {
                         listing: "visited-step",
                         rooms: "current-step",
                         amenities: "",
-                        publish: ""
+                        preview: ""
                     }
                 })
                 break;
@@ -44,17 +44,17 @@ class ProgressFooter extends React.Component {
                         listing: "visited-step",
                         rooms: "visited-step",
                         amenities: "current-step",
-                        publish: ""
+                        preview: ""
                     }
                 })
                 break;
-            case 'publish':
+            case 'preview':
                 this.setState({
                     classes: {
                         listing: "visited-step",
                         rooms: "visited-step",
                         amenities: "visited-step",
-                        publish: "current-step"
+                        preview: "current-step"
                     }
                 })
                 break;
@@ -64,7 +64,7 @@ class ProgressFooter extends React.Component {
                         listing: "current-step",
                         rooms: "",
                         amenities: "",
-                        publish: ""
+                        preview: ""
                     }
                 })
         }
@@ -104,9 +104,9 @@ class ProgressFooter extends React.Component {
                             <a href="#">Amenities</a>
                             <span className="triangle"></span>
                         </div>
-                        <div className={"col-md-3 " + classes.publish}>
+                        <div className={"col-md-3 " + classes.preview}>
                             <span className="triangle-left"></span>
-                            <a href="#">Publish</a>
+                            <a href="#">Preview</a>
                             <span className="triangle"></span>
                         </div>
                     </div>

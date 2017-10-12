@@ -45,6 +45,13 @@ export const currencies = [
     "ZAR"
 ]
 
+export const internetType = [
+    { value: "none", name: "No Internet" },
+    { value: "free", name: "Free" },
+    { value: "paid", name: "Paid" },
+    { value: "canInstall", name: "Can Install" }
+]
+
 export const kitchen = [
     { value: "None" },
     { value: "Shared" },
@@ -77,4 +84,15 @@ export const rentalType = [
     { value: "Villa" },
     { value: "Coliving" },
     { value: "Condo" }
+]
+
+export const serviced = [
+    {
+        value: true,
+        name: "Yes"
+    },
+    {
+        value: false,
+        name: "No"
+    }
 ]
