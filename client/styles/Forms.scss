@@ -2,6 +2,14 @@
     border: 1px solid #eee;
 }
 
+.custom-select.is-valid, .form-control.is-valid, .was-validated .custom-select:valid, .was-validated .form-control:valid {
+    border-color: $green;
+}
+
+.custom-select.is-invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .was-validated .form-control:invalid {
+    border-color: $red-light;
+}
+
 .input-group-addon {
     color: #fff;
     background-color: #90A4AE;

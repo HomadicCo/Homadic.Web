@@ -6,30 +6,46 @@ import { bedrooms, bathrooms, currencies, kitchen, rentalLengths, serviced } fro
 class RentalRate extends React.Component {
     constructor(props) {
         super(props)
+
+        this.state = {
+            checked: false
+        }
+
+        this.handleChecked = this.handleChecked.bind(this);
+    }
+
+    handleChecked(e) {
+        this.setState({ checked: e.target.checked });
     }
 
     render() {
         let { currency, length } = this.props;
+        let { checked } = this.state;
 
         return (
-            <div className="form-inline my-2">
-                <label htmlFor="inputRate" className="col-form-label mr-2">Monthly rate</label>
-                <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div className="input-group-addon">{currency}</div>
-                    <input type="number" className="form-control mr-3" id="inputRate" />
-                </div>
+            <div className="content-box"    >
+                <div className="form-inline my-2">
+                    <label htmlFor="inputRate" className="col-form-label mr-2">Monthly</label>
+                    <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div className="input-group-addon">{currency}</div>
+                        <input type="number" className="form-control mr-3" id="inputRate" required={checked} />
+                        <div className="invalid-feedback">
+                            The listing needs a name!
+                        </div>
+                    </div>
 
-                <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit</label>
-                <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div className="input-group-addon">{currency}</div>
-                    <input type="number" className="form-control mr-3" id="inputDeposit" />
-                </div>
+                    <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit</label>
+                    <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div className="input-group-addon">{currency}</div>
+                        <input type="number" className="form-control mr-3" id="inputDeposit" required={checked} />
+                    </div>
 
-                <label className="custom-control custom-checkbox">
-                    <input type="checkbox" className="custom-control-input" />
-                    <span className="custom-control-indicator"></span>
-                    <span className="custom-control-description">{length.label}</span>
-                </label>
+                    <label className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" onChange={this.handleChecked} checked={checked} />
+                        <span className="custom-control-indicator"></span>
+                        <span className="custom-control-description">{length.label}</span>
+                    </label>
+                </div>
             </div>
         )
     }
@@ -54,7 +70,13 @@ class Rooms extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        browserHistory.push("/add/amenities");
+        const form = this.refs.roomsForm;
+
+        if (form.checkValidity() == false) {
+            form.classList.add("was-validated");
+        } else {
+            browserHistory.push("/add/amenities");
+        }
     }
 
     handlePrevClick(e) {
@@ -69,6 +91,15 @@ class Rooms extends React.Component {
                     <h5>Room <small><FontAwesome name="plus" /></small></h5>
                 </div>
                 <h5>Details</h5>
+                <div className="form-row">
+                    <div className="form-group col-md-3">
+                        <label className="custom-control custom-checkbox">
+                            <input type="checkbox" className="custom-control-input" />
+                            <span className="custom-control-indicator"></span>
+                            <span className="custom-control-description">Serviced <FontAwesome name="user" /></span>
+                        </label>
+                    </div>
+                </div>
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label htmlFor="inputBedrooms" className="col-form-label">Bedrooms <FontAwesome className="text-muted" name="bed" /></label>
@@ -88,12 +119,6 @@ class Rooms extends React.Component {
                             {kitchen.map((item, i) => (<option key={i} value={item.value}>{item.value}</option>))}
                         </select>
                     </div>
-                    <div className="form-group col-md-3">
-                        <label htmlFor="inputServiced" className="col-form-label">Serviced <FontAwesome className="text-muted" name="user" /></label>
-                        <select id="inputServiced" className="form-control">
-                            {serviced.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
-                        </select>
-                    </div>
                 </div>
             </div>
         )
@@ -102,7 +127,7 @@ class Rooms extends React.Component {
     render() {
         let { currency } = this.state;
         return (
-            <form autoComplete="off">
+            <form autoComplete="off" ref="roomsForm" noValidate>
                 <h3>Rooms</h3>
                 <div className="form-row">
                     <div className="form-group col-md-2">

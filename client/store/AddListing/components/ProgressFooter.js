@@ -11,6 +11,7 @@ class ProgressFooter extends React.Component {
                 listing: "",
                 rooms: "",
                 amenities: "",
+                notes: "",
                 preview: ""
             }
         }
@@ -24,6 +25,7 @@ class ProgressFooter extends React.Component {
                         listing: "current-step",
                         rooms: "",
                         amenities: "",
+                        notes: "",
                         preview: ""
                     }
                 })
@@ -34,6 +36,7 @@ class ProgressFooter extends React.Component {
                         listing: "visited-step",
                         rooms: "current-step",
                         amenities: "",
+                        notes: "",
                         preview: ""
                     }
                 })
@@ -44,6 +47,18 @@ class ProgressFooter extends React.Component {
                         listing: "visited-step",
                         rooms: "visited-step",
                         amenities: "current-step",
+                        notes: "",
+                        preview: ""
+                    }
+                })
+                break;
+            case 'notes':
+                this.setState({
+                    classes: {
+                        listing: "visited-step",
+                        rooms: "visited-step",
+                        amenities: "visited-step",
+                        notes: "current-step",
                         preview: ""
                     }
                 })
@@ -54,6 +69,7 @@ class ProgressFooter extends React.Component {
                         listing: "visited-step",
                         rooms: "visited-step",
                         amenities: "visited-step",
+                        notes: "visited-step",
                         preview: "current-step"
                     }
                 })
@@ -64,6 +80,7 @@ class ProgressFooter extends React.Component {
                         listing: "current-step",
                         rooms: "",
                         amenities: "",
+                        notes: "",
                         preview: ""
                     }
                 })
@@ -90,23 +107,28 @@ class ProgressFooter extends React.Component {
             <footer className="footer">
                 <div className="container-fluid">
                     <div className="row progress-steps">
-                        <div className={"col-md-3 " + classes.listing}>
-                            <a href="#">Listing</a>
+                        <div className={"col " + classes.listing}>
+                            <Link to="/add/listing">Listing</Link>
                             <span className="triangle"></span>
                         </div>
-                        <div className={"col-md-3 " + classes.rooms}>
+                        <div className={"col " + classes.rooms}>
                             <span className="triangle-left"></span>
-                            <a href="#">Rooms</a>
+                            <Link to="/add/rooms">Rooms</Link>
                             <span className="triangle"></span>
                         </div>
-                        <div className={"col-md-3 " + classes.amenities}>
+                        <div className={"col " + classes.amenities}>
                             <span className="triangle-left"></span>
-                            <a href="#">Amenities</a>
+                            <Link to="/add/amenities">Amenities</Link>
                             <span className="triangle"></span>
                         </div>
-                        <div className={"col-md-3 " + classes.preview}>
+                        <div className={"col " + classes.notes}>
                             <span className="triangle-left"></span>
-                            <a href="#">Preview</a>
+                            <Link to="/add/notes">Notes</Link>
+                            <span className="triangle"></span>
+                        </div>
+                        <div className={"col " + classes.preview}>
+                            <span className="triangle-left"></span>
+                            <Link to="/add/preview">Preview</Link>
                             <span className="triangle"></span>
                         </div>
                     </div>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { rentalTypes } from '../../../data';
+
 
 class ListingDetails extends React.Component {
     constructor(props) {
@@ -11,26 +13,31 @@ class ListingDetails extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        browserHistory.push("/add/rooms");
+        const form = this.refs.listingForm;
+
+        if (form.checkValidity() == false) {
+            form.classList.add("was-validated");
+        } else {
+            browserHistory.push("/add/rooms");
+        }
     }
 
     render() {
         return (
-            <form autoComplete="off">
+            <form autoComplete="off" ref="listingForm" noValidate>
                 <h3>Listing details</h3>
                 <div className="form-row">
                     <div className="form-group col-md-9">
                         <label htmlFor="inputListingName" className="col-form-label">Listing name*</label>
-                        <input type="text" className="form-control" id="inputListingName" placeholder="Listing name" />
+                        <input type="text" className="form-control" id="inputListingName" placeholder="Listing name" maxLength={50} required />
+                        <div className="invalid-feedback">
+                            The listing needs a name!
+                        </div>
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputListingType" className="col-form-label">Listing type*</label>
-                        <select id="inputListingType" className="form-control">
-                            <option className="text-muted">Listing type</option>
-                            <option value="condo">Condo/apartment</option>
-                            <option value="hotel">Hotel</option>
-                            <option value="hostel">Hostel</option>
-                            <option value="home">Home</option>
+                        <select id="inputListingType" className="form-control" required>
+                        {rentalTypes.map((type, i) => (<option key={i} value={type.value}>{type.name}</option>))}
                         </select>
                     </div>
                 </div>
@@ -39,7 +46,10 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>
-                    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" />
+                    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" required />
+                    <div className="invalid-feedback">
+                        Please provide the address.
+                    </div>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-4">

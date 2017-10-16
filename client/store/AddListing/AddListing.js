@@ -10,6 +10,7 @@ import SelectFromGoogleMaps from './Steps/SelectFromGoogleMaps';
 import ListingDetails from './Steps/ListingDetails';
 import Rooms from './Steps/Rooms';
 import Amenities from './Steps/Amenities';
+import Notes from './Steps/Notes';
 
 class AddListing extends React.Component {
     constructor(props) {
@@ -31,6 +32,10 @@ class AddListing extends React.Component {
             case 'amenities':
                 return (
                     <Amenities {...this.props} />
+                )
+            case 'notes':
+                return (
+                    <Notes {...this.props} />
                 )
             default:
                 return (

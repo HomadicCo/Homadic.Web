@@ -76,14 +76,31 @@ export const rentalLengths = [
     }
 ]
 
-export const rentalType = [
-    { value: "Hotel" },
-    { value: "Hostel" },
-    { value: "Guesthouse" },
-    { value: "House" },
-    { value: "Villa" },
-    { value: "Coliving" },
-    { value: "Condo" }
+export const rentalTypes = [
+    {
+        name: "Coliving",
+        value: "coliving"
+    },
+    {
+        name: "Condo/Apartment",
+        value: "condo"
+    },
+    {
+        name: "Guesthouse",
+        value: "guesthouse"
+    },
+    {
+        name: "Hostel",
+        value: "hostel"
+    },
+    {
+        name: "Hotel",
+        value: "hotel"
+    },
+    {
+        name: "House/Villa",
+        value: "house"
+    }
 ]
 
 export const serviced = [

@@ -12,12 +12,18 @@ class Amenities extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        browserHistory.push("/add/preview");
+        const form = this.refs.listingForm;
+
+        if (form.checkValidity() == false) {
+            form.classList.add("was-validated");
+        } else {
+            browserHistory.push("/add/preview");
+        }
     }
 
     render() {
         return (
-            <form autoComplete="off">
+            <form autoComplete="off" ref="amenitiesForm" noValidate>
                 <h3>Amenities</h3>
                 <div className="form-row">
                     <div className="col">
