@@ -11,7 +11,7 @@ $step-width: 5px;
     width: 100%;
     height: $footer-height;
     line-height: $footer-height;
-    background-color: $purple;
+    background-color: $gray;
 }
 
 .footer-padding {
@@ -22,13 +22,14 @@ $step-width: 5px;
     div {
         position: relative;
         float: left;
-        background: $purple-text;
-        border-left: 1px solid $purple;
+        background: $gray-medium;
+        border-left: 1px solid $gray;
         margin-right: $step-width;
         text-align: center;
         max-width: calc(25% - 5px);
         a {
-            color: $white;
+            color: $font-color;
+            font-weight: bold;
         }
         .triangle,
         .triangle-left {
@@ -39,12 +40,12 @@ $step-width: 5px;
             height: 0;
             width: 0;
             border-top: $footer-height/2 solid transparent;
-            border-left: $step-width solid $purple-text;
+            border-left: $step-width solid $gray-medium;
             border-bottom: $footer-height/2 solid transparent;
             z-index: 1;
         }
         .triangle-left {
-            border-left-color: $purple;
+            border-left-color: $gray;
             left: 0;
         }
         &:first-child {
@@ -57,7 +58,6 @@ $step-width: 5px;
             }
             a {
                 color: $white;
-                font-weight: bold;
             }
         }
         &.visited-step {
