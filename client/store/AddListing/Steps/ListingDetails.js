@@ -8,7 +8,17 @@ class ListingDetails extends React.Component {
     constructor(props) {
         super(props)
 
+        this.handleChange = this.handleChange.bind(this);
         this.handleNextClick = this.handleNextClick.bind(this);
+    }
+
+
+    handleChange(e) {
+        const target = e.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.props.updateInputProp(name, value);
     }
 
     handleNextClick(e) {
@@ -23,13 +33,15 @@ class ListingDetails extends React.Component {
     }
 
     render() {
+        let { addListing } = this.props;
+
         return (
             <form autoComplete="off" ref="listingForm" noValidate>
                 <h3>Listing details</h3>
                 <div className="form-row">
                     <div className="form-group col-md-9">
                         <label htmlFor="inputListingName" className="col-form-label">Listing name*</label>
-                        <input type="text" className="form-control" id="inputListingName" placeholder="Listing name" maxLength={50} required />
+                        <input type="text" className="form-control" name="name" value={addListing.name} id="inputListingName" placeholder="Listing name" maxLength={50} required onChange={this.handleChange} />
                         <div className="invalid-feedback">
                             The listing needs a name!
                         </div>
@@ -37,7 +49,7 @@ class ListingDetails extends React.Component {
                     <div className="form-group col-md-3">
                         <label htmlFor="inputListingType" className="col-form-label">Listing type*</label>
                         <select id="inputListingType" className="form-control" required>
-                        {rentalTypes.map((type, i) => (<option key={i} value={type.value}>{type.name}</option>))}
+                            {rentalTypes.map((type, i) => (<option key={i} value={type.value}>{type.name}</option>))}
                         </select>
                     </div>
                 </div>
@@ -46,7 +58,7 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>
-                    <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" required />
+                    <input type="text" className="form-control" id="inputAddress" placeholder="123 Nomad St" required />
                     <div className="invalid-feedback">
                         Please provide the address.
                     </div>

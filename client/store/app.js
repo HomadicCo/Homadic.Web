@@ -13,7 +13,7 @@ import * as ProfileActions from './Profile/actions';
 function mapStateToProps(state) {
     return {
         authentication: state.authentication,
-        AddListing: state.AddListing,
+        addListing: state.addListing,
         homes: state.homes,
         map: state.map,
         profile: state.profile

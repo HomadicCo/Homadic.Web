@@ -16,6 +16,14 @@ export function updateNearbyResults(data) {
     }
 }
 
+export function updateInputProp(key, value) {
+    return {
+        type: 'UPDATE_INPUT_PROP',
+        key,
+        value
+    }
+}
+
 // handle getting nearby results from google through our Api
 export function handleGetNearbyResults(coordinates) {
     return dispatch => {
