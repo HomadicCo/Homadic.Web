@@ -45,6 +45,71 @@ export const currencies = [
     "ZAR"
 ]
 
+export const emptyListing = {
+    amenities: {
+        pool: false,
+        gym: false
+    },
+    adr_address: "",
+    bills: {
+        electricity: "",
+        water: ""
+    },
+    currency: "USD",
+    email: "",
+    formatted_address: "",
+    formatted_phone_number: "",
+    location: {
+        type: "Point",
+        coordinates: []
+    },
+    id: "",
+    international_phone_number: "",
+    name: "",
+    place_id: "",
+    rating: null,
+    rooms: [
+        {
+            serviced: false,
+            bedrooms: 0,
+            bathrooms: 1,
+            laundry: "none",
+            kitchen: "none",
+            air_conditioning: false,
+            rental_details: {
+                one_month: {
+                    available: true,
+                    base_price: null,
+                    deposit: null
+                },
+                three_months: {
+                    available: false,
+                    base_price: null,
+                    deposit: null
+                },
+                six_months: {
+                    available: false,
+                    base_price: null,
+                    deposit: null
+                }
+            }
+        }
+    ],
+    social_details: {
+        facebook: "",
+        twitter: ""
+    },
+    type: "condo",
+    wifi: {
+        type: "none",
+        cost: null,
+        download: null,
+        upload: null,
+        notes: ""
+    },
+    website: ""
+}
+
 export const internetType = [
     { value: "none", name: "No Internet" },
     { value: "free", name: "Free" },
@@ -53,9 +118,33 @@ export const internetType = [
 ]
 
 export const kitchen = [
-    { value: "None" },
-    { value: "Shared" },
-    { value: "Included" }
+    {
+        value: "none",
+        name: "None"
+    },
+    {
+        value: "shared",
+        name: "Shared"
+    },
+    {
+        value: "included",
+        name: "Included"
+    }
+]
+
+export const laundry = [
+    {
+        value: "none",
+        name: "None"
+    },
+    {
+        value: "shared",
+        name: "Shared"
+    },
+    {
+        value: "included",
+        name: "Included"
+    }
 ]
 
 export const rentalLengths = [
