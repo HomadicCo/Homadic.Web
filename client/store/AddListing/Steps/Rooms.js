@@ -96,13 +96,13 @@ class Room extends React.Component {
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputBathrooms" className="col-form-label">Bathrooms <FontAwesome className="text-muted" name="bath" /></label>
-                        <select id="inputBathrooms" value={room.bathrooms} className="form-control">
+                        <select id="inputBathrooms" className="form-control" data-type="int" name={"rooms[" + id + "].bathrooms"} value={room.bathrooms} onChange={this.handleChange}>
                             {bathrooms.map((bathroom, i) => (<option key={i} value={bathroom.value}>{bathroom.name}</option>))}
                         </select>
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputKitchen" className="col-form-label">Kitchen <FontAwesome className="text-muted" name="cutlery" /></label>
-                        <select id="inputKitchen" className="form-control">
+                        <select id="inputKitchen" className="form-control" name={"rooms[" + id + "].kitchen"} value={room.kitchen} onChange={this.handleChange}>
                             {kitchen.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
                         </select>
                     </div>
