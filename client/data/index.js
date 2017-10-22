@@ -1,14 +1,14 @@
 export const bathrooms = [
-    { value: 1 },
-    { value: 2 },
-    { value: 3 }
+    { value: 1, name: "1" },
+    { value: 2, name: "2" },
+    { value: 3, name: "3" }
 ]
 
 export const bedrooms = [
-    { value: "Studio" },
-    { value: 1 },
-    { value: 2 },
-    { value: 3 }
+    { value: 0, name: "Studio" },
+    { value: 1, name: "1" },
+    { value: 2, name: "2" },
+    { value: 3, name: "3" }
 ]
 
 export const currencies = [
@@ -68,33 +68,7 @@ export const emptyListing = {
     name: "",
     place_id: "",
     rating: null,
-    rooms: [
-        {
-            serviced: false,
-            bedrooms: 0,
-            bathrooms: 1,
-            laundry: "none",
-            kitchen: "none",
-            air_conditioning: false,
-            rental_details: {
-                one_month: {
-                    available: true,
-                    base_price: null,
-                    deposit: null
-                },
-                three_months: {
-                    available: false,
-                    base_price: null,
-                    deposit: null
-                },
-                six_months: {
-                    available: false,
-                    base_price: null,
-                    deposit: null
-                }
-            }
-        }
-    ],
+    rooms: [],
     social_details: {
         facebook: "",
         twitter: ""
@@ -191,6 +165,32 @@ export const rentalTypes = [
         value: "house"
     }
 ]
+
+export const room = {
+    serviced: false,
+    bedrooms: 0,
+    bathrooms: 1,
+    laundry: "none",
+    kitchen: "none",
+    air_conditioning: false,
+    rental_details: {
+        one_month: {
+            available: true,
+            base_price: null,
+            deposit: null
+        },
+        three_months: {
+            available: false,
+            base_price: null,
+            deposit: null
+        },
+        six_months: {
+            available: false,
+            base_price: null,
+            deposit: null
+        }
+    }
+}
 
 export const serviced = [
     {
