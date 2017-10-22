@@ -4,11 +4,20 @@ function setNested(obj, key, value) {
     }
 
     if (key.length > 1) {
-        var p = key.shift();
+        let p = key.shift();
+        let keyIsArray = p.match(/\[(\d*)\]/g);
+        let i = null;
+
+        if (keyIsArray) {
+            i = parseFloat(keyIsArray[0].match(/(\d+)/g));
+            p = p.replace((/\[(\d*)\]/g), '');
+        }
+
         if (obj[p] == null || typeof obj[p] !== 'object') {
             obj[p] = {};
         }
-        setNested(obj[p], key, value);
+
+        i === null ? setNested(obj[p], key, value) : setNested(obj[p][i], key, value);
     } else {
         obj[key[0]] = value;
     }
@@ -27,6 +36,10 @@ function AddListing(state = [], action) {
         case 'SET_FETCHING_NEARBY_RESULTS_STATUS':
             var newState = Object.assign({}, state);
             newState.ui.fetchingNearbyResults = action.value;
+            return newState;
+        case 'ADD_ROOM_TO_LISTING':
+            var newState = Object.assign({}, state);
+            newState.listing.rooms.push(action.room);
             return newState;
     }
     return state;

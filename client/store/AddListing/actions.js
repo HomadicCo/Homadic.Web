@@ -24,6 +24,13 @@ export function updateInputProp(key, value) {
     }
 }
 
+export function addRoomToListing(room) {
+    return {
+        type: 'ADD_ROOM_TO_LISTING',
+        room
+    }
+}
+
 // handle getting nearby results from google through our Api
 export function handleGetNearbyResults(coordinates) {
     return dispatch => {
