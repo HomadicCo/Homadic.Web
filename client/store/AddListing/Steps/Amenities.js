@@ -22,6 +22,8 @@ class Amenities extends React.Component {
     }
 
     render() {
+        let { listing } = this.props.addListing;
+
         return (
             <form autoComplete="off" ref="amenitiesForm" noValidate>
                 <h3>Amenities</h3>
@@ -64,7 +66,7 @@ class Amenities extends React.Component {
                     <div className="form-group col-md-3">
                         <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost <FontAwesome className="text-muted" name="dollar" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div className="input-group-addon">USD</div>
+                            <div className="input-group-addon">{listing.currency}</div>
                             <input type="text" className="form-control" id="inputInternetCost" />
                         </div>
                     </div>
