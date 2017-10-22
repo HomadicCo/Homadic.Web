@@ -80,7 +80,7 @@ class Room extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" />
+                            <input type="checkbox" className="custom-control-input" name={"rooms[" + id + "].serviced"} value={room.serviced} onChange={this.handleChange} />
                             <span className="custom-control-indicator"></span>
                             <span className="custom-control-description">Serviced <FontAwesome name="user" /></span>
                         </label>
