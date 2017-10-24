@@ -57,6 +57,48 @@ class Room extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    roomTitle() {
+        let { room } = this.props;
+
+        let serviced = "";
+        switch (room.serviced) {
+            case false:
+                serviced = "";
+                break;
+            case 1:
+                serviced = "Serviced, ";
+                break;
+        }
+
+        let bedroom = "";
+        switch (room.bedrooms) {
+            case 0:
+                bedroom = "Studio";
+                break;
+            case 1:
+                bedroom = "1 bedroom";
+                break;
+            case 2:
+                bedroom = "2 bedroom";
+                break;
+            case 3:
+                bedroom = "3 bedroom";
+                break;
+        }
+
+        let bathroom = "";
+        switch (room.bathrooms) {
+            case 1:
+                bathroom = "1 bathroom";
+                break;
+            case 2:
+                bathroom = "2 bathroom";
+                break;
+        }
+
+        return serviced + bedroom + ", " + bathroom;
+    }
+
     handleChange(e) {
         const target = e.target;
         let value = target.type === 'checkbox' ? target.checked : target.value;
@@ -74,7 +116,7 @@ class Room extends React.Component {
         return (
             <div>
                 <div className="content-header">
-                    <h5>Room <small><FontAwesome name="plus" /></small></h5>
+                    <h5>{this.roomTitle()} <small><FontAwesome name="plus" /></small></h5>
                 </div>
                 <h5>Details</h5>
                 <div className="form-row">
