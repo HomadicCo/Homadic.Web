@@ -39,7 +39,7 @@ function AddListing(state = [], action) {
             return newState;
         case 'ADD_ROOM_TO_LISTING':
             var newState = Object.assign({}, state);
-            newState.listing.rooms.push(action.room);
+            newState.listing.rooms.push(Object.assign({}, action.room, { id: action.id }));
             return newState;
     }
     return state;

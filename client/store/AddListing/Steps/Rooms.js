@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import { currencies, rentalLengths, room, serviced } from '../../../data';
+import { currencies, rentalLengths, room } from '../../../data';
 import Room from '../components/Room';
 
 class Rooms extends React.Component {
@@ -64,14 +64,14 @@ class Rooms extends React.Component {
                         <label htmlFor="inputElectricity" className="col-form-label">Electricity <FontAwesome className="text-muted" name="plug" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{listing.currency}</div>
-                            <input type="number" name="bills.electricity" className="form-control" id="inputElectricity" onChange={this.handleChange} />
+                            <input type="number" name="bills.electricity" className="form-control" id="inputElectricity" value={listing.bills.electricity} onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputWater" className="col-form-label">Water <FontAwesome className="text-muted" name="shower" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{listing.currency}</div>
-                            <input type="number" name="bills.water" className="form-control" id="inputWater" onChange={this.handleChange} />
+                            <input type="number" name="bills.water" className="form-control" id="inputWater" value={listing.bills.water} onChange={this.handleChange} />
                         </div>
                     </div>
                 </div>

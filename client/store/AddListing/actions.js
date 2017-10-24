@@ -1,4 +1,5 @@
 import { apiNearbyResults } from '../../api';
+import { guid } from '../../functions';
 
 // change status
 export function setFetchingNearbyResultsStatus(value) {
@@ -27,6 +28,7 @@ export function updateInputProp(key, value) {
 export function addRoomToListing(room) {
     return {
         type: 'ADD_ROOM_TO_LISTING',
+        id: guid(),
         room
     }
 }
