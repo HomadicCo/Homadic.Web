@@ -30,9 +30,9 @@ class RentalRate extends React.Component {
                         <span className="custom-control-description">{length.label}</span>
                     </label>
                 </div>
-                <div className="row">
+                {checked ? <div className="row">
                     <div className="col-sm">
-                        <label htmlFor="inputRate" className="col-form-label mr-2">Monthly</label>
+                        <label htmlFor="inputRate" className="col-form-label mr-2">Monthly rate</label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{currency}</div>
                             <input type="number" className="form-control mr-3" id="inputRate" required={checked} />
@@ -48,7 +48,7 @@ class RentalRate extends React.Component {
                             <input type="number" className="form-control mr-3" id="inputDeposit" required={checked} />
                         </div>
                     </div>
-                </div>
+                </div> : undefined}
             </div>
         )
     }
@@ -98,6 +98,9 @@ class Room extends React.Component {
             case 2:
                 bathroom = "2 bathroom";
                 break;
+            case 3:
+                bathroom = "3 bathroom";
+                break;
         }
 
         return bedroom + ", " + bathroom + serviced;
@@ -120,15 +123,14 @@ class Room extends React.Component {
         return (
             <div>
                 <div className="content-header">
-                    <h5>{this.roomTitle()} <small><FontAwesome name="plus" /></small></h5>
+                    <h5>{this.roomTitle()}</h5>
                 </div>
-                <h5>Details</h5>
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label className="custom-control custom-checkbox">
                             <input type="checkbox" className="custom-control-input" name={"rooms[" + id + "].serviced"} defaultChecked={room.serviced} value={room.serviced} onChange={this.handleChange} />
                             <span className="custom-control-indicator"></span>
-                            <span className="custom-control-description">Serviced <FontAwesome name="user" /></span>
+                            <span className="custom-control-description">Serviced <FontAwesome className="text-muted" name="user" /></span>
                         </label>
                     </div>
                 </div>

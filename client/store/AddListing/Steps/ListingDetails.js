@@ -37,7 +37,7 @@ class ListingDetails extends React.Component {
 
         return (
             <form autoComplete="off" ref="listingForm" noValidate>
-                <h1 className="fancy display-4 mb-4">Listing details</h1>
+                <h1 className="fancy blue display-4 mb-4">Listing details</h1>
                 <div className="form-row">
                     <div className="form-group col-md-9">
                         <label htmlFor="inputListingName" className="col-form-label">Listing name*</label>

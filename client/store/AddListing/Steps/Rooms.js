@@ -50,7 +50,7 @@ class Rooms extends React.Component {
 
         return (
             <form autoComplete="off" ref="roomsForm" noValidate>
-                <h1 className="fancy display-4 mb-4">Rooms</h1>
+                <h1 className="fancy blue display-4 mb-4">Rooms</h1>
                 <div className="form-row">
                     <div className="form-group col-md-2">
                         <label htmlFor="inputCurrency" className="col-form-label">Currency <FontAwesome className="text-muted" name="money" /></label>

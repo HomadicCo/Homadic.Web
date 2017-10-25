@@ -24,7 +24,7 @@ class Notes extends React.Component {
     render() {
         return (
             <form autoComplete="off" ref="notesForm" noValidate>
-                <h1 className="fancy display-4 mb-4">Additional notes</h1>
+                <h1 className="fancy blue display-4 mb-4">Additional notes</h1>
                 <textarea id="inputNotes" className="form-control" placeholder="Any additional notes..." />
                 <small id="emailHelp" className="form-text text-muted">This should mention any notable features or things to know, not your personal review. Reviews are coming soon!</small>
             </form>
