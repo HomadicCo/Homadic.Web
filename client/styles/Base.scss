@@ -23,7 +23,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $font-family-fancy;
     line-height: 1.6;
 }
 
@@ -72,10 +71,6 @@ blockquote p {
     font-style: italic;
 }
 
-button {
-    font-family: $font-family-fancy;
-}
-
 textarea {
     width: 100%;
     box-sizing: border-box;
@@ -100,6 +95,10 @@ textarea:active {
 
 .text-center {
     text-align: center;
+}
+
+.fancy {
+    font-family: $fancy;
 }
 
 .light {

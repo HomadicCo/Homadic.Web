@@ -22,7 +22,7 @@ class RentalRate extends React.Component {
         let { checked } = this.state;
 
         return (
-            <div className="content-box"    >
+            <div className="content-box">
                 <div>
                     <label className="custom-control custom-checkbox">
                         <input type="checkbox" className="custom-control-input" onChange={this.handleChecked} checked={checked} />
@@ -116,7 +116,6 @@ class Room extends React.Component {
 
     render() {
         let { addListing, id, room } = this.props;
-        console.log(room);
 
         return (
             <div>

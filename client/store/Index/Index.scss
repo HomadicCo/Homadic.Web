@@ -2,7 +2,7 @@ $input-color: #fff;
 $input-background: rgba(26, 145, 161, 0.6);
 .home {
     h4 {
-        color: $gray-medium;
+        color: $white;
         line-height: 1.5;
     }
     .home-typeahead {
@@ -10,8 +10,8 @@ $input-background: rgba(26, 145, 161, 0.6);
             background-color: $input-background;
             border: none;
             padding: 15px 20px;
-            font-family: $font-family-fancy;
             font-size: 3em;
+            font-family: $fancy;
             color: $input-color;
             text-align: center;
             &:focus {

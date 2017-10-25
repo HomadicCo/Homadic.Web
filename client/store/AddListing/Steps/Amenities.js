@@ -26,7 +26,7 @@ class Amenities extends React.Component {
 
         return (
             <form autoComplete="off" ref="amenitiesForm" noValidate>
-                <h3>Amenities</h3>
+                <h1 className="fancy display-4 mb-4">Amenities</h1>
                 <div className="form-row">
                     <div className="col">
                         <label className="custom-control custom-checkbox">
