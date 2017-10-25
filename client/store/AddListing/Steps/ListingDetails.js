@@ -58,7 +58,7 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>
-                    <input type="text" name="formatted_address" className="form-control" id="inputAddress" placeholder="123 Nomad St" required onChange={this.handleChange} />
+                    <input type="text" name="formatted_address" value={listing.formatted_address} className="form-control" id="inputAddress" placeholder="123 Nomad St" required onChange={this.handleChange} />
                     <div className="invalid-feedback">
                         Please provide the address.
                     </div>
@@ -66,15 +66,15 @@ class ListingDetails extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <label htmlFor="inputPhone" className="col-form-label">Phone</label>
-                        <input type="tel" name="formatted_phone_number" className="form-control" id="inputPhone" onChange={this.handleChange} />
+                        <input type="tel" name="formatted_phone_number" value={listing.formatted_phone_number} className="form-control" id="inputPhone" onChange={this.handleChange} />
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputEmail" className="col-form-label">Email</label>
-                        <input type="email" name="email" className="form-control" id="inputEmail" onChange={this.handleChange} />
+                        <input type="email" name="email" value={listing.email} className="form-control" id="inputEmail" onChange={this.handleChange} />
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputUrl" className="col-form-label">URL</label>
-                        <input type="url" name="website" className="form-control" id="inputUrl" onChange={this.handleChange} />
+                        <input type="url" name="website" value={listing.website} className="form-control" id="inputUrl" onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="content-header">
@@ -83,11 +83,11 @@ class ListingDetails extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <label htmlFor="inputFacebook" className="col-form-label">Facebook <FontAwesome className="text-muted" name="facebook-square" /></label>
-                        <input type="tel" name="social_details.facebook" className="form-control" id="inputFacebook" onChange={this.handleChange} />
+                        <input type="tel" name="social_details.facebook" value={listing.social_details.facebook} className="form-control" id="inputFacebook" onChange={this.handleChange} />
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputTwitter" className="col-form-label">Twitter <FontAwesome className="text-muted" name="twitter" /></label>
-                        <input type="email" name="social_details.twitter" className="form-control" id="inputTwitter" onChange={this.handleChange} />
+                        <input type="email" name="social_details.twitter" value={listing.social_details.twitter} className="form-control" id="inputTwitter" onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="row justify-content-center mt-4">

@@ -65,8 +65,8 @@ class Room extends React.Component {
             case false:
                 serviced = "";
                 break;
-            case 1:
-                serviced = "Serviced, ";
+            case true:
+                serviced = " Serviced";
                 break;
         }
 
@@ -96,7 +96,7 @@ class Room extends React.Component {
                 break;
         }
 
-        return serviced + bedroom + ", " + bathroom;
+        return bedroom + ", " + bathroom + serviced;
     }
 
     handleChange(e) {
