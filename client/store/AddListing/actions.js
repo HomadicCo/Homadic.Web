@@ -25,6 +25,13 @@ export function updateInputProp(key, value) {
     }
 }
 
+export function setExpandedRoom(roomId) {
+    return {
+        type: 'SET_EXPANDED_ROOM',
+        roomId
+    }
+}
+
 export function addRoomToListing(room) {
     return {
         type: 'ADD_ROOM_TO_LISTING',

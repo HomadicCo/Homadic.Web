@@ -11,6 +11,7 @@ class Rooms extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleNextClick = this.handleNextClick.bind(this);
         this.handlePrevClick = this.handlePrevClick.bind(this);
+        this.handleAddNewRoomClick = this.handleAddNewRoomClick.bind(this);
     }
 
     handleChange(e) {
@@ -35,6 +36,11 @@ class Rooms extends React.Component {
     handlePrevClick(e) {
         e.preventDefault();
         browserHistory.push("/add/listing");
+    }
+
+    handleAddNewRoomClick(e) {
+        e.preventDefault();
+        this.props.addRoomToListing(room);
     }
 
     componentWillMount() {
@@ -76,6 +82,7 @@ class Rooms extends React.Component {
                     </div>
                 </div>
                 {listing.rooms.map((room, i) => <Room key={i} id={i} room={room} {...this.props} />)}
+                {listing.rooms.length < 6 ? <button type="button" className="btn btn-action" onClick={this.handleAddNewRoomClick}>Add room <FontAwesome name="plus" /></button> : <p>Only six rooms allowed for now.</p>}
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
                         <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Listing</button>

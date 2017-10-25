@@ -1,6 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
-import { bedrooms, bathrooms, kitchen, rentalLengths } from '../../../data';
+import { bedrooms, bathrooms, kitchen, laundry, rentalLengths } from '../../../data';
 
 class RentalRate extends React.Component {
     constructor(props) {
@@ -117,14 +117,11 @@ class Room extends React.Component {
         this.props.updateInputProp(key, value);
     }
 
-    render() {
+    renderDetails() {
         let { addListing, id, room } = this.props;
 
         return (
             <div>
-                <div className="content-header">
-                    <h5>{this.roomTitle()}</h5>
-                </div>
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label className="custom-control custom-checkbox">
@@ -153,9 +150,28 @@ class Room extends React.Component {
                             {kitchen.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
                         </select>
                     </div>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputLaundry" className="col-form-label">Laundry <FontAwesome className="text-muted" name="black-tie" /></label>
+                        <select id="inputLaundry" className="form-control" name={"rooms[" + id + "].laundry"} value={room.laundry} onChange={this.handleChange}>
+                            {laundry.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
+                        </select>
+                    </div>
                 </div>
                 <h5>Rates</h5>
                 {rentalLengths.map((length, i) => (<RentalRate key={i} length={length} currency={addListing.listing.currency} />))}
+            </div>
+        )
+    }
+
+    render() {
+        let { addListing, id, room } = this.props;
+
+        return (
+            <div>
+                <div className="content-header">
+                    <h5>{this.roomTitle()}</h5>
+                </div>
+                {addListing.ui.expandedRoom == room.id ? this.renderDetails() : undefined}
             </div>
         )
     }

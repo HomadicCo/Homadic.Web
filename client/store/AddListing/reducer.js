@@ -33,12 +33,17 @@ function AddListing(state = [], action) {
             var newState = Object.assign({}, state);
             newState.nearbyResults = action.data;
             return newState;
+        case 'SET_EXPANDED_ROOM':
+            var newState = Object.assign({}, state);
+            newState.ui.expandedRoom = action.roomId;
+            return newState;
         case 'SET_FETCHING_NEARBY_RESULTS_STATUS':
             var newState = Object.assign({}, state);
             newState.ui.fetchingNearbyResults = action.value;
             return newState;
         case 'ADD_ROOM_TO_LISTING':
             var newState = Object.assign({}, state);
+            newState.ui.expandedRoom = action.id;
             newState.listing.rooms.push(Object.assign({}, action.room, { id: action.id }));
             return newState;
     }
