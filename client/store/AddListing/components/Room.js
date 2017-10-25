@@ -23,27 +23,31 @@ class RentalRate extends React.Component {
 
         return (
             <div className="content-box"    >
-                <div className="form-inline my-2">
-                    <label htmlFor="inputRate" className="col-form-label mr-2">Monthly</label>
-                    <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div className="input-group-addon">{currency}</div>
-                        <input type="number" className="form-control mr-3" id="inputRate" required={checked} />
-                        <div className="invalid-feedback">
-                            The listing needs a name!
-                        </div>
-                    </div>
-
-                    <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit</label>
-                    <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div className="input-group-addon">{currency}</div>
-                        <input type="number" className="form-control mr-3" id="inputDeposit" required={checked} />
-                    </div>
-
+                <div>
                     <label className="custom-control custom-checkbox">
                         <input type="checkbox" className="custom-control-input" onChange={this.handleChecked} checked={checked} />
                         <span className="custom-control-indicator"></span>
                         <span className="custom-control-description">{length.label}</span>
                     </label>
+                </div>
+                <div className="row">
+                    <div className="col-sm">
+                        <label htmlFor="inputRate" className="col-form-label mr-2">Monthly</label>
+                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div className="input-group-addon">{currency}</div>
+                            <input type="number" className="form-control mr-3" id="inputRate" required={checked} />
+                            <div className="invalid-feedback">
+                                The listing needs a name!
+                        </div>
+                        </div>
+                    </div>
+                    <div className="col-sm">
+                        <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit</label>
+                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div className="input-group-addon">{currency}</div>
+                            <input type="number" className="form-control mr-3" id="inputDeposit" required={checked} />
+                        </div>
+                    </div>
                 </div>
             </div>
         )
