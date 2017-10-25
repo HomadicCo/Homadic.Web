@@ -66,7 +66,7 @@ class Room extends React.Component {
                 serviced = "";
                 break;
             case true:
-                serviced = " Serviced";
+                serviced = ", serviced";
                 break;
         }
 
@@ -112,6 +112,7 @@ class Room extends React.Component {
 
     render() {
         let { addListing, id, room } = this.props;
+        console.log(room);
 
         return (
             <div>
@@ -122,7 +123,7 @@ class Room extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" name={"rooms[" + id + "].serviced"} value={room.serviced} onChange={this.handleChange} />
+                            <input type="checkbox" className="custom-control-input" name={"rooms[" + id + "].serviced"} defaultChecked={room.serviced} value={room.serviced} onChange={this.handleChange} />
                             <span className="custom-control-indicator"></span>
                             <span className="custom-control-description">Serviced <FontAwesome name="user" /></span>
                         </label>
