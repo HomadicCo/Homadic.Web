@@ -196,7 +196,7 @@ class Room extends React.Component {
 
         return (
             <div>
-                <div className="content-header">
+                <div className="content-header min-padding">
                     <div className="row">
                         <div className="col-auto mr-auto">
                             <h5>{this.roomTitle()}</h5>
