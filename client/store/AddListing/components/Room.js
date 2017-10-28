@@ -59,6 +59,8 @@ class Room extends React.Component {
         super(props);
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSetExpandedRoom = this.handleSetExpandedRoom.bind(this);
+        this.handleRemoveRoom = this.handleRemoveRoom.bind(this);
     }
 
     roomTitle() {
@@ -115,6 +117,32 @@ class Room extends React.Component {
         value = target.getAttribute('data-type') === 'int' ? parseFloat(value) : value;
 
         this.props.updateInputProp(key, value);
+    }
+
+    handleSetExpandedRoom(e) {
+        e.preventDefault();
+        let { room, setExpandedRoom } = this.props;
+
+        setExpandedRoom(room.id);
+    }
+
+    handleRemoveRoom(e) {
+        e.preventDefault();
+        let { addListing, room, removeRoom, setExpandedRoom } = this.props;
+        let { rooms } = addListing.listing;
+        let { expandedRoom } = addListing.ui;
+
+        // if it's the expanded room, we wanna set it to the one above
+        if (addListing.ui.expandedRoom == room.id) {
+            function isTheRoom(expandedRoom, room) {
+                return expandedRoom == room.id;
+            }
+
+            const i = rooms.findIndex(isTheRoom.bind(null, expandedRoom));
+            setExpandedRoom(rooms[i - 1].id);
+        }
+
+        removeRoom(room.id);
     }
 
     renderDetails() {
@@ -175,7 +203,8 @@ class Room extends React.Component {
                         </div>
                         <div className="col-auto">
                             <div className="btn-group">
-                                <button type="button" className="btn btn-trans btn-sm"><FontAwesome name="caret-left" /></button><button type="button" className="btn btn-trans btn-sm"><FontAwesome name="close" /></button>
+                                {addListing.ui.expandedRoom != room.id ? <button type="button" onClick={this.handleSetExpandedRoom} className="btn btn-trans btn-sm"><FontAwesome name="caret-down" /></button> : undefined}
+                                {addListing.listing.rooms.length > 1 ? <button type="button" onClick={this.handleRemoveRoom} className="btn btn-trans btn-sm"><FontAwesome name="close" /></button> : undefined}
                             </div>
                         </div>
                     </div>

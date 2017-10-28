@@ -32,6 +32,13 @@ export function setExpandedRoom(roomId) {
     }
 }
 
+export function removeRoom(roomId) {
+    return {
+        type: 'REMOVE_ROOM',
+        roomId
+    }
+}
+
 export function addRoomToListing(room) {
     return {
         type: 'ADD_ROOM_TO_LISTING',

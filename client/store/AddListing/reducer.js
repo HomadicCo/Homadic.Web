@@ -37,6 +37,15 @@ function AddListing(state = [], action) {
             var newState = Object.assign({}, state);
             newState.ui.expandedRoom = action.roomId;
             return newState;
+        case 'REMOVE_ROOM':
+            var newState = Object.assign({}, state);
+            //only return if id is not noteId
+            function dontRemove(roomId, room) {
+                return roomId != room.id;
+            }
+
+            newState.listing.rooms = newState.listing.rooms.filter(dontRemove.bind(null, action.roomId));
+            return newState;
         case 'SET_FETCHING_NEARBY_RESULTS_STATUS':
             var newState = Object.assign({}, state);
             newState.ui.fetchingNearbyResults = action.value;
