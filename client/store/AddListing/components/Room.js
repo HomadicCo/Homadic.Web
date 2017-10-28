@@ -169,10 +169,19 @@ class Room extends React.Component {
         return (
             <div>
                 <div className="content-header">
-                    <h5>{this.roomTitle()}</h5>
+                    <div className="row">
+                        <div className="col-auto mr-auto">
+                            <h5>{this.roomTitle()}</h5>
+                        </div>
+                        <div className="col-auto">
+                            <div className="btn-group">
+                                <button type="button" className="btn btn-trans btn-sm"><FontAwesome name="caret-left" /></button><button type="button" className="btn btn-trans btn-sm"><FontAwesome name="close" /></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {addListing.ui.expandedRoom == room.id ? this.renderDetails() : undefined}
-            </div>
+            </div >
         )
     }
 }
