@@ -123,17 +123,17 @@ export const laundry = [
 
 export const rentalLengths = [
     {
-        length: 1,
+        duration: 1,
         value: "one_month",
         label: "One month"
     },
     {
-        length: 3,
+        duration: 3,
         value: "three_months",
         label: "Three months"
     },
     {
-        length: 6,
+        duration: 6,
         value: "six_months",
         label: "Six months"
     }
@@ -173,23 +173,26 @@ export const room = {
     laundry: "none",
     kitchen: "none",
     air_conditioning: false,
-    rental_details: {
-        one_month: {
+    rental_details: [
+        {
             available: true,
             base_price: null,
-            deposit: null
+            deposit: null,
+            duration: 1
         },
-        three_months: {
+        {
             available: false,
             base_price: null,
-            deposit: null
+            deposit: null,
+            duration: 3
         },
-        six_months: {
+        {
             available: false,
             base_price: null,
-            deposit: null
+            deposit: null,
+            duration: 6
         }
-    }
+    ]
 }
 
 export const serviced = [

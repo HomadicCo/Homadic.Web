@@ -10,24 +10,41 @@ class RentalRate extends React.Component {
             checked: false
         }
 
-        this.handleChecked = this.handleChecked.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChecked(e) {
-        this.setState({ checked: e.target.checked });
+    handleChange(e) {
+        const target = e.target;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+        let key = target.name;
+
+        // check if int or string
+        value = target.getAttribute('data-type') === 'int' ? parseFloat(value) : value;
+
+        this.props.updateInputProp(key, value);
+    }
+
+    findRentalLength() {
+        function isTheRentalLength(duration, rentalLength) {
+            return duration == rentalLength.duration;
+        }
+
+        const i = rentalLengths.findIndex(isTheRentalLength.bind(null, this.props.rentalTerm.duration));
+        return rentalLengths[i];
     }
 
     render() {
-        let { currency, length } = this.props;
+        let { currency, id, rentalTerm, roomId } = this.props;
         let { checked } = this.state;
+        const rentalLength = this.findRentalLength();
 
         return (
             <div className="content-box">
                 <div>
                     <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" onChange={this.handleChecked} checked={checked} />
+                        <input type="checkbox" className="custom-control-input" name={"rooms[" + roomId + "].rental_details[" + id + "]"} defaultChecked={rentalTerm.available} value={rentalTerm.available} onChange={this.handleChange} />
                         <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">{length.label}</span>
+                        <span className="custom-control-description">{rentalLength.label}</span>
                     </label>
                 </div>
                 {checked ? <div className="row">
@@ -186,7 +203,7 @@ class Room extends React.Component {
                     </div>
                 </div>
                 <h5>Rates</h5>
-                {rentalLengths.map((length, i) => (<RentalRate key={i} length={length} currency={addListing.listing.currency} />))}
+                {room.rental_details.map((rentalTerm, i) => (<RentalRate key={i} rentalTerm={rentalTerm} id={i} roomId={id} currency={addListing.listing.currency} {...this.props} />))}
             </div>
         )
     }
