@@ -47,6 +47,7 @@ export const currencies = [
 
 export const emptyListing = {
     amenities: {
+        air_conditioning: false,
         pool: false,
         gym: false
     },
@@ -66,6 +67,7 @@ export const emptyListing = {
     id: "",
     international_phone_number: "",
     name: "",
+    notes: "",
     place_id: "",
     rating: null,
     rooms: [],
@@ -76,9 +78,9 @@ export const emptyListing = {
     type: "condo",
     wifi: {
         type: "none",
-        cost: null,
-        download: null,
-        upload: null,
+        rate: 0,
+        download: 0,
+        upload: 0,
         notes: ""
     },
     website: ""
@@ -164,7 +166,6 @@ export const rentalTypes = [
 ]
 
 export const room = {
-    air_conditioning: false,
     bathrooms: 1,
     bedrooms: 0,
     deposit: 0,
