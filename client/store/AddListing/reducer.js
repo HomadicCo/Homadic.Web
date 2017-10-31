@@ -27,7 +27,7 @@ function AddListing(state = [], action) {
     switch (action.type) {
         case 'UPDATE_INPUT_PROP':
             var newState = Object.assign({}, state);
-            setNested(newState['listing'], action.key, action.value);
+            setNested(newState.listing, action.key, action.value);
             return newState;
         case 'UPDATE_NEARBY_RESULTS':
             var newState = Object.assign({}, state);

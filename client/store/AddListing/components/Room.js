@@ -2,75 +2,6 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { bedrooms, bathrooms, kitchen, laundry, rentalLengths } from '../../../data';
 
-class RentalRate extends React.Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            checked: false
-        }
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(e) {
-        const target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let key = target.name;
-
-        // check if int or string
-        value = target.getAttribute('data-type') === 'int' ? parseFloat(value) : value;
-
-        this.props.updateInputProp(key, value);
-    }
-
-    findRentalLength() {
-        function isTheRentalLength(duration, rentalLength) {
-            return duration == rentalLength.duration;
-        }
-
-        const i = rentalLengths.findIndex(isTheRentalLength.bind(null, this.props.rentalTerm.duration));
-        return rentalLengths[i];
-    }
-
-    render() {
-        let { currency, id, rentalTerm, roomId } = this.props;
-        let { checked } = this.state;
-        const rentalLength = this.findRentalLength();
-
-        return (
-            <div className="content-box">
-                <div>
-                    <label className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" name={"rooms[" + roomId + "].rental_details[" + id + "]"} defaultChecked={rentalTerm.available} value={rentalTerm.available} onChange={this.handleChange} />
-                        <span className="custom-control-indicator"></span>
-                        <span className="custom-control-description">{rentalLength.label}</span>
-                    </label>
-                </div>
-                {checked ? <div className="row">
-                    <div className="col-sm">
-                        <label htmlFor="inputRate" className="col-form-label mr-2">Monthly rate</label>
-                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div className="input-group-addon">{currency}</div>
-                            <input type="number" className="form-control mr-3" id="inputRate" required={checked} />
-                            <div className="invalid-feedback">
-                                The listing needs a name!
-                        </div>
-                        </div>
-                    </div>
-                    <div className="col-sm">
-                        <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit</label>
-                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div className="input-group-addon">{currency}</div>
-                            <input type="number" className="form-control mr-3" id="inputDeposit" required={checked} />
-                        </div>
-                    </div>
-                </div> : undefined}
-            </div>
-        )
-    }
-}
-
 class Room extends React.Component {
     constructor(props) {
         super(props);
@@ -202,8 +133,31 @@ class Room extends React.Component {
                         </select>
                     </div>
                 </div>
-                <h5>Rates</h5>
-                {room.rental_details.map((rentalTerm, i) => (<RentalRate key={i} rentalTerm={rentalTerm} id={i} roomId={id} currency={addListing.listing.currency} {...this.props} />))}
+                <div className="content-box">
+                    <div className="row">
+                        <div className="col-sm">
+                            <label htmlFor="inputMinRental" className="col-form-label">Min rental length <FontAwesome className="text-muted" name="calendar-o" /></label>
+                            <select id="inputMinRental" className="form-control" name={"rooms[" + id + "].min_rental"} value={room.min_rental} onChange={this.handleChange}>
+                                {rentalLengths.map((item, i) => (<option key={i} value={item.value}>{item.label}</option>))}
+                            </select>
+                        </div>
+                        <div className="col-sm">
+                            <label htmlFor="inputRate" className="col-form-label mr-2">Monthly rate <FontAwesome className="text-muted" name="dollar" /></label>
+                            <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div className="input-group-addon">{addListing.listing.currency}</div>
+                                <input type="number" name={"rooms[" + id + "].base_rate"} value={room.base_rate} data-type="int" className="form-control mr-3" id="inputRate" required onChange={this.handleChange} />
+                            </div>
+                        </div>
+                        <div className="col-sm">
+                            <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit <FontAwesome className="text-muted" name="dollar" /></label>
+                            <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div className="input-group-addon">{addListing.listing.currency}</div>
+                                <input type="number" name={"rooms[" + id + "].deposit"} value={room.deposit} data-type="int" className="form-control mr-3" id="inputDeposit" required onChange={this.handleChange} />
+                            </div>
+                        </div>
+                    </div>
+                    <small id="rentalTermHelp" className="form-text text-muted">The monthly rate and deposit should be for a one month stay, not a discount for longer stays.</small>
+                </div>
             </div>
         )
     }
