@@ -1,8 +1,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
+import { apiGetGooglePlace } from '../../../api';
 import { rentalTypes } from '../../../data';
-
 
 class ListingDetails extends React.Component {
     constructor(props) {
@@ -12,6 +12,17 @@ class ListingDetails extends React.Component {
         this.handleNextClick = this.handleNextClick.bind(this);
     }
 
+    setValuesFromGoogleMaps() {
+        let { addListing, location, setListingFromGoogleMaps } = this.props;
+
+        if (addListing.listing.place_id) return;
+
+        apiGetGooglePlace(location.query.gmid).then(response => {
+            setListingFromGoogleMaps(response.data.place);
+        }).catch(e => {
+            browserHistory.push("/");
+        });
+    }
 
     handleChange(e) {
         const target = e.target;
@@ -30,6 +41,10 @@ class ListingDetails extends React.Component {
         } else {
             browserHistory.push("/add/rooms");
         }
+    }
+
+    componentWillMount() {
+        this.setValuesFromGoogleMaps();
     }
 
     render() {
@@ -58,7 +73,7 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>
-                    <input type="text" name="formatted_address" value={listing.formatted_address} className="form-control" id="inputAddress" placeholder="123 Nomad St" required onChange={this.handleChange} />
+                    <input type="text" name="address" value={listing.address} className="form-control" id="inputAddress" placeholder="123 Nomad St" required onChange={this.handleChange} />
                     <div className="invalid-feedback">
                         Please provide the address.
                     </div>
@@ -66,7 +81,7 @@ class ListingDetails extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <label htmlFor="inputPhone" className="col-form-label">Phone</label>
-                        <input type="tel" name="formatted_phone_number" value={listing.formatted_phone_number} className="form-control" id="inputPhone" onChange={this.handleChange} />
+                        <input type="tel" name="phone_number" value={listing.phone_number} className="form-control" id="inputPhone" onChange={this.handleChange} />
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputEmail" className="col-form-label">Email</label>

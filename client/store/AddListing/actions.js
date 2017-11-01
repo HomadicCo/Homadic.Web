@@ -1,11 +1,28 @@
 import { apiNearbyResults } from '../../api';
+import { emptyListing } from '../../data';
 import { guid } from '../../functions';
+
+// set values from google maps listing
+export function clearNewListing() {
+    return {
+        type: 'CLEAR_NEW_LISTING',
+        emptyListing
+    }
+}
 
 // change status
 export function setFetchingNearbyResultsStatus(value) {
     return {
         type: 'SET_FETCHING_NEARBY_RESULTS_STATUS',
         value
+    }
+}
+
+// set values from google maps listing
+export function setListingFromGoogleMaps(googleMapsPlace) {
+    return {
+        type: 'SET_LISTING_FROM_GOOGLE_MAPS',
+        googleMapsPlace
     }
 }
 

@@ -44,6 +44,10 @@ class AddListing extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.clearNewListing();
+    }
+
     render() {
         return (
             <div className="footer-padding">

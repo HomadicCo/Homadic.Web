@@ -25,6 +25,10 @@ function setNested(obj, key, value) {
 
 function AddListing(state = [], action) {
     switch (action.type) {
+        case 'CLEAR_NEW_LISTING':
+            var newState = Object.assign({}, state);
+            newState.listing = action.emptyListing;
+            return newState;
         case 'UPDATE_INPUT_PROP':
             var newState = Object.assign({}, state);
             setNested(newState.listing, action.key, action.value);
@@ -32,6 +36,21 @@ function AddListing(state = [], action) {
         case 'UPDATE_NEARBY_RESULTS':
             var newState = Object.assign({}, state);
             newState.nearbyResults = action.data;
+            return newState;
+        case 'SET_LISTING_FROM_GOOGLE_MAPS':
+            let { googleMapsPlace } = action;
+            var newState = Object.assign({}, state);
+
+            newState.listing = {
+                ...newState.listing,
+                address: googleMapsPlace.formatted_address,
+                name: googleMapsPlace.name,
+                phone_number: googleMapsPlace.international_phone_number,
+                place_id: googleMapsPlace.place_id,
+                rating: googleMapsPlace.rating,
+                website: googleMapsPlace.website
+            }
+
             return newState;
         case 'SET_EXPANDED_ROOM':
             var newState = Object.assign({}, state);

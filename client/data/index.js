@@ -51,15 +51,14 @@ export const emptyListing = {
         pool: false,
         gym: false
     },
-    adr_address: "",
     bills: {
         electricity: "",
         water: ""
     },
     currency: "USD",
     email: "",
-    formatted_address: "",
-    formatted_phone_number: "",
+    address: "",
+    phone_number: "",
     location: {
         type: "Point",
         coordinates: []
@@ -68,7 +67,7 @@ export const emptyListing = {
     international_phone_number: "",
     name: "",
     notes: "",
-    place_id: "",
+    place_id: null,
     rating: null,
     rooms: [],
     social_details: {

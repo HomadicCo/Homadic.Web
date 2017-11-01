@@ -53,6 +53,10 @@ export function apiNearbyResults(coordinates) {
     return Axios.get("nearby?lat=" + coordinates.lat + "&lng=" + coordinates.lng);
 }
 
+export function apiGetGooglePlace(googlePlaceId) {
+    return Axios.get("nearby/" + googlePlaceId);
+}
+
 // homees
 
 export function apiGetHomes(query) {
