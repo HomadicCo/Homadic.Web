@@ -8,18 +8,24 @@ class Amenities extends React.Component {
         super(props)
 
         this.handleNextClick = this.handleNextClick.bind(this);
+        this.handlePrevClick = this.handlePrevClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleNextClick(e) {
         e.preventDefault();
-        const form = this.refs.listingForm;
+        const form = this.refs.amenitiesForm;
 
         if (form.checkValidity() == false) {
             form.classList.add("was-validated");
         } else {
-            browserHistory.push("/add/preview");
+            browserHistory.push("/add/notes");
         }
+    }
+
+    handlePrevClick(e) {
+        e.preventDefault();
+        browserHistory.push("/add/rooms");
     }
 
     handleChange(e) {
@@ -74,32 +80,40 @@ class Amenities extends React.Component {
                     </div>
                 </div>
 
-                <div className="form-row">
-                    <div className="form-group col-md-3">
-                        <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost <FontAwesome className="text-muted" name="dollar" /></label>
-                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <div className="input-group-addon">{listing.currency}</div>
-                            <input type="text" className="form-control" id="inputInternetCost" data-type="int" name="wifi.rate" value={listing.wifi.rate} onChange={this.handleChange} />
+                {listing.wifi.type != "none" ?
+                    <div className="form-row">
+                        {(["paid", "canInstall"].indexOf(listing.wifi.type) > -1) ?
+                            <div className="form-group col-md-3">
+                                <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost <FontAwesome className="text-muted" name="dollar" /></label>
+                                <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                                    <div className="input-group-addon">{listing.currency}</div>
+                                    <input type="text" className="form-control" id="inputInternetCost" data-type="int" name="wifi.rate" value={listing.wifi.rate} onChange={this.handleChange} />
+                                </div>
+                            </div> : undefined}
+                        <div className="form-group col-md-3">
+                            <label htmlFor="inputInternetDownload" className="col-form-label mr-2">Download <FontAwesome className="text-muted" name="cloud-download" /></label>
+                            <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="number" className="form-control" id="inputInternetDownload" data-type="int" max={100} name="wifi.download" value={listing.wifi.download} onChange={this.handleChange} />
+                                <div className="input-group-addon">mbps</div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group col-md-3">
-                        <label htmlFor="inputInternetDownload" className="col-form-label mr-2">Download <FontAwesome className="text-muted" name="cloud-download" /></label>
-                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <input type="number" className="form-control" id="inputInternetDownload" data-type="int" name="wifi.download" value={listing.wifi.download} onChange={this.handleChange} />
-                            <div className="input-group-addon">mbps</div>
+                        <div className="form-group col-md-3">
+                            <label htmlFor="inputInternetUpload" className="col-form-label mr-2">Upload <FontAwesome className="text-muted" name="cloud-upload" /></label>
+                            <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="number" className="form-control" id="inputInternetUpload" data-type="int" max={100} name="wifi.upload" value={listing.wifi.upload} onChange={this.handleChange} />
+                                <div className="input-group-addon">mbps</div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="form-group col-md-3">
-                        <label htmlFor="inputInternetUpload" className="col-form-label mr-2">Upload <FontAwesome className="text-muted" name="cloud-upload" /></label>
-                        <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <input type="number" className="form-control" id="inputInternetUpload" data-type="int" name="wifi.upload" value={listing.wifi.upload} onChange={this.handleChange} />
-                            <div className="input-group-addon">mbps</div>
-                        </div>
-                    </div>
-                </div>
+                    </div> : undefined}
 
                 <label htmlFor="inputInternetNotes" className="col-form-label">Notes</label>
-                <textarea id="inputInternetNotes" className="form-control" placeholder="Special notes on the internet" name="wifi.notes" value={listing.wifi.notes} onChange={this.handleChange} />
+                <textarea id="inputInternetNotes" className="form-control" placeholder="Special notes on the internet, internet is life!" name="wifi.notes" value={listing.wifi.notes} onChange={this.handleChange} />
+                <div className="row justify-content-center mt-4">
+                    <div className="col-auto">
+                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Rooms</button>
+                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Notes <FontAwesome name="caret-right" /></button>
+                    </div>
+                </div>
             </form>
         )
     }
