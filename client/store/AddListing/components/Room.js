@@ -97,7 +97,7 @@ class Room extends React.Component {
         let { addListing, id, room } = this.props;
 
         return (
-            <div>
+            <div hidden={addListing.ui.expandedRoom == room.id ? false : true}>
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label className="custom-control custom-checkbox">
@@ -145,7 +145,7 @@ class Room extends React.Component {
                             <label htmlFor="inputRate" className="col-form-label mr-2">Monthly rate <FontAwesome className="text-muted" name="dollar" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div className="input-group-addon">{addListing.listing.currency}</div>
-                                <input type="number" name={"rooms[" + id + "].base_rate"} value={room.base_rate} data-type="int" className="form-control mr-3" id="inputRate" required onChange={this.handleChange} />
+                                <input type="number" name={"rooms[" + id + "].base_rate"} value={room.base_rate} min={10} data-type="int" className="form-control mr-3" id="inputRate" required onChange={this.handleChange} />
                             </div>
                         </div>
                         <div className="col-sm">
@@ -156,7 +156,7 @@ class Room extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <small id="rentalTermHelp" className="form-text text-muted">The monthly rate and deposit should be for a one month stay, not a discount for longer stays.</small>
+                    <small id="rentalTermHelp" className="form-text text-muted">The monthly rate and deposit should be for the minimum stay, not a discount for longer stays.</small>
                 </div>
             </div>
         )
@@ -180,7 +180,7 @@ class Room extends React.Component {
                         </div>
                     </div>
                 </div>
-                {addListing.ui.expandedRoom == room.id ? this.renderDetails() : undefined}
+                {this.renderDetails()}
             </div >
         )
     }

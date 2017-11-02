@@ -21,7 +21,7 @@ class ProgressFooter extends React.Component {
         let { addListing, setValidationValue } = this.props;
         let { listing } = addListing;
 
-        //check google maps id and lat/lng
+        // google maps id and lat/lng
         if (!listing.google_maps_id || !listing.location.coordinates[1]) {
             if (addListing.valid.selectFromGoogleMaps) setValidationValue("selectFromGoogleMaps", false);
         } else {
@@ -33,7 +33,7 @@ class ProgressFooter extends React.Component {
         let { addListing, setValidationValue } = this.props;
         let { listing } = addListing;
 
-        //check google maps id and lat/lng
+        // listing basics
         if (!listing.name || !listing.address || !listing.type) {
             if (addListing.valid.listing) setValidationValue("listing", false);
         } else {
@@ -41,9 +41,27 @@ class ProgressFooter extends React.Component {
         }
     }
 
+    validateRooms() {
+        let { addListing, setValidationValue } = this.props;
+        let { listing } = addListing;
+
+        // some rooms, but no more than 6
+        if (listing.rooms.length < 1 || listing.rooms.length > 6) {
+            if (addListing.valid.rooms) setValidationValue("rooms", false);
+        }
+        // check all rooms have a base rate
+        else if (listing.rooms.filter(room => room.base_rate <= 10).length > 0) {
+            if (addListing.valid.rooms) setValidationValue("rooms", false);
+        }
+        else {
+            if (!addListing.valid.rooms) setValidationValue("rooms", true);
+        }
+    }
+
     runValidations() {
         this.validateSelectFromGoogleMaps();
         this.validateListing();
+        this.validateRooms();
     }
 
     setStepClasses(step) {
