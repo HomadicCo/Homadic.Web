@@ -18,6 +18,15 @@ export function setFetchingNearbyResultsStatus(value) {
     }
 }
 
+// set validation value
+export function setValidationValue(key, value) {
+    return {
+        type: 'SET_VALIDATION_VALUE',
+        key,
+        value
+    }
+}
+
 // set values from google maps listing
 export function setListingFromGoogleMaps(googleMapsPlace) {
     return {

@@ -12,13 +12,14 @@ import map from './Map/reducer';
 import profile from './Profile/reducer';
 
 // data
-import { emptyListing } from '../data';
+import { emptyListing, listingValidations } from '../data';
 
 const defaultState = {
   authentication: {},
   addListing: {
     nearbyResults: [],
     listing: emptyListing,
+    valid: listingValidations,
     ui: {}
   },
   homes: {

@@ -29,6 +29,10 @@ function AddListing(state = [], action) {
             var newState = Object.assign({}, state);
             newState.listing = action.emptyListing;
             return newState;
+        case 'SET_VALIDATION_VALUE':
+            var newState = Object.assign({}, state);
+            newState.valid[action.key] = action.value;
+            return newState;
         case 'UPDATE_INPUT_PROP':
             var newState = Object.assign({}, state);
             setNested(newState.listing, action.key, action.value);
@@ -44,9 +48,13 @@ function AddListing(state = [], action) {
             newState.listing = {
                 ...newState.listing,
                 address: googleMapsPlace.formatted_address,
+                location: {
+                    type: "Point",
+                    coordinates: [googleMapsPlace.geometry.location.lat, googleMapsPlace.geometry.location.lng]
+                },
                 name: googleMapsPlace.name,
                 phone_number: googleMapsPlace.international_phone_number,
-                place_id: googleMapsPlace.place_id,
+                google_maps_id: googleMapsPlace.place_id,
                 rating: googleMapsPlace.rating,
                 website: googleMapsPlace.website
             }

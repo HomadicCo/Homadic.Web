@@ -17,6 +17,35 @@ class ProgressFooter extends React.Component {
         }
     }
 
+    validateSelectFromGoogleMaps() {
+        let { addListing, setValidationValue } = this.props;
+        let { listing } = addListing;
+
+        //check google maps id and lat/lng
+        if (!listing.google_maps_id || !listing.location.coordinates[1]) {
+            if (addListing.valid.selectFromGoogleMaps) setValidationValue("selectFromGoogleMaps", false);
+        } else {
+            if (!addListing.valid.selectFromGoogleMaps) setValidationValue("selectFromGoogleMaps", true);
+        }
+    }
+
+    validateListing() {
+        let { addListing, setValidationValue } = this.props;
+        let { listing } = addListing;
+
+        //check google maps id and lat/lng
+        if (!listing.name || !listing.address || !listing.type) {
+            if (addListing.valid.listing) setValidationValue("listing", false);
+        } else {
+            if (!addListing.valid.listing) setValidationValue("listing", true);
+        }
+    }
+
+    runValidations() {
+        this.validateSelectFromGoogleMaps();
+        this.validateListing();
+    }
+
     setStepClasses(step) {
         switch (step) {
             case 'listing':
@@ -92,12 +121,16 @@ class ProgressFooter extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (nextProps == this.props) return;
+
         let { step } = this.props.params;
         const nextStep = nextProps.params.step;
 
         if (step != nextStep) {
             this.setStepClasses(nextStep);
         }
+
+        this.runValidations();
     }
 
     render() {

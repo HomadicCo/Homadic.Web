@@ -67,7 +67,7 @@ export const emptyListing = {
     international_phone_number: "",
     name: "",
     notes: "",
-    place_id: null,
+    google_maps_id: null,
     rating: null,
     rooms: [],
     social_details: {
@@ -121,6 +121,15 @@ export const laundry = [
         name: "Included"
     }
 ]
+
+export const listingValidations = {
+    selectFromGoogleMaps: false,
+    listing: false,
+    rooms: false,
+    amenities: false,
+    notes: false,
+    preview: false
+}
 
 export const rentalLengths = [
     {
