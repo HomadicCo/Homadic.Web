@@ -1,6 +1,7 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { bedrooms, bathrooms, kitchen, laundry, rentalLengths } from '../../../data';
+import { generateRoomTitle } from '../../../functions';
 
 class Room extends React.Component {
     constructor(props) {
@@ -9,51 +10,6 @@ class Room extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSetExpandedRoom = this.handleSetExpandedRoom.bind(this);
         this.handleRemoveRoom = this.handleRemoveRoom.bind(this);
-    }
-
-    roomTitle() {
-        let { room } = this.props;
-
-        let serviced = "";
-        switch (room.serviced) {
-            case false:
-                serviced = "";
-                break;
-            case true:
-                serviced = ", serviced";
-                break;
-        }
-
-        let bedroom = "";
-        switch (room.bedrooms) {
-            case 0:
-                bedroom = "Studio";
-                break;
-            case 1:
-                bedroom = "1 bedroom";
-                break;
-            case 2:
-                bedroom = "2 bedroom";
-                break;
-            case 3:
-                bedroom = "3 bedroom";
-                break;
-        }
-
-        let bathroom = "";
-        switch (room.bathrooms) {
-            case 1:
-                bathroom = "1 bathroom";
-                break;
-            case 2:
-                bathroom = "2 bathroom";
-                break;
-            case 3:
-                bathroom = "3 bathroom";
-                break;
-        }
-
-        return bedroom + ", " + bathroom + serviced;
     }
 
     handleChange(e) {
@@ -170,7 +126,7 @@ class Room extends React.Component {
                 <div className="content-header min-padding">
                     <div className="row">
                         <div className="col-auto mr-auto">
-                            <h5>{this.roomTitle()}</h5>
+                            <h5>{generateRoomTitle(room)}</h5>
                         </div>
                         <div className="col-auto">
                             <div className="btn-group">

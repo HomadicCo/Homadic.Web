@@ -3,9 +3,19 @@
     padding: $box-padding;
     margin: 0 0 $box-margin;
     box-shadow: $box-shadow;
+    border-radius: 3px;
     &.content-box-sm {
         padding: $box-padding/2 $box-padding;
         margin: 0 0 $box-margin/2;
+    }
+    .content-box-footer {
+        background: $red-light;
+        margin: $box-padding/2 -20px -28px;
+        padding: $box-padding/2 $box-padding;
+        h6 {
+            padding: 0;
+            margin: 0;
+        }
     }
 }
 

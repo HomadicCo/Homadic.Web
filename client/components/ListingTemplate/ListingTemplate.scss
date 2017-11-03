@@ -1,4 +1,4 @@
-.home-header {
+.listing-header {
     box-shadow: $box-shadow;
     h1,
     h2,
@@ -18,11 +18,23 @@
     }
 }
 
-.home-content {
+.listing-content {
     margin-top: 105px;
     p {
         font-size: 1.2em;
         line-height: 1.2;
         text-transform: capitalize;
+    }
+}
+
+.content-box.room {
+    p {
+        font-size: 1em;
+    }
+}
+
+.hero-icons {
+    img {
+        height: 45px;
     }
 }

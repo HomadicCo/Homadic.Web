@@ -54,9 +54,11 @@ class AddListing extends React.Component {
     }
 
     render() {
+        let { step } = this.props.params;
+
         return (
             <div className="footer-padding">
-                <AddHeader {...this.props} />
+                {step != 'preview' ? <AddHeader {...this.props} /> : undefined}
                 <div className="container">
                     {this.stepSelector()}
                 </div>

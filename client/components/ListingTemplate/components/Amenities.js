@@ -1,84 +1,47 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { icons } from '../../../Images/Images';
 
 class Amenities extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    renderKitchen() {
-        let { listing } = this.props;
-
-        switch (listing.amenities.kitchen) {
-            case 'included':
-                return (<FontAwesome name="check" className="green" />)
-            case 'shared':
-                return (<span>Shared</span>)
-            case 'none':
-                return (<FontAwesome name="times" className="red" />)
-        }
-    }
-
-    renderLaundry() {
-        let { listing } = this.props;
-
-        switch (listing.amenities.laundry) {
-            case 'included':
-                return (<FontAwesome name="check" className="green" />)
-            case 'shared':
-                return (<span>Shared</span>)
-            case 'none':
-                return (<FontAwesome name="times" className="red" />)
-        }
-    }
-
-    renderAC() {
-        let { listing } = this.props;
-
-        return (listing.amenities.air_conditioning ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
+    renderPool() {
+        return (
+            <div className="col-auto text-center">
+                <img src={icons.pool} />
+                <p><small><strong>Pool</strong></small></p>
+            </div>
+        )
     }
 
     renderGym() {
-        let { listing } = this.props;
-
-        return (listing.amenities.gym ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
+        return (
+            <div className="col-auto text-center">
+                <img src={icons.gym} className="mb-2" />
+                <p><small><strong>Gym</strong></small></p>
+            </div>
+        )
     }
 
-    renderPool() {
-        let { listing } = this.props;
-
-        return (listing.amenities.pool ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
+    renderAC() {
+        return (
+            <div className="col-auto text-center">
+                <img src={icons.ac} className="mb-2" />
+                <p><small><strong>A/C</strong></small></p>
+            </div>
+        )
     }
 
     render() {
         let { listing } = this.props;
 
         return (
-            <div>
-                <div className="content-header">
-                    <h5><FontAwesome name="hotel" /> Amenities</h5>
-                </div>
-                <div className="m-3">
-                    <div className="row">
-                        <div className="col-md-4">
-                            <p><strong>Kitchen:</strong> {this.renderKitchen()}</p>
-                        </div>
-                        <div className="col-md-4">
-                            <p><strong>Laundry:</strong> {this.renderLaundry()}</p>
-                        </div>
-                        <div className="col-md-4">
-                            <p><strong>A/C:</strong> {this.renderAC()}</p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-4">
-                            <p><strong>Gym:</strong> {this.renderGym()}</p>
-                        </div>
-                        <div className="col-md-4">
-                            <p><strong>Pool:</strong> {this.renderPool()}</p>
-                        </div>
-                    </div>
-                </div>
+            <div className="row justify-content-md-center hero-icons">
+                {listing.amenities.air_conditioning ? this.renderAC() : undefined}
+                {listing.amenities.gym ? this.renderGym() : undefined}
+                {listing.amenities.pool ? this.renderPool() : undefined}
             </div>
         )
     }
