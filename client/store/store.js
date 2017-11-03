@@ -3,6 +3,7 @@ import { routerMiddleware, syncHistoryWithStore, routerReducer } from 'react-rou
 import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
+import persistState from 'redux-localstorage';
 
 // reducers
 import addListing from './addListing/reducer';
@@ -53,7 +54,8 @@ const store = createStore(
   rootReducer,
   defaultState,
   composeEnhancers(
-    applyMiddleware(thunk, routerMiddleware(browserHistory))
+    applyMiddleware(thunk, routerMiddleware(browserHistory)),
+    persistState()
   )
 );
 
