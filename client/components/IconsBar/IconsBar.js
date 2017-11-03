@@ -8,9 +8,9 @@ class IconsBar extends React.Component {
     }
 
     renderWifi() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        switch (home.wifi.type) {
+        switch (listing.wifi.type) {
             case 'free':
                 return (<img src={icons.wifiStrong} />);
             case 'paid':
@@ -23,9 +23,9 @@ class IconsBar extends React.Component {
     }
 
     renderKitchen() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        switch (home.amenities.kitchen) {
+        switch (listing.amenities.kitchen) {
             case 'included':
                 return (<img src={icons.kitchen} />);
             case 'shared':
@@ -36,9 +36,9 @@ class IconsBar extends React.Component {
     }
 
     renderLaundry() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        switch (home.amenities.laundry) {
+        switch (listing.amenities.laundry) {
             case 'included':
                 return (<img src={icons.laundry} />);
             case 'shared':
@@ -49,25 +49,25 @@ class IconsBar extends React.Component {
     }
 
     renderAC() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        return (home.amenities.air_conditioning ? <img src={icons.ac} /> : undefined)
+        return (listing.amenities.air_conditioning ? <img src={icons.ac} /> : undefined)
     }
 
     renderGym() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        return (home.amenities.gym ? <img src={icons.gym} /> : undefined)
+        return (listing.amenities.gym ? <img src={icons.gym} /> : undefined)
     }
 
     renderPool() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        return (home.amenities.pool ? <img src={icons.pool} /> : undefined)
+        return (listing.amenities.pool ? <img src={icons.pool} /> : undefined)
     }
 
     render() {
-        let { className, home } = this.props;
+        let { className, listing } = this.props;
 
         return (
             <p className={"icons " + className}>

@@ -7,9 +7,9 @@ class Amenities extends React.Component {
     }
 
     renderKitchen() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        switch (home.amenities.kitchen) {
+        switch (listing.amenities.kitchen) {
             case 'included':
                 return (<FontAwesome name="check" className="green" />)
             case 'shared':
@@ -20,9 +20,9 @@ class Amenities extends React.Component {
     }
 
     renderLaundry() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        switch (home.amenities.laundry) {
+        switch (listing.amenities.laundry) {
             case 'included':
                 return (<FontAwesome name="check" className="green" />)
             case 'shared':
@@ -33,25 +33,25 @@ class Amenities extends React.Component {
     }
 
     renderAC() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        return (home.amenities.air_conditioning ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
+        return (listing.amenities.air_conditioning ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
     }
 
     renderGym() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        return (home.amenities.gym ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
+        return (listing.amenities.gym ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
     }
 
     renderPool() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
-        return (home.amenities.pool ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
+        return (listing.amenities.pool ? <FontAwesome name="check" className="green" /> : <FontAwesome name="times" className="red" />)
     }
 
     render() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
         return (
             <div>

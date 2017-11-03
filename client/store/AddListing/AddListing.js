@@ -11,6 +11,7 @@ import ListingDetails from './Steps/ListingDetails';
 import Rooms from './Steps/Rooms';
 import Amenities from './Steps/Amenities';
 import Notes from './Steps/Notes';
+import PreviewListing from './Steps/PreviewListing';
 
 class AddListing extends React.Component {
     constructor(props) {
@@ -36,6 +37,10 @@ class AddListing extends React.Component {
             case 'notes':
                 return (
                     <Notes {...this.props} />
+                )
+            case 'preview':
+                return (
+                    <PreviewListing {...this.props} />
                 )
             default:
                 return (

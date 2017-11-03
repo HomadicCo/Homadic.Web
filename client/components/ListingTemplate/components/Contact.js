@@ -35,17 +35,17 @@ class Contact extends React.Component {
 
         this.state = {
             center: {
-                lat: props.home.location.coordinates[0],
-                lng: props.home.location.coordinates[1]
+                lat: props.listing.location.coordinates[0],
+                lng: props.listing.location.coordinates[1]
             }
         };
     }
 
     render() {
-        let { home } = this.props;
+        let { listing } = this.props;
         let { center } = this.state;
         var markers = [];
-        markers.push(home);
+        markers.push(listing);
 
         return (
             <div>
@@ -53,9 +53,9 @@ class Contact extends React.Component {
                     <h5><FontAwesome name="map-marker" /> Contact</h5>
                 </div>
                 <div className="m-3">
-                    <p><strong>Email:</strong> <span className="lowercase">{home.email}</span></p>
-                    <p><strong>Phone:</strong> {home.formatted_phone_number}</p>
-                    <p><strong>Address:</strong> {home.formatted_address}</p>
+                    <p><strong>Email:</strong> <span className="lowercase">{listing.email}</span></p>
+                    <p><strong>Phone:</strong> {listing.formatted_phone_number}</p>
+                    <p><strong>Address:</strong> {listing.formatted_address}</p>
                 </div>
                 <div className="m-3 mb-5">
                     <RenderMap

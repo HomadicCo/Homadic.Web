@@ -7,7 +7,7 @@ class Internet extends React.Component {
     }
 
     render() {
-        let { home } = this.props;
+        let { listing } = this.props;
 
         return (
             <div>
@@ -17,16 +17,16 @@ class Internet extends React.Component {
                 <div className="m-3">
                     <div className="row">
                         <div className="col-md-4">
-                            <p><FontAwesome name="dollar" /> {home.wifi.type}</p>
+                            <p><FontAwesome name="dollar" /> {listing.wifi.type}</p>
                         </div>
                         <div className="col-md-4">
-                            <p><FontAwesome name="download" /> {home.wifi.download}mbps</p>
+                            <p><FontAwesome name="download" /> {listing.wifi.download}mbps</p>
                         </div>
                         <div className="col-md-4">
-                            <p><FontAwesome name="upload" /> {home.wifi.upload}mbps</p>
+                            <p><FontAwesome name="upload" /> {listing.wifi.upload}mbps</p>
                         </div>
                     </div>
-                    <p><strong>Notes:</strong> {home.wifi.notes}</p>
+                    <p><strong>Notes:</strong> {listing.wifi.notes}</p>
                 </div>
             </div>
         )
