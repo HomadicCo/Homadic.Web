@@ -84,7 +84,7 @@ class Amenities extends React.Component {
                     <div className="form-row">
                         {(["paid", "canInstall"].indexOf(listing.wifi.type) > -1) ?
                             <div className="form-group col-md-3">
-                                <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost <FontAwesome className="text-muted" name="dollar" /></label>
+                                <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost per month <FontAwesome className="text-muted" name="dollar" /></label>
                                 <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                     <div className="input-group-addon">{listing.currency}</div>
                                     <input type="text" className="form-control" id="inputInternetCost" data-type="int" name="wifi.rate" value={listing.wifi.rate} onChange={this.handleChange} />

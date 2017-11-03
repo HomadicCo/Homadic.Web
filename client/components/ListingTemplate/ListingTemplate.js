@@ -28,12 +28,12 @@ class ListingTemplate extends React.Component {
 
                 <div className="container text-center listing">
                     <div className="row justify-content-md-center">
-                        <div className="col-8">
-                        <h2><strong>{listing.name}</strong> <RatingBadge rating={listing.rating} /></h2>
+                        <div className="col-md-8 mb-2">
+                            <h2><strong>{listing.name}</strong> <RatingBadge rating={listing.rating} /></h2>
                         </div>
                     </div>
                     <div className="row justify-content-md-center">
-                        <div className="col-6">
+                        <div className="col-md-8 col-s-12">
                             <Amenities listing={listing} />
                         </div>
                     </div>

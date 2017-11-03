@@ -67,13 +67,12 @@ class Rooms extends React.Component {
 
         // sort by price
         var rooms = listing.rooms.sort(function (a, b) {
-            console.log(a);
             return a.base_rate > b.base_rate;
         });
 
         return (
             <div>
-                    <div className="content-header">
+                <div className="content-header">
                     <h5><FontAwesome name="dollar" /> Monthly Rates</h5>
                 </div>
                 <div className="row">

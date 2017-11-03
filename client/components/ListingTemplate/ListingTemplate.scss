@@ -19,7 +19,7 @@
 }
 
 .listing {
-    margin-top: 105px;
+    margin-top: 65px;
 }
 
 .listing-content {
@@ -38,6 +38,14 @@
 
 .hero-icons {
     img {
-        height: 45px;
+        height: 35px;
+        width: 35px;
+        margin: 0 5px;
+    }
+    @media (max-width: 540px) {
+        img {
+            height: 20px;
+            width: 20px;
+        }
     }
 }
