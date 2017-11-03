@@ -11,9 +11,7 @@ class Internet extends React.Component {
 
         return (
             <div>
-                <div className="content-header">
-                    <h5><FontAwesome name="wifi" /> Internet</h5>
-                </div>
+                <h2 className="fancy blue">Internet</h2>
                 <div className="m-3">
                     <div className="row">
                         <div className="col-md-4">

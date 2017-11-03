@@ -37,7 +37,7 @@ class Room extends React.Component {
         let { currency, room } = this.props;
 
         return (
-            <div className="col-6">
+            <div className="col-md-6">
                 <div className="content-box room">
                     <h5 className="bold"><strong>{generateRoomTitle(room)}</strong></h5>
                     <div className="row">
@@ -72,9 +72,7 @@ class Rooms extends React.Component {
 
         return (
             <div>
-                <div className="content-header">
-                    <h5><FontAwesome name="dollar" /> Monthly Rates</h5>
-                </div>
+                <h2 className="fancy blue">Rooms</h2>
                 <div className="row">
                     {rooms.map((room, i) => (
                         <Room key={i} room={room} currency={listing.currency} />

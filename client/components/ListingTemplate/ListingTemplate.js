@@ -7,6 +7,7 @@ import Amenities from './components/Amenities';
 import Internet from './components/Internet';
 import Contact from './components/Contact';
 import Rooms from './components/Rooms';
+import LocationMap from './components/LocationMap';
 
 class ListingTemplate extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class ListingTemplate extends React.Component {
                 <div className="container text-center listing">
                     <div className="row justify-content-md-center">
                         <div className="col-md-8 mb-2">
-                            <h2><strong>{listing.name}</strong> <RatingBadge rating={listing.rating} /></h2>
+                            <h1 className="fancy"><strong>{listing.name}</strong> <RatingBadge rating={listing.rating} /></h1>
                         </div>
                     </div>
                     <div className="row justify-content-md-center">
@@ -38,13 +39,15 @@ class ListingTemplate extends React.Component {
                         </div>
                     </div>
                     <div>
-                        <p>{listing.notes}</p>
+                        <Contact listing={listing} />
                     </div>
                 </div>
+
                 <div className="container listing-content">
                     <Rooms listing={listing} />
                     <Internet listing={listing} />
-                    <Contact listing={listing} />
+                    <p>{listing.notes}</p>
+                    <LocationMap listing={listing} />
                 </div>
             </div>
         )
