@@ -14,6 +14,14 @@ class ListingTemplate extends React.Component {
         super(props);
     }
 
+    getBaseRate() {
+        var rooms = this.props.listing.rooms.sort(function (a, b) {
+            return a.base_rate > b.base_rate;
+        });
+
+        return rooms[0].base_rate;
+    }
+
     render() {
         let { authentication, listing, profile } = this.props;
 
@@ -21,8 +29,10 @@ class ListingTemplate extends React.Component {
             <div>
                 <div className="navbar fixed-top bg-white px-3 listing-header">
                     <div className="container">
-                        <div className="col ml-auto">
-                            <h5 className="blue"><FontAwesome name="thumbs-up" /> <FontAwesome name="thumbs-o-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><FontAwesome name="pencil" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
+                        <div className="row justify-content-end">
+                            <div className="col">
+                                <h5 className="blue"><FontAwesome name="thumbs-up" /> <FontAwesome name="thumbs-o-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><FontAwesome name="pencil" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -33,13 +43,13 @@ class ListingTemplate extends React.Component {
                             <h1 className="fancy"><strong>{listing.name}</strong> <RatingBadge rating={listing.rating} /></h1>
                         </div>
                     </div>
+                    <div className="mb-4">
+                        <p className="lead"><small>Rooms from</small> {this.getBaseRate()} {listing.currency}</p>
+                    </div>
                     <div className="row justify-content-md-center">
                         <div className="col-md-8 col-s-12">
                             <Amenities listing={listing} />
                         </div>
-                    </div>
-                    <div>
-                        <Contact listing={listing} />
                     </div>
                 </div>
 

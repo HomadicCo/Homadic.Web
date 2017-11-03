@@ -1,14 +1,14 @@
 export const bathrooms = [
-    { value: 1, name: "1" },
-    { value: 2, name: "2" },
-    { value: 3, name: "3" }
+    { value: 1, name: "1 bathroom" },
+    { value: 2, name: "2 bathrooms" },
+    { value: 3, name: "3 bathrooms" }
 ]
 
 export const bedrooms = [
     { value: 0, name: "Studio" },
-    { value: 1, name: "1" },
-    { value: 2, name: "2" },
-    { value: 3, name: "3" }
+    { value: 1, name: "1 bedroom" },
+    { value: 2, name: "2 bedrooms" },
+    { value: 3, name: "3 bedrooms" }
 ]
 
 export const currencies = [

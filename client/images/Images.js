@@ -1,5 +1,7 @@
 export const icons = {
     ac: require('!!file-loader!./icons/icon-ac.svg'),
+    bathroom: require('!!file-loader!./icons/icon-bathroom.svg'),
+    bedroom: require('!!file-loader!./icons/icon-bedroom.svg'),
     condo: require('!!file-loader!./icons/icon-hostel.svg'), // todo
     dart: require('!!file-loader!./icons/icon-dart.svg'),
     gym: require('!!file-loader!./icons/icon-gym.svg'),

@@ -21,7 +21,7 @@ class RatingBadge extends React.Component {
         }
 
         return (
-            <span className={badgeClass}>{rating}</span>
+            <span className={"white " + badgeClass}>{rating}</span>
         )
     }
 }

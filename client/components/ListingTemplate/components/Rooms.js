@@ -1,10 +1,26 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { generateRoomTitle } from '../../../functions';
+import { icons } from '../../../Images/Images';
+import { bathrooms, bedrooms } from '../../../data';
 
 class Room extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    renderBedrooms() {
+        let { room } = this.props;
+
+        const i = bedrooms.findIndex((bedroom) => bedroom.value == room.bedrooms);
+        return bedrooms[i].name;
+    }
+
+    renderBathrooms() {
+        let { room } = this.props;
+
+        const i = bathrooms.findIndex((bathroom) => bathroom.value == room.bathrooms);
+        return bathrooms[i].name;
     }
 
     renderKitchen() {
@@ -37,9 +53,10 @@ class Room extends React.Component {
         let { currency, room } = this.props;
 
         return (
-            <div className="col-md-6">
+            <div className="col-md-6 mb-2">
                 <div className="content-box room">
-                    <h5 className="bold"><strong>{generateRoomTitle(room)}</strong></h5>
+                    <h5><img className="mr-1" src={icons.bedroom} /> {this.renderBedrooms()} <img className="ml-3 mr-1" src={icons.bathroom} height={30} width={30} /> {this.renderBathrooms()}</h5>
+                    <hr />
                     <div className="row">
                         <div className="col-md-6">
                             <p><strong>Kitchen:</strong> {this.renderKitchen()}</p>
@@ -48,7 +65,7 @@ class Room extends React.Component {
                             <p><strong>Laundry:</strong> {this.renderLaundry()}</p>
                         </div>
                     </div>
-                    <div className="content-box-footer">
+                    <div className="content-box-footer bg-blue">
                         <h6 className="white"><strong>{room.base_rate} {currency}</strong> {room.deposit ? <small>{room.deposit} {currency} deposit</small> : undefined}</h6>
                     </div>
                 </div>
@@ -72,7 +89,6 @@ class Rooms extends React.Component {
 
         return (
             <div>
-                <h2 className="fancy blue">Rooms</h2>
                 <div className="row">
                     {rooms.map((room, i) => (
                         <Room key={i} room={room} currency={listing.currency} />

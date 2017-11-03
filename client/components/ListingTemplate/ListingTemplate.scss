@@ -23,6 +23,11 @@
 }
 
 .listing-content {
+    .room img {
+        height: 25px;
+        width: 25px;
+        margin-top: -3px;
+    }
     p {
         font-size: 1.2em;
         line-height: 1.2;
