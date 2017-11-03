@@ -9,7 +9,7 @@ class Amenities extends React.Component {
 
     renderPool() {
         return (
-            <div className="col-auto text-center">
+            <div className="col-auto">
                 <img src={icons.pool} />
                 <p><small><strong>Pool</strong></small></p>
             </div>
@@ -18,7 +18,7 @@ class Amenities extends React.Component {
 
     renderGym() {
         return (
-            <div className="col-auto text-center">
+            <div className="col-auto">
                 <img src={icons.gym} className="mb-2" />
                 <p><small><strong>Gym</strong></small></p>
             </div>
@@ -27,7 +27,7 @@ class Amenities extends React.Component {
 
     renderAC() {
         return (
-            <div className="col-auto text-center">
+            <div className="col-auto">
                 <img src={icons.ac} className="mb-2" />
                 <p><small><strong>A/C</strong></small></p>
             </div>
