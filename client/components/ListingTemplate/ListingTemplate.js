@@ -1,10 +1,9 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import Avatar from '../../Components/Avatar/Avatar';
-import RatingBadge from '../../components/RatingBadge/RatingBadge';
-import IconsBar from '../../components/IconsBar/IconsBar';
-import Amenities from './components/Amenities';
+import Header from './components/Header';
 import Internet from './components/Internet';
+import Description from './components/Description';
 import Contact from './components/Contact';
 import Rooms from './components/Rooms';
 import LocationMap from './components/LocationMap';
@@ -12,14 +11,6 @@ import LocationMap from './components/LocationMap';
 class ListingTemplate extends React.Component {
     constructor(props) {
         super(props);
-    }
-
-    getBaseRate() {
-        var rooms = this.props.listing.rooms.sort(function (a, b) {
-            return a.base_rate > b.base_rate;
-        });
-
-        return rooms[0].base_rate;
     }
 
     render() {
@@ -37,26 +28,12 @@ class ListingTemplate extends React.Component {
                     </div>
                 </div>
 
-                <div className="container text-center listing">
-                    <div className="row justify-content-md-center">
-                        <div className="col-md-8 mb-2">
-                            <h1 className="fancy"><strong>{listing.name}</strong> <RatingBadge rating={listing.rating} /></h1>
-                        </div>
-                    </div>
-                    <div className="mb-4">
-                        <p className="lead"><small>Rooms from</small> {this.getBaseRate()} {listing.currency}</p>
-                    </div>
-                    <div className="row justify-content-md-center">
-                        <div className="col-md-8 col-s-12">
-                            <Amenities listing={listing} />
-                        </div>
-                    </div>
-                </div>
+                <Header listing={listing} />
 
                 <div className="container listing-content">
                     <Rooms listing={listing} />
+                    <Description listing={listing} />
                     <Internet listing={listing} />
-                    <p>{listing.notes}</p>
                     <LocationMap listing={listing} />
                 </div>
             </div>

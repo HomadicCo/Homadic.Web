@@ -113,6 +113,14 @@ textarea:active {
     text-transform: lowercase;
 }
 
+.capitalize {
+    text-transform: capitalize;
+}
+
+.box-shadow {
+    box-shadow: $box-shadow;
+}
+
 .loading-screen {
     height: 100vh;
     display: flex;

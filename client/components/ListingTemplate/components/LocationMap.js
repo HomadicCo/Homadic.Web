@@ -1,6 +1,6 @@
 import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import { icons } from '../../../Images/Images'
+import { icons } from '../../../Images/Images';
 
 const RenderMap = withGoogleMap(props => (
     <GoogleMap
@@ -47,7 +47,7 @@ class LocationMap extends React.Component {
         markers.push(listing);
 
         return (
-            <div className="m-3 mb-5">
+            <div className="mb-5 box-shadow">
                 <RenderMap
                     center={new google.maps.LatLng(center)}
                     markers={markers}

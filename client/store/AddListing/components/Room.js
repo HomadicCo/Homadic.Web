@@ -94,7 +94,7 @@ class Room extends React.Component {
                         <div className="col-sm">
                             <label htmlFor="inputMinRental" className="col-form-label">Min rental length <FontAwesome className="text-muted" name="calendar-o" /></label>
                             <select id="inputMinRental" className="form-control" name={"rooms[" + id + "].min_rental"} value={room.min_rental} onChange={this.handleChange}>
-                                {rentalLengths.map((item, i) => (<option key={i} value={item.value}>{item.label}</option>))}
+                                {rentalLengths.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
                             </select>
                         </div>
                         <div className="col-sm">

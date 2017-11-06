@@ -2,7 +2,7 @@ import React from 'react';
 import FontAwesome from 'react-fontawesome';
 import { generateRoomTitle } from '../../../functions';
 import { icons } from '../../../Images/Images';
-import { bathrooms, bedrooms } from '../../../data';
+import { bathrooms, bedrooms, rentalLengths } from '../../../data';
 
 class Room extends React.Component {
     constructor(props) {
@@ -23,16 +23,23 @@ class Room extends React.Component {
         return bathrooms[i].name;
     }
 
+    renderMinStay() {
+        let { room } = this.props;
+
+        const i = rentalLengths.findIndex((r) => r.value == room.min_rental);
+        return rentalLengths[i];
+    }
+
     renderKitchen() {
         let { room } = this.props;
 
         switch (room.kitchen) {
             case 'included':
-                return (<FontAwesome name="check" className="green" />)
+                return (<FontAwesome name="check" size="lg" className="green" />)
             case 'shared':
                 return (<span>Shared</span>)
             case 'none':
-                return (<FontAwesome name="times" className="text-muted" />)
+                return (<FontAwesome name="times" size="lg" className="text-muted" />)
         }
     }
 
@@ -41,16 +48,17 @@ class Room extends React.Component {
 
         switch (room.laundry) {
             case 'included':
-                return (<FontAwesome name="check" className="green" />)
+                return (<FontAwesome name="check" size="lg" className="green" />)
             case 'shared':
                 return (<span>Shared</span>)
             case 'none':
-                return (<FontAwesome name="times" className="text-muted" />)
+                return (<FontAwesome name="times" size="lg" className="text-muted" />)
         }
     }
 
     render() {
         let { currency, room } = this.props;
+        const minStay = this.renderMinStay();
 
         return (
             <div className="col-md-6 mb-2">
@@ -58,11 +66,14 @@ class Room extends React.Component {
                     <h5><img className="mr-1" src={icons.bedroom} /> {this.renderBedrooms()} <img className="ml-3 mr-1" src={icons.bathroom} height={30} width={30} /> {this.renderBathrooms()}</h5>
                     <hr />
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-6 mt-1">
                             <p><strong>Kitchen:</strong> {this.renderKitchen()}</p>
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-6 mt-1">
                             <p><strong>Laundry:</strong> {this.renderLaundry()}</p>
+                        </div>
+                        <div className="col-12 mt-2 min-stay">
+                            <p className="text-muted"><img src={icons[minStay.icon]} className="mr-1" /> {minStay.name} min stay</p>
                         </div>
                     </div>
                     <div className="content-box-footer bg-blue">
@@ -93,14 +104,6 @@ class Rooms extends React.Component {
                     {rooms.map((room, i) => (
                         <Room key={i} room={room} currency={listing.currency} />
                     ))}
-                </div>
-                <div className="row">
-                    <div className="col-md-3">
-                        {listing.bills.electricity}
-                    </div>
-                    <div className="col-md-3">
-                        {listing.bills.water}
-                    </div>
                 </div>
             </div>
         )

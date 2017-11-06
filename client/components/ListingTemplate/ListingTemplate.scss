@@ -20,6 +20,22 @@
 
 .listing {
     margin-top: 65px;
+    .lead {
+        line-height: 1.6em;
+        color: $blue;
+        .icon {
+            margin-top: -2px;
+            height: 14px;
+        }
+    }
+    .lead:before,
+    .lead:after {
+        background: $gray-medium;
+        display: block;
+        height: 2px;
+        width: 100%;
+        content: '';
+    }
 }
 
 .listing-content {
@@ -28,10 +44,16 @@
         width: 25px;
         margin-top: -3px;
     }
+    .min-stay {
+        img {
+            border-radius: 2px;
+            height: 18px;
+            width: 18px;
+        }
+    }
     p {
         font-size: 1.2em;
         line-height: 1.2;
-        text-transform: capitalize;
     }
 }
 

@@ -1,14 +1,14 @@
 export const bathrooms = [
-    { value: 1, name: "1 bathroom" },
-    { value: 2, name: "2 bathrooms" },
-    { value: 3, name: "3 bathrooms" }
+    { value: 1, name: "1 Bathroom" },
+    { value: 2, name: "2 Bathrooms" },
+    { value: 3, name: "3 Bathrooms" }
 ]
 
 export const bedrooms = [
     { value: 0, name: "Studio" },
-    { value: 1, name: "1 bedroom" },
-    { value: 2, name: "2 bedrooms" },
-    { value: 3, name: "3 bedrooms" }
+    { value: 1, name: "1 Bedroom" },
+    { value: 2, name: "2 Bedrooms" },
+    { value: 3, name: "3 Bedrooms" }
 ]
 
 export const currencies = [
@@ -134,42 +134,45 @@ export const listingValidations = {
 export const rentalLengths = [
     {
         value: 1,
-        label: "One month"
+        name: "One month",
+        icon: "one_month"
     },
     {
         value: 3,
-        label: "Three months"
+        name: "Three months",
+        icons: "three_months"
     },
     {
         value: 6,
-        label: "Six months"
+        name: "Six months",
+        icon: "six_months"
     }
 ]
 
 export const rentalTypes = [
     {
-        name: "Coliving",
-        value: "coliving"
+        value: "coliving",
+        name: "Coliving"
     },
     {
-        name: "Condo/Apartment",
-        value: "condo"
+        value: "condo",
+        name: "Condo/Apartment"
     },
     {
-        name: "Guesthouse",
-        value: "guesthouse"
+        value: "guesthouse",
+        name: "Guesthouse"
     },
     {
-        name: "Hostel",
-        value: "hostel"
+        value: "hostel",
+        name: "Hostel"
     },
     {
-        name: "Hotel",
-        value: "hotel"
+        value: "hotel",
+        name: "Hotel"
     },
     {
-        name: "House/Villa",
-        value: "house"
+        value: "house",
+        name: "House/Villa"
     }
 ]
 

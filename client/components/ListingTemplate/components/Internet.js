@@ -10,21 +10,21 @@ class Internet extends React.Component {
         let { listing } = this.props;
 
         return (
-            <div>
+            <div className="content-box">
                 <h2 className="fancy blue">Internet</h2>
-                <div className="m-3">
-                    <div className="row">
-                        <div className="col-md-4">
-                            <p><FontAwesome name="dollar" /> {listing.wifi.type}</p>
-                        </div>
-                        <div className="col-md-4">
-                            <p><FontAwesome name="download" /> {listing.wifi.download}mbps</p>
-                        </div>
-                        <div className="col-md-4">
-                            <p><FontAwesome name="upload" /> {listing.wifi.upload}mbps</p>
-                        </div>
+                <div className="row">
+                    <div className="col-md-4 capitalize">
+                        <p><FontAwesome name="dollar" /> {listing.wifi.type}</p>
                     </div>
-                    <p><strong>Notes:</strong> {listing.wifi.notes}</p>
+                    <div className="col-md-4 capitalize">
+                        <p><FontAwesome name="download" /> {listing.wifi.download}mbps</p>
+                    </div>
+                    <div className="col-md-4 capitalize">
+                        <p><FontAwesome name="upload" /> {listing.wifi.upload}mbps</p>
+                    </div>
+                    <div className="col-md-12">
+                        <p><strong>Notes:</strong> {listing.wifi.notes}</p>
+                    </div>
                 </div>
             </div>
         )
