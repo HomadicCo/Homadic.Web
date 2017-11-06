@@ -7,7 +7,6 @@ class RatingBadge extends React.Component {
 
     render() {
         let { rating } = this.props;
-
         var badgeClass;
 
         if (rating >= 3.5) {

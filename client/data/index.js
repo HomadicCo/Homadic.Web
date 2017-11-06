@@ -56,6 +56,7 @@ export const emptyListing = {
         water: ""
     },
     currency: "USD",
+    description: "",
     email: "",
     address: "",
     phone_number: "",
@@ -66,7 +67,6 @@ export const emptyListing = {
     id: "",
     international_phone_number: "",
     name: "",
-    notes: "",
     google_maps_id: null,
     rating: null,
     rooms: [],
@@ -140,7 +140,7 @@ export const rentalLengths = [
     {
         value: 3,
         name: "Three months",
-        icons: "three_months"
+        icon: "three_months"
     },
     {
         value: 6,

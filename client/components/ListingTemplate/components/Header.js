@@ -33,7 +33,7 @@ class Header extends React.Component {
             <div className="container text-center listing">
                 <div className="row justify-content-md-center">
                     <div className="col-md-8">
-                        <h1 className="fancy"><strong>{listing.name}</strong> <RatingBadge rating={listing.rating} /></h1>
+                        <h1 className="fancy"><strong>{listing.name}</strong> {listing.rating ? <RatingBadge rating={listing.rating} /> : undefined}</h1>
                     </div>
                 </div>
                 <div className="row justify-content-md-center">

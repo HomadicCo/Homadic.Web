@@ -110,6 +110,12 @@ export function convertToSlug(text) {
         .replace(/ +/g, '-');
 }
 
+export function extractYoutubeFromString(string) {
+    // https://regex101.com/r/muukhG/1
+    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i
+    return string.match(regex);
+}
+
 // generate the facebook redirect Url
 export function getLoginUrl(state) {
     const redirectUri = "http://localhost:9990/signin-facebook";

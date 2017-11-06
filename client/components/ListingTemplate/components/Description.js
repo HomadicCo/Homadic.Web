@@ -1,5 +1,6 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import RenderMarkdown from '../../RenderMarkdown/RenderMarkdown';
 
 class Description extends React.Component {
     constructor(props) {
@@ -7,12 +8,12 @@ class Description extends React.Component {
     }
 
     render() {
-        let { listing } = this.props;
+        let { description } = this.props;
 
         return (
             <div className="content-box">
                 <h2 className="fancy blue">Description</h2>
-                <p>{listing.notes}</p>
+                <RenderMarkdown markdown={description} />
             </div>
         )
     }

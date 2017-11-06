@@ -32,7 +32,7 @@ class ListingTemplate extends React.Component {
 
                 <div className="container listing-content">
                     <Rooms listing={listing} />
-                    <Description listing={listing} />
+                    <Description description={listing.description} />
                     <Internet listing={listing} />
                     <LocationMap listing={listing} />
                 </div>
