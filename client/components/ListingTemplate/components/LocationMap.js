@@ -1,5 +1,6 @@
 import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import MapStyle from '../../MapStyle/MapStyle';
 import { icons } from '../../../Images/Images';
 
 const RenderMap = withGoogleMap(props => (
@@ -7,6 +8,7 @@ const RenderMap = withGoogleMap(props => (
         zoom={props.zoom}
         center={props.center}
         options={{
+            styles: MapStyle,
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,

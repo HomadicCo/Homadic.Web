@@ -4,8 +4,8 @@ import { withGoogleMap, GoogleMap } from "react-google-maps";
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import FontAwesome from 'react-fontawesome';
 import ActionBar from './Components/ActionBar';
-import MapStyle from './Components/MapStyle';
 import { AddListingMarker, HomeMarker } from './Components/Markers';
+import MapStyle from '../../components/MapStyle/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images';
 
