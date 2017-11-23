@@ -1,3 +1,4 @@
+/* global Promise */
 import { apiGetProfile } from '../../api';
 
 // update the profile in the store

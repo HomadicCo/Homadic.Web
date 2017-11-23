@@ -4,7 +4,6 @@ import Avatar from '../../Components/Avatar/Avatar';
 import Header from './components/Header';
 import Internet from './components/Internet';
 import Description from './components/Description';
-import Contact from './components/Contact';
 import Rooms from './components/Rooms';
 import LocationMap from './components/LocationMap';
 

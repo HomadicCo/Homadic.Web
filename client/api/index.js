@@ -59,7 +59,7 @@ export function apiGetGooglePlace(googlePlaceId) {
 
 // homees
 
-export function apiGetHomes(query) {
+export function apiGetHomes() {
     return Axios.get('homes');
 }
 

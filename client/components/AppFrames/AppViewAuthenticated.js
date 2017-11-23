@@ -1,5 +1,4 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import moment from 'moment';
 import { getLoginUrl, loadLocalStorage } from '../../functions';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';

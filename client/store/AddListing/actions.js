@@ -1,3 +1,4 @@
+/* global Promise */
 import { apiNearbyResults } from '../../api';
 import { emptyListing } from '../../data';
 import { guid } from '../../functions';

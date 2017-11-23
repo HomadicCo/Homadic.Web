@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 
 
 class Contact extends React.Component {

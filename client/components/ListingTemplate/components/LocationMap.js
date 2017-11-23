@@ -1,5 +1,6 @@
+/* global google */
 import React from 'react';
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import MapStyle from '../../MapStyle/MapStyle';
 import { icons } from '../../../Images/Images';
 
@@ -14,7 +15,8 @@ const RenderMap = withGoogleMap(props => (
             fullscreenControl: false,
             minZoom: 12,
             draggableCursor: props.draggableCursor
-        }}>
+        }}
+    >
         {
             props.markers.map(marker => (
                 <Marker
@@ -55,10 +57,10 @@ class LocationMap extends React.Component {
                     markers={markers}
                     zoom={16}
                     containerElement={
-                        <div style={{ height: `400px` }} />
+                        <div style={{ height: '400px' }} />
                     }
                     mapElement={
-                        <div style={{ height: `100%` }} />
+                        <div style={{ height: '100%' }} />
                     }
                 />
             </div>

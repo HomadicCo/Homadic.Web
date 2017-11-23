@@ -1,3 +1,4 @@
+/* global Promise */
 import { apiPerformLogin } from '../../api';
 import { delay, saveLocalStorage } from '../../functions';
 import moment from 'moment';

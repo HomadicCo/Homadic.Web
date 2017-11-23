@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { icons } from '../../Images/Images';
 
 class IconsBar extends React.Component {
@@ -67,7 +66,7 @@ class IconsBar extends React.Component {
     }
 
     render() {
-        let { className, listing } = this.props;
+        let { className } = this.props;
 
         return (
             <p className={'icons ' + className}>

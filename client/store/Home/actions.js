@@ -1,3 +1,4 @@
+/* global Promise */
 import { apiGetHomes, apiGetHome } from '../../api';
 
 // update the profile in the store

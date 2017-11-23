@@ -1,3 +1,4 @@
+/* global Promise */
 import removeAccents from 'remove-accents';
 
 export function setDocumentTitle(value) {
@@ -22,11 +23,11 @@ export function delay(t) {
 
 // generate a rando guid
 export function guid() {
-    function S4() {
+    function s4() {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     }
 
-    return (S4() + S4() + '-' + S4() + '-4' + S4().substr(0, 3) + '-' + S4() + '-' + S4() + S4() + S4()).toLowerCase();
+    return (s4() + s4() + '-' + s4() + '-4' + s4().substr(0, 3) + '-' + s4() + '-' + s4() + s4() + s4()).toLowerCase();
 }
 
 export const loadLocalStorage = (key) => {
@@ -112,7 +113,7 @@ export function convertToSlug(text) {
 
 export function extractYoutubeFromString(string) {
     // https://regex101.com/r/muukhG/1
-    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/i
+    const regex = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/ ]{11})/i
     return string.match(regex);
 }
 

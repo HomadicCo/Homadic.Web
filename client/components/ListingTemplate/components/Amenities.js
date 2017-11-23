@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { icons } from '../../../Images/Images';
 
 class Amenities extends React.Component {
@@ -9,30 +8,31 @@ class Amenities extends React.Component {
 
     renderWifi() {
         let { listing } = this.props;
+        let wifiQuality = {}
 
         switch (listing.wifi.type) {
             case 'free':
-                var wifiQuality = {
-                    icon: "wifiStrong",
-                    label: "Free WiFi"
+                wifiQuality = {
+                    icon: 'wifiStrong',
+                    label: 'Free WiFi'
                 }
                 break;
             case 'paid':
-                var wifiQuality = {
-                    icon: "wifi",
-                    label: "Paid WiFi"
+                wifiQuality = {
+                    icon: 'wifi',
+                    label: 'Paid WiFi'
                 }
                 break;
             case 'canInstall':
-                var wifiQuality = {
-                    icon: "wifi",
-                    label: "Can Install"
+                wifiQuality = {
+                    icon: 'wifi',
+                    label: 'Can Install'
                 }
                 break;
             case 'none':
-                var wifiQuality = {
-                    icon: "wifiNone",
-                    label: "No WiFi"
+                wifiQuality = {
+                    icon: 'wifiNone',
+                    label: 'No WiFi'
                 }
                 break;
         }
@@ -97,8 +97,8 @@ class Amenities extends React.Component {
             <div className="row justify-content-md-center hero-icons my-2">
                 {this.renderWifi()}
                 {listing.amenities.air_conditioning ? this.renderAC() : undefined}
-                {listing.rooms.filter(room => room.laundry != "none").length > 0 ? this.renderLaundry() : undefined}
-                {listing.rooms.filter(room => room.kitchen != "none").length > 0 ? this.renderKitchen() : undefined}
+                {listing.rooms.filter(room => room.laundry != 'none').length > 0 ? this.renderLaundry() : undefined}
+                {listing.rooms.filter(room => room.kitchen != 'none').length > 0 ? this.renderKitchen() : undefined}
                 {listing.amenities.gym ? this.renderGym() : undefined}
                 {listing.amenities.pool ? this.renderPool() : undefined}
             </div>

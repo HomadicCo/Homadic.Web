@@ -39,6 +39,34 @@ module.exports = {
                 test: /.(png|jpg)$/,
                 loader: 'url-loader?limit=8192'
             }
+        ],
+        rules: [
+            {
+                enforce: 'pre',
+                test: /\.js|jsx$/,
+                exclude: [/node_modules/, /homadic.js/],
+                loader: 'eslint-loader',
+                options: {
+                    quiet: true,
+                }
+            },
+            {
+                test: /\.js|jsx$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /.(png|jpg)$/,
+                loader: 'url-loader?limit=8192'
+            }
         ]
     }
 };

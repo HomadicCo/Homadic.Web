@@ -1,7 +1,5 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import RatingBadge from '../../../components/RatingBadge/RatingBadge';
-import IconsBar from '../../../components/IconsBar/IconsBar';
 import Amenities from './Amenities';
 import { rentalTypes } from '../../../data';
 import { icons } from '../../../Images/Images';
