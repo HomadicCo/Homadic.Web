@@ -30,6 +30,10 @@ class Room extends React.Component {
         setExpandedRoom(room.id);
     }
 
+    isTheRoom(expandedRoom, room) {
+        return expandedRoom == room.id;
+    }
+
     handleRemoveRoom(e) {
         e.preventDefault();
         let { addListing, room, removeRoom, setExpandedRoom } = this.props;
@@ -38,11 +42,9 @@ class Room extends React.Component {
 
         // if it's the expanded room, we wanna set it to the one above
         if (addListing.ui.expandedRoom == room.id) {
-            function isTheRoom(expandedRoom, room) {
-                return expandedRoom == room.id;
-            }
 
-            const i = rooms.findIndex(isTheRoom.bind(null, expandedRoom));
+
+            const i = rooms.findIndex(this.isTheRoom.bind(null, expandedRoom));
             setExpandedRoom(rooms[i - 1].id);
         }
 
@@ -57,8 +59,8 @@ class Room extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" name={"rooms[" + id + "].serviced"} defaultChecked={room.serviced} value={room.serviced} onChange={this.handleChange} />
-                            <span className="custom-control-indicator"></span>
+                            <input type="checkbox" className="custom-control-input" name={'rooms[' + id + '].serviced'} defaultChecked={room.serviced} value={room.serviced} onChange={this.handleChange} />
+                            <span className="custom-control-indicator" />
                             <span className="custom-control-description">Serviced <FontAwesome className="text-muted" name="user" /></span>
                         </label>
                     </div>
@@ -66,25 +68,25 @@ class Room extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label htmlFor="inputBedrooms" className="col-form-label">Bedrooms <FontAwesome className="text-muted" name="bed" /></label>
-                        <select id="inputBedrooms" className="form-control" data-type="int" name={"rooms[" + id + "].bedrooms"} value={room.bedrooms} onChange={this.handleChange}>
+                        <select id="inputBedrooms" className="form-control" data-type="int" name={'rooms[' + id + '].bedrooms'} value={room.bedrooms} onChange={this.handleChange}>
                             {bedrooms.map((bedroom, i) => (<option key={i} value={bedroom.value}>{bedroom.name}</option>))}
                         </select>
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputBathrooms" className="col-form-label">Bathrooms <FontAwesome className="text-muted" name="bath" /></label>
-                        <select id="inputBathrooms" className="form-control" data-type="int" name={"rooms[" + id + "].bathrooms"} value={room.bathrooms} onChange={this.handleChange}>
+                        <select id="inputBathrooms" className="form-control" data-type="int" name={'rooms[' + id + '].bathrooms'} value={room.bathrooms} onChange={this.handleChange}>
                             {bathrooms.map((bathroom, i) => (<option key={i} value={bathroom.value}>{bathroom.name}</option>))}
                         </select>
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputKitchen" className="col-form-label">Kitchen <FontAwesome className="text-muted" name="cutlery" /></label>
-                        <select id="inputKitchen" className="form-control" name={"rooms[" + id + "].kitchen"} value={room.kitchen} onChange={this.handleChange}>
+                        <select id="inputKitchen" className="form-control" name={'rooms[' + id + '].kitchen'} value={room.kitchen} onChange={this.handleChange}>
                             {kitchen.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
                         </select>
                     </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputLaundry" className="col-form-label">Laundry <FontAwesome className="text-muted" name="black-tie" /></label>
-                        <select id="inputLaundry" className="form-control" name={"rooms[" + id + "].laundry"} value={room.laundry} onChange={this.handleChange}>
+                        <select id="inputLaundry" className="form-control" name={'rooms[' + id + '].laundry'} value={room.laundry} onChange={this.handleChange}>
                             {laundry.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
                         </select>
                     </div>
@@ -93,7 +95,7 @@ class Room extends React.Component {
                     <div className="row">
                         <div className="col-sm">
                             <label htmlFor="inputMinRental" className="col-form-label">Min rental length <FontAwesome className="text-muted" name="calendar-o" /></label>
-                            <select id="inputMinRental" className="form-control" name={"rooms[" + id + "].min_rental"} value={room.min_rental} onChange={this.handleChange}>
+                            <select id="inputMinRental" className="form-control" name={'rooms[' + id + '].min_rental'} value={room.min_rental} onChange={this.handleChange}>
                                 {rentalLengths.map((item, i) => (<option key={i} value={item.value}>{item.name}</option>))}
                             </select>
                         </div>
@@ -101,14 +103,14 @@ class Room extends React.Component {
                             <label htmlFor="inputRate" className="col-form-label mr-2">Monthly rate <FontAwesome className="text-muted" name="dollar" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div className="input-group-addon">{addListing.listing.currency}</div>
-                                <input type="number" name={"rooms[" + id + "].base_rate"} value={room.base_rate} min={10} data-type="int" className="form-control mr-3" id="inputRate" required onChange={this.handleChange} />
+                                <input type="number" name={'rooms[' + id + '].base_rate'} value={room.base_rate} min={10} data-type="int" className="form-control mr-3" id="inputRate" required onChange={this.handleChange} />
                             </div>
                         </div>
                         <div className="col-sm">
                             <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit <FontAwesome className="text-muted" name="dollar" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div className="input-group-addon">{addListing.listing.currency}</div>
-                                <input type="number" name={"rooms[" + id + "].deposit"} value={room.deposit} data-type="int" className="form-control mr-3" id="inputDeposit" required onChange={this.handleChange} />
+                                <input type="number" name={'rooms[' + id + '].deposit'} value={room.deposit} data-type="int" className="form-control mr-3" id="inputDeposit" required onChange={this.handleChange} />
                             </div>
                         </div>
                     </div>
@@ -119,7 +121,7 @@ class Room extends React.Component {
     }
 
     render() {
-        let { addListing, id, room } = this.props;
+        let { addListing, room } = this.props;
 
         return (
             <div>

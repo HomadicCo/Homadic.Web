@@ -19,18 +19,18 @@ class DescriptionEditor extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        const form = this.refs.descriptionForm;
+        const form = this.descriptionForm;
 
         if (form.checkValidity() == false) {
-            form.classList.add("was-validated");
+            form.classList.add('was-validated');
         } else {
-            browserHistory.push("/add/preview");
+            browserHistory.push('/add/preview');
         }
     }
 
     handlePrevClick(e) {
         e.preventDefault();
-        browserHistory.push("/add/amenities");
+        browserHistory.push('/add/amenities');
     }
 
     handleChange(e) {
@@ -54,8 +54,8 @@ class DescriptionEditor extends React.Component {
 
         return (
             <div className="btn-group mb-2">
-                <button type="button" className={previewMode ? "btn btn-sm btn-light" : "btn btn-sm btn-action"} onClick={this.setPreviewMode.bind(null, false)}><FontAwesome name="pencil" /> Editor</button>
-                <button type="button" className={previewMode ? "btn btn-sm btn-action" : "btn btn-sm btn-light"} onClick={this.setPreviewMode.bind(null, true)}><FontAwesome name="eye" /> Preview</button>
+                <button type="button" className={previewMode ? 'btn btn-sm btn-light' : 'btn btn-sm btn-action'} onClick={this.setPreviewMode.bind(null, false)}><FontAwesome name="pencil" /> Editor</button>
+                <button type="button" className={previewMode ? 'btn btn-sm btn-action' : 'btn btn-sm btn-light'} onClick={this.setPreviewMode.bind(null, true)}><FontAwesome name="eye" /> Preview</button>
             </div>
         )
     }
@@ -75,7 +75,7 @@ class DescriptionEditor extends React.Component {
         let { listing } = this.props.addListing;
 
         return (
-            <form autoComplete="off" ref="descriptionForm" noValidate>
+            <form autoComplete="off" ref={(c) => { this.descriptionForm = c; }} noValidate>
                 <h1 className="fancy blue display-4 mb-4">Description</h1>
                 {this.renderPreviewToggle()}
                 <textarea id="inputDescription" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="description" value={listing.description} onChange={this.handleChange} />

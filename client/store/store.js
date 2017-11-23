@@ -55,7 +55,7 @@ const store = createStore(
   defaultState,
   composeEnhancers(
     applyMiddleware(thunk, routerMiddleware(browserHistory)),
-    persistState()
+    persistState(['addListing'])
   )
 );
 

@@ -26,7 +26,7 @@ export function handlePerformLogin(code) {
             dispatch(setAuthenticatingStatus(true));
 
             request.then(response => {
-                saveLocalStorage("auth", { ...response.data, token_Expiry: moment(new Date()).add(59, "days") });
+                saveLocalStorage('auth', { ...response.data, token_Expiry: moment(new Date()).add(59, 'days') });
                 delay(750).then(() => {
                     dispatch(setLoggedInStatus(true));
                     dispatch(setAuthenticatingStatus(false));

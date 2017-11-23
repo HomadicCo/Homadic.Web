@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 
@@ -13,7 +12,7 @@ class Home extends React.Component {
     }
 
     componentWillMount() {
-        let { handleGetHome, params } = this.props;
+        let { params } = this.props;
 
         if (params.homeSlug) {
             this.setState({ fetching: true });
@@ -26,7 +25,6 @@ class Home extends React.Component {
     render() {
         let { homes } = this.props;
         let { fetching } = this.state;
-        console.log(homes.selected);
 
         return (
             <div>

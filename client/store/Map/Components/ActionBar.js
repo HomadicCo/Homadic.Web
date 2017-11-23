@@ -63,7 +63,7 @@ class ActionBar extends React.Component {
         }
 
         const inputProps = {
-            placeholder: "Search cities..."
+            placeholder: 'Search cities...'
         }
 
         return (
@@ -74,7 +74,7 @@ class ActionBar extends React.Component {
     }
 
     render() {
-        let { authentication, map, params } = this.props;
+        let { authentication, map } = this.props;
 
         return (
             <div>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
 import IndexHeader from './components/IndexHeader';
+import { labels } from '../../data';
 
 class Index extends React.Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class Index extends React.Component {
         }
 
         const inputProps = {
-            placeholder: "Where would you like to live?",
+            placeholder: 'Where would you like to live?',
             autoFocus: true
         }
 
@@ -49,7 +50,7 @@ class Index extends React.Component {
                 <div className="home">
                     <div className="container text-center">
                         <div className="col-12 mb-5 mt-3">
-                            <h4>Crowdsourced monthly rentals around the globe - a slow traveller's best friend.</h4>
+                            <h4>{labels.indexSlogan}</h4>
                         </div>
                         <div className="col-12 my-5">
                             <PlacesTypeahead {...this.props} classNames={classNames} styles={homeStyles} inputProps={inputProps} />
@@ -58,7 +59,7 @@ class Index extends React.Component {
                     <div className="how-it-works">
                         <Link to="https://nickbrooks.co/" target="_blank" className="btn btn-sm btn-action"><FontAwesome name="question-circle" /> How Homadic works</Link>
                     </div>
-                    <div className="home-bg"></div>
+                    <div className="home-bg" />
                 </div>
             </div>
         )

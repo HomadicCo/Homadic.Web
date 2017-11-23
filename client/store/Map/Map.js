@@ -1,8 +1,8 @@
+/* global google */
 import React from 'react';
-import { browserHistory, Link } from 'react-router';
-import { withGoogleMap, GoogleMap } from "react-google-maps";
+import { browserHistory } from 'react-router';
+import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import FontAwesome from 'react-fontawesome';
 import ActionBar from './Components/ActionBar';
 import { AddListingMarker, HomeMarker } from './Components/Markers';
 import MapStyle from '../../components/MapStyle/MapStyle';
@@ -52,6 +52,28 @@ class Map extends React.Component {
         this.handleMapChanged = this.handleMapChanged.bind(this);
         this.handleMarkerDrag = this.handleMarkerDrag.bind(this);
         this.isLoading = this.isLoading.bind(this);
+    }
+
+    componentWillMount() {
+        let { query } = this.props.location;
+
+        this.props.setAddNewListingMode(false);
+
+        this.updateLatLong({
+            slug: this.props.params.citySlug,
+            lat: parseFloat(query.lat),
+            lng: parseFloat(query.lng),
+            zoom: parseFloat(query.z)
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let { location } = this.props;
+
+        // check if route has changed
+        if (location.pathname != nextProps.location.pathname) {
+            this.updateLatLong({ slug: nextProps.params.citySlug });
+        }
     }
 
     updateLatLong(params) {
@@ -113,13 +135,13 @@ class Map extends React.Component {
                 center: nextCenter,
             });
             // update route
-            browserHistory.push(location.pathname + "?lat=" + lat.toFixed(6) + "&lng=" + lng.toFixed(6) + "&z=" + zoom);
+            browserHistory.push(location.pathname + '?lat=' + lat.toFixed(6) + '&lng=' + lng.toFixed(6) + '&z=' + zoom);
         }
     }
 
     openHomeInNewWindow(slug) {
         if (slug) {
-            window.open(window.location.origin + "/home/" + slug);
+            window.open(window.location.origin + '/home/' + slug);
         }
     }
 
@@ -130,28 +152,6 @@ class Map extends React.Component {
         if (profile.updating) return true;
         if (!center) return true;
         return false;
-    }
-
-    componentWillReceiveProps(nextProps) {
-        let { location } = this.props;
-
-        // check if route has changed
-        if (location.pathname != nextProps.location.pathname) {
-            this.updateLatLong({ slug: nextProps.params.citySlug });
-        }
-    }
-
-    componentWillMount() {
-        let { query } = this.props.location;
-
-        this.props.setAddNewListingMode(false);
-
-        this.updateLatLong({
-            slug: this.props.params.citySlug,
-            lat: parseFloat(query.lat),
-            lng: parseFloat(query.lng),
-            zoom: parseFloat(query.z)
-        });
     }
 
     render() {
@@ -174,10 +174,10 @@ class Map extends React.Component {
                             setHoveredHome={this.props.setHoveredHome}
                             openHomeInNewWindow={this.openHomeInNewWindow}
                             containerElement={
-                                <div style={{ height: `100%` }} />
+                                <div style={{ height: '100%' }} />
                             }
                             mapElement={
-                                <div style={{ height: `100%` }} />
+                                <div style={{ height: '100%' }} />
                             }
                             homes={homes.data}
                             map={map}

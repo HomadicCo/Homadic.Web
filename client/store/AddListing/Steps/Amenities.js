@@ -14,18 +14,18 @@ class Amenities extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        const form = this.refs.amenitiesForm;
+        const form = this.amenitiesForm;
 
         if (form.checkValidity() == false) {
-            form.classList.add("was-validated");
+            form.classList.add('was-validated');
         } else {
-            browserHistory.push("/add/notes");
+            browserHistory.push('/add/notes');
         }
     }
 
     handlePrevClick(e) {
         e.preventDefault();
-        browserHistory.push("/add/rooms");
+        browserHistory.push('/add/rooms');
     }
 
     handleChange(e) {
@@ -43,27 +43,27 @@ class Amenities extends React.Component {
         let { listing } = this.props.addListing;
 
         return (
-            <form autoComplete="off" ref="amenitiesForm" noValidate>
+            <form autoComplete="off" ref={(c) => { this.amenitiesForm = c; }} noValidate>
                 <h1 className="fancy blue display-4 mb-4">Amenities</h1>
                 <div className="form-row">
                     <div className="col">
                         <label className="custom-control custom-checkbox">
                             <input type="checkbox" className="custom-control-input" name="amenities.air_conditioning" defaultChecked={listing.amenities.air_conditioning} value={listing.amenities.air_conditioning} onChange={this.handleChange} />
-                            <span className="custom-control-indicator"></span>
+                            <span className="custom-control-indicator" />
                             <span className="custom-control-description">Air Conditioning</span>
                         </label>
                     </div>
                     <div className="col">
                         <label className="custom-control custom-checkbox">
                             <input type="checkbox" className="custom-control-input" name="amenities.gym" defaultChecked={listing.amenities.gym} value={listing.amenities.gym} onChange={this.handleChange} />
-                            <span className="custom-control-indicator"></span>
+                            <span className="custom-control-indicator" />
                             <span className="custom-control-description">Gym</span>
                         </label>
                     </div>
                     <div className="col">
                         <label className="custom-control custom-checkbox">
                             <input type="checkbox" className="custom-control-input" name="amenities.pool" defaultChecked={listing.amenities.pool} value={listing.amenities.pool} onChange={this.handleChange} />
-                            <span className="custom-control-indicator"></span>
+                            <span className="custom-control-indicator" />
                             <span className="custom-control-description">Pool</span>
                         </label>
                     </div>
@@ -80,9 +80,9 @@ class Amenities extends React.Component {
                     </div>
                 </div>
 
-                {listing.wifi.type != "none" ?
+                {listing.wifi.type != 'none' ?
                     <div className="form-row">
-                        {(["paid", "canInstall"].indexOf(listing.wifi.type) > -1) ?
+                        {(['paid', 'canInstall'].indexOf(listing.wifi.type) > -1) ?
                             <div className="form-group col-md-3">
                                 <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost per month <FontAwesome className="text-muted" name="dollar" /></label>
                                 <div className="input-group mb-2 mr-sm-2 mb-sm-0">

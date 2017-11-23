@@ -7,14 +7,14 @@ import FontAwesome from 'react-fontawesome';
 class PlacesTypeahead extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { address: "" }
+        this.state = { address: '' }
         this.handleSelect = this.handleSelect.bind(this);
         this.onChange = (address) => this.setState({ address })
     }
 
     handleSelect(e) {
-        this.setState({ address: "" });
-        browserHistory.push("/" + convertToSlug(e));
+        this.setState({ address: '' });
+        browserHistory.push('/' + convertToSlug(e));
     }
 
     render() {
@@ -22,11 +22,11 @@ class PlacesTypeahead extends React.Component {
             value: this.state.address,
             onChange: this.onChange,
             ...this.props.inputProps
-        }
+        };
 
         const options = {
             types: ['(cities)']
-        }
+        };
 
         const AutocompleteItem = ({ suggestion }) => (<div className="result"><FontAwesome name="map-marker" size="lg" className="red-light" /> {suggestion}</div>)
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome'
 
 //components
 import AddHeader from './components/AddHeader';
@@ -16,6 +15,10 @@ import PreviewListing from './Steps/PreviewListing';
 class AddListing extends React.Component {
     constructor(props) {
         super(props)
+    }
+
+    componentWillUnmount() {
+        this.props.clearNewListing();
     }
 
     stepSelector() {
@@ -47,10 +50,6 @@ class AddListing extends React.Component {
                     <SelectFromGoogleMaps {...this.props} />
                 )
         }
-    }
-
-    componentWillUnmount() {
-        this.props.clearNewListing();
     }
 
     render() {

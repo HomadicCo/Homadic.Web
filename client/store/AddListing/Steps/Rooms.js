@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import { currencies, rentalLengths, room } from '../../../data';
+import { currencies, room } from '../../../data';
 import Room from '../components/Room';
 
 class Rooms extends React.Component {
@@ -14,6 +14,14 @@ class Rooms extends React.Component {
         this.handleAddNewRoomClick = this.handleAddNewRoomClick.bind(this);
     }
 
+    componentWillMount() {
+        let { listing } = this.props.addListing;
+
+        if (listing.rooms.length == 0) {
+            this.props.addRoomToListing(room);
+        }
+    }
+
     handleChange(e) {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -24,18 +32,18 @@ class Rooms extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        const form = this.refs.roomsForm;
+        const form = this.roomsForm;
 
         if (form.checkValidity() == false) {
-            form.classList.add("was-validated");
+            form.classList.add('was-validated');
         } else {
-            browserHistory.push("/add/amenities");
+            browserHistory.push('/add/amenities');
         }
     }
 
     handlePrevClick(e) {
         e.preventDefault();
-        browserHistory.push("/add/listing");
+        browserHistory.push('/add/listing');
     }
 
     handleAddNewRoomClick(e) {
@@ -43,19 +51,11 @@ class Rooms extends React.Component {
         this.props.addRoomToListing(room);
     }
 
-    componentWillMount() {
-        let { listing } = this.props.addListing;
-
-        if (listing.rooms.length == 0) {
-            this.props.addRoomToListing(room);
-        }
-    }
-
     render() {
         let { listing } = this.props.addListing;
 
         return (
-            <form autoComplete="off" ref="roomsForm" noValidate>
+            <form autoComplete="off" ref={(c) => { this.roomsForm = c; }} noValidate>
                 <h1 className="fancy blue display-4 mb-4">Rooms</h1>
                 <div className="form-row">
                     <div className="form-group col-md-2">

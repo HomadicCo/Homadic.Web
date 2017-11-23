@@ -1,19 +1,19 @@
 const MapStyle = [
     {
-        featureType: "poi",
-        elementType: "labels",
+        featureType: 'poi',
+        elementType: 'labels',
         stylers: [
             {
-                visibility: "off"
+                visibility: 'off'
             }
         ]
     },
     {
-        featureType: "poi.medical",
-        elementType: "labels",
+        featureType: 'poi.medical',
+        elementType: 'labels',
         stylers: [
             {
-                visibility: "on"
+                visibility: 'on'
             }
         ]
     }

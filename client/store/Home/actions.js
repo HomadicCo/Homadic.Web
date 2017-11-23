@@ -36,7 +36,7 @@ export function handleGetHomes() {
                 resolve(response.data);
             }).catch(error => {
                 dispatch(updateFetchingHomesStatus(false));
-                console.log(error);
+                console.error(error);
                 reject(error);
             });
         });
@@ -52,7 +52,7 @@ export function handleGetHome(homeSlug) {
                 dispatch(updateSelectedHome(response.data));
                 resolve(response.data);
             }).catch(error => {
-                console.log(error);
+                console.error(error);
                 reject(error);
             });
         });

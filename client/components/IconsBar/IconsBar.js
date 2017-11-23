@@ -70,7 +70,7 @@ class IconsBar extends React.Component {
         let { className, listing } = this.props;
 
         return (
-            <p className={"icons " + className}>
+            <p className={'icons ' + className}>
                 {this.renderWifi()}
                 {this.renderAC()}
                 {this.renderLaundry()}

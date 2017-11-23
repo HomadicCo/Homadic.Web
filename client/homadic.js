@@ -13,7 +13,7 @@ import Home from './store/Home/Home';
 import Map from './store/Map/Map';
 
 // Import Router
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store/store';
 
@@ -24,7 +24,7 @@ const router = (
                 <Route path="/add(/:step)" component={AddListing} />
             </Route>
             <Route path="/" component={App}>
-                <IndexRoute component={Index}></IndexRoute>
+                <IndexRoute component={Index} />
                 <Route path="/signin-facebook" component={SigninFacebook} />
                 <Route path="/home/:homeSlug" component={Home} />
                 <Route path="/:citySlug" component={Map} />

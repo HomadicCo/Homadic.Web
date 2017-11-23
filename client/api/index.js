@@ -8,13 +8,13 @@ function getApiUrl() {
 
     if (apiUrl) { return apiUrl; }
 
-    return "https://api.homadic.co/";
+    return 'https://api.homadic.co/';
 }
 
 function getAuthHeader() {
-    var auth = loadLocalStorage("auth");
+    var auth = loadLocalStorage('auth');
 
-    if (auth == null || auth.access_Token == null) {
+    if (auth === null || auth.access_Token === null) {
         return null;
     }
 
@@ -30,39 +30,39 @@ Axios.defaults.baseURL = getApiUrl();
 // login
 
 export function apiPerformLogin(code) {
-    return Axios.post("token", { code });
+    return Axios.post('token', { code });
 }
 
 export function apiValidateToken() {
-    return Axios.get("token/validate", getAuthHeader())
+    return Axios.get('token/validate', getAuthHeader())
 }
 
 // profile
 
 export function apiGetProfile() {
-    return Axios.get("profile", getAuthHeader());
+    return Axios.get('profile', getAuthHeader());
 }
 
 // google maps
 
 export function apiSearchAutocomplete(query) {
-    return Axios.get("https://maps.googleapis.com/maps/api/place/autocomplete/json?input=" + query + "&types=(cities)&key=AIzaSyCH7lJaKLHKo-uchWFd0WRMlLPx9Yuab18");
+    return Axios.get('https://maps.googleapis.com/maps/api/place/autocomplete/json?input=' + query + '&types=(cities)&key=AIzaSyCH7lJaKLHKo-uchWFd0WRMlLPx9Yuab18');
 }
 
 export function apiNearbyResults(coordinates) {
-    return Axios.get("nearby?lat=" + coordinates.lat + "&lng=" + coordinates.lng);
+    return Axios.get('nearby?lat=' + coordinates.lat + '&lng=' + coordinates.lng, getAuthHeader());
 }
 
 export function apiGetGooglePlace(googlePlaceId) {
-    return Axios.get("nearby/" + googlePlaceId);
+    return Axios.get('nearby/' + googlePlaceId, getAuthHeader());
 }
 
 // homees
 
 export function apiGetHomes(query) {
-    return Axios.get("homes");
+    return Axios.get('homes');
 }
 
 export function apiGetHome(homeSlug) {
-    return Axios.get("homes/" + homeSlug);
+    return Axios.get('homes/' + homeSlug);
 }

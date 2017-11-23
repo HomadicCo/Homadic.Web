@@ -1,6 +1,11 @@
+//only return if id is not noteId
+function dontRemove(roomId, room) {
+    return roomId !== room.id;
+}
+
 function setNested(obj, key, value) {
-    if (typeof key === "string") {
-        var key = key.split('.');
+    if (typeof key === 'string') {
+        key = key.split('.');
     }
 
     if (key.length > 1) {
@@ -10,10 +15,10 @@ function setNested(obj, key, value) {
 
         if (keyIsArray) {
             i = parseFloat(keyIsArray[0].match(/(\d+)/g));
-            p = p.replace((/\[(\d*)\]/g), '');
+            p = p.replace(/\[(\d*)\]/g, '');
         }
 
-        if (obj[p] == null || typeof obj[p] !== 'object') {
+        if (obj[p] === null || typeof obj[p] !== 'object') {
             obj[p] = {};
         }
 
@@ -24,61 +29,47 @@ function setNested(obj, key, value) {
 }
 
 function AddListing(state = [], action) {
+    var newState = Object.assign({}, state);
+
     switch (action.type) {
         case 'CLEAR_NEW_LISTING':
-            var newState = Object.assign({}, state);
             newState.listing = action.emptyListing;
             return newState;
         case 'SET_VALIDATION_VALUE':
-            var newState = Object.assign({}, state);
             newState.valid[action.key] = action.value;
             return newState;
         case 'UPDATE_INPUT_PROP':
-            var newState = Object.assign({}, state);
             setNested(newState.listing, action.key, action.value);
             return newState;
         case 'UPDATE_NEARBY_RESULTS':
-            var newState = Object.assign({}, state);
             newState.nearbyResults = action.data;
             return newState;
         case 'SET_LISTING_FROM_GOOGLE_MAPS':
-            let { googleMapsPlace } = action;
-            var newState = Object.assign({}, state);
-
             newState.listing = {
                 ...newState.listing,
-                address: googleMapsPlace.formatted_address,
+                address: action.googleMapsPlace.formatted_address,
                 location: {
-                    type: "Point",
-                    coordinates: [googleMapsPlace.geometry.location.lat, googleMapsPlace.geometry.location.lng]
+                    type: 'Point',
+                    coordinates: [action.googleMapsPlace.geometry.location.lat, action.googleMapsPlace.geometry.location.lng]
                 },
-                name: googleMapsPlace.name,
-                phone_number: googleMapsPlace.international_phone_number,
-                google_maps_id: googleMapsPlace.place_id,
-                rating: googleMapsPlace.rating,
-                website: googleMapsPlace.website
-            }
+                name: action.googleMapsPlace.name,
+                phone_number: action.googleMapsPlace.international_phone_number,
+                google_maps_id: action.googleMapsPlace.place_id,
+                rating: action.googleMapsPlace.rating,
+                website: action.googleMapsPlace.website
+            };
 
             return newState;
         case 'SET_EXPANDED_ROOM':
-            var newState = Object.assign({}, state);
             newState.ui.expandedRoom = action.roomId;
             return newState;
         case 'REMOVE_ROOM':
-            var newState = Object.assign({}, state);
-            //only return if id is not noteId
-            function dontRemove(roomId, room) {
-                return roomId != room.id;
-            }
-
             newState.listing.rooms = newState.listing.rooms.filter(dontRemove.bind(null, action.roomId));
             return newState;
         case 'SET_FETCHING_NEARBY_RESULTS_STATUS':
-            var newState = Object.assign({}, state);
             newState.ui.fetchingNearbyResults = action.value;
             return newState;
         case 'ADD_ROOM_TO_LISTING':
-            var newState = Object.assign({}, state);
             newState.ui.expandedRoom = action.id;
             newState.listing.rooms.push(Object.assign({}, action.room, { id: action.id }));
             return newState;

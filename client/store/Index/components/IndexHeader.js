@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import { getLoginUrl } from '../../../functions';
 import Avatar from '../../../Components/Avatar/Avatar';
 
 class HomeHeader extends React.Component {

@@ -12,6 +12,10 @@ class ListingDetails extends React.Component {
         this.handleNextClick = this.handleNextClick.bind(this);
     }
 
+    componentWillMount() {
+        this.setValuesFromGoogleMaps();
+    }
+
     setValuesFromGoogleMaps() {
         let { addListing, location, setListingFromGoogleMaps } = this.props;
 
@@ -19,8 +23,8 @@ class ListingDetails extends React.Component {
 
         apiGetGooglePlace(location.query.gmid).then(response => {
             setListingFromGoogleMaps(response.data.place);
-        }).catch(e => {
-            browserHistory.push("/");
+        }).catch(() => {
+            browserHistory.push('/');
         });
     }
 
@@ -34,24 +38,20 @@ class ListingDetails extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        const form = this.refs.listingForm;
+        const form = this.listingForm;
 
         if (form.checkValidity() == false) {
-            form.classList.add("was-validated");
+            form.classList.add('was-validated');
         } else {
-            browserHistory.push("/add/rooms");
+            browserHistory.push('/add/rooms');
         }
-    }
-
-    componentWillMount() {
-        this.setValuesFromGoogleMaps();
     }
 
     render() {
         let { listing } = this.props.addListing;
 
         return (
-            <form autoComplete="off" ref="listingForm" noValidate>
+            <form autoComplete="off" ref={(c) => { this.listingForm = c; }} noValidate>
                 <h1 className="fancy blue display-4 mb-4">Listing details</h1>
                 <div className="form-row">
                     <div className="form-group col-md-9">

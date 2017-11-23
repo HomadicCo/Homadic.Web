@@ -1,5 +1,4 @@
 import React from 'react';
-import { icons } from '../../../Images/Images';
 import RatingBadge from '../../../components/RatingBadge/RatingBadge';
 import IconsBar from '../../../components/IconsBar/IconsBar';
 

@@ -13,6 +13,16 @@ class AppView extends React.Component {
         }
     }
 
+    componentWillMount() {
+        this.authenticate();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props !== nextProps) {
+            this.authenticate();
+        }
+    }
+
     authenticate() {
         let { authentication, handleGetProfile, setLoggedInStatus } = this.props;
 
@@ -32,16 +42,6 @@ class AppView extends React.Component {
         }
 
         this.setState({ loading: false });
-    }
-
-    componentWillMount() {
-        this.authenticate();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props != nextProps) {
-            this.authenticate();
-        }
     }
 
     render() {

@@ -1,12 +1,12 @@
 import removeAccents from 'remove-accents';
 
 export function setDocumentTitle(value) {
-    document.title = (value === undefined ? "Abstrack" : value + " // Abstrack");
+    document.title = (value === undefined ? 'Abstrack' : value + ' // Abstrack');
 }
 
 export function clearLocalStorage() {
     for (var i = 0, len = localStorage.length; i < len; ++i) {
-        if ("nm." == localStorage.key(i).substring(0, 3)) {
+        if ('nm.' == localStorage.key(i).substring(0, 3)) {
             localStorage.removeItem(localStorage.key(i));
         }
     }
@@ -26,7 +26,7 @@ export function guid() {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     }
 
-    return (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return (S4() + S4() + '-' + S4() + '-4' + S4().substr(0, 3) + '-' + S4() + '-' + S4() + S4() + S4()).toLowerCase();
 }
 
 export const loadLocalStorage = (key) => {
@@ -60,46 +60,46 @@ export const removeLocalStorage = (key) => {
 }
 
 export const generateRoomTitle = (room) => {
-    let serviced = "";
+    let serviced = '';
     switch (room.serviced) {
         case false:
-            serviced = "";
+            serviced = '';
             break;
         case true:
-            serviced = ", serviced";
+            serviced = ', serviced';
             break;
     }
 
-    let bedroom = "";
+    let bedroom = '';
     switch (room.bedrooms) {
         case 0:
-            bedroom = "Studio";
+            bedroom = 'Studio';
             break;
         case 1:
-            bedroom = "1 bedroom";
+            bedroom = '1 bedroom';
             break;
         case 2:
-            bedroom = "2 bedroom";
+            bedroom = '2 bedroom';
             break;
         case 3:
-            bedroom = "3 bedroom";
+            bedroom = '3 bedroom';
             break;
     }
 
-    let bathroom = "";
+    let bathroom = '';
     switch (room.bathrooms) {
         case 1:
-            bathroom = "1 bathroom";
+            bathroom = '1 bathroom';
             break;
         case 2:
-            bathroom = "2 bathroom";
+            bathroom = '2 bathroom';
             break;
         case 3:
-            bathroom = "3 bathroom";
+            bathroom = '3 bathroom';
             break;
     }
 
-    return bedroom + ", " + bathroom + serviced;
+    return bedroom + ', ' + bathroom + serviced;
 }
 
 // create a slug that can be used to search google maps
@@ -118,6 +118,6 @@ export function extractYoutubeFromString(string) {
 
 // generate the facebook redirect Url
 export function getLoginUrl(state) {
-    const redirectUri = "http://localhost:9990/signin-facebook";
-    return "https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=" + redirectUri + "&state=" + state;
+    const redirectUri = 'http://localhost:9990/signin-facebook';
+    return 'https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=' + redirectUri + '&state=' + state;
 }
