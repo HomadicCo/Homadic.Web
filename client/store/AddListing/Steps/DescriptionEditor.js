@@ -77,8 +77,9 @@ class DescriptionEditor extends React.Component {
         return (
             <form autoComplete="off" ref={(c) => { this.descriptionForm = c; }} noValidate>
                 <h1 className="fancy blue display-4 mb-4">Description</h1>
+                <p><a href="https://guides.github.com/features/mastering-markdown/" rel="noopener noreferrer" target="_blank">Markdown</a> is enabled. And you can add YouTube clips!</p>
                 {this.renderPreviewToggle()}
-                <textarea id="inputDescription" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="description" value={listing.description} onChange={this.handleChange} />
+                <textarea id="inputDescription" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="description" maxLength={9000} value={listing.description} onChange={this.handleChange} />
             </form>
         )
     }
