@@ -11,18 +11,19 @@ import authentication from './Authentication/reducer';
 import homes from './Home/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
+import ui from './UI/reducer';
 
 // data
 import { emptyListing, listingValidations } from '../data';
 
 const defaultState = {
-  authentication: {},
   addListing: {
     nearbyResults: [],
     listing: emptyListing,
     valid: listingValidations,
     ui: {}
   },
+  authentication: {},
   homes: {
     data: [],
     fetching: false,
@@ -32,7 +33,10 @@ const defaultState = {
     markers: [],
     addNewListingMode: false
   },
-  profile: { data: {} }
+  profile: { data: {} },
+  ui: {
+    loading: false
+  }
 };
 
 const appReducer = combineReducers({
@@ -41,7 +45,8 @@ const appReducer = combineReducers({
   homes,
   map,
   profile,
-  routing: routerReducer
+  routing: routerReducer,
+  ui
 });
 
 const rootReducer = (state, action) => {

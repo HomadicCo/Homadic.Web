@@ -1,35 +1,30 @@
 import React from 'react';
-import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
+import { browserHistory, } from 'react-router';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            fetching: true
-        };
     }
 
     componentWillMount() {
-        let { params } = this.props;
+        let { params, setLoadingStatus } = this.props;
 
         if (params.homeSlug) {
-            this.setState({ fetching: true });
+            setLoadingStatus(true);
             this.props.handleGetHome(params.homeSlug).then(() => {
-                this.setState({ fetching: false });
+                setLoadingStatus(false);
             });
+        } else {
+            browserHistory.push('/');
         }
     }
 
     render() {
         let { homes } = this.props;
-        let { fetching } = this.state;
 
         return (
-            <div>
-                {fetching ? <LoadingScreen /> : <ListingTemplate listing={homes.selected} previewMode={false} {...this.props} />}
-            </div>
+            <ListingTemplate listing={homes.selected} previewMode={false} {...this.props} />
         )
     }
 }

@@ -1,9 +1,17 @@
 import React from 'react';
 import FontAwesome from 'react-fontawesome';
+import { internetType } from '../../../data';
 
 class Internet extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    renderWiFiLabel() {
+        let { wifi } = this.props.listing;
+
+        const i = internetType.findIndex((type) => type.value == wifi.type);
+        return internetType[i].name;
     }
 
     render() {
@@ -14,7 +22,7 @@ class Internet extends React.Component {
                 <h2 className="fancy blue">Internet</h2>
                 <div className="row">
                     <div className="col-md-4 capitalize">
-                        <p><FontAwesome name="dollar" /> {listing.wifi.type}</p>
+                        <p><FontAwesome name="dollar" /> {this.renderWiFiLabel()}</p>
                     </div>
                     <div className="col-md-4 capitalize">
                         <p><FontAwesome name="download" /> {listing.wifi.download}mbps</p>

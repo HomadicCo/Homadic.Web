@@ -9,6 +9,7 @@ import * as AuthenticationActions from './Authentication/actions';
 import * as HomeActions from './Home/actions';
 import * as MapActions from './Map/actions';
 import * as ProfileActions from './Profile/actions';
+import * as UIActions from './UI/actions';
 
 function mapStateToProps(state) {
     return {
@@ -16,7 +17,8 @@ function mapStateToProps(state) {
         addListing: state.addListing,
         homes: state.homes,
         map: state.map,
-        profile: state.profile
+        profile: state.profile,
+        ui: state.ui,
     }
 }
 
@@ -26,7 +28,8 @@ function mapDispatchToProps(dispatch) {
         ...AddListingActions,
         ...HomeActions,
         ...MapActions,
-        ...ProfileActions
+        ...ProfileActions,
+        ...UIActions
     }, dispatch)
 }
 

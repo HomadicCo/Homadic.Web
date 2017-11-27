@@ -13,19 +13,18 @@ class ListingDetails extends React.Component {
     }
 
     componentWillMount() {
-        this.setValuesFromGoogleMaps();
-    }
+        let { addListing, location, setListingFromGoogleMaps, setLoadingStatus } = this.props;
 
-    setValuesFromGoogleMaps() {
-        let { addListing, location, setListingFromGoogleMaps } = this.props;
-
-        if (addListing.listing.google_maps_id) return;
-
-        apiGetGooglePlace(location.query.gmid).then(response => {
-            setListingFromGoogleMaps(response.data.place);
-        }).catch(() => {
-            browserHistory.push('/');
-        });
+        if (addListing.listing.google_maps_id != location.query.gmid) {
+            setLoadingStatus(true);
+            apiGetGooglePlace(location.query.gmid).then(response => {
+                setListingFromGoogleMaps(response.data.place);
+                setLoadingStatus(false);
+            }).catch(() => {
+                setLoadingStatus(false);
+                browserHistory.push('/');
+            });
+        }
     }
 
     handleChange(e) {

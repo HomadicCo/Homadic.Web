@@ -86,10 +86,10 @@ export const emptyListing = {
 }
 
 export const internetType = [
-    { value: 'none', name: 'No Internet' },
+    { value: 'none', name: 'No internet' },
     { value: 'free', name: 'Free' },
     { value: 'paid', name: 'Paid' },
-    { value: 'canInstall', name: 'Can Install' }
+    { value: 'canInstall', name: 'Can install' }
 ]
 
 export const kitchen = [

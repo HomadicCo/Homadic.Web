@@ -14,13 +14,13 @@ function getApiUrl() {
 function getAuthHeader() {
     var auth = loadLocalStorage('auth');
 
-    if (auth === null || auth.access_Token === null) {
+    if (auth === null || auth.access_token === null) {
         return null;
     }
 
     return {
         headers: {
-            Authorization: auth.access_Token
+            Authorization: auth.access_token
         }
     }
 }

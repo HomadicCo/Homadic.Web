@@ -125,10 +125,16 @@ textarea:active {
 }
 
 .loading-screen {
+    background: $off-white;
+    position: absolute;
+    z-index: 99999;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 @media (max-width: 767px) {

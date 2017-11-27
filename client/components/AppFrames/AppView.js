@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { loadLocalStorage } from '../../functions';
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 class AppView extends React.Component {
     constructor(props) {
@@ -22,9 +23,12 @@ class AppView extends React.Component {
     }
 
     render() {
+        let { ui } = this.props;
+
         return (
             <div>
                 {React.cloneElement(this.props.children, this.props)}
+                {ui.loading ? <LoadingScreen /> : undefined}
             </div>
         )
     }

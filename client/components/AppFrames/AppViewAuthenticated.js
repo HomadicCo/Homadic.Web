@@ -6,10 +6,6 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen';
 class AppView extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            loading: true
-        }
     }
 
     componentWillMount() {
@@ -17,16 +13,18 @@ class AppView extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (this.props.ui.loading == nextProps.ui.loading) return;
+
         if (this.props !== nextProps) {
             this.authenticate();
         }
     }
 
     authenticate() {
-        let { authentication, handleGetProfile, setLoggedInStatus } = this.props;
+        let { authentication, handleGetProfile, setLoggedInStatus, setLoadingStatus } = this.props;
 
         if (!authentication.isLoggedIn) {
-            this.setState({ loading: true });
+            setLoadingStatus(true);
 
             const auth = loadLocalStorage('auth');
             const isLoggedIn = (!!auth && moment(auth.token_Expiry).isAfter(moment(new Date()))) ? true : false;
@@ -38,17 +36,18 @@ class AppView extends React.Component {
                 const loginUrl = getLoginUrl(window.location.pathname);
                 window.location = loginUrl;
             }
-        }
 
-        this.setState({ loading: false });
+            setLoadingStatus(false);
+        }
     }
 
     render() {
-        let { loading } = this.state;
+        let { ui } = this.props;
 
         return (
             <div>
-                {loading ? <LoadingScreen /> : React.cloneElement(this.props.children, this.props)}
+                {React.cloneElement(this.props.children, this.props)}
+                {ui.loading ? <LoadingScreen /> : undefined}
             </div>
         )
     }
