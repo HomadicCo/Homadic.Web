@@ -15,7 +15,11 @@ class Rooms extends React.Component {
     }
 
     componentWillMount() {
-        let { listing } = this.props.addListing;
+        let { listing, valid } = this.props.addListing;
+
+        if (!valid.listing) {
+            browserHistory.push('/add/listing');
+        }
 
         if (listing.rooms.length == 0) {
             this.props.addRoomToListing(room);

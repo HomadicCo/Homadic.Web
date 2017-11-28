@@ -38,6 +38,9 @@ function AddListing(state = [], action) {
         case 'SET_VALIDATION_VALUE':
             newState.valid[action.key] = action.value;
             return newState;
+        case 'SET_GMID':
+            newState.ui.gmid = action.gmid;
+            return newState;
         case 'UPDATE_INPUT_PROP':
             setNested(newState.listing, action.key, action.value);
             return newState;

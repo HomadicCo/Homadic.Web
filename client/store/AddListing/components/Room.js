@@ -110,7 +110,7 @@ class Room extends React.Component {
                             <label htmlFor="inputDeposit" className="col-form-label mr-2">Deposit <FontAwesome className="text-muted" name="dollar" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <div className="input-group-addon">{addListing.listing.currency}</div>
-                                <input type="number" name={'rooms[' + id + '].deposit'} value={room.deposit} data-type="int" className="form-control mr-3" id="inputDeposit" required onChange={this.handleChange} />
+                                <input type="number" name={'rooms[' + id + '].deposit'} value={room.deposit} data-type="int" className="form-control mr-3" id="inputDeposit" onChange={this.handleChange} />
                             </div>
                         </div>
                     </div>

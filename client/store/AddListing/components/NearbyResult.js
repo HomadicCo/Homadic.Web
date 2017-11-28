@@ -1,18 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { icons } from '../../../Images/Images';
 
 class NearbyResult extends React.Component {
     constructor(props) {
         super(props)
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+        let { listing, setGmid } = this.props;
+
+        setGmid(listing.place_id);
+        browserHistory.push('/add/listing');
     }
 
     render() {
         let { listing } = this.props;
-        const link = '/add/listing?gmid=' + listing.place_id;
 
         return (
-            <Link to={link}>
+            <Link onClick={this.handleClick}>
                 <div className="content-box content-box-sm nearby-result text-truncate">
                     <div className="d-flex flex-row">
                         <div className="mr-3 mt-2">

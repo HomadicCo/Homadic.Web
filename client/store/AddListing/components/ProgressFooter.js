@@ -12,6 +12,12 @@ class ProgressFooter extends React.Component {
                 amenities: '',
                 notes: '',
                 preview: ''
+            },
+            linkEnabled: {
+                rooms: false,
+                amenities: false,
+                notes: false,
+                preview: false
             }
         }
     }
@@ -31,6 +37,7 @@ class ProgressFooter extends React.Component {
         }
 
         this.runValidations();
+        this.setEnabledLinks();
     }
 
     validateSelectFromGoogleMaps() {
@@ -66,7 +73,7 @@ class ProgressFooter extends React.Component {
             if (addListing.valid.rooms) setValidationValue('rooms', false);
         }
         // check all rooms have a base rate
-        else if (listing.rooms.filter(room => room.base_rate <= 10).length > 0) {
+        else if (listing.rooms.filter(room => room.base_rate <= 10 || !room.base_rate).length > 0) {
             if (addListing.valid.rooms) setValidationValue('rooms', false);
         }
         else {
@@ -78,6 +85,27 @@ class ProgressFooter extends React.Component {
         this.validateSelectFromGoogleMaps();
         this.validateListing();
         this.validateRooms();
+    }
+
+    setEnabledLinks() {
+        let { valid } = this.props.addListing;
+        let { linkEnabled } = Object.assign({}, this.state.linkEnabled);
+
+        // check preview and notes
+        if (!valid.listing || !valid.rooms) {
+            linkEnabled = { ...linkEnabled, preview: false, notes: false, amenities: false };
+        } else {
+            linkEnabled = { ...linkEnabled, preview: true, notes: true, amenities: true };
+        }
+
+        // check rooms
+        if (!valid.listing) {
+            linkEnabled = { ...linkEnabled, rooms: false };
+        } else {
+            linkEnabled = { ...linkEnabled, rooms: true };
+        }
+
+        this.setState({ linkEnabled });
     }
 
     setStepClasses(step) {
@@ -151,7 +179,7 @@ class ProgressFooter extends React.Component {
     }
 
     render() {
-        let { classes } = this.state;
+        let { classes, linkEnabled } = this.state;
 
         return (
             <footer className="footer">
@@ -163,22 +191,22 @@ class ProgressFooter extends React.Component {
                         </div>
                         <div className={'col ' + classes.rooms}>
                             <span className="triangle-left" />
-                            <Link to="/add/rooms">Rooms</Link>
+                            {linkEnabled.rooms ? <Link to="/add/rooms">Rooms</Link> : <strong className="text-muted">Rooms</strong>}
                             <span className="triangle" />
                         </div>
                         <div className={'col ' + classes.amenities}>
                             <span className="triangle-left" />
-                            <Link to="/add/amenities">Amenities</Link>
+                            {linkEnabled.amenities ? <Link to="/add/amenities">Amenities</Link> : <strong className="text-muted">Amenities</strong>}
                             <span className="triangle" />
                         </div>
                         <div className={'col ' + classes.notes}>
                             <span className="triangle-left" />
-                            <Link to="/add/notes">Notes</Link>
+                            {linkEnabled.notes ? <Link to="/add/notes">Notes</Link> : <strong className="text-muted">Notes</strong>}
                             <span className="triangle" />
                         </div>
                         <div className={'col ' + classes.preview}>
                             <span className="triangle-left" />
-                            <Link to="/add/preview">Preview</Link>
+                            {linkEnabled.preview ? <Link to="/add/preview">Preview</Link> : <strong className="text-muted">Preview</strong>}
                             <span className="triangle" />
                         </div>
                     </div>

@@ -17,6 +17,14 @@ class DescriptionEditor extends React.Component {
         this.setPreviewMode = this.setPreviewMode.bind(this);
     }
 
+    componentWillMount() {
+        let { valid } = this.props.addListing;
+
+        if (!valid.rooms) {
+            browserHistory.push('/add/rooms');
+        }
+    }
+
     handleNextClick(e) {
         e.preventDefault();
         const form = this.descriptionForm;

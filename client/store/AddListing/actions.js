@@ -74,6 +74,13 @@ export function addRoomToListing(room) {
     }
 }
 
+export function setGmid(gmid) {
+    return {
+        type: 'SET_GMID',
+        gmid
+    }
+}
+
 // handle getting nearby results from google through our Api
 export function handleGetNearbyResults(coordinates) {
     return dispatch => {
