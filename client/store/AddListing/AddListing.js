@@ -9,7 +9,7 @@ import SelectFromGoogleMaps from './Steps/SelectFromGoogleMaps';
 import ListingDetails from './Steps/ListingDetails';
 import Rooms from './Steps/Rooms';
 import Amenities from './Steps/Amenities';
-import DescriptionEditor from './Steps/DescriptionEditor';
+import NotesEditor from './Steps/NotesEditor';
 import PreviewListing from './Steps/PreviewListing';
 
 class AddListing extends React.Component {
@@ -39,7 +39,7 @@ class AddListing extends React.Component {
                 )
             case 'notes':
                 return (
-                    <DescriptionEditor {...this.props} />
+                    <NotesEditor {...this.props} />
                 )
             case 'preview':
                 return (

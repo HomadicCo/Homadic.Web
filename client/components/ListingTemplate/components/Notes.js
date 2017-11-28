@@ -1,24 +1,24 @@
 import React from 'react';
 import RenderMarkdown from '../../RenderMarkdown/RenderMarkdown';
 
-class Description extends React.Component {
+class Notes extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        let { description } = this.props;
+        let { notes } = this.props;
 
         return (
             <div>
-                {description ?
+                {notes ?
                     <div className="content-box">
-                        <h2 className="fancy blue">Description</h2>
-                        <RenderMarkdown markdown={description} />
+                        <h2 className="fancy blue">Notes</h2>
+                        <RenderMarkdown markdown={notes} />
                     </div> : undefined}
             </div>
         )
     }
 }
 
-export default Description;
+export default Notes;

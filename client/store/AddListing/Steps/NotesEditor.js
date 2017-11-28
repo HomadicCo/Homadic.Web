@@ -1,9 +1,9 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
-import Description from '../../../components/ListingTemplate/components/Description';
+import Notes from '../../../components/ListingTemplate/components/Notes';
 
-class DescriptionEditor extends React.Component {
+class NotesEditor extends React.Component {
     constructor(props) {
         super(props);
 
@@ -27,7 +27,7 @@ class DescriptionEditor extends React.Component {
 
     handleNextClick(e) {
         e.preventDefault();
-        const form = this.descriptionForm;
+        const form = this.notesForm;
 
         if (form.checkValidity() == false) {
             form.classList.add('was-validated');
@@ -69,12 +69,12 @@ class DescriptionEditor extends React.Component {
     }
 
     renderPreviewMode() {
-        let { description } = this.props.addListing.listing;
+        let { notes } = this.props.addListing.listing;
 
         return (
             <div>
                 {this.renderPreviewToggle()}
-                <Description description={description} />
+                <Notes notes={notes} />
             </div>
         )
     }
@@ -83,11 +83,11 @@ class DescriptionEditor extends React.Component {
         let { listing } = this.props.addListing;
 
         return (
-            <form autoComplete="off" ref={(c) => { this.descriptionForm = c; }} noValidate>
-                <h1 className="fancy blue display-4 mb-4">Description</h1>
+            <form autoComplete="off" ref={(c) => { this.notesForm = c; }} noValidate>
+                <h1 className="fancy blue display-4 mb-4">Notes</h1>
                 <p><a href="https://guides.github.com/features/mastering-markdown/" rel="noopener noreferrer" target="_blank">Markdown</a> is enabled. And you can add YouTube clips!</p>
                 {this.renderPreviewToggle()}
-                <textarea id="inputDescription" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="description" maxLength={9000} value={listing.description} onChange={this.handleChange} />
+                <textarea id="inputNotes" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="notes" maxLength={9000} value={listing.notes} onChange={this.handleChange} />
             </form>
         )
     }
@@ -109,4 +109,4 @@ class DescriptionEditor extends React.Component {
     }
 }
 
-export default DescriptionEditor;
+export default NotesEditor;
