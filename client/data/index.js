@@ -72,6 +72,7 @@ export const emptyListing = {
     rooms: [],
     social_details: {
         facebook: '',
+        instagram: '',
         twitter: ''
     },
     type: 'condo',

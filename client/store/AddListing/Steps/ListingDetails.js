@@ -98,11 +98,15 @@ class ListingDetails extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <label htmlFor="inputFacebook" className="col-form-label">Facebook <FontAwesome className="text-muted" name="facebook-square" /></label>
-                        <input type="tel" name="social_details.facebook" value={listing.social_details.facebook} className="form-control" id="inputFacebook" onChange={this.handleChange} />
+                        <input type="text" name="social_details.facebook" value={listing.social_details.facebook} className="form-control" id="inputFacebook" onChange={this.handleChange} />
                     </div>
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputTwitter" className="col-form-label">Twitter <FontAwesome className="text-muted" name="twitter" /></label>
-                        <input type="email" name="social_details.twitter" value={listing.social_details.twitter} className="form-control" id="inputTwitter" onChange={this.handleChange} />
+                        <label htmlFor="inputInstagram" className="col-form-label">Instagram Handle <FontAwesome className="text-muted" name="instagram" /></label>
+                        <input type="text" name="social_details.instagram" value={listing.social_details.instagram} className="form-control" id="inputInstagraam" onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group col-md-4">
+                        <label htmlFor="inputTwitter" className="col-form-label">Twitter Handle <FontAwesome className="text-muted" name="twitter" /></label>
+                        <input type="text" name="social_details.twitter" value={listing.social_details.twitter} className="form-control" id="inputTwitter" onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="row justify-content-center mt-4">
