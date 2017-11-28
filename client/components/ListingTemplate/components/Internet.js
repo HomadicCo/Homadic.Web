@@ -22,7 +22,7 @@ class Internet extends React.Component {
                 <h2 className="fancy blue">Internet</h2>
                 <div className="row">
                     <div className="col-md-4 capitalize">
-                        <p><FontAwesome name="dollar" /> {this.renderWiFiLabel()}</p>
+                        <p><FontAwesome name="wifi" /> {this.renderWiFiLabel()}</p>
                     </div>
                     {listing.wifi.download ? <div className="col-md-4 capitalize">
                         <p><FontAwesome name="download" /> {listing.wifi.download}mbps</p>

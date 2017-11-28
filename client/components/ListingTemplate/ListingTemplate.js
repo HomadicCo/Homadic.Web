@@ -6,6 +6,7 @@ import Internet from './components/Internet';
 import Notes from './components/Notes';
 import Rooms from './components/Rooms';
 import LocationMap from './components/LocationMap';
+import Contact from './components/Contact';
 
 class ListingTemplate extends React.Component {
     constructor(props) {
@@ -56,6 +57,7 @@ class ListingTemplate extends React.Component {
                     <Notes notes={listing.notes} />
                     <Internet listing={listing} />
                     <LocationMap listing={listing} />
+                    <Contact listing={listing} />
                 </div>
             </div>
         )

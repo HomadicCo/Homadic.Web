@@ -55,17 +55,18 @@ export const emptyListing = {
         electricity: '',
         water: ''
     },
+    contact_details: {
+        email: '',
+        phone_number: ''
+    },
     currency: 'USD',
     description: '',
-    email: '',
     address: '',
-    phone_number: '',
     location: {
         type: 'Point',
         coordinates: []
     },
     id: '',
-    international_phone_number: '',
     name: '',
     google_maps_id: null,
     rating: null,

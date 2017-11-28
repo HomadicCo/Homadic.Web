@@ -47,17 +47,17 @@ class LocationMap extends React.Component {
     render() {
         let { listing } = this.props;
         let { center } = this.state;
-        var markers = [];
-        markers.push(listing);
+        var markers = [listing];
 
         return (
-            <div className="mb-5 box-shadow">
+            <div className="mb-5 content-box">
+                <p><a href={'https://www.google.com/maps/place/?q=place_id:' + listing.google_maps_id} target="_blank">{listing.address}</a></p>
                 <RenderMap
                     center={new google.maps.LatLng(center)}
                     markers={markers}
                     zoom={16}
                     containerElement={
-                        <div style={{ height: '400px' }} />
+                        <div className="map-container" style={{ height: '400px' }} />
                     }
                     mapElement={
                         <div style={{ height: '100%' }} />

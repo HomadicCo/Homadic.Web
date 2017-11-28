@@ -51,12 +51,15 @@ function AddListing(state = [], action) {
             newState.listing = {
                 ...newState.listing,
                 address: action.googleMapsPlace.formatted_address,
+                contact_details: {
+                    email: '',
+                    phone_number: action.googleMapsPlace.international_phone_number,
+                },
                 location: {
                     type: 'Point',
                     coordinates: [action.googleMapsPlace.geometry.location.lat, action.googleMapsPlace.geometry.location.lng]
                 },
                 name: action.googleMapsPlace.name,
-                phone_number: action.googleMapsPlace.international_phone_number,
                 google_maps_id: action.googleMapsPlace.place_id,
                 rating: action.googleMapsPlace.rating,
                 website: action.googleMapsPlace.website
