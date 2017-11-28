@@ -10,9 +10,12 @@ class Description extends React.Component {
         let { description } = this.props;
 
         return (
-            <div className="content-box">
-                <h2 className="fancy blue">Description</h2>
-                <RenderMarkdown markdown={description} />
+            <div>
+                {description ?
+                    <div className="content-box">
+                        <h2 className="fancy blue">Description</h2>
+                        <RenderMarkdown markdown={description} />
+                    </div> : undefined}
             </div>
         )
     }

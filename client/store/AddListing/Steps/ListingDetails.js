@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { apiGetGooglePlace } from '../../../api';
-import { rentalTypes } from '../../../data';
+import { emptyListing, rentalTypes } from '../../../data';
 
 class ListingDetails extends React.Component {
     constructor(props) {
@@ -13,10 +13,11 @@ class ListingDetails extends React.Component {
     }
 
     componentWillMount() {
-        let { addListing, location, setListingFromGoogleMaps, setLoadingStatus } = this.props;
+        let { addListing, clearNewListing, location, setListingFromGoogleMaps, setLoadingStatus } = this.props;
 
         if (addListing.listing.google_maps_id != location.query.gmid) {
             setLoadingStatus(true);
+            clearNewListing(emptyListing);
             apiGetGooglePlace(location.query.gmid).then(response => {
                 setListingFromGoogleMaps(response.data.place);
                 setLoadingStatus(false);

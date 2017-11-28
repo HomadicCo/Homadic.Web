@@ -33,6 +33,16 @@ class Amenities extends React.Component {
         let value = target.type === 'checkbox' ? target.checked : target.value;
         let key = target.name;
 
+        if (key == 'wifi.type' && value == 'none') {
+            this.props.updateInputProp('wifi.rate', 0);
+            this.props.updateInputProp('wifi.download', 0);
+            this.props.updateInputProp('wifi.upload', 0);
+        }
+
+        if (key == 'wifi.type' && value == 'free') {
+            this.props.updateInputProp('wifi.rate', 0);
+        }
+
         // check if int or string
         value = target.getAttribute('data-type') === 'int' ? parseFloat(value) : value;
 

@@ -24,15 +24,15 @@ class Internet extends React.Component {
                     <div className="col-md-4 capitalize">
                         <p><FontAwesome name="dollar" /> {this.renderWiFiLabel()}</p>
                     </div>
-                    <div className="col-md-4 capitalize">
+                    {listing.wifi.download ? <div className="col-md-4 capitalize">
                         <p><FontAwesome name="download" /> {listing.wifi.download}mbps</p>
-                    </div>
-                    <div className="col-md-4 capitalize">
+                    </div> : undefined}
+                    {listing.wifi.upload ? <div className="col-md-4 capitalize">
                         <p><FontAwesome name="upload" /> {listing.wifi.upload}mbps</p>
-                    </div>
-                    <div className="col-md-12">
+                    </div> : undefined}
+                    {listing.wifi.notes ? <div className="col-md-12">
                         <p><strong>Notes:</strong> {listing.wifi.notes}</p>
-                    </div>
+                    </div> : undefined}
                 </div>
             </div>
         )
