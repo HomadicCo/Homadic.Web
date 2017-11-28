@@ -53,18 +53,18 @@ $step-width: 5px;
             border: 0;
         }
         &.current-step {
-            background: $purple-dark;
+            background: $blue;
             .triangle {
-                border-left: $step-width solid $purple-dark;
+                border-left: $step-width solid $blue;
             }
             a {
                 color: $white;
             }
         }
         &.visited-step {
-            background: $purple-light;
+            background: $blue-light;
             .triangle {
-                border-left: $step-width solid $purple-light;
+                border-left: $step-width solid $blue-light;
             }
             a {
                 color: $white;

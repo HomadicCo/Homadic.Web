@@ -70,9 +70,10 @@ class NotesEditor extends React.Component {
 
     renderPreviewMode() {
         let { notes } = this.props.addListing.listing;
+        let { previewMode } = this.state;
 
         return (
-            <div>
+            <div hidden={!previewMode}>
                 {this.renderPreviewToggle()}
                 <Notes notes={notes} />
             </div>
@@ -81,23 +82,25 @@ class NotesEditor extends React.Component {
 
     renderEditor() {
         let { listing } = this.props.addListing;
+        let { previewMode } = this.state;
 
         return (
-            <form autoComplete="off" ref={(c) => { this.notesForm = c; }} noValidate>
-                <h1 className="fancy blue display-4 mb-4">Notes</h1>
-                <p><a href="https://guides.github.com/features/mastering-markdown/" rel="noopener noreferrer" target="_blank">Markdown</a> is enabled. And you can add YouTube clips!</p>
-                {this.renderPreviewToggle()}
-                <textarea id="inputNotes" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="notes" maxLength={9000} value={listing.notes} onChange={this.handleChange} />
-            </form>
+            <div hidden={previewMode}>
+                <form autoComplete="off" ref={(c) => { this.notesForm = c; }} noValidate>
+                    <h1 className="fancy blue display-4 mb-4">Notes</h1>
+                    <p><a href="https://guides.github.com/features/mastering-markdown/" rel="noopener noreferrer" target="_blank">Markdown</a> is enabled. And you can add YouTube clips!</p>
+                    {this.renderPreviewToggle()}
+                    <textarea id="inputNotes" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="notes" maxLength={9000} value={listing.notes} onChange={this.handleChange} />
+                </form>
+            </div>
         )
     }
 
     render() {
-        let { previewMode } = this.state;
-
         return (
             <div>
-                {previewMode ? this.renderPreviewMode() : this.renderEditor()}
+                {this.renderPreviewMode()}
+                {this.renderEditor()}
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
                         <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Amenities</button>

@@ -19,10 +19,8 @@ class ListingTemplate extends React.Component {
         return (
             <div className="navbar fixed-top bg-white px-3 listing-header">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-auto ml-auto text-right">
-                            You are submitting as <strong>{profile.data.first_name}</strong>. Only your first name is shown. <button className="btn btn-success btn-sm">Submit <FontAwesome name="check" /></button>
-                        </div>
+                    <div className="col-auto ml-auto text-right">
+                        You are submitting as <strong>{profile.data.first_name}</strong>. <button className="btn btn-success btn-sm">Submit <FontAwesome name="check" /></button>
                     </div>
                 </div>
             </div>

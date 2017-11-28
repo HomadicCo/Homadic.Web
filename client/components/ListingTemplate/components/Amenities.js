@@ -94,7 +94,7 @@ class Amenities extends React.Component {
         let { listing } = this.props;
 
         return (
-            <div className="row justify-content-md-center hero-icons my-2">
+            <div id="amenities" className="row justify-content-md-center hero-icons my-2">
                 {this.renderWifi()}
                 {listing.amenities.air_conditioning ? this.renderAC() : undefined}
                 {listing.rooms.filter(room => room.laundry != 'none').length > 0 ? this.renderLaundry() : undefined}

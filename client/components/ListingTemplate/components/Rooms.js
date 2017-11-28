@@ -16,7 +16,7 @@ class Rooms extends React.Component {
 
         return (
             <div>
-                <div className="row">
+                <div id="rooms" className="row">
                     {rooms.map((room, i) => (
                         <Room key={i} room={room} currency={listing.currency} />
                     ))}

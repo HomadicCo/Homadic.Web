@@ -34,6 +34,7 @@ p {
     font-size: 1.1em;
 }
 
+
 /*
  * Text styles
  */
@@ -42,6 +43,7 @@ a,
 a.active,
 a.focus,
 a:hover {
+    font-weight: 600;
     color: $blue;
 }
 

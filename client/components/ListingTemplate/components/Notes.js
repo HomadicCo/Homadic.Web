@@ -10,7 +10,7 @@ class Notes extends React.Component {
         let { notes } = this.props;
 
         return (
-            <div>
+            <div id="notes">
                 {notes ?
                     <div className="content-box">
                         <h2 className="fancy blue">Notes</h2>

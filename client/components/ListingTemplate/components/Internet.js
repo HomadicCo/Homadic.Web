@@ -18,7 +18,7 @@ class Internet extends React.Component {
         let { listing } = this.props;
 
         return (
-            <div className="content-box">
+            <div id="internet" className="content-box">
                 <h2 className="fancy blue">Internet</h2>
                 <div className="row">
                     <div className="col-md-4 capitalize">

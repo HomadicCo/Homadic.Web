@@ -1,6 +1,7 @@
 /* global google */
 import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import FontAwesome from 'react-fontawesome';
 import MapStyle from '../../MapStyle/MapStyle';
 import { icons } from '../../../Images/Images';
 
@@ -50,8 +51,7 @@ class LocationMap extends React.Component {
         var markers = [listing];
 
         return (
-            <div className="mb-5 content-box">
-                <p><a href={'https://www.google.com/maps/place/?q=place_id:' + listing.google_maps_id} target="_blank">{listing.address}</a></p>
+            <div id="map" className="content-box" style={{ paddingBottom: 0 }}>
                 <RenderMap
                     center={new google.maps.LatLng(center)}
                     markers={markers}
@@ -63,6 +63,9 @@ class LocationMap extends React.Component {
                         <div style={{ height: '100%' }} />
                     }
                 />
+                <div className="pt-3 pb-1">
+                    <p><FontAwesome name="map-marker" /> <a href={'https://www.google.com/maps/place/?q=place_id:' + listing.google_maps_id} target="_blank">{listing.address}</a></p>
+                </div>
             </div>
         )
     }
