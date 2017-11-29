@@ -1,5 +1,6 @@
 /* global Promise */
 import { apiGetProfile } from '../../api';
+import { setLoggedInStatus } from '../Authentication/actions';
 
 // update the profile in the store
 export function updateProfileStore(data) {
@@ -29,7 +30,7 @@ export function handleGetProfile() {
                 resolve(response.data);
             }).catch(error => {
                 dispatch(updatingProfileStatus(false));
-                console.log(error);
+                dispatch(setLoggedInStatus(false));
                 reject(error);
             });
         });
