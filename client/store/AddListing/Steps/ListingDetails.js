@@ -19,7 +19,7 @@ class ListingDetails extends React.Component {
             setLoadingStatus(true);
             clearNewListing(emptyListing);
             apiGetGooglePlace(addListing.ui.gmid).then(response => {
-                setListingFromGoogleMaps(response.data.place);
+                setListingFromGoogleMaps(response.data.result);
                 setLoadingStatus(false);
             }).catch(() => {
                 setLoadingStatus(false);
@@ -56,7 +56,7 @@ class ListingDetails extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-9">
                         <label htmlFor="inputListingName" className="col-form-label">Listing name*</label>
-                        <input type="text" className="form-control" name="name" defaultValue={listing.name} id="inputListingName" placeholder="Listing name" maxLength={50} required />
+                        <input type="text" className="form-control" name="name" value={listing.name} id="inputListingName" placeholder="Listing name" maxLength={50} required />
                         <div className="invalid-feedback">
                             The listing needs a name!
                         </div>
@@ -73,7 +73,7 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>
-                    <input type="text" name="address" defaultValue={listing.address} className="form-control" id="inputAddress" placeholder="123 Nomad St" required />
+                    <input type="text" name="address" value={listing.address} className="form-control" id="inputAddress" placeholder="123 Nomad St" required />
                     <div className="invalid-feedback">
                         Please provide the address.
                     </div>
