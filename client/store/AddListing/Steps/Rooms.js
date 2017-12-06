@@ -74,7 +74,7 @@ class Rooms extends React.Component {
                         <label htmlFor="inputElectricity" className="col-form-label">Electricity <FontAwesome className="text-muted" name="plug" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{listing.currency}</div>
-                            <input type="text" name="bills.electricity" className="form-control" id="inputElectricity" value={listing.bills.electricity} onChange={this.handleChange} />
+                            <input type="text" name="bills.electricity" className="form-control" id="inputElectricity" value={listing.bills.electricity} onChange={this.handleChange} maxLength={50} />
                         </div>
                         <small id="electricityHelp" className="form-text text-muted">Eg: cost per unit</small>
                     </div>
@@ -82,7 +82,7 @@ class Rooms extends React.Component {
                         <label htmlFor="inputWater" className="col-form-label">Water <FontAwesome className="text-muted" name="shower" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{listing.currency}</div>
-                            <input type="text" name="bills.water" className="form-control" id="inputWater" value={listing.bills.water} onChange={this.handleChange} />
+                            <input type="text" name="bills.water" className="form-control" id="inputWater" value={listing.bills.water} onChange={this.handleChange} maxLength={50} />
                         </div>
                     </div>
                 </div>

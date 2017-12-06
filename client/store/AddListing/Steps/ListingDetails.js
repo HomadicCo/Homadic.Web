@@ -81,11 +81,11 @@ class ListingDetails extends React.Component {
                 <div className="form-row">
                     <div className="form-group col-md-4">
                         <label htmlFor="inputPhone" className="col-form-label">Phone</label>
-                        <input type="tel" name="contact_details.phone_number" value={listing.contact_details.phone_number} className="form-control" id="inputPhone" onChange={this.handleChange} />
+                        <input type="tel" name="contact_details.phone_number" value={listing.contact_details.phone_number} className="form-control" id="inputPhone" onChange={this.handleChange} maxLength={50} />
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputEmail" className="col-form-label">Email</label>
-                        <input type="email" name="contact_details.email" value={listing.contact_details.email} className="form-control" id="inputEmail" onChange={this.handleChange} />
+                        <input type="email" name="contact_details.email" value={listing.contact_details.email} className="form-control" id="inputEmail" onChange={this.handleChange} maxLength={50} />
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputUrl" className="col-form-label">URL</label>

@@ -125,7 +125,7 @@ class Amenities extends React.Component {
                     </div> : undefined}
 
                 <label htmlFor="inputInternetNotes" className="col-form-label">Notes</label>
-                <textarea id="inputInternetNotes" className="form-control" placeholder="Special notes on the internet, internet is life!" name="wifi.notes" value={listing.wifi.notes} onChange={this.handleChange} />
+                <textarea id="inputInternetNotes" className="form-control" placeholder="Special notes on the internet, internet is life!" name="wifi.notes" value={listing.wifi.notes} onChange={this.handleChange} maxLength={1000} />
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
                         <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Rooms</button>
