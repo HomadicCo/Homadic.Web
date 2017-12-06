@@ -33,10 +33,6 @@ export function apiPerformLogin(code) {
     return Axios.post('token', { code });
 }
 
-export function apiValidateToken() {
-    return Axios.get('token/validate', getAuthHeader())
-}
-
 // profile
 
 export function apiGetProfile() {
