@@ -1,8 +1,8 @@
 // hover over listings
-export function setHoveredHome(home) {
+export function setHoveredListing(listing) {
     return {
-        type: 'SET_HOVERED_HOME',
-        home
+        type: 'SET_HOVERED_LISTING',
+        listing
     }
 }
 

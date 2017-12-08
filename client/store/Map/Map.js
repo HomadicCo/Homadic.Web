@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import ActionBar from './Components/ActionBar';
-import { AddListingMarker, HomeMarker } from './Components/Markers';
+import { AddListingMarker, ListingMarker } from './Components/Markers';
 import MapStyle from '../../components/MapStyle/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images';
@@ -29,8 +29,8 @@ const RenderMap = withGoogleMap(props => (
             props.addNewListingMode ?
                 <AddListingMarker {...props} />
                 :
-                props.homes.map(home => (
-                    <HomeMarker home={home} key={home.id} {...props} />
+                props.listings.map(listing => (
+                    <ListingMarker listing={listing} key={listing.id} {...props} />
                 ))
 
         }
@@ -82,11 +82,11 @@ class Map extends React.Component {
                 .then(results =>
                     getLatLng(results[0])
                 ).then(({ lat, lng }) => {
-                    this.props.handleGetHomes();
+                    this.props.handleGetListings();
                     this.setState({ center: { lat, lng }, zoom: 14 });
                 });
         } else {
-            this.props.handleGetHomes();
+            this.props.handleGetListings();
             this.setState({ center: { lat: params.lat, lng: params.lng }, zoom: params.zoom ? params.zoom : 14 });
         }
     }
@@ -139,9 +139,9 @@ class Map extends React.Component {
         }
     }
 
-    openHomeInNewWindow(slug) {
+    openListingInNewWindow(slug) {
         if (slug) {
-            window.open(window.location.origin + '/home/' + slug);
+            window.open(window.location.origin + '/listing/' + slug);
         }
     }
 
@@ -156,7 +156,7 @@ class Map extends React.Component {
 
     render() {
         let { center, zoom } = this.state;
-        let { homes, map } = this.props;
+        let { listings, map } = this.props;
 
         return (
             <div>
@@ -171,15 +171,15 @@ class Map extends React.Component {
                             addNewListingMode={map.addNewListingMode}
                             onMapChanged={this.handleMapChanged}
                             onMarkerDragged={this.handleMarkerDrag}
-                            setHoveredHome={this.props.setHoveredHome}
-                            openHomeInNewWindow={this.openHomeInNewWindow}
+                            setHoveredListing={this.props.setHoveredListing}
+                            openListingInNewWindow={this.openListingInNewWindow}
                             containerElement={
                                 <div style={{ height: '100%' }} />
                             }
                             mapElement={
                                 <div style={{ height: '100%' }} />
                             }
-                            homes={homes.data}
+                            listings={listings.data}
                             map={map}
                         />
                     </div>}

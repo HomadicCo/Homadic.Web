@@ -46,6 +46,7 @@ export const currencies = [
 ]
 
 export const emptyListing = {
+    address: '',
     amenities: {
         air_conditioning: false,
         pool: false,
@@ -57,18 +58,18 @@ export const emptyListing = {
     },
     contact_details: {
         email: '',
-        phone_number: ''
+        phone_number: '',
+        website: ''
     },
     currency: 'USD',
     description: '',
-    address: '',
+    google_place_id: null,
     location: {
         type: 'Point',
         coordinates: []
     },
     id: '',
     name: '',
-    google_maps_id: null,
     rating: null,
     rooms: [],
     social_details: {
@@ -83,8 +84,7 @@ export const emptyListing = {
         download: 0,
         upload: 0,
         notes: ''
-    },
-    website: ''
+    }
 }
 
 export const internetType = [

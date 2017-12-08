@@ -8,7 +8,7 @@ import persistState from 'redux-localstorage';
 // reducers
 import addListing from './addListing/reducer';
 import authentication from './Authentication/reducer';
-import homes from './Home/reducer';
+import listings from './Listing/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
 import ui from './UI/reducer';
@@ -24,7 +24,7 @@ const defaultState = {
     ui: {}
   },
   authentication: {},
-  homes: {
+  listings: {
     data: [],
     fetching: false,
     selected: {}
@@ -42,7 +42,7 @@ const defaultState = {
 const appReducer = combineReducers({
   addListing,
   authentication,
-  homes,
+  listings,
   map,
   profile,
   routing: routerReducer,

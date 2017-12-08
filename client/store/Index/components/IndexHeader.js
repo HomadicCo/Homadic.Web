@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import Avatar from '../../../Components/Avatar/Avatar';
 
-class HomeHeader extends React.Component {
+class IndexHeader extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -34,4 +34,4 @@ class HomeHeader extends React.Component {
     }
 }
 
-export default HomeHeader;
+export default IndexHeader;

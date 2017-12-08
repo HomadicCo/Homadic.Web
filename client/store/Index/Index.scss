@@ -1,11 +1,11 @@
 $input-color: #fff;
 $input-background: rgba(26, 145, 161, 0.6);
-.home {
+.index {
     h4 {
         color: $white;
         line-height: 1.5;
     }
-    .home-typeahead {
+    .index-typeahead {
         input {
             background-color: $input-background;
             border: none;
@@ -58,7 +58,7 @@ $input-background: rgba(26, 145, 161, 0.6);
     }
 }
 
-.home-bg {
+.index-bg {
     background-color: #f2f2f2;
     background-size: cover;
     background-position: center;
@@ -78,30 +78,30 @@ $input-background: rgba(26, 145, 161, 0.6);
     z-index: -1;
 }
 
-.home-bg {
+.index-bg {
     background-image: url(https://source.unsplash.com/MsMISAIe8Qw/768x430);
 }
 
 @media (min-width: 768px) {
-    .home-bg {
+    .index-bg {
         background-image: url(https://source.unsplash.com/MsMISAIe8Qw/992x558);
     }
 }
 
 @media (min-width: 992px) {
-    .home-bg {
+    .index-bg {
         background-image: url(https://source.unsplash.com/MsMISAIe8Qw/1200x675);
     }
 }
 
 @media (min-width: 1200px) {
-    .home-bg {
+    .index-bg {
         background-image: url(https://source.unsplash.com/MsMISAIe8Qw/2133x1200);
     }
 }
 
 @media (min-width: 1440px) {
-    .home-bg {
+    .index-bg {
         background-image: url(https://source.unsplash.com/MsMISAIe8Qw/2560x1440);
     }
 }

@@ -9,7 +9,7 @@ import { App, AppAuthenticated } from './store/App';
 import SigninFacebook from './components/SigninFacebook/SigninFacebook';
 import Index from './store/Index/Index';
 import AddListing from './store/AddListing/AddListing';
-import Home from './store/Home/Home';
+import Listing from './store/Listing/Listing';
 import Map from './store/Map/Map';
 
 // Import Router
@@ -26,7 +26,7 @@ const router = (
             <Route path="/" component={App}>
                 <IndexRoute component={Index} />
                 <Route path="/signin-facebook" component={SigninFacebook} />
-                <Route path="/home/:homeSlug" component={Home} />
+                <Route path="/slug/:listingSlug" component={Listing} />
                 <Route path="/:citySlug" component={Map} />
             </Route>
         </Router>

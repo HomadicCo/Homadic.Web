@@ -60,7 +60,7 @@ function AddListing(state = [], action) {
                     coordinates: [action.googleMapsPlace.geometry.location.lat, action.googleMapsPlace.geometry.location.lng]
                 },
                 name: action.googleMapsPlace.name,
-                google_maps_id: action.googleMapsPlace.place_id,
+                google_place_id: action.googleMapsPlace.place_id,
                 rating: action.googleMapsPlace.rating,
                 website: action.googleMapsPlace.website
             };

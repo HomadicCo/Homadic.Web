@@ -45,7 +45,7 @@ class ProgressFooter extends React.Component {
         let { listing } = addListing;
 
         // google maps id and lat/lng
-        if (!listing.google_maps_id || !listing.location.coordinates[1]) {
+        if (!listing.google_place_id || !listing.location.coordinates[1]) {
             if (addListing.valid.selectFromGoogleMaps) setValidationValue('selectFromGoogleMaps', false);
         } else {
             if (!addListing.valid.selectFromGoogleMaps) setValidationValue('selectFromGoogleMaps', true);

@@ -53,12 +53,12 @@ export function apiGetGooglePlace(googlePlaceId) {
     return Axios.get('nearby/' + googlePlaceId, getAuthHeader());
 }
 
-// homees
+// listings
 
-export function apiGetHomes() {
-    return Axios.get('homes');
+export function apiGetListings() {
+    return Axios.get('listings');
 }
 
-export function apiGetHome(homeSlug) {
-    return Axios.get('homes/' + homeSlug);
+export function apiGetListing(listingSlug) {
+    return Axios.get('listings/' + listingSlug);
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory, } from 'react-router';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 
-class Home extends React.Component {
+class Listing extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -10,9 +10,9 @@ class Home extends React.Component {
     componentWillMount() {
         let { params, setLoadingStatus } = this.props;
 
-        if (params.homeSlug) {
+        if (params.listingSlug) {
             setLoadingStatus(true);
-            this.props.handleGetHome(params.homeSlug).then(() => {
+            this.props.handleGetListing(params.listingSlug).then(() => {
                 setLoadingStatus(false);
             });
         } else {
@@ -21,12 +21,12 @@ class Home extends React.Component {
     }
 
     render() {
-        let { homes } = this.props;
+        let { listings } = this.props;
 
         return (
-            <ListingTemplate listing={homes.selected} previewMode={false} {...this.props} />
+            <ListingTemplate listing={listings.selected} previewMode={false} {...this.props} />
         )
     }
 }
 
-export default Home;
+export default Listing;

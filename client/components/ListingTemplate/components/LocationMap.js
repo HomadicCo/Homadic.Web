@@ -64,7 +64,7 @@ class LocationMap extends React.Component {
                     }
                 />
                 <div className="pt-3 pb-1">
-                    <p><FontAwesome name="map-marker" /> <a href={'https://www.google.com/maps/place/?q=place_id:' + listing.google_maps_id} target="_blank">{listing.address}</a></p>
+                    <p><FontAwesome name="map-marker" /> <a href={'https://www.google.com/maps/place/?q=place_id:' + listing.google_place_id} target="_blank">{listing.address}</a></p>
                 </div>
             </div>
         )

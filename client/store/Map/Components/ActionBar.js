@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import FontAwesome from 'react-fontawesome';
 import { getLoginUrl } from '../../../functions';
 import Avatar from '../../../Components/Avatar/Avatar';
-import HoveredHome from './HoveredHome';
+import HoveredListing from './HoveredListing';
 import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead';
 
 class ActionBar extends React.Component {
@@ -68,7 +68,7 @@ class ActionBar extends React.Component {
 
         return (
             <div>
-                {map.hoveredHome ? <HoveredHome home={map.hoveredHome} /> : <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />}
+                {map.hoveredListing ? <HoveredListing listing={map.hoveredListing} /> : <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />}
             </div>
         );
     }

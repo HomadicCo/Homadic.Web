@@ -6,7 +6,7 @@ import AppViewAuthenticated from '../components/AppFrames/AppViewAuthenticated';
 // import all action creators
 import * as AddListingActions from './AddListing/actions';
 import * as AuthenticationActions from './Authentication/actions';
-import * as HomeActions from './Home/actions';
+import * as ListingActions from './Listing/actions';
 import * as MapActions from './Map/actions';
 import * as ProfileActions from './Profile/actions';
 import * as UIActions from './UI/actions';
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
     return {
         authentication: state.authentication,
         addListing: state.addListing,
-        homes: state.homes,
+        listings: state.listings,
         map: state.map,
         profile: state.profile,
         ui: state.ui,
@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         ...AuthenticationActions,
         ...AddListingActions,
-        ...HomeActions,
+        ...ListingActions,
         ...MapActions,
         ...ProfileActions,
         ...UIActions
@@ -34,7 +34,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export const App = connect(mapStateToProps,
-    mapDispatchToProps)(AppView); 
+    mapDispatchToProps)(AppView);
 
 export const AppAuthenticated = connect(mapStateToProps,
     mapDispatchToProps)(AppViewAuthenticated);
