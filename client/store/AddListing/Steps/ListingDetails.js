@@ -15,11 +15,14 @@ class ListingDetails extends React.Component {
     componentWillMount() {
         let { addListing, clearNewListing, setListingFromGoogleMaps, setLoadingStatus } = this.props;
 
-        if (addListing.listing.google_maps_id != addListing.ui.gmid) {
+        if (addListing.listing.google_place_id != addListing.ui.gmid) {
             setLoadingStatus(true);
             clearNewListing(emptyListing);
             apiGetGooglePlace(addListing.ui.gmid).then(response => {
-                setListingFromGoogleMaps(response.data.result);
+                if (response.data.slug != null) {
+                    browserHistory.push('/listing/slug');
+                }
+                setListingFromGoogleMaps(response.data.place);
                 setLoadingStatus(false);
             }).catch(() => {
                 setLoadingStatus(false);
@@ -89,7 +92,7 @@ class ListingDetails extends React.Component {
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputUrl" className="col-form-label">URL</label>
-                        <input type="url" name="website" value={listing.website} className="form-control" id="inputUrl" onChange={this.handleChange} />
+                        <input type="url" name="website" value={listing.contact_details.website} className="form-control" id="inputUrl" onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="content-header">
