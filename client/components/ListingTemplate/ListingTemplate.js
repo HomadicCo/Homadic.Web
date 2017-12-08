@@ -3,6 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import Avatar from '../../Components/Avatar/Avatar';
 import Header from './components/Header';
 import Internet from './components/Internet';
+import Nearby from './components/Nearby';
 import Notes from './components/Notes';
 import Rooms from './components/Rooms';
 import LocationMap from './components/LocationMap';
@@ -54,6 +55,7 @@ class ListingTemplate extends React.Component {
                     <Rooms listing={listing} />
                     <Notes notes={listing.notes} />
                     <Internet listing={listing} />
+                    <Nearby listing={listing} previewMode={previewMode} />
                     <LocationMap listing={listing} />
                     <Contact listing={listing} />
                 </div>
