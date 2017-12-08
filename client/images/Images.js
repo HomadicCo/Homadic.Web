@@ -2,8 +2,12 @@ export const icons = {
     ac: require('!!file-loader!./icons/icon-ac.svg'),
     bathroom: require('!!file-loader!./icons/icon-bathroom.svg'),
     bedroom: require('!!file-loader!./icons/icon-bedroom.svg'),
+    bus_station: require('!!file-loader!./icons/icon-bus_station.svg'),
+    convenience_store: require('!!file-loader!./icons/icon-convenience_store.svg'),
     condo: require('!!file-loader!./icons/icon-hostel.svg'), // todo
     dart: require('!!file-loader!./icons/icon-dart.svg'),
+    driving: require('!!file-loader!./icons/icon-driving.svg'),
+    gas_station: require('!!file-loader!./icons/icon-gas_station.svg'),
     gym: require('!!file-loader!./icons/icon-gym.svg'),
     hostel: require('!!file-loader!./icons/icon-hostel.svg'),
     house: require('!!file-loader!./icons/icon-house.svg'),
@@ -11,10 +15,14 @@ export const icons = {
     laundry: require('!!file-loader!./icons/icon-laundry.svg'),
     location: require('!!file-loader!./icons/icon-location.svg'),
     one_month: require('!!file-loader!./icons/icon-one_month.svg'),
+    pharmacy: require('!!file-loader!./icons/icon-pharmacy.svg'),
     pool: require('!!file-loader!./icons/icon-pool.svg'),
+    post_office: require('!!file-loader!./icons/icon-post_office.svg'),
     six_months: require('!!file-loader!./icons/icon-six_months.svg'),
     three_months: require('!!file-loader!./icons/icon-three_months.svg'),
+    train_station: require('!!file-loader!./icons/icon-train_station.svg'),
+    walking: require('!!file-loader!./icons/icon-walking.svg'),
     wifiNone: require('!!file-loader!./icons/icon-wifi-none.svg'),
     wifiStrong: require('!!file-loader!./icons/icon-wifi-strong.svg'),
-    wifi: require('!!file-loader!./icons/icon-wifi.svg'),
+    wifi: require('!!file-loader!./icons/icon-wifi.svg')
 }
