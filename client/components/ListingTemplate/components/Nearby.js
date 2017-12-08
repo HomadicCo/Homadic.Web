@@ -20,6 +20,9 @@ class Nearby extends React.Component {
             case ('train_station'):
                 label = 'Train station';
                 break;
+            case ('subway_station'):
+                label = 'Subway station';
+                break;
             case ('convenience_store'):
                 label = 'Convenience store';
                 break;
@@ -49,7 +52,7 @@ class Nearby extends React.Component {
         return (
             <div className="nearby-place">
                 <p className="place-type">{label} <img src={icons[poi.place_type]} /></p>
-                <p className="place-name"><a href={directionsUrl} target="_blank">{poi.name}</a></p>
+                <p className="place-name text-truncate"><a href={directionsUrl} target="_blank">{poi.name}</a></p>
                 <p className="transit-details small"><strong>{poi.distance_label}</strong> {poi.duration_label} {transitLabel} <img src={icons[poi.transit_mode]} /></p>
             </div>
         )
@@ -60,16 +63,16 @@ class Nearby extends React.Component {
         let previewModeString = 'Nearby points of interest will be calculated and displayed after submission.';
 
         return (
-            listing.points_of_interest ?
-                <div id="nearby">
+            <div id="nearby">
+                {listing.points_of_interest ?
                     <div className="content-box">
                         <h2 className="fancy blue">Nearby</h2>
                         <hr />
                         <div className="row">
                             {previewMode ? <div className="col-12"><p>{previewModeString}</p></div> : listing.points_of_interest.map((poi, i) => (<div key={i} className="col-md-4">{this.renderPointOfInterest(poi)}</div>))}
                         </div>
-                    </div>
-                </div> : undefined
+                    </div> : undefined}
+            </div>
         )
     }
 }

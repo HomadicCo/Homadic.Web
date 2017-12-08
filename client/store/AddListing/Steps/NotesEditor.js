@@ -61,8 +61,8 @@ class NotesEditor extends React.Component {
 
         return (
             <div className="btn-group mb-2">
-                <button type="button" className={previewMode ? 'btn btn-sm btn-light' : 'btn btn-sm btn-action'} onClick={this.setPreviewMode.bind(null, false)}><i className="far fa-pencil" /> Editor</button>
-                <button type="button" className={previewMode ? 'btn btn-sm btn-action' : 'btn btn-sm btn-light'} onClick={this.setPreviewMode.bind(null, true)}><i className="far fa-eye" /> Preview</button>
+                <button type="button" className={previewMode ? 'btn btn-sm btn-light' : 'btn btn-sm btn-action'} onClick={this.setPreviewMode.bind(null, false)}><i className="fas fa-pencil-alt" /> Editor</button>
+                <button type="button" className={previewMode ? 'btn btn-sm btn-action' : 'btn btn-sm btn-light'} onClick={this.setPreviewMode.bind(null, true)}><i className="fas fa-eye" /> Preview</button>
             </div>
         )
     }

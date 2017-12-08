@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import Avatar from '../../Components/Avatar/Avatar';
 import Header from './components/Header';
 import Internet from './components/Internet';
@@ -7,10 +8,27 @@ import Notes from './components/Notes';
 import Rooms from './components/Rooms';
 import LocationMap from './components/LocationMap';
 import Contact from './components/Contact';
+import { apiPostListing } from '../../api/index';
 
 class ListingTemplate extends React.Component {
     constructor(props) {
         super(props);
+
+        this.postListing = this.postListing.bind(this);
+    }
+
+    postListing() {
+        let { clearNewListing, addListing, setLoadingStatus } = this.props;
+        setLoadingStatus(true);
+
+        apiPostListing(addListing.listing).then((response) => {
+            clearNewListing();
+            setLoadingStatus(false);
+            browserHistory.push('listing/' + response.data.slug);
+        }).catch((e) => {
+            console.log(e)
+            setLoadingStatus(false);
+        })
     }
 
     renderPreviewHeader() {
@@ -20,7 +38,7 @@ class ListingTemplate extends React.Component {
             <div className="navbar fixed-top bg-white px-3 listing-header">
                 <div className="container">
                     <div className="col-auto ml-auto text-right">
-                        You are submitting as <strong>{profile.data.first_name}</strong>. <button className="btn btn-success btn-sm">Submit <i className="fas fa-check" /></button>
+                        You are submitting as <strong>{profile.data.first_name}</strong>. <button className="btn btn-success btn-sm" onClick={this.postListing}>Submit <i className="fas fa-check" /></button>
                     </div>
                 </div>
             </div>

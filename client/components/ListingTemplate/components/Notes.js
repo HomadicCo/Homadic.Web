@@ -10,13 +10,13 @@ class Notes extends React.Component {
         let { notes } = this.props;
 
         return (
-            notes ?
-                <div id="notes">
+            <div id="notes">
+                {notes ?
                     <div className="content-box">
                         <h2 className="fancy blue">Notes</h2>
                         <RenderMarkdown markdown={notes} />
-                    </div>
-                </div> : undefined
+                    </div> : undefined}
+            </div>
         )
     }
 }

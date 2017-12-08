@@ -19,6 +19,7 @@ export const icons = {
     pool: require('!!file-loader!./icons/icon-pool.svg'),
     post_office: require('!!file-loader!./icons/icon-post_office.svg'),
     six_months: require('!!file-loader!./icons/icon-six_months.svg'),
+    subway_station: require('!!file-loader!./icons/icon-train_station.svg'),
     three_months: require('!!file-loader!./icons/icon-three_months.svg'),
     train_station: require('!!file-loader!./icons/icon-train_station.svg'),
     walking: require('!!file-loader!./icons/icon-walking.svg'),

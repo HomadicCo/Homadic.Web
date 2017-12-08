@@ -37,7 +37,7 @@ class Room extends React.Component {
             case 'shared':
                 return (<span>Shared</span>)
             case 'none':
-                return (<i className="text-muted far fa-times" size="lg" />)
+                return (<i className="text-muted fas fa-times" size="lg" />)
         }
     }
 
@@ -50,7 +50,7 @@ class Room extends React.Component {
             case 'shared':
                 return (<span>Shared</span>)
             case 'none':
-                return (<i className="text-muted far fa-times" size="lg" />)
+                return (<i className="text-muted fas fa-times" size="lg" />)
         }
     }
 

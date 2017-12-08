@@ -13,7 +13,7 @@ class Contact extends React.Component {
                 {listing.website || listing.contact_details.phone_number || listing.contact_details.email ? <div className="col-md-6">
                     <div className="content-box">
                         <h2 className="fancy blue">Contact</h2>
-                        {listing.website ? <p><i className="far fa-globe" /> <a href={listing.website} target="_blank">{listing.website}</a></p> : undefined}
+                        {listing.website ? <p><i className="fas fa-globe" /> <a href={listing.website} target="_blank">{listing.website}</a></p> : undefined}
                         {listing.contact_details.phone_number ? <p><i className="fas fa-phone" /> {listing.contact_details.phone_number}</p> : undefined}
                         {listing.contact_details.email ? <p><i className="fas fa-envelope" /> <a href={'mailto' + listing.contact_details.email} target="_blank">{listing.contact_details.email}</a></p> : undefined}
                     </div>

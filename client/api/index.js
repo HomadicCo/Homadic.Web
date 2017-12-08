@@ -62,3 +62,7 @@ export function apiGetListings() {
 export function apiGetListing(slug) {
     return Axios.get('listing/' + slug);
 }
+
+export function apiPostListing(listing) {
+    return Axios.post('listing', listing, getAuthHeader());
+}
