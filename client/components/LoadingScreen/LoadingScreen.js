@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 
 class LoadingScreen extends React.Component {
     constructor(props) {
@@ -9,7 +8,7 @@ class LoadingScreen extends React.Component {
     render() {
         return (
             <div className="loading-screen">
-                <h2><FontAwesome name="plane" size="2x" className="blue" spin /></h2>
+                <h2><i className="blue far fa-plane" size="2x" spin /></h2>
             </div>
         )
     }

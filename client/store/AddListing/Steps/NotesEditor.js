@@ -1,6 +1,5 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import Notes from '../../../components/ListingTemplate/components/Notes';
 
 class NotesEditor extends React.Component {
@@ -62,8 +61,8 @@ class NotesEditor extends React.Component {
 
         return (
             <div className="btn-group mb-2">
-                <button type="button" className={previewMode ? 'btn btn-sm btn-light' : 'btn btn-sm btn-action'} onClick={this.setPreviewMode.bind(null, false)}><FontAwesome name="pencil" /> Editor</button>
-                <button type="button" className={previewMode ? 'btn btn-sm btn-action' : 'btn btn-sm btn-light'} onClick={this.setPreviewMode.bind(null, true)}><FontAwesome name="eye" /> Preview</button>
+                <button type="button" className={previewMode ? 'btn btn-sm btn-light' : 'btn btn-sm btn-action'} onClick={this.setPreviewMode.bind(null, false)}><i className="far fa-pencil" /> Editor</button>
+                <button type="button" className={previewMode ? 'btn btn-sm btn-action' : 'btn btn-sm btn-light'} onClick={this.setPreviewMode.bind(null, true)}><i className="far fa-eye" /> Preview</button>
             </div>
         )
     }
@@ -103,8 +102,8 @@ class NotesEditor extends React.Component {
                 {this.renderEditor()}
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
-                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Amenities</button>
-                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Preview <FontAwesome name="caret-right" /></button>
+                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><i className="fas fa-caret-left" /> Amenities</button>
+                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Preview <i className="fas fa-caret-right" /></button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import Avatar from '../../../Components/Avatar/Avatar';
 
 class IndexHeader extends React.Component {
@@ -19,7 +18,7 @@ class IndexHeader extends React.Component {
                     </div>
                     <div className="col-4 ml-auto px-4 py-3 d-flex justify-content-end">
                         <div className="ml-3">
-                            <Link className="btn btn-sm mt-1 btn-success" to="/add/listing"><FontAwesome name="plus" /> Add a listing</Link>
+                            <Link className="btn btn-sm mt-1 btn-success" to="/add/listing"><i className="fas fa-plus" /> Add a listing</Link>
                         </div>
                         {authentication.isLoggedIn ?
                             <div className="ml-3">

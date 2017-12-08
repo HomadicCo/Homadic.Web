@@ -1,6 +1,5 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import { apiGetGooglePlace } from '../../../api';
 import { emptyListing, rentalTypes } from '../../../data';
 
@@ -100,21 +99,21 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputFacebook" className="col-form-label">Facebook URL <FontAwesome className="text-muted" name="facebook-square" /></label>
+                        <label htmlFor="inputFacebook" className="col-form-label">Facebook URL <i className="text-muted fab fa-facebook-square" /></label>
                         <input type="text" name="social_details.facebook" value={listing.social_details.facebook} className="form-control" id="inputFacebook" onChange={this.handleChange} />
                     </div>
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputInstagram" className="col-form-label">Instagram Handle <FontAwesome className="text-muted" name="instagram" /></label>
+                        <label htmlFor="inputInstagram" className="col-form-label">Instagram Handle <i className="text-muted fab fa-instagram" /></label>
                         <input type="text" name="social_details.instagram" value={listing.social_details.instagram} className="form-control" id="inputInstagraam" onChange={this.handleChange} />
                     </div>
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputTwitter" className="col-form-label">Twitter Handle <FontAwesome className="text-muted" name="twitter" /></label>
+                        <label htmlFor="inputTwitter" className="col-form-label">Twitter Handle <i className="text-muted fab fa-twitter" /></label>
                         <input type="text" name="social_details.twitter" value={listing.social_details.twitter} className="form-control" id="inputTwitter" onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
-                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Next <FontAwesome name="caret-right" /></button>
+                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Next <i className="fas fa-caret-right" /></button>
                     </div>
                 </div>
             </form>

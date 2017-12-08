@@ -27,7 +27,6 @@
     "react-addons-css-transition-group": "^15.0.2",
     "react-bootstrap-typeahead": "^2.0.0-alpha.3",
     "react-dom": "^15.6.1",
-    "react-fontawesome": "^1.6.1",
     "react-google-maps": "^7.3.0",
     "react-places-autocomplete": "^5.4.3",
     "react-redux": "^5.0.5",

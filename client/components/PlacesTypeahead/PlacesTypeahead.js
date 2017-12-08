@@ -2,7 +2,6 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import PlacesAutocomplete from 'react-places-autocomplete'
 import { convertToSlug } from '../../functions';
-import FontAwesome from 'react-fontawesome';
 
 class PlacesTypeahead extends React.Component {
     constructor(props) {
@@ -28,7 +27,7 @@ class PlacesTypeahead extends React.Component {
             types: ['(cities)']
         };
 
-        const AutocompleteItem = ({ suggestion }) => (<div className="result"><FontAwesome name="map-marker" size="lg" className="red-light" /> {suggestion}</div>)
+        const AutocompleteItem = ({ suggestion }) => (<div className="result"><i className="fas fa-map-marker red-light" size="lg" /> {suggestion}</div>)
 
         return (
             <form onSubmit={this.handleFormSubmit}>

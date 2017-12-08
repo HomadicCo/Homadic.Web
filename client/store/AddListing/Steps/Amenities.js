@@ -1,6 +1,5 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import { internetType } from '../../../data';
 
 class Amenities extends React.Component {
@@ -91,7 +90,7 @@ class Amenities extends React.Component {
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-3">
-                        <label htmlFor="inputInternetType" className="col-form-label">Internet Type <FontAwesome className="text-muted" name="wifi" /></label>
+                        <label htmlFor="inputInternetType" className="col-form-label">Internet Type <i className="text-muted fas fa-wifi" /></label>
                         <select id="inputInternetType" className="form-control" name="wifi.type" value={listing.wifi.type} onChange={this.handleChange}>
                             {internetType.map((type, i) => (<option key={i} value={type.value}>{type.name}</option>))}
                         </select>
@@ -102,21 +101,21 @@ class Amenities extends React.Component {
                     <div className="form-row">
                         {(['paid', 'canInstall'].indexOf(listing.wifi.type) > -1) ?
                             <div className="form-group col-md-3">
-                                <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost per month <FontAwesome className="text-muted" name="dollar" /></label>
+                                <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost per month <i className="text-muted far fa-dollar" /></label>
                                 <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                     <div className="input-group-addon">{listing.currency}</div>
                                     <input type="text" className="form-control" id="inputInternetCost" data-type="int" name="wifi.rate" value={listing.wifi.rate} onChange={this.handleChange} />
                                 </div>
                             </div> : undefined}
                         <div className="form-group col-md-3">
-                            <label htmlFor="inputInternetDownload" className="col-form-label mr-2">Download <FontAwesome className="text-muted" name="cloud-download" /></label>
+                            <label htmlFor="inputInternetDownload" className="col-form-label mr-2">Download <i className="text-muted far fa-cloud-download" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <input type="number" className="form-control" id="inputInternetDownload" data-type="int" max={100} name="wifi.download" value={listing.wifi.download} onChange={this.handleChange} />
                                 <div className="input-group-addon">mbps</div>
                             </div>
                         </div>
                         <div className="form-group col-md-3">
-                            <label htmlFor="inputInternetUpload" className="col-form-label mr-2">Upload <FontAwesome className="text-muted" name="cloud-upload" /></label>
+                            <label htmlFor="inputInternetUpload" className="col-form-label mr-2">Upload <i className="text-muted far fa-cloud-upload" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <input type="number" className="form-control" id="inputInternetUpload" data-type="int" max={100} name="wifi.upload" value={listing.wifi.upload} onChange={this.handleChange} />
                                 <div className="input-group-addon">mbps</div>
@@ -128,8 +127,8 @@ class Amenities extends React.Component {
                 <textarea id="inputInternetNotes" className="form-control" placeholder="Special notes on the internet, internet is life!" name="wifi.notes" value={listing.wifi.notes} onChange={this.handleChange} maxLength={1000} />
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
-                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Rooms</button>
-                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Notes <FontAwesome name="caret-right" /></button>
+                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><i className="fas fa-caret-left" /> Rooms</button>
+                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Notes <i className="fas fa-caret-right" /></button>
                     </div>
                 </div>
             </form>

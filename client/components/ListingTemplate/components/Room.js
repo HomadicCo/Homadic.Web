@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import { icons } from '../../../Images/Images';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
 
@@ -34,11 +33,11 @@ class Room extends React.Component {
 
         switch (room.kitchen) {
             case 'included':
-                return (<FontAwesome name="check" size="lg" className="green" />)
+                return (<i className="green fas fa-check" size="lg" />)
             case 'shared':
                 return (<span>Shared</span>)
             case 'none':
-                return (<FontAwesome name="times" size="lg" className="text-muted" />)
+                return (<i className="text-muted far fa-times" size="lg" />)
         }
     }
 
@@ -47,11 +46,11 @@ class Room extends React.Component {
 
         switch (room.laundry) {
             case 'included':
-                return (<FontAwesome name="check" size="lg" className="green" />)
+                return (<i className="green fas fa-check" size="lg" />)
             case 'shared':
                 return (<span>Shared</span>)
             case 'none':
-                return (<FontAwesome name="times" size="lg" className="text-muted" />)
+                return (<i className="text-muted far fa-times" size="lg" />)
         }
     }
 

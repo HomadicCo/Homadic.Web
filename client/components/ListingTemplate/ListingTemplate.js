@@ -1,5 +1,4 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import Avatar from '../../Components/Avatar/Avatar';
 import Header from './components/Header';
 import Internet from './components/Internet';
@@ -21,7 +20,7 @@ class ListingTemplate extends React.Component {
             <div className="navbar fixed-top bg-white px-3 listing-header">
                 <div className="container">
                     <div className="col-auto ml-auto text-right">
-                        You are submitting as <strong>{profile.data.first_name}</strong>. <button className="btn btn-success btn-sm">Submit <FontAwesome name="check" /></button>
+                        You are submitting as <strong>{profile.data.first_name}</strong>. <button className="btn btn-success btn-sm">Submit <i className="fas fa-check" /></button>
                     </div>
                 </div>
             </div>
@@ -36,7 +35,7 @@ class ListingTemplate extends React.Component {
                 <div className="container">
                     <div className="row justify-content-end">
                         <div className="col">
-                            <h5 className="blue"><FontAwesome name="thumbs-up" /> <FontAwesome name="thumbs-o-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><FontAwesome name="pencil" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
+                            <h5 className="blue"><i className="far fa-thumbs-up" /> <i className="far fa-thumbs-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><i className="fas fa-pencil-alt" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
                         </div>
                     </div>
                 </div>

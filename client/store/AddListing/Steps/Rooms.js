@@ -1,6 +1,5 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import FontAwesome from 'react-fontawesome';
 import { currencies, room } from '../../../data';
 import Room from '../components/Room';
 
@@ -63,7 +62,7 @@ class Rooms extends React.Component {
                 <h1 className="fancy blue display-4 mb-4">Rooms</h1>
                 <div className="form-row">
                     <div className="form-group col-md-2">
-                        <label htmlFor="inputCurrency" className="col-form-label">Currency <FontAwesome className="text-muted" name="money" /></label>
+                        <label htmlFor="inputCurrency" className="col-form-label">Currency <i className="text-muted fas fa-dollar-sign" /></label>
                         <select id="inputCurrency" name="currency" value={listing.currency} className="form-control" onChange={this.handleChange}>
                             {currencies.map((currency, i) => (
                                 <option key={i} value={currency}>{currency}</option>)
@@ -71,7 +70,7 @@ class Rooms extends React.Component {
                         </select>
                     </div>
                     <div className="form-group col">
-                        <label htmlFor="inputElectricity" className="col-form-label">Electricity <FontAwesome className="text-muted" name="plug" /></label>
+                        <label htmlFor="inputElectricity" className="col-form-label">Electricity <i className="text-muted fas fa-plug" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{listing.currency}</div>
                             <input type="text" name="bills.electricity" className="form-control" id="inputElectricity" value={listing.bills.electricity} onChange={this.handleChange} maxLength={50} />
@@ -79,7 +78,7 @@ class Rooms extends React.Component {
                         <small id="electricityHelp" className="form-text text-muted">Eg: cost per unit</small>
                     </div>
                     <div className="form-group col">
-                        <label htmlFor="inputWater" className="col-form-label">Water <FontAwesome className="text-muted" name="shower" /></label>
+                        <label htmlFor="inputWater" className="col-form-label">Water <i className="text-muted fas fa-shower" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div className="input-group-addon">{listing.currency}</div>
                             <input type="text" name="bills.water" className="form-control" id="inputWater" value={listing.bills.water} onChange={this.handleChange} maxLength={50} />
@@ -87,11 +86,11 @@ class Rooms extends React.Component {
                     </div>
                 </div>
                 {listing.rooms.map((room, i) => <Room key={i} id={i} room={room} {...this.props} />)}
-                {listing.rooms.length < 6 ? <button type="button" className="btn btn-action" onClick={this.handleAddNewRoomClick}>Add room <FontAwesome name="plus" /></button> : <p>Only six rooms allowed for now.</p>}
+                {listing.rooms.length < 6 ? <button type="button" className="btn btn-action btn-sm" onClick={this.handleAddNewRoomClick}>Add room <i className="fas fa-plus" /></button> : <p>Only six rooms allowed for now.</p>}
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
-                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><FontAwesome name="caret-left" /> Listing</button>
-                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Amenities <FontAwesome name="caret-right" /></button>
+                        <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><i className="fas fa-caret-left" /> Listing</button>
+                        <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Amenities <i className="fas fa-caret-right" /></button>
                     </div>
                 </div>
             </form>
