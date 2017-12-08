@@ -35,25 +35,23 @@ class Index extends React.Component {
         const inputProps = {
             placeholder: 'Where would you like to live?', autoFocus: true
         }
-        return (<div> <IndexHeader {
-            ...this.props
-        }
-        /> <div className="index"> <div className="container text-center"> <div className="col-12 mb-5 mt-3"> <h4> {
-            labels.indexSlogan
-        }
-        </h4> </div> <div className="col-12 my-5"> <PlacesTypeahead {
-            ...this.props
-        }
-            classNames={
-                classNames
-            }
-            styles={
-                indexStyles
-            }
-            inputProps={
-                inputProps
-            }
-        /> </div> </div> <div className="how-it-works"> <Link to="https://nickbrooks.co/" target="_blank" className="btn btn-sm btn-action"><i className="far fa-question-circle" /> How Homadic works</Link> </div> <div className="index-bg" /> </div> </div>)
+        return (
+            <div>
+                <IndexHeader {...this.props} />
+                <div className="index">
+                    <div className="container text-center">
+                        <div className="col-12 mb-5 mt-3">
+                            <h4> {labels.indexSlogan}                </h4>
+                        </div>
+                        <div className="col-12 my-5">
+                            <PlacesTypeahead {...this.props} classNames={classNames} styles={indexStyles} inputProps={inputProps} />
+                        </div>
+                    </div>
+                    <div className="how-it-works">
+                        <Link to="https://nickbrooks.co/" target="_blank" className="btn btn-sm btn-action"><i className="far fa-question-circle" /> How Homadic works</Link>
+                    </div>
+                    <div className="index-bg" /></div>
+            </div>)
     }
 }
 
