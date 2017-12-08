@@ -1,5 +1,5 @@
 /* global Promise */
-import { apiGetListings, apiGetListing } from '../../api';
+import { apiGetListings } from '../../api';
 
 // update the profile in the store
 export function updateListingsStore(data) {
@@ -17,14 +17,6 @@ export function updateFetchingListingsStatus(value) {
     }
 }
 
-// update the profile in the store
-export function updateSelectedListing(listing) {
-    return {
-        type: 'UPDATE_SELECTED_LISTING',
-        listing
-    }
-}
-
 export function handleGetListings() {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
@@ -37,22 +29,6 @@ export function handleGetListings() {
                 resolve(response.data);
             }).catch(error => {
                 dispatch(updateFetchingListingsStatus(false));
-                console.error(error);
-                reject(error);
-            });
-        });
-    };
-}
-
-export function handleGetListing(listingSlug) {
-    return (dispatch) => {
-        return new Promise((resolve, reject) => {
-            const request = apiGetListing(listingSlug);
-
-            request.then(response => {
-                dispatch(updateSelectedListing(response.data));
-                resolve(response.data);
-            }).catch(error => {
                 console.error(error);
                 reject(error);
             });

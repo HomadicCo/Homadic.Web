@@ -26,8 +26,7 @@ const defaultState = {
   authentication: {},
   listings: {
     data: [],
-    fetching: false,
-    selected: {}
+    fetching: false
   },
   map: {
     markers: [],

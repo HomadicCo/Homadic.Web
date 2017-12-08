@@ -20,7 +20,7 @@ class ListingDetails extends React.Component {
             clearNewListing(emptyListing);
             apiGetGooglePlace(addListing.ui.gmid).then(response => {
                 if (response.data.slug != null) {
-                    browserHistory.push('/listing/slug');
+                    browserHistory.push('/listing/' + response.data.slug);
                 }
                 setListingFromGoogleMaps(response.data.place);
                 setLoadingStatus(false);

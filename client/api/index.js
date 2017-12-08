@@ -59,6 +59,6 @@ export function apiGetListings() {
     return Axios.get('listings');
 }
 
-export function apiGetListing(listingSlug) {
-    return Axios.get('listings/' + listingSlug);
+export function apiGetListing(slug) {
+    return Axios.get('listing/' + slug);
 }

@@ -26,7 +26,7 @@ const router = (
             <Route path="/" component={App}>
                 <IndexRoute component={Index} />
                 <Route path="/signin-facebook" component={SigninFacebook} />
-                <Route path="/slug/:listingSlug" component={Listing} />
+                <Route path="/listing/:listingSlug" component={Listing} />
                 <Route path="/:citySlug" component={Map} />
             </Route>
         </Router>
