@@ -2,8 +2,7 @@ import React from 'react';
 import { Marker } from 'react-google-maps';
 import { icons } from '../../../Images/Images';
 
-//TODO: Is this actually being used?
-export class ListingMarker extends React.Component {
+class ListingMarker extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -26,3 +25,5 @@ export class ListingMarker extends React.Component {
         )
     }
 }
+
+export default ListingMarker;

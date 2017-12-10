@@ -4,7 +4,8 @@ import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import ActionBar from './Components/ActionBar';
-import { AddListingMarker, ListingMarker } from './Components/Markers';
+import AddListingMarker from './Components/AddListingMarker';
+import ListingMarker from './Components/ListingMarker';
 import MapStyle from '../../components/MapStyle/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images';
@@ -29,8 +30,8 @@ const RenderMap = withGoogleMap(props => (
             props.addNewListingMode ?
                 <AddListingMarker {...props} />
                 :
-                props.listings.map(listing => (
-                    <ListingMarker listing={listing} key={listing.id} {...props} />
+                props.listings.map((listing, i) => (
+                    <ListingMarker listing={listing} key={i} {...props} />
                 ))
 
         }

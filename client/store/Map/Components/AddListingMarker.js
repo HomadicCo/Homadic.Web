@@ -24,3 +24,5 @@ export class AddListingMarker extends React.Component {
         )
     }
 }
+
+export default AddListingMarker;

@@ -24,9 +24,9 @@ export function handleGetListings() {
             const request = apiGetListings();
 
             request.then(response => {
-                dispatch(updateListingsStore(response.data));
+                dispatch(updateListingsStore(response.data.data));
                 dispatch(updateFetchingListingsStatus(false));
-                resolve(response.data);
+                resolve(response.data.data);
             }).catch(error => {
                 dispatch(updateFetchingListingsStatus(false));
                 console.error(error);
