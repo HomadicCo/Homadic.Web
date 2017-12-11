@@ -17,11 +17,11 @@ export function updateFetchingListingsStatus(value) {
     }
 }
 
-export function handleGetListings() {
+export function handleGetListings(listingsQuery) {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
             dispatch(updateFetchingListingsStatus(true));
-            const request = apiGetListings();
+            const request = apiGetListings(listingsQuery);
 
             request.then(response => {
                 dispatch(updateListingsStore(response.data.data));

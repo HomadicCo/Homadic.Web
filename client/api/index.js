@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import queryString from 'query-string';
 import { loadLocalStorage } from '../functions';
 
 // set some default stuff
@@ -55,8 +56,8 @@ export function apiGetGooglePlace(googlePlaceId) {
 
 // listings
 
-export function apiGetListings() {
-    return Axios.get('listings');
+export function apiGetListings(listingsQuery) {
+    return Axios.get('listings?' + queryString.stringify(listingsQuery), getAuthHeader());
 }
 
 export function apiGetListing(slug) {

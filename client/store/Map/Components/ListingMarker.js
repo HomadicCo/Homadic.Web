@@ -13,8 +13,8 @@ class ListingMarker extends React.Component {
         return (
             <Marker
                 position={{
-                    lat: listing.location.coordinates[0],
-                    lng: listing.location.coordinates[1],
+                    lat: listing.coordinates.lat,
+                    lng: listing.coordinates.lng,
                 }}
                 onClick={() => openListingInNewWindow(listing.slug)}
                 onMouseOver={() => setHoveredListing(listing)}
