@@ -41,8 +41,6 @@ class Room extends React.Component {
 
         // if it's the expanded room, we wanna set it to the one above
         if (addListing.ui.expandedRoom == room.id) {
-
-
             const i = rooms.findIndex(this.isTheRoom.bind(null, expandedRoom));
             setExpandedRoom(rooms[i - 1].id);
         }
@@ -132,7 +130,7 @@ class Room extends React.Component {
                         <div className="col-auto">
                             <div className="btn-group">
                                 {addListing.ui.expandedRoom != room.id ? <button type="button" onClick={this.handleSetExpandedRoom} className="btn btn-trans btn-sm"><i className="fas fa-caret-down" /></button> : undefined}
-                                {addListing.listing.rooms.length > 1 ? <button type="button" onClick={this.handleRemoveRoom} className="btn btn-trans btn-sm"><i className="fas fa-close" /></button> : undefined}
+                                {addListing.listing.rooms.length > 1 ? <button type="button" onClick={this.handleRemoveRoom} className="btn btn-trans btn-sm"><i className="fas fa-window-close" /></button> : undefined}
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ const RenderMap = withGoogleMap(props => (
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
-            minZoom: 12,
+            minZoom: 14,
             draggableCursor: props.draggableCursor
         }}
     >

@@ -23,9 +23,10 @@ const RenderMap = withGoogleMap(props => (
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
-            minZoom: 13,
+            minZoom: 14,
             draggableCursor: props.addNewListingMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined
-        }}>
+        }}
+    >
         {
             props.addNewListingMode ?
                 <AddListingMarker {...props} />
