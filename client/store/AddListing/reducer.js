@@ -54,15 +54,19 @@ function AddListing(state = [], action) {
                 contact_details: {
                     email: '',
                     phone_number: action.googleMapsPlace.international_phone_number,
+                    website: action.googleMapsPlace.website
                 },
                 location: {
                     type: 'Point',
                     coordinates: [action.googleMapsPlace.geometry.location.lat, action.googleMapsPlace.geometry.location.lng]
                 },
+                coordinates: {
+                    lat: action.googleMapsPlace.geometry.location.lat,
+                    lng: action.googleMapsPlace.geometry.location.lng
+                },
                 name: action.googleMapsPlace.name,
                 google_place_id: action.googleMapsPlace.place_id,
-                rating: action.googleMapsPlace.rating,
-                website: action.googleMapsPlace.website
+                rating: action.googleMapsPlace.rating
             };
 
             return newState;

@@ -91,7 +91,7 @@ class ListingDetails extends React.Component {
                     </div>
                     <div className="form-group col-md-4">
                         <label htmlFor="inputUrl" className="col-form-label">URL</label>
-                        <input type="url" name="website" value={listing.contact_details.website} className="form-control" id="inputUrl" onChange={this.handleChange} />
+                        <input type="url" name="contact_details.website" value={listing.contact_details.website} className="form-control" id="inputUrl" onChange={this.handleChange} />
                     </div>
                 </div>
                 <div className="content-header">

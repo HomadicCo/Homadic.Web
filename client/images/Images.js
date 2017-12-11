@@ -10,7 +10,7 @@ export const icons = {
     gas_station: require('!!file-loader!./icons/icon-gas_station.svg'),
     guesthouse: require('!!file-loader!./icons/icon-guesthouse.svg'),
     gym: require('!!file-loader!./icons/icon-gym.svg'),
-    home: require('!!file-loader!./icons/icon-home.svg'),
+    house: require('!!file-loader!./icons/icon-house.svg'),
     hostel: require('!!file-loader!./icons/icon-hostel.svg'),
     hotel: require('!!file-loader!./icons/icon-hotel.svg'),
     kitchen: require('!!file-loader!./icons/icon-kitchen.svg'),
