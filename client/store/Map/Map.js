@@ -84,7 +84,7 @@ class Map extends React.Component {
                 .then(results =>
                     getLatLng(results[0])
                 ).then(({ lat, lng }) => {
-                    this.props.handleGetListings({ lat: params.lat, lng: params.lng, zoom: 14 });
+                    this.props.handleGetListings({ lat, lng, zoom: 14 });
                     this.setState({ center: { lat, lng }, zoom: 14 });
                 });
         } else {

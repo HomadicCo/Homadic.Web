@@ -22,8 +22,8 @@ const RenderMap = withGoogleMap(props => (
                 <Marker
                     key={marker.id}
                     position={{
-                        lat: marker.location.coordinates[0],
-                        lng: marker.location.coordinates[1],
+                        lat: marker.coordinates.lat,
+                        lng: marker.coordinates.lng
                     }}
                     options={{ icon: icons[marker.type] }}
                 />
@@ -38,8 +38,8 @@ class LocationMap extends React.Component {
 
         this.state = {
             center: {
-                lat: props.listing.location.coordinates[0],
-                lng: props.listing.location.coordinates[1]
+                lat: props.listing.coordinates.lat,
+                lng: props.listing.coordinates.lng
             }
         };
     }
