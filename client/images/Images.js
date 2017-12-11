@@ -18,6 +18,7 @@ export const icons = {
     location: require('!!file-loader!./icons/icon-location.svg'),
     one_month: require('!!file-loader!./icons/icon-one_month.svg'),
     pharmacy: require('!!file-loader!./icons/icon-pharmacy.svg'),
+    police: require('!!file-loader!./icons/icon-police.svg'),
     pool: require('!!file-loader!./icons/icon-pool.svg'),
     post_office: require('!!file-loader!./icons/icon-post_office.svg'),
     six_months: require('!!file-loader!./icons/icon-six_months.svg'),

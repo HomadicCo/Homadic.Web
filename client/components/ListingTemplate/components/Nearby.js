@@ -38,6 +38,9 @@ class Nearby extends React.Component {
             case ('laundry'):
                 label = 'Laundry';
                 break;
+            case ('police'):
+                label = 'Police station';
+                break;
         }
 
         switch (poi.transit_mode) {
