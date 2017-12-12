@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { getLoginUrl } from '../../functions'
-import ActionBar from './Components/ActionBar';
+import MapSidebar from './Components/MapSidebar';
 import Avatar from '../../Components/Avatar/Avatar';
 import AddListingMarker from './Components/AddListingMarker';
 import ListingMarker from './Components/ListingMarker';
@@ -185,12 +185,6 @@ class Map extends React.Component {
         }
     }
 
-    openListingInNewWindow(slug) {
-        if (slug) {
-            window.open(window.location.origin + '/listing/' + slug);
-        }
-    }
-
     isLoading() {
         let { center } = this.state;
         let { profile } = this.props;
@@ -209,7 +203,7 @@ class Map extends React.Component {
                 {this.isLoading() ? <LoadingScreen /> :
                     <div>
                         <div className="container map-sidebar">
-                            <ActionBar {...this.props} />
+                            <MapSidebar {...this.props} />
                         </div>
                         <div className="map">
                             <RenderMap
@@ -221,7 +215,6 @@ class Map extends React.Component {
                                 onMapChanged={this.handleMapChanged}
                                 onMarkerDragged={this.handleMarkerDrag}
                                 setHoveredListing={this.props.setHoveredListing}
-                                openListingInNewWindow={this.openListingInNewWindow}
                                 containerElement={
                                     <div style={{ height: '100%' }} />
                                 }

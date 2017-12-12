@@ -8,6 +8,9 @@ function map(state = [], action) {
         case 'SET_ADD_NEW_PLACE_MODE':
             newState.addNewListingMode = action.value;
             return newState;
+        case 'SET_FILTER_MODE':
+            newState.filterMode = action.value;
+            return newState;
         case 'SET_ADD_NEW_PLACE_COORDINATES':
             newState.addNewListingCoordinates = action.coordinates;
             return newState;

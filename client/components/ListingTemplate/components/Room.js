@@ -55,13 +55,13 @@ class Room extends React.Component {
     }
 
     render() {
-        let { currency, room } = this.props;
+        let { colClass, currency, room } = this.props;
         const minStay = this.renderMinStay();
 
         return (
-            <div className="col-md-6 mb-2">
-                <div className="content-box room">
-                    <h5><img className="mr-1" src={icons.bedroom} /> {this.renderBedrooms()} <img className="ml-3 mr-1" src={icons.bathroom} height={30} width={30} /> {this.renderBathrooms()}</h5>
+            <div className={colClass + ' mb-2'}>
+                <div className="content-box room" >
+                    <h6><img className="mr-1" src={icons.bedroom} height={30} width={30} /> {this.renderBedrooms()} <img className="ml-3 mr-1" src={icons.bathroom} height={30} width={30} /> {this.renderBathrooms()}</h6>
                     <hr />
                     <div className="row">
                         <div className="col-6 mt-1">
@@ -77,8 +77,8 @@ class Room extends React.Component {
                     <div className="content-box-footer bg-blue">
                         <h6 className="white"><strong>{room.base_rate} {currency}</strong> {room.deposit ? <small>{room.deposit} {currency} deposit</small> : undefined}</h6>
                     </div>
-                </div>
-            </div>
+                </div >
+            </div >
         )
     }
 }

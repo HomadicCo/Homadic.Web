@@ -30,7 +30,8 @@ const defaultState = {
   },
   map: {
     markers: [],
-    addNewListingMode: false
+    addNewListingMode: false,
+    filterMode: false
   },
   profile: { data: {} },
   ui: {

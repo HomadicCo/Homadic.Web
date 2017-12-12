@@ -9,25 +9,6 @@
     }
 }
 
-.listing-snippets {
-    .snippet {
-        p {
-            margin: 5px 0;
-        }
-        .property-type {
-            margin: -15px 0 0;
-            padding: 0;
-            text-transform: capitalize;
-            color: $dark-blue;
-        }
-        .icons img {
-            height: 24px;
-            width: 24px;
-            margin: 0 8px 0 0;
-        }
-    }
-}
-
 .map-sidebar {
     width: $sidebar-width;
     position: absolute;
@@ -37,10 +18,45 @@
     overflow: auto;
 }
 
-.map-sidebar-tools {
-    .filter .btn {
-        margin-left: -18px
+.map-action-content {
+    .listing-snippets {
+        margin-top: 72px;
+        .snippet {
+            p {
+                margin: 5px 0;
+            }
+            .property-type {
+                margin: -15px 0 0;
+                padding: 0;
+                text-transform: capitalize;
+                color: $dark-blue;
+            }
+            .icons img {
+                height: 24px;
+                width: 24px;
+                margin: 0 8px 0 0;
+            }
+        }
     }
+}
+
+.map-action-header {
+    top: 0;
+    position: fixed;
+    background: $off-white;
+    width: $sidebar-width;
+    .filter .btn {
+        margin-left: -23px
+    }
+}
+
+.map-open-listing {
+    bottom: 0;
+    left: 0;
+    width: $sidebar-width;
+    position: fixed;
+    background: $new-footer;
+    border-top: 1px solid #c4cbd0;
 }
 
 .map-typeahead {
