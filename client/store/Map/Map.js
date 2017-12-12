@@ -3,7 +3,9 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { getLoginUrl } from '../../functions'
 import ActionBar from './Components/ActionBar';
+import Avatar from '../../Components/Avatar/Avatar';
 import AddListingMarker from './Components/AddListingMarker';
 import ListingMarker from './Components/ListingMarker';
 import MapStyle from '../../components/MapStyle/MapStyle';
@@ -48,6 +50,7 @@ class Map extends React.Component {
             zoom: 14
         };
 
+        this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
         this.handleZoomChanged = this.handleZoomChanged.bind(this);
@@ -75,6 +78,47 @@ class Map extends React.Component {
         // check if route has changed
         if (location.pathname != nextProps.location.pathname) {
             this.updateLatLong({ slug: nextProps.params.citySlug });
+        }
+    }
+
+    renderLoggedIn() {
+        let { map, profile } = this.props;
+
+        return (
+            <div className="d-flex profile-actions mr-3 mt-3">
+                <div className="ml-3 mt-1">
+                    {map.addNewListingMode ?
+                        <button onClick={this.setAddNewListingMode.bind(null, false)} className="btn btn-sm btn-danger"><i className="fas fa-times" /> Cancel</button> :
+                        <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-sm btn-success"><i className="fas fa-plus" /> Add</button>
+                    }
+                </div>
+                <div className="ml-3">
+                    <Avatar size={40} profile={profile.data} />
+                </div>
+            </div>
+        );
+    }
+
+    renderLoggedOut() {
+        const loginUrl = getLoginUrl(window.location.pathname);
+
+        return (
+            <div className="d-flex profile-actions mr-3 mt-3">
+                <div className="ml-3">
+                    <a href={loginUrl} className="btn btn-success"><i className="fas fa-plus" /> Add</a>
+                </div>
+            </div>
+        );
+    }
+
+    setAddNewListingMode(value, e) {
+        e.preventDefault();
+        let { setAddNewListingCoordinates, setAddNewListingMode } = this.props;
+
+        setAddNewListingMode(value);
+
+        if (!value) {
+            setAddNewListingCoordinates(undefined);
         }
     }
 
@@ -158,32 +202,37 @@ class Map extends React.Component {
 
     render() {
         let { center, zoom } = this.state;
-        let { listings, map } = this.props;
+        let { authentication, listings, map } = this.props;
 
         return (
             <div>
                 {this.isLoading() ? <LoadingScreen /> :
-                    <div className="map">
-                        <ActionBar {...this.props} />
-                        <RenderMap
-                            onMapLoad={this.handleMapLoad}
-                            onMapClick={this.handleMapClick}
-                            center={new google.maps.LatLng(center)}
-                            zoom={zoom}
-                            addNewListingMode={map.addNewListingMode}
-                            onMapChanged={this.handleMapChanged}
-                            onMarkerDragged={this.handleMarkerDrag}
-                            setHoveredListing={this.props.setHoveredListing}
-                            openListingInNewWindow={this.openListingInNewWindow}
-                            containerElement={
-                                <div style={{ height: '100%' }} />
-                            }
-                            mapElement={
-                                <div style={{ height: '100%' }} />
-                            }
-                            listings={listings.data}
-                            map={map}
-                        />
+                    <div>
+                        <div className="container map-sidebar">
+                            <ActionBar {...this.props} />
+                        </div>
+                        <div className="map">
+                            <RenderMap
+                                onMapLoad={this.handleMapLoad}
+                                onMapClick={this.handleMapClick}
+                                center={new google.maps.LatLng(center)}
+                                zoom={zoom}
+                                addNewListingMode={map.addNewListingMode}
+                                onMapChanged={this.handleMapChanged}
+                                onMarkerDragged={this.handleMarkerDrag}
+                                setHoveredListing={this.props.setHoveredListing}
+                                openListingInNewWindow={this.openListingInNewWindow}
+                                containerElement={
+                                    <div style={{ height: '100%' }} />
+                                }
+                                mapElement={
+                                    <div style={{ height: '100%' }} />
+                                }
+                                listings={listings.data}
+                                map={map}
+                            />
+                            {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
+                        </div>
                     </div>}
             </div>
         )

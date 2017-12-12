@@ -1,58 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { getLoginUrl } from '../../../functions';
-import Avatar from '../../../Components/Avatar/Avatar';
-import HoveredListing from './HoveredListing';
+import ListingSnippet from './ListingSnippet';
 import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead';
 
 class ActionBar extends React.Component {
     constructor(props) {
         super(props);
-        this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
     }
 
-    setAddNewListingMode(value, e) {
-        e.preventDefault();
-        let { setAddNewListingCoordinates, setAddNewListingMode } = this.props;
-
-        setAddNewListingMode(value);
-
-        if (!value) {
-            setAddNewListingCoordinates(undefined);
-        }
-    }
-
-    renderLoggedIn() {
-        let { map, profile } = this.props;
+    renderSnippets() {
+        let { data } = this.props.listings;
 
         return (
-            <div className="d-flex profile-actions mr-3 mt-3">
-                <div className="ml-3 mt-1">
-                    {map.addNewListingMode ?
-                        <button onClick={this.setAddNewListingMode.bind(null, false)} className="btn btn-sm btn-danger"><i className="fas fa-times" /> Cancel</button> :
-                        <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-sm btn-success"><i className="fas fa-plus" /> Add</button>
-                    }
-                </div>
-                <div className="ml-3">
-                    <Avatar size={40} profile={profile.data} />
-                </div>
+            <div className="listing-snippets">
+                {data.map((listing, i) => <ListingSnippet key={i} listing={listing} />)}
             </div>
-        );
+        )
     }
 
-    renderLoggedOut() {
-        const loginUrl = getLoginUrl(window.location.pathname);
-
-        return (
-            <div className="d-flex profile-actions mr-3 mt-3">
-                <div className="ml-3">
-                    <a href={loginUrl} className="btn btn-success"><i className="fas fa-plus" /> Add</a>
-                </div>
-            </div>
-        );
-    }
-
-    renderSearchHoverToggle() {
+    renderSidebarContent() {
         let { map } = this.props;
 
         const classNames = {
@@ -67,27 +33,30 @@ class ActionBar extends React.Component {
 
         return (
             <div>
-                {map.hoveredListing ? <HoveredListing listing={map.hoveredListing} /> : <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />}
-            </div>
+                <div className="map-sidebar-tools row mt-3">
+                    <div className="col-9">
+                        <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
+                    </div>
+                    <div className="col-3 filter">
+                        <button className="btn btn-action">Filter <i className="fas fa-filter" /></button>
+                    </div>
+                </div>
+                {map.hoveredListing ? <ListingSnippet listing={map.hoveredListing} /> : this.renderSnippets()}
+            </div >
         );
     }
 
+    renderNewListingMode() {
+        return (
+            <Link to="/add" className="btn btn-success"><i className="fas fa-check" /> Add new listing here</Link>
+        )
+    }
+
     render() {
-        let { authentication, map } = this.props;
+        let { map } = this.props;
 
         return (
-            <div>
-                <div className="d-flex search-container mr-3 mt-3">
-                    <div className="ml-3">
-                        {map.addNewListingMode ?
-                            map.addNewListingCoordinates ? <Link to="/add" className="btn btn-success"><i className="fas fa-check" /> Add new listing here</Link> : undefined :
-                            this.renderSearchHoverToggle()
-                        }
-
-                    </div>
-                </div>
-                {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
-            </div>
+            map.addNewListingMode ? this.renderNewListingMode() : this.renderSidebarContent()
         )
     }
 }
