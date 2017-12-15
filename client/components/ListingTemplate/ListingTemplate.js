@@ -72,7 +72,7 @@ class ListingTemplate extends React.Component {
                     <Rooms listing={listing} />
                     <Notes notes={listing.notes} />
                     <Internet listing={listing} />
-                    <Nearby listing={listing} previewMode={previewMode} />
+                    <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
                     <LocationMap listing={listing} />
                     <Contact listing={listing} />
                 </div>

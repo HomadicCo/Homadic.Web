@@ -1,7 +1,8 @@
 import React from 'react';
-import RatingBadge from '../../../components/RatingBadge/RatingBadge';
+import Rater from 'react-rater'
 import { icons } from '../../../Images/Images';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
+import Nearby from '../../../components/ListingTemplate/components/Nearby';
 
 class ListingPreview extends React.Component {
     constructor(props) {
@@ -40,19 +41,20 @@ class ListingPreview extends React.Component {
         let { listing } = this.props;
 
         return (
-            <div className="mt-3">
+            <div className="mt-3 listing-content">
                 <div className="map-open-listing text-center py-2">
                     <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}>View full listing</button>
                 </div>
-                <div className="content-box content-box-sm">
-                    <h6><strong>{listing.name}</strong> {listing.rating != 0 ? <RatingBadge rating={listing.rating} /> : undefined}</h6>
-                    <p className="property-type"><small>{listing.type}</small></p>
-                    <h5 className="red-light"><strong>${listing.rooms[0].base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>{listing.currency}</small></h5>
+                <div className="content-box content-box-sm transparent">
+                    <h6><strong>{listing.name}</strong></h6>
+                    <p>{listing.type}</p>
+                    <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
                 </div>
                 <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Rooms</h5>
                     {listing.rooms.map((room, i) => (<div key={i}><hr />{this.renderRoom(room)}</div>))}
                 </div>
+                <Nearby listing={listing} colClass="col-6" />
             </div>
         )
     }

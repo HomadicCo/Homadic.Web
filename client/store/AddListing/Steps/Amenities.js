@@ -108,14 +108,14 @@ class Amenities extends React.Component {
                                 </div>
                             </div> : undefined}
                         <div className="form-group col-md-3">
-                            <label htmlFor="inputInternetDownload" className="col-form-label mr-2">Download <i className="text-muted far fa-cloud-download" /></label>
+                            <label htmlFor="inputInternetDownload" className="col-form-label mr-2">Download <i className="text-muted fas fa-cloud-download-alt" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <input type="number" className="form-control" id="inputInternetDownload" data-type="int" max={100} name="wifi.download" value={listing.wifi.download} onChange={this.handleChange} />
                                 <div className="input-group-addon">mbps</div>
                             </div>
                         </div>
                         <div className="form-group col-md-3">
-                            <label htmlFor="inputInternetUpload" className="col-form-label mr-2">Upload <i className="text-muted far fa-cloud-upload" /></label>
+                            <label htmlFor="inputInternetUpload" className="col-form-label mr-2">Upload <i className="text-muted fas fa-cloud-upload-alt" /></label>
                             <div className="input-group mb-2 mr-sm-2 mb-sm-0">
                                 <input type="number" className="form-control" id="inputInternetUpload" data-type="int" max={100} name="wifi.upload" value={listing.wifi.upload} onChange={this.handleChange} />
                                 <div className="input-group-addon">mbps</div>

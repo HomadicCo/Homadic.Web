@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingBadge from '../../../components/RatingBadge/RatingBadge';
+import Rater from 'react-rater';
 import IconsBar from '../../../components/IconsBar/IconsBar';
 
 class ListingSnippet extends React.Component {
@@ -12,7 +12,8 @@ class ListingSnippet extends React.Component {
 
         return (
             <div className="content-box content-box-sm snippet">
-                <h6><strong>{listing.name}</strong> {listing.rating != 0 ? <RatingBadge rating={listing.rating} /> : undefined}</h6>
+                <h6><strong>{listing.name}</strong></h6>
+                <p>{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined}</p>
                 <p className="property-type"><small>{listing.type}</small></p>
                 <h5 className="red-light"><strong>${listing.rooms[0].base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>{listing.currency}</small></h5>
                 <IconsBar listing={listing} />

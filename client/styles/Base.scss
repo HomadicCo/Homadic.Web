@@ -14,7 +14,7 @@ body {
     -moz-font-smoothing: antialiased;
     font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    @include scrollbars(.5em, slategray);
+    @include scrollbars(.5em, $blue-light);
 }
 
 h1,

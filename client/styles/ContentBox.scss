@@ -16,6 +16,11 @@
             margin: 0;
         }
     }
+    &.transparent {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
 }
 
 a .content-box {
