@@ -47,8 +47,8 @@ class ListingPreview extends React.Component {
                 </div>
                 <div className="content-box content-box-sm transparent">
                     <h6><strong>{listing.name}</strong></h6>
-                    <p>{listing.type}</p>
-                    <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
+                    <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined}  <small>{listing.type}</small></p>
+                    <p className="property-price"><span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
                 </div>
                 <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Rooms</h5>

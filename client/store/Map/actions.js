@@ -1,5 +1,5 @@
 // hover over listings
-export function setHoveredListing(listing) {
+export function setSelectedListing(listing) {
     return {
         type: 'SET_HOVERED_LISTING',
         listing

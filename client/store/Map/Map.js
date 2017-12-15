@@ -214,7 +214,7 @@ class Map extends React.Component {
                                 addNewListingMode={map.addNewListingMode}
                                 onMapChanged={this.handleMapChanged}
                                 onMarkerDragged={this.handleMarkerDrag}
-                                setHoveredListing={this.props.setHoveredListing}
+                                setSelectedListing={this.props.setSelectedListing}
                                 containerElement={
                                     <div style={{ height: '100%' }} />
                                 }

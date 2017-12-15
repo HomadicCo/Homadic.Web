@@ -8,7 +8,7 @@ class ListingMarker extends React.Component {
     }
 
     render() {
-        let { setHoveredListing, onMarkerDragged, listing } = this.props;
+        let { setSelectedListing, onMarkerDragged, listing } = this.props;
 
         return (
             <Marker
@@ -16,7 +16,7 @@ class ListingMarker extends React.Component {
                     lat: listing.coordinates.lat,
                     lng: listing.coordinates.lng,
                 }}
-                onClick={() => setHoveredListing(listing)}
+                onClick={() => setSelectedListing(listing)}
                 options={{ icon: icons[listing.type] }}
                 onDragEnd={onMarkerDragged}
             />

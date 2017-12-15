@@ -10,7 +10,7 @@ class MapSidebar extends React.Component {
     }
 
     componentWillMount() {
-        this.props.setHoveredListing(null);
+        this.props.setSelectedListing(null);
     }
 
     renderFilterMode() {
@@ -45,7 +45,7 @@ class MapSidebar extends React.Component {
         let { map } = this.props;
 
         return (
-            map.hoveredListing ? <ListingPreview listing={map.hoveredListing} /> : this.renderSnippets()
+            map.selectedListing ? <ListingPreview listing={map.selectedListing} /> : this.renderSnippets()
         );
     }
 

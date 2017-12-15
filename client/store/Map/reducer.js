@@ -3,7 +3,7 @@ function map(state = [], action) {
 
     switch (action.type) {
         case 'SET_HOVERED_LISTING':
-            newState.hoveredListing = action.listing;
+            newState.selectedListing = action.listing;
             return newState;
         case 'SET_ADD_NEW_PLACE_MODE':
             newState.addNewListingMode = action.value;
