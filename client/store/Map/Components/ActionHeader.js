@@ -6,12 +6,30 @@ class MapSidebar extends React.Component {
         super(props);
 
         this.toggleFilter = this.toggleFilter.bind(this);
+        this.closeSelectedListing = this.closeSelectedListing.bind(this);
     }
 
     toggleFilter() {
         let { map, setFilterMode } = this.props;
 
         setFilterMode(map.filterMode ? false : true);
+    }
+
+    closeSelectedListing() {
+        let { setSelectedListing } = this.props;
+
+        setSelectedListing(null);
+    }
+
+    renderActionButton() {
+        let { selectedListing } = this.props.map;
+
+        return (
+            selectedListing == null ?
+                <button className="btn btn-action" onClick={this.toggleFilter}>Filter <i className="fas fa-filter" /></button>
+                :
+                <button className="btn btn-danger" onClick={this.closeSelectedListing}>Close <i className="fas fa-times" /></button>
+        )
     }
 
     render() {
@@ -26,12 +44,12 @@ class MapSidebar extends React.Component {
         }
 
         return (
-            <div className="row map-action-header">
+            <div className="row map-sidebar-header">
                 <div className="col-9 mt-3">
                     <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
                 </div>
-                <div className="col-3 mt-3 filter">
-                    <button className="btn btn-action" onClick={this.toggleFilter}>Filter <i className="fas fa-filter" /></button>
+                <div className="col-3 mt-3 action-button">
+                    {this.renderActionButton()}
                 </div>
             </div>
         );

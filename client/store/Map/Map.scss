@@ -16,6 +16,18 @@
     box-shadow: $box-shadow;
     z-index: 999;
     overflow: auto;
+    .map-sidebar-header {
+        top: 0;
+        position: fixed;
+        background: $off-white;
+        width: $sidebar-width;
+        .action-button .btn {
+            margin-left: -23px
+        }
+    }
+    .map-sidebar-content {
+        margin-top: 72px;
+    }
     .listing-selected {
         .property-type,
         .property-rate {
@@ -25,11 +37,7 @@
             margin: -5px 0 13px;
         }
     }
-}
-
-.map-action-content {
     .listing-snippets {
-        margin-top: 72px;
         .snippet {
             p {
                 margin: 5px 0;
@@ -46,16 +54,6 @@
                 margin: 0 8px 0 0;
             }
         }
-    }
-}
-
-.map-action-header {
-    top: 0;
-    position: fixed;
-    background: $off-white;
-    width: $sidebar-width;
-    .filter .btn {
-        margin-left: -23px
     }
 }
 

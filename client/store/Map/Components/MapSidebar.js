@@ -23,15 +23,11 @@ class MapSidebar extends React.Component {
         let { listings, map } = this.props;
 
         return (
-            <div>
-                <ActionHeader {...this.props} />
-                {map.filterMode ?
-                    this.renderFilterMode() :
-                    <div className="listing-snippets">
-                        {listings.data.map((listing, i) => <ListingSnippet key={i} listing={listing} />)}
-                    </div>
-                }
-            </div>
+            map.filterMode ?
+                this.renderFilterMode() :
+                <div className="listing-snippets">
+                    {listings.data.map((listing, i) => <ListingSnippet key={i} listing={listing} />)}
+                </div>
         )
     }
 
@@ -53,7 +49,12 @@ class MapSidebar extends React.Component {
         let { map } = this.props;
 
         return (
-            map.addNewListingMode ? this.renderNewListingMode() : this.renderSidebarContent()
+            <div>
+                <ActionHeader {...this.props} />
+                <div className="map-sidebar-content">
+                    {map.addNewListingMode ? this.renderNewListingMode() : this.renderSidebarContent()}
+                </div>
+            </div>
         )
     }
 }
