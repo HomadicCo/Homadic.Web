@@ -1,3 +1,4 @@
+/* global google */
 import React from 'react';
 import { Marker } from 'react-google-maps';
 import { icons } from '../../../Images/Images';
@@ -9,6 +10,10 @@ class ListingMarker extends React.Component {
 
     render() {
         let { setSelectedListing, onMarkerDragged, listing } = this.props;
+        const icon = {
+            url: icons[listing.type],
+            scaledSize: new google.maps.Size(40, 40)
+        };
 
         return (
             <Marker
@@ -17,7 +22,7 @@ class ListingMarker extends React.Component {
                     lng: listing.coordinates.lng,
                 }}
                 onClick={() => setSelectedListing(listing)}
-                options={{ icon: icons[listing.type] }}
+                options={{ icon }}
                 onDragEnd={onMarkerDragged}
             />
         )

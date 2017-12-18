@@ -223,6 +223,7 @@ class Map extends React.Component {
                                 }
                                 listings={listings.data}
                                 map={map}
+                                selectedListing={map.selectedListing}
                             />
                             {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
                         </div>

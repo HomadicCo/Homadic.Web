@@ -3,6 +3,7 @@ import Rater from 'react-rater'
 import { icons } from '../../../Images/Images';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
 import Nearby from '../../../components/ListingTemplate/components/Nearby';
+import ListingType from '../../../components/ListingType/ListingType';
 
 class ListingPreview extends React.Component {
     constructor(props) {
@@ -41,14 +42,14 @@ class ListingPreview extends React.Component {
         let { listing } = this.props;
 
         return (
-            <div className="mt-3 listing-content">
+            <div className="mt-3 listing-content listing-selected">
                 <div className="map-open-listing text-center py-2">
                     <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}>View full listing</button>
                 </div>
                 <div className="content-box content-box-sm transparent">
-                    <h6><strong>{listing.name}</strong></h6>
-                    <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined}  <small>{listing.type}</small></p>
-                    <p className="property-price"><span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
+                    <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
+                    <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
+                    <p className="property-rate"><span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
                 </div>
                 <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Rooms</h5>

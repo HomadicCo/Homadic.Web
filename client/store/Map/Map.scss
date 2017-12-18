@@ -16,6 +16,15 @@
     box-shadow: $box-shadow;
     z-index: 999;
     overflow: auto;
+    .listing-selected {
+        .property-type,
+        .property-rate {
+            line-height: 0.5em;
+        }
+        .property-type {
+            margin: -5px 0 13px;
+        }
+    }
 }
 
 .map-action-content {
