@@ -3,7 +3,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { getLoginUrl } from '../../functions'
+import { getCoordinateDistance, getLoginUrl } from '../../functions'
 import MapSidebar from './Components/MapSidebar';
 import Avatar from '../../Components/Avatar/Avatar';
 import AddListingMarker from './Components/AddListingMarker';
@@ -47,10 +47,13 @@ class Map extends React.Component {
 
         this.state = {
             center: undefined,
-            zoom: 14
+            searchedCenter: undefined,
+            zoom: 14,
+            searchThisArea: false
         };
 
         this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
+        this.searchThisArea = this.searchThisArea.bind(this);
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
         this.handleZoomChanged = this.handleZoomChanged.bind(this);
@@ -64,7 +67,7 @@ class Map extends React.Component {
 
         this.props.setAddNewListingMode(false);
 
-        this.updateLatLong({
+        this.getListings({
             slug: this.props.params.citySlug,
             lat: parseFloat(query.lat),
             lng: parseFloat(query.lng),
@@ -78,7 +81,7 @@ class Map extends React.Component {
         // check if route has changed
         if (location.pathname != nextProps.location.pathname) {
             setSelectedListing(null);
-            this.updateLatLong({ slug: nextProps.params.citySlug });
+            this.getListings({ slug: nextProps.params.citySlug });
         }
     }
 
@@ -112,6 +115,18 @@ class Map extends React.Component {
         );
     }
 
+    renderSearchAgainButton() {
+        return (
+            <div className="container">
+                <div className="row search-this-area">
+                    <div className="col-12">
+                        <button className="btn btn-sm btn-action" onClick={this.searchThisArea}>Search this area</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     setAddNewListingMode(value, e) {
         e.preventDefault();
         let { setSelectedListing, setAddNewListingCoordinates, setAddNewListingMode } = this.props;
@@ -124,18 +139,27 @@ class Map extends React.Component {
         }
     }
 
-    updateLatLong(params) {
+    searchThisArea() {
+        let { center } = this.state;
+
+        this.getListings(center);
+        this.setState({ searchedCenter: center, searchThisArea: false });
+    }
+
+    getListings(params) {
+        this.props.setSelectedListing(null);
+
         if (!params.lat || !params.lng) {
             geocodeByAddress(params.slug)
                 .then(results =>
                     getLatLng(results[0])
                 ).then(({ lat, lng }) => {
                     this.props.handleGetListings({ lat, lng, zoom: 14 });
-                    this.setState({ center: { lat, lng }, zoom: 14 });
+                    this.setState({ center: { lat, lng }, searchedCenter: { lat, lng }, zoom: 14 });
                 });
         } else {
             this.props.handleGetListings({ lat: params.lat, lng: params.lng, zoom: params.zoom ? params.zoom : 14 });
-            this.setState({ center: { lat: params.lat, lng: params.lng }, zoom: params.zoom ? params.zoom : 14 });
+            this.setState({ center: { lat: params.lat, lng: params.lng }, searchedCenter: { lat: params.lat, lng: params.lng }, zoom: params.zoom ? params.zoom : 14 });
         }
     }
 
@@ -171,6 +195,7 @@ class Map extends React.Component {
     }
 
     handleMapChanged() {
+        let { center, searchedCenter } = this.state;
         let { location } = this.props;
         const centerObj = this._map.getCenter();
         const zoom = this._map.getZoom();
@@ -181,6 +206,9 @@ class Map extends React.Component {
         if (nextCenter !== this.state.center) {
             this.setState({
                 center: nextCenter,
+            });
+            this.setState({
+                searchThisArea: getCoordinateDistance(center, searchedCenter) > 1500 ? true : false
             });
             // update route
             browserHistory.push(location.pathname + '?lat=' + lat.toFixed(6) + '&lng=' + lng.toFixed(6) + '&z=' + zoom);
@@ -197,7 +225,7 @@ class Map extends React.Component {
     }
 
     render() {
-        let { center, zoom } = this.state;
+        let { center, zoom, searchThisArea } = this.state;
         let { authentication, listings, map } = this.props;
 
         return (
@@ -208,6 +236,7 @@ class Map extends React.Component {
                             <MapSidebar {...this.props} />
                         </div>
                         <div className="map">
+                            {searchThisArea ? this.renderSearchAgainButton() : undefined}
                             <RenderMap
                                 onMapLoad={this.handleMapLoad}
                                 onMapClick={this.handleMapClick}

@@ -97,4 +97,9 @@ $vertical-margin: 72px;
 .map {
     margin-left: $sidebar-width;
     height: 100vh;
+    .search-this-area {
+        z-index: 100;
+        position: fixed;
+        bottom: 15px;
+    }
 }

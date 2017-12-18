@@ -122,3 +122,15 @@ export function getLoginUrl(state) {
     const redirectUri = 'http://localhost:9990/signin-facebook';
     return 'https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=' + redirectUri + '&state=' + state;
 }
+
+export function getCoordinateDistance(point1, point2) {
+    var R = 6371; // km (change this constant to get miles)
+    var dLat = (point2.lat - point1.lat) * Math.PI / 180;
+    var dLon = (point2.lng - point1.lng) * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(point1.lat * Math.PI / 180) * Math.cos(point2.lat * Math.PI / 180) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return Math.round(d * 1000);
+}

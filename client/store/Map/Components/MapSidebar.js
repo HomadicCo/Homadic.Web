@@ -26,7 +26,7 @@ class MapSidebar extends React.Component {
             map.filterMode ?
                 this.renderFilterMode() :
                 <div className="listing-snippets">
-                    {listings.data.map((listing, i) => <ListingSnippet key={i} listing={listing} />)}
+                    {listings.data.length > 0 ? listings.data.map((listing, i) => <ListingSnippet key={i} listing={listing} />) : <p>No listings for this area <i className="far fa-frown" /></p>}
                 </div>
         )
     }
