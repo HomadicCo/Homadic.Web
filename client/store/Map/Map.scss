@@ -1,3 +1,4 @@
+$vertical-margin: 72px;
 .profile-actions {
     position: absolute;
     top: 0;
@@ -26,15 +27,25 @@
         }
     }
     .map-sidebar-content {
-        margin-top: 72px;
+        margin-top: $vertical-margin;
     }
     .listing-selected {
+        margin-bottom: $vertical-margin;
         .property-type,
         .property-rate {
             line-height: 0.5em;
         }
         .property-type {
             margin: -5px 0 13px;
+        }
+        .map-open-listing {
+            bottom: 0;
+            left: 0;
+            width: $sidebar-width;
+            position: fixed;
+            z-index: 9999;
+            background: $new-footer;
+            border-top: 1px solid #c4cbd0;
         }
     }
     .listing-snippets {
@@ -55,15 +66,6 @@
             }
         }
     }
-}
-
-.map-open-listing {
-    bottom: 0;
-    left: 0;
-    width: $sidebar-width;
-    position: fixed;
-    background: $new-footer;
-    border-top: 1px solid #c4cbd0;
 }
 
 .map-typeahead {
