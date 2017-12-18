@@ -73,10 +73,11 @@ class Map extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { location } = this.props;
+        let { location, setSelectedListing } = this.props;
 
         // check if route has changed
         if (location.pathname != nextProps.location.pathname) {
+            setSelectedListing(null);
             this.updateLatLong({ slug: nextProps.params.citySlug });
         }
     }

@@ -6,6 +6,18 @@ class Amenities extends React.Component {
         super(props);
     }
 
+    renderAmenity(icon, name) {
+        let { colClass, displayLabel, size } = this.props;
+        const imgSize = size != null ? size : 30;
+
+        return (
+            <div className={colClass != null ? colClass : 'col'}>
+                <img src={icon} height={imgSize} width={imgSize} className="mb-2" />
+                {displayLabel ? <p><small><strong>{name}</strong></small></p> : undefined}
+            </div>
+        )
+    }
+
     renderWifi() {
         let { listing } = this.props;
         let wifiQuality = {}
@@ -38,56 +50,8 @@ class Amenities extends React.Component {
         }
 
         return (
-            <div className="col">
-                <img src={icons[wifiQuality.icon]} className="mb-2" />
-                <p><small><strong>{wifiQuality.label}</strong></small></p>
-            </div>
+            this.renderAmenity(icons[wifiQuality.icon], wifiQuality.label)
         );
-    }
-
-    renderPool() {
-        return (
-            <div className="col">
-                <img src={icons.pool} className="mb-2" />
-                <p><small><strong>Pool</strong></small></p>
-            </div>
-        )
-    }
-
-    renderGym() {
-        return (
-            <div className="col">
-                <img src={icons.gym} className="mb-2" />
-                <p><small><strong>Gym</strong></small></p>
-            </div>
-        )
-    }
-
-    renderAC() {
-        return (
-            <div className="col">
-                <img src={icons.ac} className="mb-2" />
-                <p><small><strong>A/C</strong></small></p>
-            </div>
-        )
-    }
-
-    renderLaundry() {
-        return (
-            <div className="col">
-                <img src={icons.laundry} className="mb-2" />
-                <p><small><strong>Laundry</strong></small></p>
-            </div>
-        )
-    }
-
-    renderKitchen() {
-        return (
-            <div className="col">
-                <img src={icons.kitchen} className="mb-2" />
-                <p><small><strong>Kitchen</strong></small></p>
-            </div>
-        )
     }
 
     render() {
@@ -96,11 +60,11 @@ class Amenities extends React.Component {
         return (
             <div id="amenities" className="row justify-content-md-center hero-icons my-2">
                 {this.renderWifi()}
-                {listing.amenities.air_conditioning ? this.renderAC() : undefined}
-                {listing.rooms.filter(room => room.laundry != 'none').length > 0 ? this.renderLaundry() : undefined}
-                {listing.rooms.filter(room => room.kitchen != 'none').length > 0 ? this.renderKitchen() : undefined}
-                {listing.amenities.gym ? this.renderGym() : undefined}
-                {listing.amenities.pool ? this.renderPool() : undefined}
+                {listing.amenities.air_conditioning ? this.renderAmenity(icons.ac, 'A/C') : undefined}
+                {listing.rooms.filter(room => room.laundry != 'none').length > 0 ? this.renderAmenity(icons.laundry, 'Laundry') : undefined}
+                {listing.rooms.filter(room => room.kitchen != 'none').length > 0 ? this.renderAmenity(icons.kitchen, 'Kitchen') : undefined}
+                {listing.amenities.gym ? this.renderAmenity(icons.gym, 'Gym') : undefined}
+                {listing.amenities.pool ? this.renderAmenity(icons.pool, 'Pool') : undefined}
             </div>
         )
     }

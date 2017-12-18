@@ -2,7 +2,8 @@ import React from 'react';
 import Rater from 'react-rater'
 import { icons } from '../../../Images/Images';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
-import Nearby from '../../../components/ListingTemplate/components/Nearby';
+import Amenities from '../../../components/ListingTemplate/components/Amenities';
+import PointOfInterest from '../../../components/PointOfInterest/PointOfInterest';
 import ListingType from '../../../components/ListingType/ListingType';
 
 class ListingPreview extends React.Component {
@@ -46,16 +47,23 @@ class ListingPreview extends React.Component {
                 <div className="map-open-listing text-center py-2">
                     <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}>View full listing</button>
                 </div>
-                <div className="content-box content-box-sm transparent">
+                <div className="content-box content-box-sm transparent text-center">
                     <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
                     <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
                     <p className="property-rate"><span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
+                    <Amenities listing={listing} size={20} colClass="col-2" />
                 </div>
                 <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Rooms</h5>
                     {listing.rooms.map((room, i) => (<div key={i}><hr />{this.renderRoom(room)}</div>))}
                 </div>
-                <Nearby listing={listing} colClass="col-6" />
+                <div className="content-box content-box-sm">
+                    <h5 className="fancy blue">Nearby</h5>
+                    <hr />
+                    <div className="row">
+                        {listing.points_of_interest.map((poi, i) => (<div key={i} className="col-6"><PointOfInterest poi={poi} listing={listing} /></div>))}
+                    </div>
+                </div>
             </div>
         )
     }
