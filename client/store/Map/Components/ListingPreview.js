@@ -4,6 +4,7 @@ import { icons } from '../../../Images/Images';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
 import Amenities from '../../../components/ListingTemplate/components/Amenities';
 import PointOfInterest from '../../../components/PointOfInterest/PointOfInterest';
+import RenderMarkdown from '../../../components/RenderMarkdown/RenderMarkdown';
 import ListingType from '../../../components/ListingType/ListingType';
 
 class ListingPreview extends React.Component {
@@ -32,6 +33,15 @@ class ListingPreview extends React.Component {
         return rentalLengths[i];
     }
 
+    renderNotes(notes) {
+        return (
+            <div className="content-box content-box-sm">
+                <h5 className="fancy blue">Notes</h5>
+                <hr />
+                <RenderMarkdown markdown={notes} />
+            </div>
+        )
+    }
 
     renderRoom(room) {
         return (
@@ -57,6 +67,7 @@ class ListingPreview extends React.Component {
                     <h5 className="fancy blue">Rooms</h5>
                     {listing.rooms.map((room, i) => (<div key={i}><hr />{this.renderRoom(room)}</div>))}
                 </div>
+                {listing.notes != null ? this.renderNotes(listing.notes) : undefined}
                 <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Nearby</h5>
                     <hr />

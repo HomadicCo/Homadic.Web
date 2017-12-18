@@ -114,8 +114,9 @@ class Map extends React.Component {
 
     setAddNewListingMode(value, e) {
         e.preventDefault();
-        let { setAddNewListingCoordinates, setAddNewListingMode } = this.props;
+        let { setSelectedListing, setAddNewListingCoordinates, setAddNewListingMode } = this.props;
 
+        setSelectedListing(null);
         setAddNewListingMode(value);
 
         if (!value) {
