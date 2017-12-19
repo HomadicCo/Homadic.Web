@@ -53,6 +53,7 @@ class Map extends React.Component {
         };
 
         this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
+        this.showSelectedListing = this.showSelectedListing.bind(this);
         this.searchThisArea = this.searchThisArea.bind(this);
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
@@ -137,6 +138,13 @@ class Map extends React.Component {
         if (!value) {
             setAddNewListingCoordinates(undefined);
         }
+    }
+
+    showSelectedListing(listing) {
+        let { setSelectedListing } = this.props;
+
+        this.setState({ center: { lat: listing.coordinates.lat, lng: listing.coordinates.lng } });
+        setSelectedListing(listing);
     }
 
     searchThisArea() {
@@ -245,7 +253,7 @@ class Map extends React.Component {
                                 addNewListingMode={map.addNewListingMode}
                                 onMapChanged={this.handleMapChanged}
                                 onMarkerDragged={this.handleMarkerDrag}
-                                setSelectedListing={this.props.setSelectedListing}
+                                setSelectedListing={this.showSelectedListing}
                                 containerElement={
                                     <div style={{ height: '100%' }} />
                                 }
