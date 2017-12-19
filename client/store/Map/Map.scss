@@ -1,4 +1,4 @@
-$vertical-margin: 72px;
+$vertical-margin: 87px;
 .profile-actions {
     position: absolute;
     top: 0;
@@ -20,8 +20,10 @@ $vertical-margin: 72px;
     .map-sidebar-header {
         top: 0;
         position: fixed;
-        background: $off-white;
+        background: $gray;
+        box-shadow: $box-shadow;
         width: $sidebar-width;
+        z-index: 9999;
         .action-button .btn {
             margin-left: -23px
         }
@@ -31,13 +33,6 @@ $vertical-margin: 72px;
     }
     .listing-selected {
         margin-bottom: $vertical-margin;
-        .property-type,
-        .property-rate {
-            line-height: 0.5em;
-        }
-        .property-type {
-            margin: -5px 0 13px;
-        }
         .map-open-listing {
             bottom: 0;
             left: 0;
@@ -49,20 +44,13 @@ $vertical-margin: 72px;
         }
     }
     .listing-snippets {
-        .snippet {
-            p {
-                margin: 5px 0;
+        .listing-snippet {
+            .property-type,
+            .property-rate {
+                line-height: 0.5em;
             }
             .property-type {
-                margin: -15px 0 0;
-                padding: 0;
-                text-transform: capitalize;
-                color: $dark-blue;
-            }
-            .icons img {
-                height: 24px;
-                width: 24px;
-                margin: 0 8px 0 0;
+                margin: -5px 0 13px;
             }
         }
     }
@@ -79,18 +67,28 @@ $vertical-margin: 72px;
         box-shadow: $box-shadow;
     }
      ::-webkit-input-placeholder {
-        color: $gray-dark;
+        color: #78818a;
     }
      :-moz-placeholder {
         /* Firefox 18- */
-        color: $gray-dark;
+        color: #78818a;
     }
      ::-moz-placeholder {
         /* Firefox 19+ */
-        color: $gray-dark;
+        color: #78818a;
     }
      :-ms-input-placeholder {
-        color: $gray-dark;
+        color: #78818a;
+    }
+    .search-results {
+        margin-top: 10px;
+        width: ($sidebar-width)-($box-padding);
+        .result {
+            padding: 5px 0;
+        }
+        .result.active {
+            background: $off-white;
+        }
     }
 }
 

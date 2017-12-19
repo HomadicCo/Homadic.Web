@@ -80,9 +80,13 @@
     }
 }
 
-.hero-icons {
-    img {
-        margin: 0 5px;
+ul.amenities-icons {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    li {
+        list-style-type: none;
     }
     @media (max-width: 540px) {
         img {

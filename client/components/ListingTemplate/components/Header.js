@@ -41,7 +41,7 @@ class Header extends React.Component {
                 </div>
                 <div className="row justify-content-md-center">
                     <div className="col-md-8 col-s-12">
-                        <Amenities listing={listing} displayLabel />
+                        <Amenities listing={listing} margin={20} displayLabel />
                     </div>
                 </div>
             </div>

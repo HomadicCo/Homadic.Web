@@ -36,7 +36,9 @@ class MapSidebar extends React.Component {
         const classNames = {
             root: 'form-group map-typeahead',
             input: 'form-control',
-            autocompleteContainer: ''
+            autocompleteContainer: 'search-results',
+            autocompleteItem: 'result',
+            autocompleteItemActive: 'result active'
         }
 
         const inputProps = {

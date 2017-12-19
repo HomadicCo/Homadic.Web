@@ -57,11 +57,11 @@ class ListingPreview extends React.Component {
                 <div className="map-open-listing text-center py-2">
                     <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}>View full listing</button>
                 </div>
-                <div className="content-box content-box-sm transparent text-center">
+                <div className="content-box content-box-sm transparent text-center listing-snippet">
                     <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
                     <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
                     <p className="property-rate"><span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
-                    <Amenities listing={listing} size={20} colClass="col-2" />
+                    <Amenities listing={listing} size={20} customClass="justify-content-md-center" colClass="col" />
                 </div>
                 <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Rooms</h5>

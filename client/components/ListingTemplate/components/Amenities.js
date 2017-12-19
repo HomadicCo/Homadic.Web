@@ -7,14 +7,15 @@ class Amenities extends React.Component {
     }
 
     renderAmenity(icon, name) {
-        let { colClass, displayLabel, size } = this.props;
+        let { displayLabel, size, margin } = this.props;
         const imgSize = size != null ? size : 30;
+        margin = margin != null ? margin : 5;
 
         return (
-            <div className={colClass != null ? colClass : 'col'}>
+            <li style={{ margin: '0 ' + margin + 'px' }} >
                 <img src={icon} height={imgSize} width={imgSize} className="mb-2" />
                 {displayLabel ? <p><small><strong>{name}</strong></small></p> : undefined}
-            </div>
+            </li>
         )
     }
 
@@ -55,17 +56,17 @@ class Amenities extends React.Component {
     }
 
     render() {
-        let { listing } = this.props;
+        let { customClass, listing } = this.props;
 
         return (
-            <div id="amenities" className="row justify-content-md-center hero-icons my-2">
+            <ul id="amenities" className={'amenities-icons my-2 ' + customClass}>
                 {this.renderWifi()}
                 {listing.amenities.air_conditioning ? this.renderAmenity(icons.ac, 'A/C') : undefined}
                 {listing.rooms.filter(room => room.laundry != 'none').length > 0 ? this.renderAmenity(icons.laundry, 'Laundry') : undefined}
                 {listing.rooms.filter(room => room.kitchen != 'none').length > 0 ? this.renderAmenity(icons.kitchen, 'Kitchen') : undefined}
                 {listing.amenities.gym ? this.renderAmenity(icons.gym, 'Gym') : undefined}
                 {listing.amenities.pool ? this.renderAmenity(icons.pool, 'Pool') : undefined}
-            </div>
+            </ul>
         )
     }
 }
