@@ -134,6 +134,15 @@ export const listingValidations = {
     preview: false
 }
 
+export const priceRanges = [
+    { value: 0, name: '$0' },
+    { value: 100, name: '$100' },
+    { value: 250, name: '$250' },
+    { value: 500, name: '$500' },
+    { value: 1000, name: '$1,000' },
+    { value: 2500, name: '$2,500' },
+]
+
 export const rentalLengths = [
     {
         value: 1,

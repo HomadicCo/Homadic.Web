@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import ListingSnippet from './ListingSnippet';
 import ListingPreview from './ListingPreview';
 import ActionHeader from './ActionHeader';
+import ListingsFilter from '../../../components/ListingsFilter/ListingsFilter';
 
 class MapSidebar extends React.Component {
     constructor(props) {
@@ -13,18 +14,12 @@ class MapSidebar extends React.Component {
         this.props.setSelectedListing(null);
     }
 
-    renderFilterMode() {
-        return (
-            <p>Hey this is filter mode.</p>
-        )
-    }
-
     renderSnippets() {
         let { listings, map } = this.props;
 
         return (
             map.filterMode ?
-                this.renderFilterMode() :
+                <ListingsFilter {...this.props} /> :
                 <div className="listing-snippets">
                     {listings.data.length > 0 ? listings.data.map((listing, i) => <ListingSnippet key={i} listing={listing} />) : <p className="text-center">No listings for this area <i className="far fa-frown" /></p>}
                 </div>
