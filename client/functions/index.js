@@ -119,7 +119,8 @@ export function extractYoutubeFromString(string) {
 
 // generate the facebook redirect Url
 export function getLoginUrl(state) {
-    const redirectUri = window.location.hostname + '/signin-facebook';
+    const port = window.location.port ? ':' + window.location.port : '';
+    const redirectUri = window.location.protocol + '//' + window.location.hostname + port + '/signin-facebook';
     return 'https://www.facebook.com/v2.10/dialog/oauth?client_id=812498655591761&scope=email&redirect_uri=' + redirectUri + '&state=' + state;
 }
 
