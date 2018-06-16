@@ -1,23 +1,26 @@
 var path = require('path');
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     devtool: 'source-map',
     entry: [
-
         './client/homadic'
     ],
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/static/'
+        publicPath: 'static'
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': 'production'
+                'NODE_ENV': '"production"'
             }
+        }),
+        new HtmlWebpackPlugin({
+            template: './index.html',
+            inject: false
         }),
         new webpack.optimize.UglifyJsPlugin({
             compressor: {
@@ -42,6 +45,11 @@ module.exports = {
             {
                 test: /\.json$/,
                 loader: 'json-loader'
+            },
+            // PNG/Images
+            {
+                test: /.(png|jpg)$/,
+                loader: 'url-loader?limit=8192'
             }
         ]
     }

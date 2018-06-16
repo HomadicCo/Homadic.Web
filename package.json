@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "The frontend for Homadic.",
   "scripts": {
-    "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
-    "build": "npm run clean && npm run build:webpack",
+    "build": "npm run clean && webpack --config webpack.config.prod.js",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
     "start": "node devServer.js",
@@ -63,6 +62,7 @@
     "expect": "^1.20.2",
     "expect-jsx": "^3.0.0",
     "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^3.2.0",
     "json-loader": "^0.5.4",
     "mocha": "^3.4.2",
     "node-sass": "^4.5.3",
