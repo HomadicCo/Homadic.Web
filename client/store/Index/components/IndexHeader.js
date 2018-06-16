@@ -14,7 +14,7 @@ class IndexHeader extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-4 px-4 py-3">
-                        <a className="navbar-brand" href="#">Project name</a>
+                        <a className="navbar-brand" href="#">Homadic</a>
                     </div>
                     <div className="col-4 ml-auto px-4 py-3 d-flex justify-content-end">
                         <div className="ml-3">
