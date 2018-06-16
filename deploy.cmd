@@ -109,7 +109,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   echo Running npm build.
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! build
+  call :ExecuteCmd !NPM_CMD! run-script build
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
