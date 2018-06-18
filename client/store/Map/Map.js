@@ -49,7 +49,10 @@ class Map extends React.Component {
             center: undefined,
             searchedCenter: undefined,
             zoom: 14,
-            searchThisArea: false
+            searchThisArea: false,
+            rentalTypes: undefined,
+            max_rate: 0,
+            min_rate: 0
         };
 
         this.setAddNewListingMode = this.setAddNewListingMode.bind(this);

@@ -4,12 +4,23 @@ import { priceRanges, rentalTypes } from '../../data';
 class ListingsFilter extends React.Component {
     constructor(props) {
         super(props);
+
+        this.clearFilter = this.clearFilter.bind(this);
+        this.setFilter = this.setFilter.bind(this);
+    }
+
+    clearFilter() {
+        console.log('clearFilter');
+    }
+
+    setFilter() {
+        console.log(location.pathname);
     }
 
     renderPriceRange() {
         return (
             <div className="content-box content-box-sm">
-                <p><strong>Price range <small>(USD)</small></strong></p>
+                <p><strong>Base price range <small>(USD)</small></strong></p>
                 <div className="row">
                     <div className="col-6">
                         <label htmlFor="minPrice">Min: </label>
@@ -54,6 +65,10 @@ class ListingsFilter extends React.Component {
             <div>
                 {this.renderPriceRange()}
                 {this.renderRentalTypes()}
+                <div className="btn-group" role="group" aria-label="Filter actions">
+                    <button className="btn btn-default" onClick={this.clearFilter}>Clear <i className="fas fa-times" /></button>
+                    <button className="btn btn-success" onClick={this.setFilter}>Update <i className="fas fa-check" /></button>
+                </div>
             </div>
         )
     }

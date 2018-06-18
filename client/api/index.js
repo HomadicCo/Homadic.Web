@@ -7,7 +7,7 @@ import { loadLocalStorage } from '../functions';
 function getApiUrl() {
     const apiUrl = localStorage.getItem('test.apiUrl');
 
-    return apiUrl ? apiUrl : 'https://homadic-functions.azurewebsites.net';
+    return apiUrl ? apiUrl : 'https://homadic-functions.azurewebsites.net/api/';
 }
 
 function getAuthHeader() {
