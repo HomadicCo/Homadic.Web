@@ -8,6 +8,7 @@ import persistState from 'redux-localstorage';
 // reducers
 import addListing from './addListing/reducer';
 import authentication from './Authentication/reducer';
+import filter from './Filter/reducer';
 import listings from './Listing/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
@@ -24,6 +25,7 @@ const defaultState = {
     ui: {}
   },
   authentication: {},
+  filter: {},
   listings: {
     data: [],
     fetching: false
@@ -42,6 +44,7 @@ const defaultState = {
 const appReducer = combineReducers({
   addListing,
   authentication,
+  filter,
   listings,
   map,
   profile,

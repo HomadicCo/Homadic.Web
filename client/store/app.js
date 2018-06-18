@@ -6,6 +6,7 @@ import AppViewAuthenticated from '../components/AppFrames/AppViewAuthenticated';
 // import all action creators
 import * as AddListingActions from './AddListing/actions';
 import * as AuthenticationActions from './Authentication/actions';
+import * as FilterActions from './Filter/actions';
 import * as ListingActions from './Listing/actions';
 import * as MapActions from './Map/actions';
 import * as ProfileActions from './Profile/actions';
@@ -15,6 +16,7 @@ function mapStateToProps(state) {
     return {
         authentication: state.authentication,
         addListing: state.addListing,
+        filter: state.filter,
         listings: state.listings,
         map: state.map,
         profile: state.profile,
@@ -26,6 +28,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         ...AuthenticationActions,
         ...AddListingActions,
+        ...FilterActions,
         ...ListingActions,
         ...MapActions,
         ...ProfileActions,
