@@ -8,10 +8,16 @@ import ListingsFilter from '../../Filter/ListingsFilter';
 class MapSidebar extends React.Component {
     constructor(props) {
         super(props);
+
+        this.showSelectedListing = this.showSelectedListing.bind(this);
     }
 
     componentWillMount() {
         this.props.setSelectedListing(null);
+    }
+
+    showSelectedListing(listing) {
+        this.props.setSelectedListing(listing);
     }
 
     renderSnippets() {
@@ -21,7 +27,7 @@ class MapSidebar extends React.Component {
             map.filterMode ?
                 <ListingsFilter {...this.props} /> :
                 <div className="listing-snippets">
-                    {listings.data.length > 0 ? listings.data.map((listing, i) => <ListingSnippet key={i} listing={listing} />) : <p className="text-center">No listings for this area <i className="far fa-frown" /></p>}
+                    {listings.data.length > 0 ? listings.data.map((listing, i) => <Link key={i} onClick={this.showSelectedListing.bind(null, listing)}><ListingSnippet listing={listing} /></Link>) : <p className="text-center">No listings for this area <i className="far fa-frown" /></p>}
                 </div>
         )
     }

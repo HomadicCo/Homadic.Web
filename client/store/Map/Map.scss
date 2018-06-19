@@ -53,6 +53,12 @@ $vertical-margin: 87px;
                 margin: -5px 0 13px;
             }
         }
+        a .content-box:hover,
+        a .content-box:active,
+        a .content-box:focus {
+            background: #ECEFF1;
+            color: $font-color;
+        }
     }
 }
 
@@ -66,18 +72,18 @@ $vertical-margin: 87px;
         width: 100%;
         box-shadow: $box-shadow;
     }
-     ::-webkit-input-placeholder {
+    ::-webkit-input-placeholder {
         color: #78818a;
     }
-     :-moz-placeholder {
+    :-moz-placeholder {
         /* Firefox 18- */
         color: #78818a;
     }
-     ::-moz-placeholder {
+    ::-moz-placeholder {
         /* Firefox 19+ */
         color: #78818a;
     }
-     :-ms-input-placeholder {
+    :-ms-input-placeholder {
         color: #78818a;
     }
     .search-results {
