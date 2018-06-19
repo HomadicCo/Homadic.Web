@@ -1,5 +1,5 @@
 import React from 'react';
-import { priceRanges, rentalTypes } from '../../data';
+import { priceRanges, rentalTypes, defaultFilter } from '../../data';
 
 class ListingsFilter extends React.Component {
     constructor(props) {
@@ -7,14 +7,46 @@ class ListingsFilter extends React.Component {
 
         this.clearFilter = this.clearFilter.bind(this);
         this.setFilter = this.setFilter.bind(this);
+        this.toggleRentalType = this.toggleRentalType.bind(this);
+        this.toggleMinRate = this.toggleMinRate.bind(this);
+        this.toggleMaxRate = this.toggleMaxRate.bind(this);
+
+        this.state = Object.assign({}, props.filter);
     }
 
     clearFilter() {
-        console.log('clearFilter');
+        this.props.clearFilter();
+        this.setState(Object.assign({}, defaultFilter));
     }
 
     setFilter() {
-        console.log(location.pathname);
+        this.props.setFilter(this.state);
+    }
+
+    toggleMinRate(e) {
+        let { parameters } = this.state;
+
+        this.setState({ parameters: { ...parameters, min_rate: e.target.value } });
+    }
+
+    toggleMaxRate(e) {
+        let { parameters } = this.state;
+
+        this.setState({ parameters: { ...parameters, max_rate: e.target.value } });
+    }
+
+    toggleRentalType(type) {
+        let { parameters } = this.state;
+
+        if (parameters.types.includes(type)) {
+            var i = parameters.types.findIndex(t => t == type);
+            parameters.types.splice(i, 1);
+        }
+        else {
+            parameters.types.push(type);
+        }
+
+        this.setState({ parameters });
     }
 
     renderPriceRange() {
@@ -24,8 +56,7 @@ class ListingsFilter extends React.Component {
                 <div className="row">
                     <div className="col-6">
                         <label htmlFor="minPrice">Min: </label>
-                        <select id="minPrice" className="form-control custom-select">
-                            <option>None</option>
+                        <select id="minPrice" className="form-control custom-select" onChange={this.toggleMinRate}>
                             {priceRanges.map((price, i) => (
                                 <option key={i} value={price.value}>{price.name}</option>
                             ))}
@@ -33,8 +64,7 @@ class ListingsFilter extends React.Component {
                     </div>
                     <div className="col-6">
                         <label htmlFor="maxPrice">Max: </label>
-                        <select id="maxPrice" className="form-control custom-select">
-                            <option>None</option>
+                        <select id="maxPrice" className="form-control custom-select" onChange={this.toggleMaxRate}>
                             {priceRanges.map((price, i) => (
                                 <option key={i} value={price.value}>{price.name}</option>
                             ))}
@@ -46,12 +76,14 @@ class ListingsFilter extends React.Component {
     }
 
     renderRentalTypes() {
+        let { filter } = this.props;
+
         return (
             <div className="content-box content-box-sm">
                 <p><strong>Rental types</strong></p>
                 {rentalTypes.map((rentalType, i) => (
-                    <label key={i} className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" />
+                    <label key={i} className="custom-control custom-checkbox active">
+                        <input type="checkbox" className="custom-control-input" onChange={this.toggleRentalType.bind(null, rentalType.value)} checked={filter.parameters.types.includes(rentalType.value) ? true : false} />
                         <span className="custom-control-indicator" />
                         <span className="custom-control-description">{rentalType.name}</span>
                     </label>

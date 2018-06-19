@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import ListingSnippet from './ListingSnippet';
 import ListingPreview from './ListingPreview';
 import ActionHeader from './ActionHeader';
-import ListingsFilter from '../../../components/ListingsFilter/ListingsFilter';
+import ListingsFilter from '../../Filter/ListingsFilter';
 
 class MapSidebar extends React.Component {
     constructor(props) {

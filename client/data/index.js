@@ -46,6 +46,22 @@ export const currencies = [
     'ZAR'
 ]
 
+export const defaultFilter = {
+    empty: true,
+    parameters: {
+        min_rate: 0,
+        max_rate: 0,
+        types: [
+            'coliving',
+            'condo',
+            'guesthouse',
+            'hostel',
+            'hotel',
+            'house'
+        ]
+    }
+}
+
 export const emptyListing = {
     address: '',
     amenities: {
@@ -135,12 +151,12 @@ export const listingValidations = {
 }
 
 export const priceRanges = [
-    { value: 0, name: '$0' },
-    { value: 100, name: '$100' },
+    { value: 0, name: 'None' },
     { value: 250, name: '$250' },
     { value: 500, name: '$500' },
     { value: 1000, name: '$1,000' },
-    { value: 2500, name: '$2,500' },
+    { value: 2000, name: '$2,000' },
+    { value: 3000, name: '$3,000' },
 ]
 
 export const rentalLengths = [

@@ -15,7 +15,7 @@ import profile from './Profile/reducer';
 import ui from './UI/reducer';
 
 // data
-import { emptyListing, listingValidations } from '../data';
+import { emptyListing, listingValidations, defaultFilter } from '../data';
 
 const defaultState = {
   addListing: {
@@ -25,7 +25,7 @@ const defaultState = {
     ui: {}
   },
   authentication: {},
-  filter: {},
+  filter: defaultFilter,
   listings: {
     data: [],
     fetching: false
