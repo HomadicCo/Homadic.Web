@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 import Avatar from '../../Components/Avatar/Avatar';
 import Header from './components/Header';
 import Internet from './components/Internet';
@@ -22,9 +22,10 @@ class ListingTemplate extends React.Component {
         setLoadingStatus(true);
 
         apiPostListing(addListing.listing).then((response) => {
-            clearNewListing();
+            console.log('/listing/' + response.data.slug);
+            browserHistory.push('/listing/' + response.data.slug);
             setLoadingStatus(false);
-            browserHistory.push('listing/' + response.data.slug);
+            clearNewListing();
         }).catch((e) => {
             console.log(e)
             setLoadingStatus(false);
@@ -53,7 +54,7 @@ class ListingTemplate extends React.Component {
                 <div className="container">
                     <div className="row justify-content-end">
                         <div className="col">
-                            <h5 className="blue"><i className="far fa-thumbs-up" /> <i className="far fa-thumbs-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><i className="fas fa-pencil-alt" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
+                            <h5 className="blue"><Link to="/" className="mr-2">Homadic</Link> <i className="far fa-thumbs-up" /> <i className="far fa-thumbs-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><i className="fas fa-pencil-alt" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
                         </div>
                     </div>
                 </div>

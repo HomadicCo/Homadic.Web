@@ -20,7 +20,7 @@ const RenderMap = withGoogleMap(props => (
         {
             props.markers.map(marker => (
                 <Marker
-                    key={marker.id}
+                    key={1}
                     position={{
                         lat: marker.coordinates.lat,
                         lng: marker.coordinates.lng
