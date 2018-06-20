@@ -13,7 +13,7 @@ function getApiUrl() {
 function getAuthHeader() {
     var auth = loadLocalStorage('auth');
 
-    if (auth === null || auth.access_token === null) {
+    if (auth === null || auth === undefined || auth.access_token === null) {
         return null;
     }
 
