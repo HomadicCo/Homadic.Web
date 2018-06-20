@@ -119,18 +119,6 @@ class Map extends React.Component {
         );
     }
 
-    renderSearchAgainButton() {
-        return (
-            <div className="container">
-                <div className="row search-this-area">
-                    <div className="col-12">
-                        <button className="btn btn-sm btn-action" onClick={this.searchThisArea}>Search this area</button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
     setAddNewListingMode(value, e) {
         e.preventDefault();
         let { setSelectedListing, setAddNewListingCoordinates, setAddNewListingMode } = this.props;
@@ -218,9 +206,11 @@ class Map extends React.Component {
             this.setState({
                 center: nextCenter,
             });
-            this.setState({
-                searchThisArea: getCoordinateDistance(center, searchedCenter) > 1500 ? true : false
-            });
+
+            if (getCoordinateDistance(center, searchedCenter) > 5000) {
+                this.searchThisArea();
+            }
+
             // update route
             browserHistory.push(location.pathname + '?lat=' + lat.toFixed(6) + '&lng=' + lng.toFixed(6) + '&z=' + zoom);
         }
@@ -236,7 +226,7 @@ class Map extends React.Component {
     }
 
     render() {
-        let { center, zoom, searchThisArea } = this.state;
+        let { center, zoom } = this.state;
         let { authentication, listings, map } = this.props;
 
         return (
@@ -247,7 +237,6 @@ class Map extends React.Component {
                             <MapSidebar {...this.props} />
                         </div>
                         <div className="map">
-                            {searchThisArea ? this.renderSearchAgainButton() : undefined}
                             <RenderMap
                                 onMapLoad={this.handleMapLoad}
                                 onMapClick={this.handleMapClick}
