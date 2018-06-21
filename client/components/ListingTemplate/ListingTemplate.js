@@ -50,11 +50,14 @@ class ListingTemplate extends React.Component {
         let { authentication, profile } = this.props;
 
         return (
-            <div className="navbar fixed-top bg-white px-3 listing-header">
+            <div className="bg-white fixed-top pt-2 box-shadow">
                 <div className="container">
-                    <div className="row justify-content-end">
+                    <div className="row">
                         <div className="col">
-                            <h5 className="blue"><Link to="/" className="mr-2">Homadic</Link> <i className="far fa-thumbs-up" /> <i className="far fa-thumbs-down" /> <span className="btn btn-sm btn-outline-primary mx-1"><i className="fas fa-pencil-alt" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
+                            <h5><Link className="logo logo-sm" to="/">{'{ Homadic }'}</Link></h5>
+                        </div>
+                        <div className="col ml-auto d-flex justify-content-end">
+                            <h5 className="blue"><i className="far fa-thumbs-up" /> <i className="far fa-thumbs-down" /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
                         </div>
                     </div>
                 </div>

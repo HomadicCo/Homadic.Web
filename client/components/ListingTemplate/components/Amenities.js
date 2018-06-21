@@ -59,7 +59,7 @@ class Amenities extends React.Component {
         let { customClass, listing } = this.props;
 
         return (
-            <ul id="amenities" className={'amenities-icons my-2 ' + customClass}>
+            <ul id="amenities" className={'amenities-icons ' + customClass}>
                 {this.renderWifi()}
                 {listing.amenities.air_conditioning ? this.renderAmenity(icons.ac, 'A/C') : undefined}
                 {listing.rooms.filter(room => room.laundry != 'none').length > 0 ? this.renderAmenity(icons.laundry, 'Laundry') : undefined}

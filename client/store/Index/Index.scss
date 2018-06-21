@@ -29,21 +29,21 @@ $input-background: rgba(26, 145, 161, 0.6);
                 font-size: 1.3em;
             }
         }
-         ::-webkit-input-placeholder {
+        ::-webkit-input-placeholder {
             text-align: center;
             color: $input-color;
         }
-         :-moz-placeholder {
+        :-moz-placeholder {
             /* Firefox 18- */
             text-align: center;
             color: $input-color;
         }
-         ::-moz-placeholder {
+        ::-moz-placeholder {
             /* Firefox 19+ */
             text-align: center;
             color: $input-color;
         }
-         :-ms-input-placeholder {
+        :-ms-input-placeholder {
             text-align: center;
             color: $input-color;
         }
@@ -65,11 +65,6 @@ $input-background: rgba(26, 145, 161, 0.6);
     background-image: none;
     height: 100vh;
     filter: grayscale(30%);
-    -webkit-filter: blur(2px);
-    -moz-filter: blur(2px);
-    -o-filter: blur(2px);
-    -ms-filter: blur(2px);
-    filter: blur(2px);
     position: fixed;
     width: 102%;
     height: 102%;
@@ -79,30 +74,24 @@ $input-background: rgba(26, 145, 161, 0.6);
 }
 
 .index-bg {
-    background-image: url(https://source.unsplash.com/MsMISAIe8Qw/768x430);
-}
-
-@media (min-width: 768px) {
-    .index-bg {
-        background-image: url(https://source.unsplash.com/MsMISAIe8Qw/992x558);
-    }
+    background-image: url(https://source.unsplash.com/XSZF9CYzSK0/992x558);
 }
 
 @media (min-width: 992px) {
     .index-bg {
-        background-image: url(https://source.unsplash.com/MsMISAIe8Qw/1200x675);
+        background-image: url(https://source.unsplash.com/XSZF9CYzSK0/1200x675);
     }
 }
 
 @media (min-width: 1200px) {
     .index-bg {
-        background-image: url(https://source.unsplash.com/MsMISAIe8Qw/2133x1200);
+        background-image: url(https://source.unsplash.com/XSZF9CYzSK0/2133x1200);
     }
 }
 
 @media (min-width: 1440px) {
     .index-bg {
-        background-image: url(https://source.unsplash.com/MsMISAIe8Qw/2560x1440);
+        background-image: url(https://source.unsplash.com/XSZF9CYzSK0/2560x1440);
     }
 }
 

@@ -18,7 +18,7 @@ class ListingSnippet extends React.Component {
                         <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
                     </div>
                     <div className="col-2 ml-auto text-right">
-                        <span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
+                        <span className="pink fancy"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
                     </div>
                 </div>
                 <p className="property-type text-muted">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
