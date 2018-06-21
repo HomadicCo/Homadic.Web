@@ -1,5 +1,8 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+const bundleTag = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
 module.exports = {
     devtool: 'source-map',
@@ -8,7 +11,7 @@ module.exports = {
     ],
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: bundleTag + '.js'
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -20,6 +23,9 @@ module.exports = {
             compressor: {
                 warnings: false
             }
+        }),
+        new HtmlWebpackPlugin({
+            template: 'indexTemplate.html'
         })
     ],
     module: {
