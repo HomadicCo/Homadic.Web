@@ -10,6 +10,7 @@ class MapSidebar extends React.Component {
         super(props);
 
         this.showSelectedListing = this.showSelectedListing.bind(this);
+        this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
     }
 
     componentWillMount() {
@@ -20,6 +21,27 @@ class MapSidebar extends React.Component {
         this.props.setSelectedListing(listing);
     }
 
+    setAddNewListingMode(value, e) {
+        e.preventDefault();
+        let { setSelectedListing, setAddNewListingCoordinates, setAddNewListingMode } = this.props;
+
+        setSelectedListing(null);
+        setAddNewListingMode(value);
+
+        if (!value) {
+            setAddNewListingCoordinates(undefined);
+        }
+    }
+
+    renderNoSnippets() {
+        return (
+            <div className="text-center">
+                <p>No listings for this area <i className="far fa-frown" /></p>
+                <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-success btn-sm"><i className="fas fa-plus" /> Add listing</button>
+            </div>
+        )
+    }
+
     renderSnippets() {
         let { listings, map } = this.props;
 
@@ -28,7 +50,7 @@ class MapSidebar extends React.Component {
                 <ListingsFilter {...this.props} /> :
                 listings.fetching ? <h3 className="text-center"><i className="blue fas fa-plane fa-spin" size="2x" /></h3> :
                     <div className="listing-snippets">
-                        {listings.data.length > 0 ? listings.data.map((listing, i) => <Link key={i} onClick={this.showSelectedListing.bind(null, listing)}><ListingSnippet listing={listing} /></Link>) : <p className="text-center">No listings for this area <i className="far fa-frown" /></p>}
+                        {listings.data.length > 0 ? listings.data.map((listing, i) => <Link key={i} onClick={this.showSelectedListing.bind(null, listing)}><ListingSnippet listing={listing} /></Link>) : this.renderNoSnippets()}
                     </div>
         )
     }
