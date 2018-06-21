@@ -5,7 +5,6 @@ import AddHeader from './components/AddHeader';
 import ProgressFooter from './components/ProgressFooter';
 
 // steps
-import SelectFromGoogleMaps from './Steps/SelectFromGoogleMaps';
 import ListingDetails from './Steps/ListingDetails';
 import Rooms from './Steps/Rooms';
 import Amenities from './Steps/Amenities';
@@ -47,7 +46,7 @@ class AddListing extends React.Component {
                 )
             default:
                 return (
-                    <SelectFromGoogleMaps {...this.props} />
+                    <ListingDetails {...this.props} />
                 )
         }
     }
