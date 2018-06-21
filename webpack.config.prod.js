@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const bundleTag = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
@@ -26,7 +27,8 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: 'indexTemplate.html'
-        })
+        }),
+        new CopyWebpackPlugin([{ from: 'web.config' }])
     ],
     module: {
         loaders: [
