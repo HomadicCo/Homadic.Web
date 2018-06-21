@@ -8,7 +8,7 @@ class LoadingScreen extends React.Component {
     render() {
         return (
             <div className="loading-screen">
-                <h2><i className="blue fas fa-plane fa-spin" size="2x" /></h2>
+                <h3><i className="blue fas fa-plane fa-spin" size="2x" /></h3>
             </div>
         )
     }

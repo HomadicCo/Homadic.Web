@@ -13,7 +13,7 @@ class Notes extends React.Component {
             <div id="notes">
                 {notes ?
                     <div className="content-box">
-                        <h2 className="fancy blue">Notes</h2>
+                        <h3 className="fancy blue">Notes</h3>
                         <RenderMarkdown markdown={notes} />
                     </div> : undefined}
             </div>

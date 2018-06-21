@@ -18,7 +18,7 @@ class Internet extends React.Component {
 
         return (
             <div id="internet" className="content-box">
-                <h2 className="fancy blue">Internet</h2>
+                <h3 className="fancy blue">Internet</h3>
                 <div className="row">
                     <div className="col-md-4 capitalize">
                         <p><i className="fas fa-wifi" /> {this.renderWiFiLabel()}</p>
