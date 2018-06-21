@@ -55,12 +55,11 @@ class ListingPreview extends React.Component {
         return (
             <div className="mt-3 listing-content listing-selected">
                 <div className="map-open-listing text-center py-2">
-                    <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}>View full listing</button>
+                    <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}><i className="fas fa-home"></i> View listing</button>
                 </div>
                 <div className="content-box content-box-sm transparent text-center listing-snippet">
-                    <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
+                    <h6 className="property-name"><strong className="text-truncate">{listing.name}</strong> <span className="fancy pink"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></h6>
                     <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
-                    <p className="property-rate"><span className="red-light"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></p>
                     <Amenities listing={listing} size={20} customClass="justify-content-md-center" colClass="col" />
                 </div>
                 <div className="content-box content-box-sm">
@@ -68,13 +67,13 @@ class ListingPreview extends React.Component {
                     {listing.rooms.map((room, i) => (<div key={i}><hr />{this.renderRoom(room)}</div>))}
                 </div>
                 {listing.notes != null ? this.renderNotes(listing.notes) : undefined}
-                <div className="content-box content-box-sm">
+                {listing.points_of_interest.length > 0 ? <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Nearby</h5>
                     <hr />
                     <div className="row">
                         {listing.points_of_interest.map((poi, i) => (<div key={i} className="col-6"><PointOfInterest poi={poi} listing={listing} /></div>))}
                     </div>
-                </div>
+                </div> : undefined}
             </div>
         )
     }
