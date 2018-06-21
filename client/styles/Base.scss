@@ -34,7 +34,6 @@ p {
     font-size: 1.1em;
 }
 
-
 /*
  * Text styles
  */
@@ -96,6 +95,24 @@ textarea:active {
 .btn:focus,
 .btn:visited {
     outline: none;
+}
+
+.logo {
+    background: $pink;
+    padding: 5px 15px;
+    border-radius: $radius;
+    color: $white;
+    font-family: $fancy;
+}
+
+.logo-sm {
+    padding: 3px 8px;
+}
+
+.logo:hover {
+    background: $pink-hover;
+    color: $white;
+    text-decoration: none;
 }
 
 .text-center {

@@ -55,7 +55,7 @@ class Index extends React.Component {
                         </div>
                     </div>
                     <div className="how-it-works">
-                        <Link to="#" className="btn btn-sm btn-action"><i className="far fa-question-circle" /> How Homadic works</Link>
+                        <Link to="#" className="btn btn-sm btn-action"><i className="fas fa-question-circle" /> How Homadic works</Link>
                     </div>
                     <div className="index-bg" /></div>
             </div>

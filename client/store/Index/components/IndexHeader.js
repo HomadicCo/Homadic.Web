@@ -14,12 +14,9 @@ class IndexHeader extends React.Component {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-4 px-4 py-3">
-                        <a className="navbar-brand" href="#">Homadic</a>
+                        <h4><Link className="logo" to="/">{'{ Homadic }'}</Link></h4>
                     </div>
                     <div className="col-4 ml-auto px-4 py-3 d-flex justify-content-end">
-                        <div className="ml-3">
-                            <Link className="btn btn-sm mt-1 btn-success" to="/add/listing"><i className="fas fa-plus" /> Add a listing</Link>
-                        </div>
                         {authentication.isLoggedIn ?
                             <div className="ml-3">
                                 <Avatar size={40} profile={profile.data} />
