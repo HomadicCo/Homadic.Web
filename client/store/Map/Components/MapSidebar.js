@@ -4,6 +4,7 @@ import ListingSnippet from './ListingSnippet';
 import ListingPreview from './ListingPreview';
 import ActionHeader from './ActionHeader';
 import ListingsFilter from '../../Filter/ListingsFilter';
+import SelectFromGoogleMaps from './SelectFromGoogleMaps';
 
 class MapSidebar extends React.Component {
     constructor(props) {
@@ -55,12 +56,6 @@ class MapSidebar extends React.Component {
         )
     }
 
-    renderNewListingMode() {
-        return (
-            <Link to="/add" className="btn btn-success"><i className="fas fa-check" /> Add new listing here</Link>
-        )
-    }
-
     renderSidebarContent() {
         let { map } = this.props;
 
@@ -76,7 +71,7 @@ class MapSidebar extends React.Component {
             <div>
                 <ActionHeader {...this.props} />
                 <div className="map-sidebar-content">
-                    {map.addNewListingMode ? this.renderNewListingMode() : this.renderSidebarContent()}
+                    {map.addNewListingMode ? <SelectFromGoogleMaps {...this.props} /> : this.renderSidebarContent()}
                 </div>
             </div>
         )
