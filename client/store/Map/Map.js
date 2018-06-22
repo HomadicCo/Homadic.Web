@@ -18,7 +18,7 @@ const RenderMap = withGoogleMap(props => (
         onClick={props.onMapClick}
         zoom={props.zoom}
         onZoomChanged={props.onMapChanged}
-        onCenterChanged={props.onMapChanged}
+        onDragEnd={props.onMapChanged}
         center={props.center}
         options={{
             styles: MapStyle,

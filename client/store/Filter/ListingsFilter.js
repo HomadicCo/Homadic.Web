@@ -97,10 +97,11 @@ class ListingsFilter extends React.Component {
             <div>
                 {this.renderPriceRange()}
                 {this.renderRentalTypes()}
-                <div className="btn-group" role="group" aria-label="Filter actions">
-                    <button className="btn btn-default" onClick={this.clearFilter}>Clear <i className="fas fa-times" /></button>
-                    <button className="btn btn-success" onClick={this.setFilter}>Update <i className="fas fa-check" /></button>
+                <div className="btn-group justify-center" role="group" aria-label="Filter actions">
+                    <button className="btn btn-default btn-sm" onClick={this.clearFilter}>Clear <i className="fas fa-times" /></button>
+                    <button className="btn btn-success btn-sm" onClick={this.setFilter}>Update <i className="fas fa-check" /></button>
                 </div>
+                <p className="text-center"><small>More filters are on their way.</small></p>
             </div>
         )
     }
