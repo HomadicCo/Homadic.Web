@@ -44,8 +44,11 @@ function AddListing(state = [], action) {
         case 'UPDATE_INPUT_PROP':
             setNested(newState.listing, action.key, action.value);
             return newState;
-        case 'UPDATE_NEARBY_RESULTS':
+        case 'SET_NEARBY_RESULTS':
             newState.nearbyResults = action.data;
+            return newState;
+        case 'CLEAR_NEARBY_RESULTS':
+            newState.nearbyResults = []
             return newState;
         case 'SET_LISTING_FROM_GOOGLE_MAPS':
             newState.listing = {

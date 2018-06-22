@@ -113,7 +113,7 @@ class Map extends React.Component {
         return (
             <div className="d-flex profile-actions mr-3 mt-3">
                 <div className="ml-3">
-                    <a href={loginUrl} className="btn btn-success"><i className="fas fa-plus" /> Add</a>
+                    <a href={loginUrl} className="btn btn-success btn-sm"><i className="fas fa-plus" /> Add</a>
                 </div>
             </div>
         );

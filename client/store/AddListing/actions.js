@@ -37,10 +37,16 @@ export function setListingFromGoogleMaps(googleMapsPlace) {
 }
 
 // update nearby results
-export function updateNearbyResults(data) {
+export function setNearbyResults(data) {
     return {
-        type: 'UPDATE_NEARBY_RESULTS',
+        type: 'SET_NEARBY_RESULTS',
         data
+    }
+}
+
+export function clearNearbyResults() {
+    return {
+        type: 'CLEAR_NEARBY_RESULTS'
     }
 }
 
@@ -90,7 +96,7 @@ export function handleGetNearbyResults(coordinates) {
 
             request.then(response => {
                 dispatch(setFetchingNearbyResultsStatus(false));
-                dispatch(updateNearbyResults(response.data.results));
+                dispatch(setNearbyResults(response.data.results));
                 resolve();
             }).catch(error => {
                 dispatch(setFetchingNearbyResultsStatus(false));

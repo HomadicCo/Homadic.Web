@@ -8,6 +8,10 @@ class SelectFromGoogleMaps extends React.Component {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.clearNearbyResults();
+    }
+
     componentDidUpdate(prevProps) {
         if (prevProps.map.addNewListingCoordinates != this.props.map.addNewListingCoordinates) {
             this.fetchNearbyResults();
