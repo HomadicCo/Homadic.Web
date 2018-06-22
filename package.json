@@ -21,7 +21,7 @@
     "express": "^4.13.4",
     "marked": "^0.3.6",
     "moment": "^2.18.1",
-    "query-string": "^5.0.1",
+    "query-string": "^5.1.1",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.0.2",
     "react-bootstrap-typeahead": "^2.0.0-alpha.3",

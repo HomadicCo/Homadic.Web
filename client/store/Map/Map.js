@@ -3,6 +3,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import queryString from 'query-string';
 import { getCoordinateDistance, getLoginUrl } from '../../functions'
 import MapSidebar from './Components/MapSidebar';
 import Avatar from '../../Components/Avatar/Avatar';
@@ -17,7 +18,7 @@ const RenderMap = withGoogleMap(props => (
         ref={props.onMapLoad}
         onClick={props.onMapClick}
         zoom={props.zoom}
-        onZoomChanged={props.onMapChanged}
+        onZoomChanged={props.onZoomChanged}
         onDragEnd={props.onMapChanged}
         center={props.center}
         options={{
@@ -119,6 +120,17 @@ class Map extends React.Component {
         );
     }
 
+    // update the route
+    renderQueryParams(newParams) {
+        let currentParams = queryString.parse(location.search);
+
+        newParams.add.forEach(param => {
+            currentParams[param.key] = param.value;
+        });
+
+        browserHistory.push(location.pathname + '?' + queryString.stringify(currentParams));
+    }
+
     setAddNewListingMode(value, e) {
         e.preventDefault();
         let { setSelectedListing, setAddNewListingCoordinates, setAddNewListingMode } = this.props;
@@ -190,14 +202,18 @@ class Map extends React.Component {
             this.setState({
                 zoom: nextZoom,
             });
+
+            this.renderQueryParams({
+                add: [
+                    { key: 'z', value: nextZoom }
+                ]
+            });
         }
     }
 
     handleMapChanged() {
         let { center, searchedCenter } = this.state;
-        let { location } = this.props;
         const centerObj = this._map.getCenter();
-        const zoom = this._map.getZoom();
         const lat = centerObj.lat();
         const lng = centerObj.lng();
 
@@ -211,8 +227,12 @@ class Map extends React.Component {
                 this.searchThisArea();
             }
 
-            // update route
-            browserHistory.push(location.pathname + '?lat=' + lat.toFixed(6) + '&lng=' + lng.toFixed(6) + '&z=' + zoom);
+            this.renderQueryParams({
+                add: [
+                    { key: 'lat', value: lat.toFixed(6) },
+                    { key: 'lng', value: lng.toFixed(6) }
+                ]
+            });
         }
     }
 
@@ -244,6 +264,7 @@ class Map extends React.Component {
                                 zoom={zoom}
                                 addNewListingMode={map.addNewListingMode}
                                 onMapChanged={this.handleMapChanged}
+                                onZoomChanged={this.handleZoomChanged}
                                 onMarkerDragged={this.handleMarkerDrag}
                                 setSelectedListing={this.showSelectedListing}
                                 containerElement={
