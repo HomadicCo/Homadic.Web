@@ -13,7 +13,7 @@ class IndexHeader extends React.Component {
         return (
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-4 px-4 py-3">
+                    <div className="col-8 px-4 py-3">
                         <h4><Link className="logo" to="/">{'{ Homadic }'}</Link></h4>
                     </div>
                     <div className="col-4 ml-auto px-4 py-3 d-flex justify-content-end">
