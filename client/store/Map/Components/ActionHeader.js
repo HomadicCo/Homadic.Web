@@ -18,6 +18,9 @@ class MapSidebar extends React.Component {
     closeSelectedListing() {
         let { setSelectedListing } = this.props;
 
+        this.props.renderQueryParams({
+            remove: [{ key: 'listing' }]
+        });
         setSelectedListing(null);
     }
 

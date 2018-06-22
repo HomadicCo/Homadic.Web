@@ -20,6 +20,9 @@ class MapSidebar extends React.Component {
 
     showSelectedListing(listing) {
         this.props.setSelectedListing(listing);
+        this.props.renderQueryParams({
+            add: [{ key: 'listing', value: listing.slug }]
+        });
     }
 
     setAddNewListingMode(value, e) {

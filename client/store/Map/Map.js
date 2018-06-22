@@ -57,7 +57,7 @@ class Map extends React.Component {
         };
 
         this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
-        this.showSelectedListing = this.showSelectedListing.bind(this);
+        this.setSelectedListing = this.setSelectedListing.bind(this);
         this.searchThisArea = this.searchThisArea.bind(this);
         this.handleMapLoad = this.handleMapLoad.bind(this);
         this.handleMapClick = this.handleMapClick.bind(this);
@@ -124,9 +124,17 @@ class Map extends React.Component {
     renderQueryParams(newParams) {
         let currentParams = queryString.parse(location.search);
 
-        newParams.add.forEach(param => {
-            currentParams[param.key] = param.value;
-        });
+        if (newParams.add != undefined) {
+            newParams.add.forEach(param => {
+                currentParams[param.key] = param.value;
+            });
+        }
+
+        if (newParams.remove != undefined) {
+            newParams.remove.forEach(param => {
+                delete currentParams[param.key];
+            });
+        }
 
         browserHistory.push(location.pathname + '?' + queryString.stringify(currentParams));
     }
@@ -143,11 +151,15 @@ class Map extends React.Component {
         }
     }
 
-    showSelectedListing(listing) {
+    setSelectedListing(listing) {
         let { setSelectedListing } = this.props;
 
         this.setState({ center: { lat: listing.coordinates.lat, lng: listing.coordinates.lng } });
         setSelectedListing(listing);
+
+        this.renderQueryParams({
+            add: [{ key: 'listing', value: listing.slug }]
+        });
     }
 
     searchThisArea() {
@@ -254,7 +266,7 @@ class Map extends React.Component {
                 {this.isLoading() ? <LoadingScreen /> :
                     <div>
                         <div className="container map-sidebar">
-                            <MapSidebar {...this.props} />
+                            <MapSidebar {...this.props} renderQueryParams={this.renderQueryParams} />
                         </div>
                         <div className="map">
                             <RenderMap
@@ -266,7 +278,7 @@ class Map extends React.Component {
                                 onMapChanged={this.handleMapChanged}
                                 onZoomChanged={this.handleZoomChanged}
                                 onMarkerDragged={this.handleMarkerDrag}
-                                setSelectedListing={this.showSelectedListing}
+                                setSelectedListing={this.setSelectedListing}
                                 containerElement={
                                     <div style={{ height: '100%' }} />
                                 }
