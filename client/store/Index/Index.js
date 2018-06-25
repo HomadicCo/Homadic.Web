@@ -27,7 +27,7 @@ class Index extends React.Component {
             autocompleteItem: {
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 padding: '15px 7px',
-                fontFamily: 'Sanchez',
+                fontFamily: 'Zilla Slab',
                 fontSize: '1.2em',
                 color: '#fff',
                 cursor: 'pointer'
