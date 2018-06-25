@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import queryString from 'query-string';
-import { getCoordinateDistance, getLoginUrl } from '../../functions'
+import { getCoordinateDistance, getLoginUrl, getListingBySlug } from '../../functions'
 import MapSidebar from './Components/MapSidebar';
 import Avatar from '../../Components/Avatar/Avatar';
 import AddListingMarker from './Components/AddListingMarker';
@@ -70,6 +70,10 @@ class Map extends React.Component {
     componentWillMount() {
         let { query } = this.props.location;
 
+        // clear listing preview
+        if (query.listing != undefined)
+            this.renderQueryParams({ remove: [{ key: 'listing' }] })
+
         this.props.setAddNewListingMode(false);
 
         this.getListings({
@@ -82,6 +86,15 @@ class Map extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         let { location, setSelectedListing } = this.props;
+
+        // query param checks
+        if (location.query != nextProps.location.query) {
+            if (nextProps.location.query.listing == undefined)
+                setSelectedListing(null);
+
+            if (location.query.listing != nextProps.location.query.listing)
+                setSelectedListing(getListingBySlug(nextProps.location.query.listing, nextProps.listings.data));
+        }
 
         // check if route has changed
         if (location.pathname != nextProps.location.pathname) {

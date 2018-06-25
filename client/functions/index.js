@@ -135,3 +135,8 @@ export function getCoordinateDistance(point1, point2) {
     var d = R * c;
     return Math.round(d * 1000);
 }
+
+export function getListingBySlug(slug, listings) {
+    const i = listings.findIndex((l) => l.slug == slug);
+    return listings[i];
+}
