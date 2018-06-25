@@ -18,6 +18,7 @@ export const currencies = [
     'CAD',
     'CHF',
     'CNY',
+    'COP',
     'CZK',
     'DKK',
     'EUR',
@@ -43,6 +44,7 @@ export const currencies = [
     'THB',
     'TRY',
     'USD',
+    'VND',
     'ZAR'
 ]
 
