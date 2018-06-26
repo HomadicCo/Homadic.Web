@@ -4,7 +4,7 @@ import Rater from 'react-rater';
 import { rentalTypes } from '../../../data';
 import { icons } from '../../../Images/Images';
 
-class Header extends React.Component {
+class Hero extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -49,4 +49,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+export default Hero;

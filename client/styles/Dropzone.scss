@@ -1,0 +1,14 @@
+.dropzone {
+    height: 200px;
+    border-style: dashed;
+    padding: $box-padding;
+    border-radius: $radius;
+    background: #ECEFF1;
+}
+
+.dropzone:hover,
+.dropzone-active {
+    background: $blue-light;
+    color: $white;
+    cursor: pointer;
+}

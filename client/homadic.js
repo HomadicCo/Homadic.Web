@@ -13,6 +13,7 @@ import AddListing from './store/AddListing/AddListing';
 import Listing from './store/Listing/Listing';
 import Map from './store/Map/Map';
 import Profile from './store/Profile/Profile';
+import AddImages from './components/ListingTemplate/components/AddImages';
 
 // Import Router
 import { Router, Route, IndexRoute } from 'react-router';
@@ -25,6 +26,7 @@ const router = (
             <Route component={AppAuthenticated}>
                 <Route path="/add(/:step)" component={AddListing} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/listing/:listingSlug/images" component={AddImages} />
             </Route>
             <Route path="/" component={App}>
                 <IndexRoute component={Index} />

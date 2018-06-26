@@ -1,7 +1,8 @@
 import React from 'react';
-import { browserHistory, Link } from 'react-router';
-import Avatar from '../../Components/Avatar/Avatar';
-import Header from './components/Header';
+import { browserHistory } from 'react-router';
+
+import Hero from './components/Hero';
+import ListingHeader from './components/ListingHeader';
 import Internet from './components/Internet';
 import Nearby from './components/Nearby';
 import Notes from './components/Notes';
@@ -46,32 +47,13 @@ class ListingTemplate extends React.Component {
         )
     }
 
-    renderLiveHeader() {
-        let { authentication, profile } = this.props;
-
-        return (
-            <div className="bg-white fixed-top pt-2 box-shadow">
-                <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <h5><Link className="logo logo-sm" to="/">{'{ Homadic }'}</Link></h5>
-                        </div>
-                        <div className="col ml-auto d-flex justify-content-end">
-                            <h5 className="blue"><i className="far fa-thumbs-up" /> <i className="far fa-thumbs-down" /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span> {authentication.isLoggedIn ? <Avatar size={30} profile={profile.data} /> : undefined}</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
     render() {
         let { listing, previewMode } = this.props;
 
         return (
             <div>
-                {previewMode ? this.renderPreviewHeader() : this.renderLiveHeader()}
-                <Header listing={listing} />
+                {previewMode ? this.renderPreviewHeader() : <ListingHeader {...this.props} full />}
+                <Hero listing={listing} />
                 <div className="container listing-content">
                     <Rooms listing={listing} />
                     <Notes notes={listing.notes} />
