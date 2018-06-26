@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class Avatar extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class Avatar extends React.Component {
         }
 
         return (
-            <img className={customClass} alt={profile.name} src={avatarSrc} height={pixelSize} width={pixelSize} />
+            <Link to="/profile"><img className={customClass} alt={profile.name} src={avatarSrc} height={pixelSize} width={pixelSize} /></Link>
         )
     }
 }

@@ -7,10 +7,12 @@ import Style from './styles/App.scss';
 // Import Components
 import { App, AppAuthenticated } from './store/App';
 import SigninFacebook from './components/SigninFacebook/SigninFacebook';
+import Logout from './components/Logout/Logout';
 import Index from './store/Index/Index';
 import AddListing from './store/AddListing/AddListing';
 import Listing from './store/Listing/Listing';
 import Map from './store/Map/Map';
+import Profile from './store/Profile/Profile';
 
 // Import Router
 import { Router, Route, IndexRoute } from 'react-router';
@@ -25,7 +27,9 @@ const router = (
             </Route>
             <Route path="/" component={App}>
                 <IndexRoute component={Index} />
+                <Route path="/logout" component={Logout} />
                 <Route path="/signin-facebook" component={SigninFacebook} />
+                <Route path="/profile" component={Profile} />
                 <Route path="/listing/:listingSlug" component={Listing} />
                 <Route path="/:citySlug" component={Map} />
             </Route>

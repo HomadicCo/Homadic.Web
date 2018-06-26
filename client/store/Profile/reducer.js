@@ -2,7 +2,7 @@ function profile(state = [], action) {
     var newState = Object.assign({}, state);
 
     switch (action.type) {
-        case 'UPDATE_PROFILE_STORE':
+        case 'SET_PROFILE_STORE':
             newState.data = action.data;
             return newState;
         case 'UPDATING_PROFILE_STATUS':

@@ -3,9 +3,9 @@ import { apiGetProfile } from '../../api';
 import { setLoggedInStatus } from '../Authentication/actions';
 
 // update the profile in the store
-export function updateProfileStore(data) {
+export function setProfileStore(data) {
     return {
-        type: 'UPDATE_PROFILE_STORE',
+        type: 'SET_PROFILE_STORE',
         data
     }
 }
@@ -25,7 +25,7 @@ export function handleGetProfile() {
             const request = apiGetProfile();
 
             request.then(response => {
-                dispatch(updateProfileStore(response.data));
+                dispatch(setProfileStore(response.data));
                 dispatch(updatingProfileStatus(false));
                 resolve(response.data);
             }).catch(error => {

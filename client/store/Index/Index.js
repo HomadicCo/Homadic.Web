@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
-import IndexHeader from './components/IndexHeader';
+import Header from './components/Header';
 import { labels } from '../../data';
 
 class Index extends React.Component {
@@ -44,7 +44,7 @@ class Index extends React.Component {
 
         return (
             <div>
-                <IndexHeader {...this.props} />
+                <Header {...this.props} />
                 <div className="index">
                     <div className="container text-center">
                         <div className="col-12 mb-5 mt-3">

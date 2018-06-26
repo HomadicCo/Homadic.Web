@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Avatar from '../../../Components/Avatar/Avatar';
 
-class IndexHeader extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -30,4 +30,4 @@ class IndexHeader extends React.Component {
     }
 }
 
-export default IndexHeader;
+export default Header;

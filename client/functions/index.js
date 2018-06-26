@@ -6,11 +6,7 @@ export function setDocumentTitle(value) {
 }
 
 export function clearLocalStorage() {
-    for (var i = 0, len = localStorage.length; i < len; ++i) {
-        if ('nm.' == localStorage.key(i).substring(0, 3)) {
-            localStorage.removeItem(localStorage.key(i));
-        }
-    }
+    localStorage.clear();
 }
 
 // delay to use then/catch
