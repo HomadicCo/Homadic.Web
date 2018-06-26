@@ -1,11 +1,19 @@
 /* global Promise */
-import { apiGetProfile } from '../../api';
+import { apiGetProfile, apiGetUserListings } from '../../api';
 import { setLoggedInStatus } from '../Authentication/actions';
 
-// update the profile in the store
+// set the profile in the store
 export function setProfileStore(data) {
     return {
         type: 'SET_PROFILE_STORE',
+        data
+    }
+}
+
+// set user listings
+export function setUserListingsStore(data) {
+    return {
+        type: 'SET_USER_LISTINGS',
         data
     }
 }
@@ -31,6 +39,24 @@ export function handleGetProfile() {
             }).catch(error => {
                 dispatch(updatingProfileStatus(false));
                 dispatch(setLoggedInStatus(false));
+                reject(error);
+            });
+        });
+    };
+}
+
+export function handleGetUserListings() {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+            dispatch(updatingProfileStatus(true));
+            const request = apiGetUserListings();
+
+            request.then(response => {
+                dispatch(setUserListingsStore(response.data.data));
+                dispatch(updatingProfileStatus(false));
+                resolve(response.data);
+            }).catch(error => {
+                dispatch(updatingProfileStatus(false));
                 reject(error);
             });
         });

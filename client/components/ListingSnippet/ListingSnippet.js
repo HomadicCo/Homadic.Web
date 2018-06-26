@@ -1,7 +1,7 @@
 import React from 'react';
 import Rater from 'react-rater';
-import ListingType from '../../../components/ListingType/ListingType';
-import Amenities from '../../../components/ListingTemplate/components/Amenities';
+import ListingType from '../ListingType/ListingType';
+import Amenities from '../ListingTemplate/components/Amenities';
 
 class ListingSnippet extends React.Component {
     constructor(props) {

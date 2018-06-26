@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import ListingSnippet from './ListingSnippet';
+import ListingSnippet from '../../../components/ListingSnippet/ListingSnippet';
 import ListingPreview from './ListingPreview';
 import ActionHeader from './ActionHeader';
 import ListingsFilter from '../../Filter/ListingsFilter';

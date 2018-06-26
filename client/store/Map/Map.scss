@@ -43,23 +43,6 @@ $vertical-margin: 87px;
             border-top: 1px solid #c4cbd0;
         }
     }
-    .listing-snippets {
-        .listing-snippet {
-            .property-type,
-            .property-rate {
-                line-height: 0.5em;
-            }
-            .property-type {
-                margin: -5px 0 13px;
-            }
-        }
-        a .content-box:hover,
-        a .content-box:active,
-        a .content-box:focus {
-            background: #ECEFF1;
-            color: $font-color;
-        }
-    }
 }
 
 .map-typeahead {

@@ -38,6 +38,10 @@ export function apiGetProfile() {
     return Axios.get('profile', getAuthHeader());
 }
 
+export function apiGetUserListings() {
+    return Axios.get('profile/listings', getAuthHeader());
+}
+
 // google maps
 
 export function apiSearchAutocomplete(query) {

@@ -1,14 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Avatar from '../../Components/Avatar/Avatar';
+import ListingSnippet from '../../components/ListingSnippet/ListingSnippet';
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            loading: {
+                listings: true
+            }
+        }
+    }
+
+    componentWillMount() {
+        let { handleGetUserListings, profile } = this.props;
+
+        if (profile.userListings != undefined) {
+            this.setState({ loading: { listings: false } });
+        }
+        else {
+            handleGetUserListings().then(() =>
+                this.setState({ loading: { listings: false } })
+            );
+        }
+    }
+
+    renderContributions() {
+        let { profile } = this.props;
+
+        return (
+            <div className="row">
+                {profile.userListings.map((listing, i) => (<div key={i} className="col-md-4 listing-snippets"><Link to={'/listing/' + listing.slug}><ListingSnippet listing={listing} /></Link></div>))}
+            </div>
+        )
     }
 
     render() {
-        let { authentication, profile } = this.props;
+        let { profile } = this.props;
+        let { loading } = this.state;
 
         return (
             <div className="container">
@@ -20,17 +51,22 @@ class Profile extends React.Component {
                         <Link to="/logout">Logout</Link>
                     </div>
                 </div>
+                <div className="row my-4">
+                    <div className="col-12">
+                        <div className="float-left">
+                            <h2 className="fancy">{profile.data.name}</h2>
+                            <p>{profile.data.email}</p>
+                        </div>
+                        <div>
+                            <Avatar className="float-right" size={80} profile={profile.data} />
+                        </div>
+                    </div>
+                </div >
                 <div>
-                    {authentication.isLoggedIn ?
-                        <div className="ml-3">
-                            <Avatar size={120} profile={profile.data} />
-                        </div> :
-                        undefined
-                    }
-                    <h2 className="fancy">{profile.data.name}</h2>
-                    <p>{profile.data.email}</p>
+                    <h3 className="fancy blue">Contributions</h3>
+                    {loading.listings ? <h3 className="text-center"><i className="blue fas fa-plane fa-spin" size="2x" /></h3> : this.renderContributions()}
                 </div>
-            </div>
+            </div >
         )
     }
 }

@@ -5,6 +5,9 @@ function profile(state = [], action) {
         case 'SET_PROFILE_STORE':
             newState.data = action.data;
             return newState;
+        case 'SET_USER_LISTINGS':
+            newState.userListings = action.data;
+            return newState;
         case 'UPDATING_PROFILE_STATUS':
             newState.updating = action.value;
             return newState;

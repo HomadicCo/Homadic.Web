@@ -1,0 +1,22 @@
+.listing-snippets {
+    .listing-snippet {
+        .property-type,
+        .property-rate {
+            line-height: 0.5em;
+        }
+        .property-type {
+            margin: -5px 0 13px;
+        }
+    }
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
+    a .content-box:hover,
+    a .content-box:active,
+    a .content-box:focus {
+        background: #ECEFF1;
+        color: $font-color;
+    }
+}
