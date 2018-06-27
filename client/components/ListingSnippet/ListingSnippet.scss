@@ -1,5 +1,6 @@
 .listing-snippets {
     .listing-snippet {
+        margin-bottom: $box-padding;
         .property-type,
         .property-rate {
             line-height: 0.5em;
@@ -13,9 +14,20 @@
     a:focus {
         text-decoration: none;
     }
-    a .content-box:hover,
-    a .content-box:active,
-    a .content-box:focus {
+    .content-box {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    img.hero {
+        border-top-left-radius: $radius;
+        border-top-right-radius: $radius;
+    }
+}
+
+.listing-snippet:hover,
+.listing-snippet:active,
+.listing-snippet:focus {
+    .content-box {
         background: #ECEFF1;
         color: $font-color;
     }

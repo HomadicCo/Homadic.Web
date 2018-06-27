@@ -12,17 +12,20 @@ class ListingSnippet extends React.Component {
         let { listing } = this.props;
 
         return (
-            <div className="content-box content-box-sm listing-snippet">
-                <div className="row no-gutters">
-                    <div className="col-10">
-                        <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
+            <div className="listing-snippet">
+                <img className="hero" src="https://i.imgur.com/Gsh7yNY.jpg" />
+                <div className="content-box content-box-sm">
+                    <div className="row no-gutters">
+                        <div className="col-10">
+                            <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
+                        </div>
+                        <div className="col-2 ml-auto text-right">
+                            <span className="pink fancy"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
+                        </div>
                     </div>
-                    <div className="col-2 ml-auto text-right">
-                        <span className="pink fancy"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
-                    </div>
+                    <p className="property-type text-muted">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
+                    <Amenities listing={listing} size={20} colClass="col-1" />
                 </div>
-                <p className="property-type text-muted">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
-                <Amenities listing={listing} size={20} colClass="col-1" />
             </div>
         )
     }
