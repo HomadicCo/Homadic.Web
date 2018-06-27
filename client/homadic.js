@@ -19,6 +19,11 @@ import AddImages from './components/ListingTemplate/components/AddImages';
 import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store/store';
+import ReactGA from 'react-ga';
+if (localStorage.getItem('test.ApiUrl' == undefined)) {
+    ReactGA.initialize('UA-121445370-1');
+    ReactGA.pageview(window.location.pathname + window.location.search);
+}
 
 const router = (
     <Provider store={store}>
