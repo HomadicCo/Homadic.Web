@@ -17,7 +17,7 @@ class ListingSnippet extends React.Component {
                 <div className="content-box content-box-sm">
                     <div className="row no-gutters">
                         <div className="col-10">
-                            <h6 className="property-name text-truncate"><strong>{listing.name}</strong></h6>
+                            <h5 className="property-name text-truncate"><strong>{listing.name}</strong></h5>
                         </div>
                         <div className="col-2 ml-auto text-right">
                             <span className="pink fancy"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
