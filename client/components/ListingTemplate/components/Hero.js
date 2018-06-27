@@ -24,8 +24,19 @@ class Hero extends React.Component {
         return rentalTypes[i].name;
     }
 
+    renderAmenities(listing) {
+
+        return (
+            <div className="row justify-content-md-center">
+                <div className="col-md-8 col-s-12">
+                    <Amenities listing={listing} margin={20} displayLabel />
+                </div>
+            </div>
+        )
+    }
+
     render() {
-        let { listing } = this.props;
+        let { listing, full } = this.props;
 
         return (
             <div className="container text-center listing">
@@ -39,11 +50,7 @@ class Hero extends React.Component {
                         <p className="lead">{this.getBaseRate()} {listing.currency} <img src={icons[listing.type]} className="icon" /> <small className="text-muted">{this.renderRentalType()}</small></p>
                     </div>
                 </div>
-                <div className="row justify-content-md-center">
-                    <div className="col-md-8 col-s-12">
-                        <Amenities listing={listing} margin={20} displayLabel />
-                    </div>
-                </div>
+                {full ? this.renderAmenities(listing) : undefined}
             </div>
         )
     }

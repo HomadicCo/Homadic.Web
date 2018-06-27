@@ -30,7 +30,8 @@ hr {
     border-top: $hr-border;
 }
 
-p, li {
+p,
+li {
     font-size: 1.2em;
 }
 
@@ -44,6 +45,10 @@ a.focus,
 a:hover {
     font-weight: 600;
     color: $blue;
+}
+
+img {
+    max-width: 100%;
 }
 
 pre {

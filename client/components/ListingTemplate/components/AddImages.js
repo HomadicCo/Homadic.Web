@@ -1,6 +1,10 @@
 import React from 'react';
+import { browserHistory, } from 'react-router';
 import Dropzone from 'react-dropzone';
+import { apiGetListing } from '../../../api';
 import ListingHeader from './ListingHeader';
+import Hero from '../components/Hero';
+import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen';
 
 class AddImages extends React.Component {
     constructor(props) {
@@ -8,7 +12,23 @@ class AddImages extends React.Component {
 
         this.onImageDrop = this.onImageDrop.bind(this);
         this.state = {
-            invalidFile: false
+            invalidFile: false,
+            listing: undefined,
+            images: undefined
+        }
+    }
+
+    componentWillMount() {
+        let { listingSlug } = this.props.params;
+
+        if (listingSlug) {
+            apiGetListing(listingSlug).then((response) => {
+                this.setState({ listing: response.data });
+            }).catch(() => {
+                browserHistory.push('/');
+            });
+        } else {
+            browserHistory.push('/');
         }
     }
 
@@ -29,10 +49,11 @@ class AddImages extends React.Component {
         )
     }
 
-    render() {
+    renderLoaded() {
         return (
             <div className="listing">
                 <ListingHeader {...this.props} />
+                <Hero listing={this.state.listing} />
                 <div className="container">
                     <Dropzone
                         multiple={false}
@@ -44,6 +65,14 @@ class AddImages extends React.Component {
                     </Dropzone>
                 </div>
             </div>
+        )
+    }
+
+    render() {
+        let { listing } = this.state;
+
+        return (
+            !listing ? <LoadingScreen /> : this.renderLoaded()
         )
     }
 }

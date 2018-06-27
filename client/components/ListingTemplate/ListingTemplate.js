@@ -53,7 +53,7 @@ class ListingTemplate extends React.Component {
         return (
             <div>
                 {previewMode ? this.renderPreviewHeader() : <ListingHeader {...this.props} full />}
-                <Hero listing={listing} />
+                <Hero listing={listing} full/>
                 <div className="container listing-content">
                     <Rooms listing={listing} />
                     <Notes notes={listing.notes} />
