@@ -1,10 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Gallery from 'react-grid-gallery';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
+import { TitleCase } from '../../functions';
+
+const tagList = [
+    'bedroom',
+    'bathroom',
+    'kitchen',
+    'indoor',
+    'outdoor',
+    'room'
+]
 
 class ImageGallery extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    shouldComponentUpdate(nextProps) {
+        if (nextProps.images != this.props.images)
+            return true;
+
+        return false
+    }
+
+    generateTags(tags) {
+        var newTags = [];
+        tagList.forEach((tag) => {
+            if (tags.includes(tag)) {
+                newTags.push({ value: TitleCase(tag), title: TitleCase(tag) })
+            }
+        })
+        return newTags;
+    }
+
+    conformImageObjects(images) {
+        images.forEach((o, i, a) => {
+            a[i].caption = 'Uploaded by ' + o.user_name;
+            a[i].tags = this.generateTags(o.tags);
+        });
+
+        return images;
     }
 
     renderHasNoImages() {
@@ -18,13 +55,22 @@ class ImageGallery extends React.Component {
     }
 
     renderHasImages(images) {
+        const tagStyle = {
+            display: 'inline',
+            padding: '0.2em 0.6em 0.3em',
+            fontSize: '75%',
+            fontWeight: '600',
+            lineHeight: '1',
+            color: '#2491e8',
+            background: 'rgba(255, 255, 255, 0.9)',
+            textAlign: 'center',
+            whiteSpace: 'nowrap',
+            verticalAlign: 'baseline',
+            borderRadius: '0.25em',
+        };
+
         return (
-            images.map((image, i) => (
-                <div key={i} className="col-md-2 text-center">
-                    <img src={image.thumbnail} className="image-thumbnail rounded mx-auto display-thumbnail mb-3" />
-                    <img src={image.hero} className="image-thumbnail rounded mx-auto display-hero mb-3" />
-                </div>
-            ))
+            <Gallery images={this.conformImageObjects(images)} enableImageSelection={false} tagStyle={tagStyle} backdropClosesModal showLightboxThumbnails />
         )
     }
 
@@ -48,9 +94,8 @@ class ImageGallery extends React.Component {
                     </div>
                 </div>
                 <hr />
-                <div className="row">
-                    {loading ? <div className="col"><LoadingPlane /></div> : this.renderLoaded(images)}
-                </div>
+                {loading ? <div className="col"><LoadingPlane /></div> : this.renderLoaded(images)}
+                <div className="clearfix" />
             </div >
         )
     }
