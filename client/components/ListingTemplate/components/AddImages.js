@@ -1,10 +1,11 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
 import Dropzone from 'react-dropzone';
-import { apiGetListing } from '../../../api';
+import { apiGetListing, apiGetListingImages } from '../../../api';
 import ListingHeader from './ListingHeader';
 import Hero from '../components/Hero';
 import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen';
+import LoadingPlane from '../../../components/LoadingScreen/LoadingPlane';
 
 class AddImages extends React.Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class AddImages extends React.Component {
         this.state = {
             invalidFile: false,
             listing: undefined,
-            images: undefined
+            images: undefined,
+            loadingImages: false
         }
     }
 
@@ -23,7 +25,10 @@ class AddImages extends React.Component {
 
         if (listingSlug) {
             apiGetListing(listingSlug).then((response) => {
-                this.setState({ listing: response.data });
+                this.setState({ ...this.state, listing: response.data, loadingImages: true });
+                apiGetListingImages(listingSlug).then((response) => {
+                    this.setState({ ...this.state, images: response.data.data, loadingImages: false });
+                })
             }).catch(() => {
                 browserHistory.push('/');
             });
@@ -49,21 +54,49 @@ class AddImages extends React.Component {
         )
     }
 
+    renderImages() {
+        let { images } = this.state;
+
+        return (
+            <div className="container">
+                <div className="content-box content-box-sm">
+                    <h3 className="fancy blue">Photos</h3>
+                    <div className="row">
+                        {images.map((image, i) => (
+                            <div key={i} className="col-2">
+                                <img src={image.thumbnail} />
+                            </div>
+                        ))}
+                    </div>
+                </div >
+            </div >
+        )
+    }
+
+    renderDropZone() {
+        return (
+            <Dropzone
+                multiple={false}
+                accept={['image/jpg', 'image/jpeg', 'image/JPG', 'image/JPEG']}
+                onDrop={this.onImageDrop}
+                className="col-12 dropzone"
+                activeClassName="dropzone-active">
+                {this.renderDropZoneContent()}
+            </Dropzone>
+        )
+    }
+
     renderLoaded() {
+        let { listing, loadingImages } = this.state;
+
         return (
             <div className="listing">
                 <ListingHeader {...this.props} />
-                <Hero listing={this.state.listing} />
-                <div className="container">
-                    <Dropzone
-                        multiple={false}
-                        accept={['image/jpg', 'image/jpeg', 'image/JPG', 'image/JPEG']}
-                        onDrop={this.onImageDrop}
-                        className="col-12 dropzone"
-                        activeClassName="dropzone-active">
-                        {this.renderDropZoneContent()}
-                    </Dropzone>
+                <Hero listing={listing} />
+                <div className="container mb-4">
+                    {this.renderDropZone()}
                 </div>
+                {loadingImages ? <LoadingPlane /> : this.renderImages()}
             </div>
         )
     }

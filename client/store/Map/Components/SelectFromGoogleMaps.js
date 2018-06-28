@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingPlane from '../../../components/LoadingScreen/LoadingPlane';
 
 // components
 import NearbyResult from '../components/NearbyResult';
@@ -32,7 +33,7 @@ class SelectFromGoogleMaps extends React.Component {
 
         return (
             <div className="container">
-                {listings.fetching ? <h3 className="text-center"><i className="blue fas fa-plane fa-spin" size="2x" /></h3> :
+                {listings.fetching ? <LoadingPlane /> :
                     <div>
                         <p className="mb-4">Select from listings on Google Maps within 200m of pin. Not here? Try moving your pin more accurately.</p>
                         {addListing.nearbyResults.map((result, i) =>

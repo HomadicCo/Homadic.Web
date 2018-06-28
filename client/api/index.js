@@ -66,6 +66,14 @@ export function apiGetListing(slug) {
     return Axios.get('listing/' + slug);
 }
 
+export function apiGetListingImages(slug) {
+    return Axios.get('listing/' + slug + '/images');
+}
+
+export function apiPostNewImage(slug) {
+    return Axios.post('listing/' + slug + '/images');
+}
+
 export function apiPostListing(listing) {
     return Axios.post('listing', listing, getAuthHeader());
 }

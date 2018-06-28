@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Avatar from '../../Components/Avatar/Avatar';
 import ListingSnippet from '../../components/ListingSnippet/ListingSnippet';
+import LoadingPlane from '../../components/LoadingScreen/LoadingPlane';
 
 class Profile extends React.Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class Profile extends React.Component {
                 </div >
                 <div>
                     <h3 className="fancy blue">Contributions</h3>
-                    {loading.listings ? <h3 className="text-center"><i className="blue fas fa-plane fa-spin" size="2x" /></h3> : this.renderContributions()}
+                    {loading.listings ? <LoadingPlane /> : this.renderContributions()}
                 </div>
             </div >
         )

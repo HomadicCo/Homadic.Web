@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import ListingSnippet from '../../../components/ListingSnippet/ListingSnippet';
+import LoadingPlane from '../../../components/LoadingScreen/LoadingPlane';
 import ListingPreview from './ListingPreview';
 import ActionHeader from './ActionHeader';
 import ListingsFilter from '../../Filter/ListingsFilter';
@@ -52,7 +53,7 @@ class MapSidebar extends React.Component {
         return (
             map.filterMode ?
                 <ListingsFilter {...this.props} /> :
-                listings.fetching ? <h3 className="text-center"><i className="blue fas fa-plane fa-spin" size="2x" /></h3> :
+                listings.fetching ? <LoadingPlane /> :
                     <div className="listing-snippets">
                         {listings.data.length > 0 ? listings.data.map((listing, i) => <Link key={i} onClick={this.showSelectedListing.bind(null, listing)}><ListingSnippet listing={listing} /></Link>) : this.renderNoSnippets()}
                     </div>

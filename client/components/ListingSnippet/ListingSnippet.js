@@ -13,7 +13,7 @@ class ListingSnippet extends React.Component {
 
         return (
             <div className="listing-snippet">
-                <img className="hero" src="https://i.imgur.com/Gsh7yNY.jpg" />
+                {listing.hero != null ? <img className="hero" src={listing.hero.hero} /> : undefined}
                 <div className="content-box content-box-sm">
                     <div className="row no-gutters">
                         <div className="col-10">
