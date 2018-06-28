@@ -6,7 +6,7 @@ class Nearby extends React.Component {
         super(props);
     }
 
-    render() {
+    renderPointsOfInterest() {
         let { colClass, listing, previewMode } = this.props;
         let previewModeString = 'Nearby points of interest will be calculated and displayed after submission.';
 
@@ -21,6 +21,14 @@ class Nearby extends React.Component {
                         </div>
                     </div> : undefined}
             </div>
+        )
+    }
+
+    render() {
+        let { previewMode, listing } = this.props;
+
+        return (
+            listing.points_of_interest.length == 0 && !previewMode ? <div></div> : this.renderPointsOfInterest()
         )
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
-import { apiGetListing } from '../../api';
+import { apiGetListing, apiGetListingImages } from '../../api';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 
@@ -8,7 +8,7 @@ class Listing extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { listing: null };
+        this.state = { listing: null, images: { loading: false, data: [] } };
     }
 
     componentWillMount() {
@@ -16,7 +16,10 @@ class Listing extends React.Component {
 
         if (listingSlug) {
             apiGetListing(listingSlug).then((response) => {
-                this.setState({ listing: response.data });
+                this.setState({ ...this.state, listing: response.data, images: { data: [], loading: true } });
+                apiGetListingImages(listingSlug).then((response) => {
+                    this.setState({ ...this.state, images: { loading: false, data: response.data } });
+                })
             }).catch(() => {
                 browserHistory.push('/');
             });
@@ -26,10 +29,10 @@ class Listing extends React.Component {
     }
 
     render() {
-        let { listing } = this.state;
+        let { images, listing } = this.state;
 
         return (
-            !listing ? <LoadingScreen /> : <ListingTemplate listing={listing} {...this.props} />
+            !listing ? <LoadingScreen /> : <ListingTemplate listing={listing} images={images} {...this.props} />
         )
     }
 }

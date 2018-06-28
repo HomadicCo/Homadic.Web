@@ -10,6 +10,7 @@ import Rooms from './components/Rooms';
 import LocationMap from './components/LocationMap';
 import Contact from './components/Contact';
 import { apiPostListing } from '../../api/index';
+import ImageGallery from '../ImageGallery/ImageGallery';
 
 class ListingTemplate extends React.Component {
     constructor(props) {
@@ -23,7 +24,6 @@ class ListingTemplate extends React.Component {
         setLoadingStatus(true);
 
         apiPostListing(addListing.listing).then((response) => {
-            console.log('/listing/' + response.data.slug);
             browserHistory.push('/listing/' + response.data.slug);
             setLoadingStatus(false);
             clearNewListing();
@@ -48,17 +48,18 @@ class ListingTemplate extends React.Component {
     }
 
     render() {
-        let { listing, previewMode } = this.props;
+        let { images, listing, previewMode } = this.props;
 
         return (
             <div>
                 {previewMode ? this.renderPreviewHeader() : <ListingHeader {...this.props} full />}
-                <Hero listing={listing} full/>
+                <Hero listing={listing} full />
                 <div className="container listing-content">
                     <Rooms listing={listing} />
                     <Notes notes={listing.notes} />
                     <Internet listing={listing} />
                     <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
+                    {previewMode ? undefined : <ImageGallery images={images.data.data} loading={images.loading} slug={listing.slug} />}
                     <LocationMap listing={listing} />
                     <Contact listing={listing} />
                 </div>
