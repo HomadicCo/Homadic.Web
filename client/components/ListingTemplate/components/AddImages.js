@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
 import Dropzone from 'react-dropzone';
-import { apiGetListing, apiGetListingImages } from '../../../api';
+import { apiGetListing, apiGetListingImages, apiPostListingImage } from '../../../api';
 import ListingHeader from './ListingHeader';
 import Hero from '../components/Hero';
 import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen';
@@ -37,12 +37,25 @@ class AddImages extends React.Component {
         }
     }
 
-    onImageDrop(file, rejected) {
+    onImageDrop(acceptedFiles, rejectedFiles) {
+        let { images } = this.state;
+        let { listingSlug } = this.props.params;
+
         // log invalid file
-        if (rejected.length > 0) {
+        if (rejectedFiles.length > 0) {
             this.setState({ invalidFile: true });
             return;
         }
+
+        // conform file
+        var formData = new FormData();
+        formData.append(acceptedFiles[0].name, acceptedFiles[0]);
+
+        apiPostListingImage(listingSlug, formData).then((response) => {
+            var newImages = Object.assign(images);
+            newImages.unshift(response.data);
+            this.setState({ images: newImages });
+        })
     }
 
     renderDropZoneContent() {
@@ -58,13 +71,14 @@ class AddImages extends React.Component {
         let { images } = this.state;
 
         return (
-            <div className="container">
+            <div className="container image-thumbs">
                 <div className="content-box content-box-sm">
                     <h3 className="fancy blue">Photos</h3>
                     <div className="row">
                         {images.map((image, i) => (
-                            <div key={i} className="col-2">
-                                <img src={image.thumbnail} />
+                            <div key={i} className="col-md-2 text-center">
+                                <img src={image.thumbnail} className="image-thumbnail rounded mx-auto display-thumbnail mb-3" />
+                                <img src={image.hero} className="image-thumbnail rounded mx-auto display-hero mb-3" />
                             </div>
                         ))}
                     </div>

@@ -95,3 +95,18 @@ ul.amenities-icons {
         }
     }
 }
+
+.image-thumbs {
+    .display-hero {
+        display: none;
+    }
+    @media only screen and (max-width: 768px) {
+        //some value
+        .display-thumbnail {
+            display: none;
+        }
+        .display-hero {
+            display: block;
+        }
+    }
+}

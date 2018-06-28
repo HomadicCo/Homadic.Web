@@ -10,7 +10,7 @@ function getApiUrl() {
     return apiUrl ? apiUrl : 'https://homadic-functions.azurewebsites.net/api/';
 }
 
-function getAuthHeader() {
+function getAuthHeader(customHeaders = {}) {
     var auth = loadLocalStorage('auth');
 
     if (auth === null || auth === undefined || auth.access_token === null) {
@@ -19,7 +19,8 @@ function getAuthHeader() {
 
     return {
         headers: {
-            Authorization: auth.access_token
+            Authorization: auth.access_token,
+            ...customHeaders
         }
     }
 }
@@ -70,8 +71,8 @@ export function apiGetListingImages(slug) {
     return Axios.get('listing/' + slug + '/images');
 }
 
-export function apiPostNewImage(slug) {
-    return Axios.post('listing/' + slug + '/images');
+export function apiPostListingImage(slug, formData) {
+    return Axios.post('listing/' + slug + '/images', formData, getAuthHeader({ 'Content-Type': 'multipart/form-data' }))
 }
 
 export function apiPostListing(listing) {
