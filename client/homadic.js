@@ -23,7 +23,7 @@ import store, { history } from './store/store';
 import ReactGA from 'react-ga';
 
 // google analytics
-if (localStorage.getItem('test.ApiUrl') == null) {
+if (localStorage.getItem('test.apiUrl') == null) {
     ReactGA.initialize('UA-121445370-1');
     ReactGA.pageview(window.location.pathname + window.location.search);
 }
