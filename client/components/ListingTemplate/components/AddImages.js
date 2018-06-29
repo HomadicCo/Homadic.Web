@@ -17,7 +17,8 @@ class AddImages extends React.Component {
             invalidFile: false,
             listing: undefined,
             images: undefined,
-            loadingImages: false
+            loadingImages: false,
+            uploadingImage: false
         }
     }
 
@@ -41,10 +42,11 @@ class AddImages extends React.Component {
     onImageDrop(acceptedFiles, rejectedFiles) {
         let { images } = this.state;
         let { listingSlug } = this.props.params;
+        this.setState({ invalidFile: false, uploadingImage: true });
 
         // log invalid file
         if (rejectedFiles.length > 0) {
-            this.setState({ invalidFile: true });
+            this.setState({ invalidFile: true, uploadingImage: false });
             return;
         }
 
@@ -55,7 +57,7 @@ class AddImages extends React.Component {
         apiPostListingImage(listingSlug, formData).then((response) => {
             var newImages = Object.assign(images);
             newImages.unshift(response.data);
-            this.setState({ images: newImages });
+            this.setState({ images: newImages, uploadingImage: false });
         })
     }
 
@@ -82,14 +84,14 @@ class AddImages extends React.Component {
     }
 
     renderLoaded() {
-        let { images, listing, loadingImages } = this.state;
+        let { images, listing, loadingImages, uploadingImage } = this.state;
 
         return (
             <div className="listing">
                 <ListingHeader {...this.props} />
                 <Hero listing={listing} />
                 <div className="container mb-4">
-                    {this.renderDropZone()}
+                    {uploadingImage ? <div className="text-center"><LoadingPlane /><p>Uploading image...</p></div> : this.renderDropZone()}
                 </div>
                 {loadingImages ? <LoadingPlane /> : <div className="container"><ImageGallery loading={loadingImages} images={images} isImageUploadPage /></div>}
             </div>
