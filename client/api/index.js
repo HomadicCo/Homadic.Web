@@ -64,11 +64,11 @@ export function apiGetListings(listingsQuery) {
 }
 
 export function apiGetListing(slug) {
-    return Axios.get('listing/' + slug);
+    return Axios.get('listing/' + slug, getAuthHeader());
 }
 
 export function apiGetListingImages(slug) {
-    return Axios.get('listing/' + slug + '/images');
+    return Axios.get('listing/' + slug + '/images', getAuthHeader());
 }
 
 export function apiPostListingImage(slug, formData) {
