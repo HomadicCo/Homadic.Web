@@ -16,7 +16,7 @@ class AddImages extends React.Component {
         this.state = {
             invalidFile: false,
             listing: undefined,
-            images: undefined,
+            images: [],
             loadingImages: false,
             uploadingImage: false
         }

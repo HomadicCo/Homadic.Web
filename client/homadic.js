@@ -21,11 +21,14 @@ import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store/store';
 import ReactGA from 'react-ga';
-if (localStorage.getItem('test.ApiUrl' == null)) {
+
+// google analytics
+if (localStorage.getItem('test.ApiUrl') == null) {
     ReactGA.initialize('UA-121445370-1');
     ReactGA.pageview(window.location.pathname + window.location.search);
 }
 
+// progress bar
 loadProgressBar();
 
 const router = (
