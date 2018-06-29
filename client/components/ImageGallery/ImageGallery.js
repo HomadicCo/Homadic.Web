@@ -10,7 +10,10 @@ const tagList = [
     'kitchen',
     'indoor',
     'outdoor',
-    'room'
+    'room',
+    'living',
+    'sofa',
+    'furniture'
 ]
 
 class ImageGallery extends React.Component {
