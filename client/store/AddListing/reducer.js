@@ -53,7 +53,7 @@ function AddListing(state = [], action) {
         case 'SET_LISTING_FROM_GOOGLE_MAPS':
             newState.listing = {
                 ...newState.listing,
-                address: action.googleMapsPlace.formatted_address,
+                address: { address: action.googleMapsPlace.formatted_address },
                 contact_details: {
                     email: '',
                     phone_number: action.googleMapsPlace.international_phone_number,

@@ -65,7 +65,9 @@ export const defaultFilter = {
 }
 
 export const emptyListing = {
-    address: '',
+    address: {
+        address: '',
+    },
     amenities: {
         air_conditioning: false,
         pool: false,
@@ -89,6 +91,7 @@ export const emptyListing = {
     },
     id: '',
     name: '',
+    points_of_interest: [],
     rating: null,
     rooms: [],
     social_details: {

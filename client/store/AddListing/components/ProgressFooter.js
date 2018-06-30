@@ -57,7 +57,7 @@ class ProgressFooter extends React.Component {
         let { listing } = addListing;
 
         // listing basics
-        if (!listing.name || !listing.address || !listing.type) {
+        if (!listing.name || !listing.address.address || !listing.type) {
             if (addListing.valid.listing) setValidationValue('listing', false);
         } else {
             if (!addListing.valid.listing) setValidationValue('listing', true);

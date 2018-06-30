@@ -75,7 +75,7 @@ class ListingDetails extends React.Component {
                 </div>
                 <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>
-                    <input type="text" name="address" value={listing.address} className="form-control" id="inputAddress" placeholder="123 Nomad St" required />
+                    <input type="text" name="address" value={listing.address.address} className="form-control" id="inputAddress" placeholder="123 Nomad St" required />
                     <div className="invalid-feedback">
                         Please provide the address.
                     </div>
