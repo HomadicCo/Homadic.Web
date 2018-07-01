@@ -1,4 +1,8 @@
 import React from 'react';
+import {Helmet} from 'react-helmet';
+
+// functions
+import {getMetaDetails} from '../../functions';
 
 //components
 import AddHeader from './components/AddHeader';
@@ -53,9 +57,22 @@ class AddListing extends React.Component {
 
     render() {
         let { step } = this.props.params;
+        let metaDetails = getMetaDetails('Add listing', '/add');
 
         return (
             <div className="footer-padding">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{metaDetails.title}</title>
+                    <link rel="canonical" href={metaDetails.link} />
+                    <meta name="twitter:card" content="summary" />
+                    <meta name="twitter:site" content="@homadicco" />
+                    <meta property="og:title" content="Homadic" />
+                    <meta property="og:description" content="Crowd sourced monthly home rentals." />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content={metaDetails.link} />
+                    <meta property="og:image" content="https://homadicstorage.blob.core.windows.net/icons/icon180.png" />
+                </Helmet>
                 {step != 'preview' ? <AddHeader {...this.props} /> : undefined}
                 <div className="container">
                     {this.stepSelector()}

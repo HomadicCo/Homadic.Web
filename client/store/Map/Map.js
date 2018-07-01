@@ -4,7 +4,8 @@ import { browserHistory } from 'react-router';
 import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import queryString from 'query-string';
-import { getCoordinateDistance, getLoginUrl, getListingBySlug } from '../../functions'
+import { Helmet } from 'react-helmet';
+import { getCoordinateDistance, getLoginUrl, getListingBySlug, getMetaDetails } from '../../functions'
 import MapSidebar from './Components/MapSidebar';
 import Avatar from '../../Components/Avatar/Avatar';
 import AddListingMarker from './Components/AddListingMarker';
@@ -273,9 +274,22 @@ class Map extends React.Component {
     render() {
         let { center, zoom } = this.state;
         let { authentication, listings, map } = this.props;
+        const metaDetails = getMetaDetails('Crowd sourced monthly rentals', location.pathname);
 
         return (
             <div>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{metaDetails.title}</title>
+                    <link rel="canonical" href={metaDetails.link} />
+                    <meta name="twitter:card" content="summary_large_image" />
+                    <meta name="twitter:site" content="@homadicco" />
+                    <meta property="og:title" content="Homadic" />
+                    <meta property="og:description" content="Crowd sourced monthly home rentals." />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content={metaDetails.link} />
+                    <meta property="og:image" content="https://homadicstorage.blob.core.windows.net/icons/icon180.png" />
+                </Helmet>
                 {this.isLoading() ? <LoadingScreen /> :
                     <div>
                         <div className="container map-sidebar">

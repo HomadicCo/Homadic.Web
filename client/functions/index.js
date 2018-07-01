@@ -5,10 +5,25 @@ export function setDocumentTitle(value) {
     document.title = (value === undefined ? 'Abstrack' : value + ' // Abstrack');
 }
 
-export function TitleCase(str) {
+export function titleCase(str) {
     return str.replace(/\w\S*/g, function (txt) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
+}
+
+export function getMetaDetails(title, link) {
+    return {
+        title: title + ' - Homadic',
+        link: 'https://homadic.co/' + link
+    }
+}
+
+export function getBaseRate(listing) {
+    var rooms = listing.rooms.sort(function (a, b) {
+        return a.base_rate > b.base_rate;
+    });
+
+    return rooms[0].base_rate;
 }
 
 export function clearLocalStorage() {

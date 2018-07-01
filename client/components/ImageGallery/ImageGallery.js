@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Gallery from 'react-grid-gallery';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
-import { TitleCase } from '../../functions';
+import { titleCase } from '../../functions';
 
 const tagList = [
     'bedroom',
@@ -32,7 +32,7 @@ class ImageGallery extends React.Component {
         var newTags = [];
         tagList.forEach((tag) => {
             if (tags.includes(tag)) {
-                newTags.push({ value: TitleCase(tag), title: TitleCase(tag) })
+                newTags.push({ value: titleCase(tag), title: titleCase(tag) })
             }
         })
         return newTags;

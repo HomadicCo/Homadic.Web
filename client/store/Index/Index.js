@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Helmet } from 'react-helmet';
+import { getMetaDetails } from '../../functions';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
 import Header from './components/Header';
 import { labels } from '../../data';
@@ -42,8 +44,22 @@ class Index extends React.Component {
             placeholder: 'Where would you like to live?', autoFocus: true
         }
 
+        const metaDetails = getMetaDetails('Crowd sourced monthly home rentals', '')
+
         return (
             <div>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{metaDetails.title}</title>
+                    <link rel="canonical" href={metaDetails.link} />
+                    <meta name="twitter:card" content="summary" />
+                    <meta name="twitter:site" content="@homadicco" />
+                    <meta property="og:title" content="Homadic" />
+                    <meta property="og:description" content="Crowd sourced monthly home rentals." />
+                    <meta property="og:type" content="website" />
+                    <meta property="og:url" content={metaDetails.link} />
+                    <meta property="og:image" content="https://homadicstorage.blob.core.windows.net/icons/icon180.png" />
+                </Helmet>
                 <Header {...this.props} />
                 <div className="index">
                     <div className="container text-center">
