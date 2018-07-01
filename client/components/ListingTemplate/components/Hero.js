@@ -39,7 +39,7 @@ class Hero extends React.Component {
         let { listing, full } = this.props;
 
         return (
-            <div className="container text-center listing">
+            <div className="container text-center">
                 <div className="row justify-content-md-center">
                     <div className="col-md-8">
                         <h1 className="fancy"><strong>{listing.name}</strong> {listing.rating ? <Rater interactive={false} rating={listing.rating} /> : undefined}</h1>

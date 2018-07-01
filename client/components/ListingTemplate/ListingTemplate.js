@@ -17,6 +17,9 @@ class ListingTemplate extends React.Component {
         super(props);
 
         this.postListing = this.postListing.bind(this);
+        this.state = {
+            listingError: null
+        }
     }
 
     postListing() {
@@ -24,11 +27,12 @@ class ListingTemplate extends React.Component {
         setLoadingStatus(true);
 
         apiPostListing(addListing.listing).then((response) => {
+            this.setState({ listingError: null });
             browserHistory.push('/listing/' + response.data.slug);
             setLoadingStatus(false);
             clearNewListing();
         }).catch((e) => {
-            console.log(e)
+            this.setState({ listingError: e.response.data });
             setLoadingStatus(false);
         })
     }
@@ -49,19 +53,24 @@ class ListingTemplate extends React.Component {
 
     render() {
         let { images, listing, previewMode } = this.props;
+        let { listingError } = this.state;
+        const angryIconStyle = { fontSize: '1.2em' }
 
         return (
             <div>
                 {previewMode ? this.renderPreviewHeader() : <ListingHeader {...this.props} full />}
-                <Hero listing={listing} full />
-                <div className="container listing-content">
-                    <Rooms listing={listing} />
-                    <Notes notes={listing.notes} />
-                    <Internet listing={listing} />
-                    <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
-                    {previewMode ? undefined : <ImageGallery images={images.data.data} loading={images.loading} slug={listing.slug} />}
-                    <LocationMap listing={listing} />
-                    <Contact listing={listing} />
+                <div className="listing">
+                    {listingError != null ? <div className="alert alert-danger" role="alert"><i className="far fa-angry" style={angryIconStyle} /> {listingError}</div> : undefined}
+                    <Hero listing={listing} full />
+                    <div className="container listing-content">
+                        <Rooms listing={listing} />
+                        <Notes notes={listing.notes} />
+                        <Internet listing={listing} />
+                        <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
+                        {previewMode ? undefined : <ImageGallery images={images.data.data} loading={images.loading} slug={listing.slug} />}
+                        <LocationMap listing={listing} />
+                        <Contact listing={listing} />
+                    </div>
                 </div>
             </div>
         )
