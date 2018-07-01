@@ -33,7 +33,7 @@ class Listing extends React.Component {
     renderHelmet(listing) {
         let metaDetails = getMetaDetails(listing.name, 'listing/' + listing.slug);
         let baseRate = getBaseRate(listing);
-        let description = 'Rooms available from ' + baseRate + 'USD';
+        let description = 'Rooms available at ' + listing.name  +' from ' + baseRate + 'USD';
 
         return (<Helmet>
             <meta charSet="utf-8" />
@@ -42,7 +42,7 @@ class Listing extends React.Component {
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:site" content="@homadicco" />
             <meta property="og:title" content={metaDetails.title} />
-            <meta property="og:image" content={listing.hero.src} />
+            <meta property="og:image" content={listing.hero != null ? listing.hero.src : 'https://homadicstorage.blob.core.windows.net/icons/icon180.png'} />
             <meta property="og:description" content={description} />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={metaDetails.link} />
