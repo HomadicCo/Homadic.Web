@@ -21,13 +21,13 @@ class Hero extends React.Component {
 
         return (
             <div className="row">
-                {reviews.data.data.map((review, i) => {
+                {reviews.data.data.length > 0 ? reviews.data.data.map((review, i) => {
                     return (
                         <div className="col-12" key={i}>
                             {this.renderReview(review)}
                         </div>
                     )
-                })}
+                }) : <div className="col-12"><p className="text-center">There are no reviews for this listing yet.</p></div>}
             </div>
         )
     }
