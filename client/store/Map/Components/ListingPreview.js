@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { icons } from '../../../Images/Images';
 import { apiGetListingImages, apiGetReview, apiGetReviews, apiPostThumbsUp } from '../../../api';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
 import ImageGallery from 'react-image-gallery';
 import PointOfInterest from '../../../components/PointOfInterest/PointOfInterest';
+import Avatar from '../../../Components/Avatar/Avatar';
 import ListingType from '../../../components/ListingType/ListingType';
 import ThumbsUpDown from '../../../components/ThumbsUpDown/ThumbsUpDown';
 
@@ -15,7 +17,7 @@ class ListingPreview extends React.Component {
         this.clickThumbsUp = this.clickThumbsUp.bind(this);
         this.conformImageObjects = this.conformImageObjects.bind(this);
 
-        this.state = { images: { loading: false, data: { data: [] } }, reviews: { loading: false, data: { data: [] } }, userReview: null };
+        this.state = { images: { loading: false, data: { data: [] } }, reviews: { loading: false, data: [] }, userReview: null };
     }
 
     conformImageObjects(images) {
@@ -54,6 +56,34 @@ class ListingPreview extends React.Component {
         window.open(window.location.origin + '/listing/' + this.props.listing.slug);
     }
 
+    renderReview(review) {
+        const reviewLength = review.review_body.length;
+        const body = reviewLength > 200 ? review.review_body.substring(0, 200) + '...' : review.review_body;
+
+        return (
+            <div className="my-4">
+                <p><Avatar className="mr-2" size={40} id={review.user_id} name={review.user_name} /> <strong>{review.user_name}</strong></p>
+                <p>{body} {reviewLength > 200 ? <Link to="/">Read more</Link> : undefined}</p>
+            </div>
+        )
+    }
+
+    renderReviews(reviews) {
+        return (
+            <div className="content-box content-box-sm">
+                <h5 className="fancy blue">Reviews</h5>
+                <hr />
+                {reviews.data.data.length > 0 ? reviews.data.data.map((review, i) => {
+                    return (
+                        <div key={i}>
+                            {this.renderReview(review)}
+                        </div>
+                    )
+                }) : undefined}
+            </div>
+        )
+    }
+
     renderBedrooms(room) {
         const i = bedrooms.findIndex((bedroom) => bedroom.value == room.bedrooms);
         return bedrooms[i].name;
@@ -77,8 +107,7 @@ class ListingPreview extends React.Component {
 
     render() {
         let { listing } = this.props;
-        let { images, userReview } = this.state;
-        console.log(images.data);
+        let { images, reviews, userReview } = this.state;
 
         return (
             <div>
@@ -88,10 +117,11 @@ class ListingPreview extends React.Component {
                     </div>
                     {images.data.data.length > 0 ? <div className="hero-gallery"><ImageGallery items={this.conformImageObjects(images.data.data)} showFullscreenButton={false} showPlayButton={false} lazyLoad={true} showThumbnails={false} /></div> : undefined}
                     <div className="content-box content-box-sm transparent text-center listing-snippet">
-                        <h4 className="property-name"><strong className="text-truncate">{listing.name}</strong> <span className="fancy pink"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></h4>
+                        <h4 className="property-name"><strong className="text-truncate">{listing.name}</strong> <span className="blue"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></h4>
                         <p className="property-type"><small><ListingType type={listing.type} size={24} /></small></p>
-                        <h6 className="blue"><ThumbsUpDown userReview={userReview} listing={listing} clickThumbsUp={this.clickThumbsUp} /></h6>
+                        <h6><ThumbsUpDown userReview={userReview} listing={listing} clickThumbsUp={this.clickThumbsUp} /></h6>
                     </div>
+                    {reviews.loading ? undefined : this.renderReviews(reviews)}
                     <div className="content-box content-box-sm">
                         <h5 className="fancy blue">Rooms</h5>
                         {listing.rooms.map((room, i) => (<div key={i}><hr />{this.renderRoom(room)}</div>))}

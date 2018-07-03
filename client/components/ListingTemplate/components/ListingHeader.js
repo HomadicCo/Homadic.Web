@@ -25,7 +25,7 @@ class ListingHeader extends React.Component {
                             <h5><Link className="logo logo-sm" to="/">{'{ Homadic }'}</Link></h5>
                         </div>
                         <div className="col ml-auto d-flex justify-content-end">
-                            <h5 className="blue">{full ? this.renderFullHeader() : undefined} <Avatar size={30} name={profile.data.name} id={profile.data.id} /></h5>
+                            <h5>{full ? this.renderFullHeader() : undefined} <Avatar size={30} name={profile.data.name} id={profile.data.id} /></h5>
                         </div>
                     </div>
                 </div>
