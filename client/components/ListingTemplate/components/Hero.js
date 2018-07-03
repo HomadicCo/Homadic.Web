@@ -1,6 +1,5 @@
 import React from 'react';
 import Amenities from './Amenities';
-import Rater from 'react-rater';
 import { getBaseRate } from '../../../functions';
 import { rentalTypes } from '../../../data';
 import { icons } from '../../../Images/Images';
@@ -35,7 +34,7 @@ class Hero extends React.Component {
             <div className="container text-center">
                 <div className="row justify-content-md-center">
                     <div className="col-md-8">
-                        <h1 className="fancy"><strong>{listing.name}</strong> {listing.rating ? <Rater interactive={false} rating={listing.rating} /> : undefined}</h1>
+                        <h1 className="fancy"><strong>{listing.name}</strong></h1>
                     </div>
                 </div>
                 <div className="row justify-content-md-center">

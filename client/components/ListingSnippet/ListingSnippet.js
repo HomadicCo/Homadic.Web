@@ -1,5 +1,4 @@
 import React from 'react';
-import Rater from 'react-rater';
 import ListingType from '../ListingType/ListingType';
 import Amenities from '../ListingTemplate/components/Amenities';
 
@@ -23,7 +22,7 @@ class ListingSnippet extends React.Component {
                             <span className="pink fancy"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
                         </div>
                     </div>
-                    <p className="property-type text-muted">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
+                    <p className="property-type text-muted"><small><ListingType type={listing.type} size={24} /></small></p>
                     <Amenities listing={listing} size={20} colClass="col-1" />
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Avatar from '../../../Components/Avatar/Avatar';
+import ThumbsUpDown from '../../../components/ThumbsUpDown/ThumbsUpDown';
 
 class ListingHeader extends React.Component {
     constructor(props) {
@@ -8,8 +9,10 @@ class ListingHeader extends React.Component {
     }
 
     renderFullHeader() {
+        let { listing, userReview } = this.props;
+
         return (
-            <span><i className="far fa-thumbs-up" /> <i className="far fa-thumbs-down" /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span></span>
+            <span><ThumbsUpDown listing={listing} userReview={userReview} /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span></span>
         )
     }
 

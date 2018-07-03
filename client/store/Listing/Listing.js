@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
 import { Helmet } from 'react-helmet';
-import { apiGetListing, apiGetListingImages } from '../../api';
+import { apiGetListing, apiGetListingImages, apiGetReview, apiGetReviews } from '../../api';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { getBaseRate, getMetaDetails } from '../../functions';
@@ -10,7 +10,7 @@ class Listing extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { listing: null, images: { loading: false, data: [] } };
+        this.state = { listing: null, images: { loading: false, data: [] }, reviews: { loading: false, data: [] }, userReview: null };
     }
 
     componentWillMount() {
@@ -18,9 +18,16 @@ class Listing extends React.Component {
 
         if (listingSlug) {
             apiGetListing(listingSlug).then((response) => {
-                this.setState({ ...this.state, listing: response.data, images: { data: [], loading: true } });
+                this.setState({ ...this.state, listing: response.data, images: { data: [], loading: true }, reviews: { data: [], loading: true } });
+
                 apiGetListingImages(listingSlug).then((response) => {
                     this.setState({ ...this.state, images: { loading: false, data: response.data } });
+                })
+                apiGetReviews(listingSlug).then((response) => {
+                    this.setState({ ...this.state, reviews: { loading: false, reviews: response.data.data } });
+                })
+                apiGetReview(listingSlug).then((response) => {
+                    this.setState({ ...this.state, userReview: response.data });
                 })
             }).catch(() => {
                 browserHistory.push('/');
@@ -33,7 +40,7 @@ class Listing extends React.Component {
     renderHelmet(listing) {
         let metaDetails = getMetaDetails(listing.name, 'listing/' + listing.slug);
         let baseRate = getBaseRate(listing);
-        let description = 'Rooms available at ' + listing.name  +' from ' + baseRate + 'USD';
+        let description = 'Rooms available at ' + listing.name + ' from ' + baseRate + 'USD';
 
         return (<Helmet>
             <meta charSet="utf-8" />
@@ -50,13 +57,13 @@ class Listing extends React.Component {
     }
 
     render() {
-        let { images, listing } = this.state;
+        let { images, listing, reviews, userReview } = this.state;
 
         return (
             !listing ? <LoadingScreen /> :
                 <div>
                     {this.renderHelmet(listing)}
-                    <ListingTemplate listing={listing} images={images} {...this.props} />
+                    <ListingTemplate listing={listing} reviews={reviews} userReview={userReview} images={images} {...this.props} />
                 </div>
         )
     }

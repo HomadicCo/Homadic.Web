@@ -1,5 +1,4 @@
 import React from 'react';
-import Rater from 'react-rater'
 import { icons } from '../../../Images/Images';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
 import Amenities from '../../../components/ListingTemplate/components/Amenities';
@@ -59,7 +58,7 @@ class ListingPreview extends React.Component {
                 </div>
                 <div className="content-box content-box-sm transparent text-center listing-snippet">
                     <h6 className="property-name"><strong className="text-truncate">{listing.name}</strong> <span className="fancy pink"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></h6>
-                    <p className="property-type">{listing.rating != 0 ? <Rater interactive={false} rating={listing.rating} /> : undefined} <small><ListingType type={listing.type} size={24} /></small></p>
+                    <p className="property-type"><small><ListingType type={listing.type} size={24} /></small></p>
                     <Amenities listing={listing} size={20} customClass="justify-content-md-center" colClass="col" />
                 </div>
                 <div className="content-box content-box-sm">
