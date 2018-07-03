@@ -74,7 +74,7 @@ class ListingPreview extends React.Component {
             <div className="content-box content-box-sm mb-3 no-container">
                 <h5 className="fancy blue">Reviews</h5>
                 <hr />
-                {reviews.data.data.length > 0 ? reviews.data.data.map((review, i) => {
+                {reviews.data.data.length > 0 ? reviews.data.data.slice(0, 3).map((review, i) => {
                     return (
                         <div key={i}>
                             {this.renderReview(review)}
@@ -107,7 +107,9 @@ class ListingPreview extends React.Component {
     }
 
     renderHero() {
-        let { listing, userReview } = this.props;
+        let { listing } = this.props;
+        let { userReview } = this.state;
+
         return (
             <div className="content-box content-box-sm mb-3 no-radius no-container" >
                 <div className="row no-gutters">
