@@ -24,7 +24,7 @@ class Listing extends React.Component {
                     this.setState({ ...this.state, images: { loading: false, data: response.data } });
                 })
                 apiGetReviews(listingSlug).then((response) => {
-                    this.setState({ ...this.state, reviews: { loading: false, reviews: response.data.data } });
+                    this.setState({ ...this.state, reviews: { loading: false, data: response.data } });
                 })
                 apiGetReview(listingSlug).then((response) => {
                     this.setState({ ...this.state, userReview: response.data });

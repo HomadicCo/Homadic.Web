@@ -7,7 +7,7 @@ class Avatar extends React.Component {
     }
 
     render() {
-        let { profile, size, className } = this.props;
+        let { id, name, size, className } = this.props;
         let pixelSize = String(size) + 'px';
         let avatarSrc = '';
 
@@ -18,15 +18,15 @@ class Avatar extends React.Component {
         }
         // select sizes
         if (size > 160) {
-            avatarSrc = 'https://graph.facebook.com/v2.10/' + profile.id + '/picture?type=large';
+            avatarSrc = 'https://graph.facebook.com/v2.10/' + id + '/picture?type=large';
         } else if (size > 50) {
-            avatarSrc = 'https://graph.facebook.com/v2.10/' + profile.id + '/picture?type=normal';
+            avatarSrc = 'https://graph.facebook.com/v2.10/' + id + '/picture?type=normal';
         } else {
-            avatarSrc = 'https://graph.facebook.com/v2.10/' + profile.id + '/picture';
+            avatarSrc = 'https://graph.facebook.com/v2.10/' + id + '/picture';
         }
 
         return (
-            <Link to="/profile"><img className={customClass} alt={profile.name} src={avatarSrc} height={pixelSize} width={pixelSize} /></Link>
+            <Link to="/profile"><img className={customClass} alt={name} src={avatarSrc} height={pixelSize} width={pixelSize} /></Link>
         )
     }
 }

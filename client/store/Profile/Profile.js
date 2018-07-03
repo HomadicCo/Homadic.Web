@@ -59,7 +59,7 @@ class Profile extends React.Component {
                             <p>{profile.data.email}</p>
                         </div>
                         <div>
-                            <Avatar className="float-right" size={80} profile={profile.data} />
+                            <Avatar className="float-right" size={80} name={profile.data.name} id={profile.data.id} />
                         </div>
                     </div>
                 </div >

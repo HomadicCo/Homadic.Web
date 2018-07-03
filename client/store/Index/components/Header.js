@@ -19,7 +19,7 @@ class Header extends React.Component {
                     <div className="col-4 ml-auto px-4 py-3 d-flex justify-content-end">
                         {authentication.isLoggedIn ?
                             <div className="ml-3">
-                                <Avatar size={40} profile={profile.data} />
+                                <Avatar size={40} name={profile.data.name} id={profile.data.id} />
                             </div> :
                             undefined
                         }

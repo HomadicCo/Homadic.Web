@@ -116,7 +116,7 @@ class Map extends React.Component {
                     }
                 </div>
                 <div className="ml-3">
-                    <Avatar size={40} profile={profile.data} />
+                    <Avatar size={40} name={profile.data.name} id={profile.data.id} />
                 </div>
             </div>
         );

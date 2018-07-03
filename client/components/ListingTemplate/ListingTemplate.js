@@ -6,6 +6,7 @@ import ListingHeader from './components/ListingHeader';
 import Internet from './components/Internet';
 import Nearby from './components/Nearby';
 import Notes from './components/Notes';
+import Reviews from './components/Reviews';
 import Rooms from './components/Rooms';
 import LocationMap from './components/LocationMap';
 import Contact from './components/Contact';
@@ -52,7 +53,7 @@ class ListingTemplate extends React.Component {
     }
 
     render() {
-        let { images, listing, previewMode } = this.props;
+        let { images, listing, previewMode, reviews } = this.props;
         let { listingError } = this.state;
         const angryIconStyle = { fontSize: '1.2em' }
 
@@ -69,6 +70,7 @@ class ListingTemplate extends React.Component {
                         <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
                         {previewMode ? undefined : <ImageGallery images={images.data.data} loading={images.loading} slug={listing.slug} />}
                         <LocationMap listing={listing} />
+                        <Reviews reviews={reviews} />
                         <Contact listing={listing} />
                     </div>
                 </div>
