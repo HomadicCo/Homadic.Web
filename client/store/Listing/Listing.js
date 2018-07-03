@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
 import { Helmet } from 'react-helmet';
-import { apiGetListing, apiGetListingImages, apiGetReview, apiGetReviews } from '../../api';
+import { apiGetListing, apiGetListingImages, apiGetReview, apiGetReviews, apiPostThumbsUp } from '../../api';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { getBaseRate, getMetaDetails } from '../../functions';
@@ -9,6 +9,8 @@ import { getBaseRate, getMetaDetails } from '../../functions';
 class Listing extends React.Component {
     constructor(props) {
         super(props);
+
+        this.clickThumbsUp = this.clickThumbsUp.bind(this);
 
         this.state = { listing: null, images: { loading: false, data: [] }, reviews: { loading: false, data: [] }, userReview: null };
     }
@@ -37,6 +39,13 @@ class Listing extends React.Component {
         }
     }
 
+    clickThumbsUp(value) {
+        let { listing } = this.state;
+        apiPostThumbsUp(listing.slug, value).then((response) => {
+            this.setState({ ...this.state, userReview: response.data });
+        })
+    }
+
     renderHelmet(listing) {
         let metaDetails = getMetaDetails(listing.name, 'listing/' + listing.slug);
         let baseRate = getBaseRate(listing);
@@ -63,7 +72,7 @@ class Listing extends React.Component {
             !listing ? <LoadingScreen /> :
                 <div>
                     {this.renderHelmet(listing)}
-                    <ListingTemplate listing={listing} reviews={reviews} userReview={userReview} images={images} {...this.props} />
+                    <ListingTemplate listing={listing} reviews={reviews} userReview={userReview} images={images} clickThumbsUp={this.clickThumbsUp} {...this.props} />
                 </div>
         )
     }

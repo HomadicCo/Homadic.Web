@@ -75,6 +75,10 @@ export function apiGetReviews(slug) {
     return Axios.get('listing/' + slug + '/reviews', getAuthHeader());
 }
 
+export function apiPostThumbsUp(slug, value) {
+    return Axios.post('listing/' + slug + '/review/thumbsup?value=' + value, {}, getAuthHeader());
+}
+
 export function apiGetListingImages(slug) {
     return Axios.get('listing/' + slug + '/images', getAuthHeader());
 }

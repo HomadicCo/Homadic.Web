@@ -9,10 +9,8 @@ class ListingHeader extends React.Component {
     }
 
     renderFullHeader() {
-        let { listing, userReview } = this.props;
-
         return (
-            <span><ThumbsUpDown listing={listing} userReview={userReview} /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span></span>
+            <span><ThumbsUpDown {...this.props} /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span></span>
         )
     }
 

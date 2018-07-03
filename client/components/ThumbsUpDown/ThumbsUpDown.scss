@@ -1,0 +1,22 @@
+.fa-thumbs-up,
+.fa-thumbs-down {
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform .1s ease-in-out;
+    transition: transform .1s ease-in-out;
+}
+
+.thumbs-up:hover {
+    cursor: pointer;
+    .fa-thumbs-up {
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+    }
+}
+
+.thumbs-down:hover {
+    cursor: pointer;
+    .fa-thumbs-down {
+        -webkit-transform: rotate(20deg);
+        transform: rotate(20deg);
+    }
+}
