@@ -5,6 +5,7 @@ import { apiGetListingImages, apiGetReview, apiGetReviews, apiPostThumbsUp } fro
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
 import ImageGallery from 'react-image-gallery';
 import PointOfInterest from '../../../components/PointOfInterest/PointOfInterest';
+import Amenities from '../../../components/ListingTemplate/components/Amenities';
 import Avatar from '../../../Components/Avatar/Avatar';
 import ListingType from '../../../components/ListingType/ListingType';
 import ThumbsUpDown from '../../../components/ThumbsUpDown/ThumbsUpDown';
@@ -63,14 +64,14 @@ class ListingPreview extends React.Component {
         return (
             <div className="my-4">
                 <p><Avatar className="mr-2" size={40} id={review.user_id} name={review.user_name} /> <strong>{review.user_name}</strong></p>
-                <p>{body} {reviewLength > 200 ? <Link to="/">Read more</Link> : undefined}</p>
+                <p>{body} {reviewLength > 200 ? <Link to="" onClick={this.openListingInNewWindow}>Read more</Link> : undefined}</p>
             </div>
         )
     }
 
     renderReviews(reviews) {
         return (
-            <div className="content-box content-box-sm">
+            <div className="content-box content-box-sm mb-3 no-container">
                 <h5 className="fancy blue">Reviews</h5>
                 <hr />
                 {reviews.data.data.length > 0 ? reviews.data.data.map((review, i) => {
@@ -105,9 +106,34 @@ class ListingPreview extends React.Component {
         )
     }
 
+    renderHero() {
+        let { listing, userReview } = this.props;
+        return (
+            <div className="content-box content-box-sm mb-3 no-radius no-container" >
+                <div className="row no-gutters">
+                    <div className="col-10">
+                        <h5 className="property-name text-truncate"><strong>{listing.name}</strong></h5>
+                    </div>
+                    <div className="col-2 ml-auto text-right">
+                        <span className="blue"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
+                    </div>
+                </div>
+                <p className="property-type text-muted"><small><ListingType type={listing.type} size={24} /></small></p>
+                <div className="row">
+                    <div className="col">
+                        <Amenities listing={listing} size={20} colClass="col-1" />
+                    </div>
+                    <div className="col ml-auto d-flex justify-content-end">
+                        <ThumbsUpDown listing={listing} userReview={userReview} clickThumbsUp={this.clickThumbsUp} />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         let { listing } = this.props;
-        let { images, reviews, userReview } = this.state;
+        let { images, reviews } = this.state;
 
         return (
             <div>
@@ -116,18 +142,14 @@ class ListingPreview extends React.Component {
                         <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}><i className="fas fa-home"></i> View listing</button>
                     </div>
                     {images.data.data.length > 0 ? <div className="hero-gallery"><ImageGallery items={this.conformImageObjects(images.data.data)} showFullscreenButton={false} showPlayButton={false} lazyLoad={true} showThumbnails={false} /></div> : undefined}
-                    <div className="content-box content-box-sm transparent text-center listing-snippet">
-                        <h4 className="property-name"><strong className="text-truncate">{listing.name}</strong> <span className="blue"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></h4>
-                        <p className="property-type"><small><ListingType type={listing.type} size={24} /></small></p>
-                        <h6><ThumbsUpDown userReview={userReview} listing={listing} clickThumbsUp={this.clickThumbsUp} /></h6>
-                    </div>
+                    {this.renderHero()}
                     {reviews.loading ? undefined : this.renderReviews(reviews)}
-                    <div className="content-box content-box-sm">
+                    <div className="content-box content-box-sm mb-3 no-container">
                         <h5 className="fancy blue">Rooms</h5>
                         {listing.rooms.map((room, i) => (<div key={i}><hr />{this.renderRoom(room)}</div>))}
                     </div>
                     {listing.notes != null ? this.renderNotes(listing.notes) : undefined}
-                    {listing.points_of_interest.length > 0 ? <div className="content-box content-box-sm">
+                    {listing.points_of_interest.length > 0 ? <div className="content-box content-box-sm mb-3  no-container">
                         <h5 className="fancy blue">Nearby</h5>
                         <hr />
                         <div className="row">
