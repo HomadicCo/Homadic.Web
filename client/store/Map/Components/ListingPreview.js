@@ -1,16 +1,39 @@
 import React from 'react';
 import { icons } from '../../../Images/Images';
+import { apiGetReview, apiGetReviews, apiPostThumbsUp } from '../../../api';
 import { bathrooms, bedrooms, rentalLengths } from '../../../data';
-import Amenities from '../../../components/ListingTemplate/components/Amenities';
 import PointOfInterest from '../../../components/PointOfInterest/PointOfInterest';
-import RenderMarkdown from '../../../components/RenderMarkdown/RenderMarkdown';
 import ListingType from '../../../components/ListingType/ListingType';
+import ThumbsUpDown from '../../../components/ThumbsUpDown/ThumbsUpDown';
 
 class ListingPreview extends React.Component {
     constructor(props) {
         super(props);
 
         this.openListingInNewWindow = this.openListingInNewWindow.bind(this);
+        this.clickThumbsUp = this.clickThumbsUp.bind(this);
+
+        this.state = { images: { loading: false, data: [] }, reviews: { loading: false, data: [] }, userReview: null };
+    }
+
+    componentWillMount() {
+        let { listing } = this.props;
+
+        this.setState({ ...this.state, reviews: { data: [], loading: true } });
+
+        apiGetReviews(listing.slug).then((response) => {
+            this.setState({ ...this.state, reviews: { loading: false, data: response.data } });
+        })
+        apiGetReview(listing.slug).then((response) => {
+            this.setState({ ...this.state, userReview: response.data });
+        })
+    }
+
+    clickThumbsUp(value) {
+        let { listing } = this.props;
+        apiPostThumbsUp(listing.slug, value).then((response) => {
+            this.setState({ ...this.state, userReview: response.data });
+        })
     }
 
     openListingInNewWindow() {
@@ -32,16 +55,6 @@ class ListingPreview extends React.Component {
         return rentalLengths[i];
     }
 
-    renderNotes(notes) {
-        return (
-            <div className="content-box content-box-sm">
-                <h5 className="fancy blue">Notes</h5>
-                <hr />
-                <RenderMarkdown markdown={notes} />
-            </div>
-        )
-    }
-
     renderRoom(room) {
         return (
             <p><img className="mr-1" src={icons.bedroom} height={20} width={20} /> {this.renderBedrooms(room)} <img className="ml-3 mr-1" src={icons.bathroom} height={20} width={20} /> {this.renderBathrooms(room)}</p>
@@ -50,6 +63,7 @@ class ListingPreview extends React.Component {
 
     render() {
         let { listing } = this.props;
+        let { userReview } = this.state;
 
         return (
             <div className="mt-3 listing-content listing-selected">
@@ -57,9 +71,9 @@ class ListingPreview extends React.Component {
                     <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}><i className="fas fa-home"></i> View listing</button>
                 </div>
                 <div className="content-box content-box-sm transparent text-center listing-snippet">
-                    <h6 className="property-name"><strong className="text-truncate">{listing.name}</strong> <span className="fancy pink"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></h6>
+                    <h4 className="property-name"><strong className="text-truncate">{listing.name}</strong> <span className="fancy pink"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong> <small>USD</small></span></h4>
                     <p className="property-type"><small><ListingType type={listing.type} size={24} /></small></p>
-                    <Amenities listing={listing} size={20} customClass="justify-content-md-center" colClass="col" />
+                    <h6 className="blue"><ThumbsUpDown userReview={userReview} listing={listing} clickThumbsUp={this.clickThumbsUp} /></h6>
                 </div>
                 <div className="content-box content-box-sm">
                     <h5 className="fancy blue">Rooms</h5>
