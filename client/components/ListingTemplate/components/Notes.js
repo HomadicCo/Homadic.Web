@@ -14,6 +14,7 @@ class Notes extends React.Component {
                 {notes ?
                     <div className="content-box">
                         <h3 className="fancy blue">Notes</h3>
+                        <hr />
                         <RenderMarkdown markdown={notes} />
                     </div> : undefined}
             </div>

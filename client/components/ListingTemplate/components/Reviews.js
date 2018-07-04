@@ -38,7 +38,14 @@ class Hero extends React.Component {
         return (
             <div id="reviews">
                 <div className="content-box">
-                    <h3 className="fancy blue">Reviews</h3>
+                    <div className="row">
+                        <div className="col">
+                            <h3 className="fancy blue">Reviews</h3>
+                        </div>
+                        <div className="col ml-auto d-flex justify-content-end">
+                            <button className="btn btn-link btn-sm"><strong className="blue"><i className="fas fa-lg fa-grin-stars mr-1"></i> Add review</strong></button>
+                        </div>
+                    </div>
                     <hr />
                     {reviews.loading ? <LoadingPlane /> : this.renderLoaded()}
                 </div>

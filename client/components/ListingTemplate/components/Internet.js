@@ -19,17 +19,18 @@ class Internet extends React.Component {
         return (
             <div id="internet" className="content-box">
                 <h3 className="fancy blue">Internet</h3>
+                <hr />
                 <div className="row">
-                    <div className="col-md-4 capitalize">
+                    <div className="col-4 capitalize">
                         <p><i className="fas fa-wifi" /> {this.renderWiFiLabel()}</p>
                     </div>
-                    {listing.wifi.download ? <div className="col-md-4 capitalize">
+                    {listing.wifi.download ? <div className="col-4 capitalize">
                         <p><i className="fas fa-download" /> {listing.wifi.download}mbps</p>
                     </div> : undefined}
-                    {listing.wifi.upload ? <div className="col-md-4 capitalize">
+                    {listing.wifi.upload ? <div className="col-4 capitalize">
                         <p><i className="fas fa-upload" /> {listing.wifi.upload}mbps</p>
                     </div> : undefined}
-                    {listing.wifi.notes ? <div className="col-md-12">
+                    {listing.wifi.notes ? <div className="col-12">
                         <p><strong>Notes:</strong> {listing.wifi.notes}</p>
                     </div> : undefined}
                 </div>
