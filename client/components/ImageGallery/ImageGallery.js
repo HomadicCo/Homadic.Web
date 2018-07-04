@@ -93,7 +93,7 @@ class ImageGallery extends React.Component {
                         <h3 className="fancy blue">Photos</h3>
                     </div>
                     <div className="col ml-auto d-flex justify-content-end">
-                        {!isImageUploadPage ? <Link to={'/listing/' + slug + '/images'}><i className="fas fa-lg fa-camera-retro mr-1"></i> Add</Link> : undefined}
+                        {!isImageUploadPage ? <Link to={'/listing/' + slug + '/images'}><i className="fas fa-lg fa-camera-retro mr-1"></i> Add photo</Link> : undefined}
                     </div>
                 </div>
                 <hr />

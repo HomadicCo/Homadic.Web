@@ -38,7 +38,8 @@ const defaultState = {
   },
   profile: { data: {} },
   ui: {
-    loading: false
+    loading: false,
+    reviewEditorOpen: false
   }
 };
 

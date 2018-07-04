@@ -1,5 +1,5 @@
 /* global Promise */
-import { apiGetListing, apiGetListings, apiGetReview, apiPostThumbsUp } from '../../api';
+import { apiGetListing, apiGetListings, apiGetReview, apiPostThumbsUp, apiPostUserReview } from '../../api';
 
 // update listing
 export function updateSelectedListing(data) {
@@ -22,6 +22,14 @@ export function updateFetchingListingsStatus(value) {
     return {
         type: 'UPDATE_FETCHING_LISTINGS_STATUS',
         value
+    }
+}
+
+// fetching listings
+export function addOrReplaceReview(data) {
+    return {
+        type: 'ADD_OR_REPLACE_REVIEW',
+        data
     }
 }
 
@@ -94,6 +102,23 @@ export function handleThumbsUp(slug, value) {
 
             request.then(response => {
                 dispatch(updateSelectedUserReview(response.data));
+                resolve(response.data.data);
+            }).catch(error => {
+                console.error(error);
+                reject(error);
+            });
+        });
+    };
+}
+
+export function handleSubmitUserReview(slug, review) {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+            const request = apiPostUserReview(slug, review);
+
+            request.then(response => {
+                dispatch(updateSelectedUserReview(response.data));
+                dispatch(addOrReplaceReview(response.data));
                 resolve(response.data.data);
             }).catch(error => {
                 console.error(error);
