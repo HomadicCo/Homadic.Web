@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
 import { Helmet } from 'react-helmet';
-import { apiGetListing, apiGetListingImages, apiGetReview, apiGetReviews, apiPostThumbsUp } from '../../api';
+import { apiPostThumbsUp } from '../../api';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { getBaseRate, getMetaDetails } from '../../functions';
@@ -12,35 +12,24 @@ class Listing extends React.Component {
 
         this.clickThumbsUp = this.clickThumbsUp.bind(this);
 
-        this.state = { listing: null, images: { loading: false, data: [] }, reviews: { loading: false, data: [] }, userReview: null };
+        this.state = { fetching: true };
     }
 
     componentWillMount() {
-        let { listingSlug } = this.props.params;
+        let { params, handleGetListing, handleGetUserReview } = this.props;
 
-        if (listingSlug) {
-            apiGetListing(listingSlug).then((response) => {
-                this.setState({ ...this.state, listing: response.data, images: { data: [], loading: true }, reviews: { data: [], loading: true } });
-
-                apiGetListingImages(listingSlug).then((response) => {
-                    this.setState({ ...this.state, images: { loading: false, data: response.data } });
-                })
-                apiGetReviews(listingSlug).then((response) => {
-                    this.setState({ ...this.state, reviews: { loading: false, data: response.data } });
-                })
-                apiGetReview(listingSlug).then((response) => {
-                    this.setState({ ...this.state, userReview: response.data });
-                })
-            }).catch(() => {
-                browserHistory.push('/');
+        if (params.listingSlug) {
+            handleGetListing(params.listingSlug).then(() => {
+                this.setState({ fetching: false });
             });
+            handleGetUserReview(params.listingSlug);
         } else {
             browserHistory.push('/');
         }
     }
 
     clickThumbsUp(value) {
-        let { listing } = this.state;
+        let { listing } = this.props;
         apiPostThumbsUp(listing.slug, value).then((response) => {
             this.setState({ ...this.state, userReview: response.data });
         })
@@ -66,13 +55,14 @@ class Listing extends React.Component {
     }
 
     render() {
-        let { images, listing, reviews, userReview } = this.state;
+        let { selected, selectedUserReview } = this.props.listings;
+        let { fetching } = this.state;
 
         return (
-            !listing ? <LoadingScreen /> :
+            fetching ? <LoadingScreen /> :
                 <div>
-                    {this.renderHelmet(listing)}
-                    <ListingTemplate listing={listing} reviews={reviews} userReview={userReview} images={images} clickThumbsUp={this.clickThumbsUp} {...this.props} />
+                    {this.renderHelmet(selected.listing)}
+                    <ListingTemplate listing={selected.listing} reviews={selected.reviews} userReview={selectedUserReview} images={selected.images} clickThumbsUp={this.clickThumbsUp} {...this.props} />
                 </div>
         )
     }

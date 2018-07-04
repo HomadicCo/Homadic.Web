@@ -27,6 +27,7 @@ const defaultState = {
   authentication: {},
   filter: defaultFilter,
   listings: {
+    selected: {},
     data: [],
     fetching: false
   },

@@ -1,5 +1,4 @@
 import React from 'react';
-import LoadingPlane from '../../LoadingScreen/LoadingPlane';
 import Avatar from '../../../Components/Avatar/Avatar';
 
 class Hero extends React.Component {
@@ -16,12 +15,12 @@ class Hero extends React.Component {
         )
     }
 
-    renderLoaded() {
+    renderReviews() {
         let { reviews } = this.props;
 
         return (
             <div className="row">
-                {reviews.data.data.length > 0 ? reviews.data.data.map((review, i) => {
+                {reviews.data.length > 0 ? reviews.data.map((review, i) => {
                     return (
                         <div className="col-12" key={i}>
                             {this.renderReview(review)}
@@ -33,8 +32,6 @@ class Hero extends React.Component {
     }
 
     render() {
-        let { reviews } = this.props;
-
         return (
             <div id="reviews">
                 <div className="content-box">
@@ -47,7 +44,7 @@ class Hero extends React.Component {
                         </div>
                     </div>
                     <hr />
-                    {reviews.loading ? <LoadingPlane /> : this.renderLoaded()}
+                    {this.renderReviews()}
                 </div>
             </div>
         )

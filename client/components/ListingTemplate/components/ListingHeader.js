@@ -6,11 +6,19 @@ import ThumbsUpDown from '../../../components/ThumbsUpDown/ThumbsUpDown';
 class ListingHeader extends React.Component {
     constructor(props) {
         super(props);
+
+        this.clickThumbsUp = this.clickThumbsUp.bind(this);
+    }
+
+    clickThumbsUp(value) {
+        let { handleThumbsUp, listings } = this.props;
+
+        handleThumbsUp(listings.selected.listing.slug, value);
     }
 
     renderFullHeader() {
         return (
-            <span><ThumbsUpDown {...this.props} /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span></span>
+            <span><ThumbsUpDown {...this.props} clickThumbsUp={this.clickThumbsUp} /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span></span>
         )
     }
 

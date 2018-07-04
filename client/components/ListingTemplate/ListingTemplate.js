@@ -65,7 +65,7 @@ class ListingTemplate extends React.Component {
                     <Hero listing={listing} full />
                     <div className="container listing-content">
                         <Rooms listing={listing} />
-                        {previewMode ? undefined : <ImageGallery images={images.data.data} loading={images.loading} slug={listing.slug} />}
+                        {previewMode ? undefined : <ImageGallery images={images.data} slug={listing.slug} />}
                         <Notes notes={listing.notes} />
                         <Internet listing={listing} />
                         {reviews == undefined ? undefined : <Reviews reviews={reviews} />}
