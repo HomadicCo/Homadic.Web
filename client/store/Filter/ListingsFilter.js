@@ -1,5 +1,5 @@
 import React from 'react';
-import { priceRanges, rentalTypes, defaultFilter } from '../../data';
+import { priceRanges, rentalTypes } from '../../data';
 
 class ListingsFilter extends React.Component {
     constructor(props) {
@@ -14,9 +14,13 @@ class ListingsFilter extends React.Component {
         this.state = Object.assign({}, props.filter);
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.filter != this.props.filter)
+            this.setState(this.props.filter);
+    }
+
     clearFilter() {
         this.props.clearFilter();
-        this.setState(Object.assign({}, defaultFilter));
     }
 
     setFilter() {
@@ -26,13 +30,13 @@ class ListingsFilter extends React.Component {
     toggleMinRate(e) {
         let { parameters } = this.state;
 
-        this.setState({ parameters: { ...parameters, min_rate: e.target.value } });
+        this.setState({ parameters: { ...parameters, min_rate: parseInt(e.target.value) } });
     }
 
     toggleMaxRate(e) {
         let { parameters } = this.state;
 
-        this.setState({ parameters: { ...parameters, max_rate: e.target.value } });
+        this.setState({ parameters: { ...parameters, max_rate: parseInt(e.target.value) } });
     }
 
     toggleRentalType(type) {
@@ -50,13 +54,14 @@ class ListingsFilter extends React.Component {
     }
 
     renderPriceRange() {
+        let { parameters } = this.state;
         return (
             <div className="content-box content-box-sm">
                 <p><strong>Base price range <small>(USD)</small></strong></p>
                 <div className="row">
                     <div className="col-6">
                         <label htmlFor="minPrice">Min: </label>
-                        <select id="minPrice" className="form-control custom-select" onChange={this.toggleMinRate}>
+                        <select id="minPrice" value={parameters.min_rate} className="form-control custom-select" onChange={this.toggleMinRate}>
                             {priceRanges.map((price, i) => (
                                 <option key={i} value={price.value}>{price.name}</option>
                             ))}
@@ -64,7 +69,7 @@ class ListingsFilter extends React.Component {
                     </div>
                     <div className="col-6">
                         <label htmlFor="maxPrice">Max: </label>
-                        <select id="maxPrice" className="form-control custom-select" onChange={this.toggleMaxRate}>
+                        <select id="maxPrice" value={parameters.max_rate} className="form-control custom-select" onChange={this.toggleMaxRate}>
                             {priceRanges.map((price, i) => (
                                 <option key={i} value={price.value}>{price.name}</option>
                             ))}
@@ -76,14 +81,14 @@ class ListingsFilter extends React.Component {
     }
 
     renderRentalTypes() {
-        let { filter } = this.props;
+        let { parameters } = this.state;
 
         return (
             <div className="content-box content-box-sm">
                 <p><strong>Rental types</strong></p>
                 {rentalTypes.map((rentalType, i) => (
                     <label key={i} className="custom-control custom-checkbox active">
-                        <input type="checkbox" className="custom-control-input" onChange={this.toggleRentalType.bind(null, rentalType.value)} checked={filter.parameters.types.includes(rentalType.value) ? true : false} />
+                        <input type="checkbox" className="custom-control-input" onChange={this.toggleRentalType.bind(null, rentalType.value)} checked={parameters.types.includes(rentalType.value) ? true : false} />
                         <span className="custom-control-indicator" />
                         <span className="custom-control-description">{rentalType.name}</span>
                     </label>
@@ -97,11 +102,15 @@ class ListingsFilter extends React.Component {
             <div>
                 {this.renderPriceRange()}
                 {this.renderRentalTypes()}
-                <div className="btn-group justify-center" role="group" aria-label="Filter actions">
-                    <button className="btn btn-default btn-sm" onClick={this.clearFilter}>Clear <i className="fas fa-times" /></button>
-                    <button className="btn btn-success btn-sm" onClick={this.setFilter}>Update <i className="fas fa-check" /></button>
+                <div className="row">
+                    <div className="col text-center">
+                        <div className="btn-group my-2" role="group" aria-label="Filter actions">
+                            <button className="btn btn-default btn" onClick={this.clearFilter}>Clear <i className="fas fa-times" /></button>
+                            <button className="btn btn-success btn" onClick={this.setFilter}>Update <i className="fas fa-check" /></button>
+                        </div>
+                        <p className="text-center"><small>More filters are on their way.</small></p>
+                    </div>
                 </div>
-                <p className="text-center"><small>More filters are on their way.</small></p>
             </div>
         )
     }
