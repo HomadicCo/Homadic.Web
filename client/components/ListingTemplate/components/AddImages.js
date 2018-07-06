@@ -27,7 +27,7 @@ class AddImages extends React.Component {
 
         if (listingSlug) {
             apiGetListing(listingSlug).then((response) => {
-                this.setState({ ...this.state, listing: response.data, loadingImages: true });
+                this.setState({ ...this.state, listing: response.data.listing, loadingImages: true });
                 apiGetListingImages(listingSlug).then((response) => {
                     this.setState({ ...this.state, images: response.data.data, loadingImages: false });
                 })
