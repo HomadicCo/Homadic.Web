@@ -71,17 +71,18 @@ class ListingPreview extends React.Component {
 
     renderReviews(reviews) {
         return (
-            <div className="content-box content-box-sm mb-3 no-container">
+            reviews.data.data.length > 0 ? <div className="content-box content-box-sm mb-3 no-container">
                 <h5 className="fancy blue">Reviews</h5>
                 <hr />
-                {reviews.data.data.length > 0 ? reviews.data.data.slice(0, 3).map((review, i) => {
+                {reviews.data.data.slice(0, 3).map((review, i) => {
                     return (
                         <div key={i}>
                             {this.renderReview(review)}
                         </div>
                     )
-                }) : undefined}
+                })}
             </div>
+                : undefined
         )
     }
 
