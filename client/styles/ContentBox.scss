@@ -28,8 +28,7 @@ a .content-box {
     &:hover,
     &:active,
     &:focus {
-        background: $blue-light;
+        background: $header-blue-text;
         text-decoration: none;
-        color: $white;
     }
 }
