@@ -86,7 +86,12 @@ class Map extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        let { location, setSelectedListing } = this.props;
+        let { filter, location, setSelectedListing } = this.props;
+
+        // check filter changes
+        if (filter != nextProps.filter) {
+            this.compareFilterParams(nextProps.filter);
+        }
 
         // query param checks
         if (location.query != nextProps.location.query) {
@@ -134,6 +139,33 @@ class Map extends React.Component {
         );
     }
 
+    compareFilterParams(filter) {
+        let filterParams = {
+            add: [],
+            remove: [],
+        }
+
+        // types
+        if (filter.parameters.types.length == 6)
+            filterParams.remove.push({ key: 'types' });
+        else
+            filterParams.add.push({ key: 'types', value: filter.parameters.types.join(',') });
+
+        // min rate
+        if (filter.parameters.min_rate == 0)
+            filterParams.remove.push({ key: 'min_rate' });
+        else
+            filterParams.add.push({ key: 'min_rate', value: filter.parameters.min_rate });
+
+        // max rate
+        if (filter.parameters.max_rate == 0)
+            filterParams.remove.push({ key: 'max_rate' });
+        else
+            filterParams.add.push({ key: 'max_rate', value: filter.parameters.max_rate });
+
+        this.renderQueryParams(filterParams);
+    }
+
     // update the route
     renderQueryParams(newParams) {
         let currentParams = queryString.parse(location.search);
@@ -150,7 +182,7 @@ class Map extends React.Component {
             });
         }
 
-        browserHistory.push(location.pathname + '?' + queryString.stringify(currentParams));
+        browserHistory.push(location.pathname + '?' + queryString.stringify(currentParams, { encode: false }));
     }
 
     setAddNewListingMode(value, e) {
