@@ -13,10 +13,16 @@ class MapSidebar extends React.Component {
 
         this.showSelectedListing = this.showSelectedListing.bind(this);
         this.setAddNewListingMode = this.setAddNewListingMode.bind(this);
+        this.clearFilter = this.clearFilter.bind(this);
     }
 
     componentWillMount() {
         this.props.setSelectedListing(null);
+    }
+
+    clearFilter() {
+        this.props.clearFilter();
+        this.props.setFilterMode(false);
     }
 
     showSelectedListing(listing) {
@@ -39,10 +45,15 @@ class MapSidebar extends React.Component {
     }
 
     renderNoSnippets() {
+        let { filter } = this.props;
+
         return (
             <div className="text-center">
                 <p>No listings for this area <i className="far fa-frown" /></p>
-                <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-success btn-sm"><i className="fas fa-plus" /> Add listing</button>
+                <div className="btn-group">
+                    {!filter.empty ? <button className="btn btn-default btn" onClick={this.clearFilter}>Clear filter <i className="fas fa-times" /></button> : undefined}
+                    <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-success btn-sm"><i className="fas fa-plus" /> Add listing</button>
+                </div>
             </div>
         )
     }

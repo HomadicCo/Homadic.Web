@@ -140,6 +140,7 @@ class Map extends React.Component {
     }
 
     compareFilterParams(filter) {
+        let { center } = this.state;
         let filterParams = {
             add: [],
             remove: [],
@@ -164,6 +165,7 @@ class Map extends React.Component {
             filterParams.add.push({ key: 'max_rate', value: filter.parameters.max_rate });
 
         this.renderQueryParams(filterParams);
+        this.getListings(center);
     }
 
     // update the route
@@ -215,7 +217,26 @@ class Map extends React.Component {
         this.setState({ searchedCenter: center, searchThisArea: false });
     }
 
+    getFilterParams() {
+        let currentParams = queryString.parse(location.search);
+
+        let params = {};
+
+        if (currentParams['max_rate'] != undefined)
+            params.max_rate = currentParams['max_rate'];
+
+        if (currentParams['min_rate'] != undefined)
+            params.min_rate = currentParams['min_rate'];
+
+        if (currentParams['types'] != undefined)
+            params.types = currentParams['types'];
+
+        return params;
+    }
+
     getListings(params) {
+        const filterParams = this.getFilterParams();
+
         this.props.setSelectedListing(null);
 
         if (!params.lat || !params.lng) {
@@ -223,11 +244,11 @@ class Map extends React.Component {
                 .then(results =>
                     getLatLng(results[0])
                 ).then(({ lat, lng }) => {
-                    this.props.handleGetListings({ lat, lng, zoom: 14 });
+                    this.props.handleGetListings({ ...filterParams, lat, lng, zoom: 14 });
                     this.setState({ center: { lat, lng }, searchedCenter: { lat, lng }, zoom: 14 });
                 });
         } else {
-            this.props.handleGetListings({ lat: params.lat, lng: params.lng, zoom: params.zoom ? params.zoom : 14 });
+            this.props.handleGetListings({ ...filterParams, lat: params.lat, lng: params.lng, zoom: params.zoom ? params.zoom : 14 });
             this.setState({ center: { lat: params.lat, lng: params.lng }, searchedCenter: { lat: params.lat, lng: params.lng }, zoom: params.zoom ? params.zoom : 14 });
         }
     }

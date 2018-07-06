@@ -21,10 +21,12 @@ class ListingsFilter extends React.Component {
 
     clearFilter() {
         this.props.clearFilter();
+        this.props.setFilterMode(false);
     }
 
     setFilter() {
         this.props.setFilter(this.state);
+        this.props.setFilterMode(false);
     }
 
     toggleMinRate(e) {

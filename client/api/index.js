@@ -60,7 +60,7 @@ export function apiGetGooglePlace(googlePlaceId) {
 // listings
 
 export function apiGetListings(listingsQuery) {
-    return Axios.get('listings?' + queryString.stringify(listingsQuery), getAuthHeader());
+    return Axios.get('listings?' + queryString.stringify(listingsQuery, { encode: false }), getAuthHeader());
 }
 
 export function apiGetListing(slug) {

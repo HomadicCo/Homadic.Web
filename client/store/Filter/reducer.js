@@ -33,7 +33,7 @@ function setFilter(value) {
     if (value.parameters == parameters)
         return clearFilter();
 
-    value.empty == false;
+    value.empty = false;
     return value;
 }
 
