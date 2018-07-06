@@ -3,6 +3,7 @@ export const icons = {
     bathroom: 'https://homadicstorage.blob.core.windows.net/icons/icon-bathroom.svg',
     bedroom: 'https://homadicstorage.blob.core.windows.net/icons/icon-bedroom.svg',
     bus_station: 'https://homadicstorage.blob.core.windows.net/icons/icon-bus_station.svg',
+    coliving: 'https://homadicstorage.blob.core.windows.net/icons/icon-coliving.svg',
     convenience_store: 'https://homadicstorage.blob.core.windows.net/icons/icon-convenience_store.svg',
     condo: 'https://homadicstorage.blob.core.windows.net/icons/icon-condo.svg',
     dart: 'https://homadicstorage.blob.core.windows.net/icons/icon-dart.svg',
