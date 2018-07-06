@@ -18,7 +18,7 @@ class ListingPreview extends React.Component {
         this.clickThumbsUp = this.clickThumbsUp.bind(this);
         this.conformImageObjects = this.conformImageObjects.bind(this);
 
-        this.state = { images: { loading: false, data: { data: [] } }, reviews: { loading: false, data: [] }, userReview: null };
+        this.state = { images: { loading: false, data: [] }, reviews: { loading: false, data: [] }, userReview: null };
     }
 
     conformImageObjects(images) {
@@ -30,20 +30,31 @@ class ListingPreview extends React.Component {
         return images;
     }
 
-    componentWillMount() {
+    fetchFurtherListingData(slug) {
         let { listing } = this.props;
 
-        this.setState({ ...this.state, reviews: { data: [], loading: true } });
+        this.setState({ images: { loading: false, data: [listing.hero] }, reviews: { loading: false, data: [] }, userReview: null });
 
-        apiGetListingImages(listing.slug).then((response) => {
-            this.setState({ ...this.state, images: { loading: false, data: response.data } });
+        apiGetListingImages(slug).then((response) => {
+            this.setState({ ...this.state, images: { loading: false, data: [listing.hero].concat(response.data.data) } });
         })
-        apiGetReviews(listing.slug).then((response) => {
-            this.setState({ ...this.state, reviews: { loading: false, data: response.data } });
+        apiGetReviews(slug).then((response) => {
+            this.setState({ ...this.state, reviews: { loading: false, data: response.data.data } });
         })
-        apiGetReview(listing.slug).then((response) => {
+        apiGetReview(slug).then((response) => {
             this.setState({ ...this.state, userReview: response.data });
         })
+    }
+
+    componentWillMount() {
+        let { listing } = this.props;
+        this.fetchFurtherListingData(listing.slug)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let { listing } = this.props;
+        if (listing.slug != nextProps.listing.slug)
+            this.fetchFurtherListingData(nextProps.listing.slug)
     }
 
     clickThumbsUp(value) {
@@ -71,10 +82,10 @@ class ListingPreview extends React.Component {
 
     renderReviews(reviews) {
         return (
-            reviews.data.data.length > 0 ? <div className="content-box content-box-sm mb-3 no-container">
+            reviews.data.length > 0 ? <div className="content-box content-box-sm mb-3 no-container">
                 <h5 className="fancy blue">Reviews</h5>
                 <hr />
-                {reviews.data.data.slice(0, 3).map((review, i) => {
+                {reviews.data.slice(0, 3).map((review, i) => {
                     return (
                         <div key={i}>
                             {this.renderReview(review)}
@@ -137,6 +148,7 @@ class ListingPreview extends React.Component {
     render() {
         let { listing } = this.props;
         let { images, reviews } = this.state;
+        console.log(images);
 
         return (
             <div>
@@ -144,7 +156,7 @@ class ListingPreview extends React.Component {
                     <div className="map-open-listing text-center py-2">
                         <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}><i className="fas fa-home"></i> View listing</button>
                     </div>
-                    {images.data.data.length > 0 ? <div className="hero-gallery"><ImageGallery items={this.conformImageObjects(images.data.data)} showFullscreenButton={false} showPlayButton={false} lazyLoad={true} showThumbnails={false} /></div> : undefined}
+                    {images.data.length > 0 ? <div className="hero-gallery"><ImageGallery items={this.conformImageObjects(images.data)} showFullscreenButton={false} showPlayButton={false} lazyLoad={true} showThumbnails={false} /></div> : undefined}
                     {this.renderHero()}
                     {reviews.loading ? undefined : this.renderReviews(reviews)}
                     <div className="content-box content-box-sm mb-3 no-container">
