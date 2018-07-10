@@ -61,8 +61,8 @@ class Listing extends React.Component {
         return (
             fetching ? <LoadingScreen /> :
                 <div>
-                    {this.renderHelmet(selected.listing)}
-                    <ListingTemplate listing={selected.listing} reviews={selected.reviews} userReview={selectedUserReview} images={selected.images} clickThumbsUp={this.clickThumbsUp} {...this.props} />
+                    {this.renderHelmet(selected)}
+                    <ListingTemplate listing={selected} reviews={selected.reviews} userReview={selectedUserReview} images={selected.images} clickThumbsUp={this.clickThumbsUp} {...this.props} />
                 </div>
         )
     }
