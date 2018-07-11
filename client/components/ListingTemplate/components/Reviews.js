@@ -18,7 +18,7 @@ class Hero extends React.Component {
             reviewError: null,
             selectedUserReview: {
                 review_body: '',
-                thumbs_up: ''
+                thumbs_up: null
             }
         }
     }
@@ -37,7 +37,7 @@ class Hero extends React.Component {
 
         this.setState({ reviewSubmitting: true });
 
-        handleSubmitUserReview(listings.selected.listing.slug, selectedUserReview).then(() => {
+        handleSubmitUserReview(listings.selected.slug, selectedUserReview).then(() => {
             this.setState({ ...this.state, reviewEditorOpen: false, reviewSubmitting: false, reviewError: null });
         }).catch((r) => {
             this.setState({ ...this.state, reviewSubmitting: false, reviewError: r.response.data });
