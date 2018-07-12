@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
 import Dropzone from 'react-dropzone';
-import { apiGetListing, apiGetListingImages, apiPostListingImage } from '../../../api';
+import { apiGetListing, apiPostListingImage } from '../../../api';
 import ListingHeader from './ListingHeader';
 import Hero from '../components/Hero';
 import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen';
@@ -16,8 +16,6 @@ class AddImages extends React.Component {
         this.state = {
             invalidFile: false,
             listing: undefined,
-            images: [],
-            loadingImages: false,
             uploadingImage: false
         }
     }
@@ -27,10 +25,7 @@ class AddImages extends React.Component {
 
         if (listingSlug) {
             apiGetListing(listingSlug).then((response) => {
-                this.setState({ ...this.state, listing: response.data.listing, loadingImages: true });
-                apiGetListingImages(listingSlug).then((response) => {
-                    this.setState({ ...this.state, images: response.data.data, loadingImages: false });
-                })
+                this.setState({ ...this.state, listing: response.data });
             }).catch(() => {
                 browserHistory.push('/');
             });
@@ -40,7 +35,7 @@ class AddImages extends React.Component {
     }
 
     onImageDrop(acceptedFiles, rejectedFiles) {
-        let { images } = this.state;
+        let { listing } = this.state;
         let { listingSlug } = this.props.params;
         this.setState({ invalidFile: false, uploadingImage: true });
 
@@ -55,9 +50,9 @@ class AddImages extends React.Component {
         formData.append(acceptedFiles[0].name, acceptedFiles[0]);
 
         apiPostListingImage(listingSlug, formData).then((response) => {
-            var newImages = Object.assign(images);
+            var newImages = Object.assign(listing.images);
             newImages.unshift(response.data);
-            this.setState({ images: newImages, uploadingImage: false });
+            this.setState({ listing: { ...listing, images: newImages }, uploadingImage: false });
         })
     }
 
@@ -84,7 +79,7 @@ class AddImages extends React.Component {
     }
 
     renderLoaded() {
-        let { images, listing, loadingImages, uploadingImage } = this.state;
+        let { listing, uploadingImage } = this.state;
 
         return (
             <div className="listing">
@@ -93,7 +88,7 @@ class AddImages extends React.Component {
                 <div className="container mb-4">
                     {uploadingImage ? <div className="text-center"><LoadingPlane /><p>Uploading image...</p></div> : this.renderDropZone()}
                 </div>
-                {loadingImages ? <LoadingPlane /> : <div className="container"><ImageGallery loading={loadingImages} images={images} isImageUploadPage /></div>}
+                <div className="container"><ImageGallery loading={listing == undefined} images={listing.images} isImageUploadPage /></div>
             </div>
         )
     }
