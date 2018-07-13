@@ -29,9 +29,9 @@ class MapSidebar extends React.Component {
 
         return (
             selectedListing == null ?
-                <button className="btn btn-action" onClick={this.toggleFilter}>Filter <i className="fas fa-filter" /></button>
+                <button className="btn btn-action" onClick={this.toggleFilter}><i className="fas fa-filter" /></button>
                 :
-                <button className="btn btn-danger" onClick={this.closeSelectedListing}>Close <i className="fas fa-times" /></button>
+                <button className="btn btn-danger" onClick={this.closeSelectedListing}><i className="fas fa-times" /></button>
         )
     }
 
@@ -49,12 +49,14 @@ class MapSidebar extends React.Component {
         }
 
         return (
-            <div className="row map-sidebar-header">
-                <div className="col-9 mt-3">
-                    <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
-                </div>
-                <div className="col-3 mt-3 action-button">
-                    {this.renderActionButton()}
+            <div className="row map-sidebar-header pt-3">
+                <div className="col-12">
+                    <div className="d-inline float-left">
+                        <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
+                    </div>
+                    <div className="d-inline float-right action-button">
+                        {this.renderActionButton()}
+                    </div>
                 </div>
             </div>
         );

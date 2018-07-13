@@ -11,25 +11,13 @@ $vertical-margin: 87px;
 }
 
 .map-sidebar {
-    width: $sidebar-width;
     position: absolute;
-    height: 100vh;
-    box-shadow: $box-shadow;
     z-index: 999;
     overflow: auto;
     .map-sidebar-header {
-        top: 0;
-        position: fixed;
-        background: $gray;
-        box-shadow: $box-shadow;
-        width: $sidebar-width;
-        z-index: 9999;
         .action-button .btn {
             margin-left: -23px
         }
-    }
-    .map-sidebar-content {
-        margin-top: $vertical-margin;
     }
     .listing-selected {
         margin-bottom: $vertical-margin;
@@ -82,7 +70,6 @@ $vertical-margin: 87px;
 }
 
 .map {
-    margin-left: $sidebar-width;
     height: 100vh;
     .search-this-area {
         z-index: 100;
@@ -93,4 +80,32 @@ $vertical-margin: 87px;
 
 .hero-gallery {
     margin: -17px -15px 0px;
+}
+
+.map-listing-toggle {
+    position: fixed;
+    z-index: 9999;
+    bottom: 20px;
+    right: 20px;
+    background: #2491e8;
+    color: #fff;
+    border-radius: 50px;
+    box-shadow: $box-shadow-bold;
+    padding: 15px;
+    i {
+        font-size: 1.8em;
+    }
+}
+
+@media (min-width: 575.98px) {
+    .map-sidebar,
+    .map-sidebar-header {
+        width: $sidebar-width;
+    }
+    .map-sidebar {
+        height: 100vh;
+    }
+    .map {
+        margin-left: $sidebar-width;
+    }
 }

@@ -63,11 +63,11 @@ class Index extends React.Component {
                 <Header {...this.props} />
                 <div className="index">
                     <div className="container text-center">
-                        <div className="col-12 mb-5 mt-3">
-                            <h4>{labels.indexSlogan}</h4>
-                        </div>
                         <div className="col-12 my-5">
                             <PlacesTypeahead {...this.props} classNames={classNames} styles={indexStyles} inputProps={inputProps} />
+                        </div>
+                        <div className="col-12 mb-5 mt-3">
+                            <h4>{labels.indexSlogan}</h4>
                         </div>
                     </div>
                     <div className="how-it-works">

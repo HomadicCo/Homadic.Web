@@ -148,12 +148,11 @@ class ListingPreview extends React.Component {
     render() {
         let { listing } = this.props;
         let { images, reviews } = this.state;
-        console.log(images);
 
         return (
             <div>
                 <div className="mt-3 listing-content listing-selected">
-                    <div className="map-open-listing text-center py-2">
+                    <div className="map-open-listing text-center py-3">
                         <button className="btn btn-sm btn-success" onClick={this.openListingInNewWindow}><i className="fas fa-home"></i> View listing</button>
                     </div>
                     {images.data.length > 0 ? <div className="hero-gallery"><ImageGallery items={this.conformImageObjects(images.data)} showFullscreenButton={false} showPlayButton={false} lazyLoad={true} showThumbnails={false} /></div> : undefined}

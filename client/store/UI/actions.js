@@ -5,3 +5,11 @@ export function setLoadingStatus(value) {
         value
     }
 }
+
+export function toggleMapView(value) {
+    console.log(value);
+    return {
+        type: 'SET_MAP_VIEW',
+        value
+    }
+}

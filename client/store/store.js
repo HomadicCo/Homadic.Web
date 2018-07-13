@@ -39,7 +39,8 @@ const defaultState = {
   profile: { data: {} },
   ui: {
     loading: false,
-    reviewEditorOpen: false
+    reviewEditorOpen: false,
+    mapView: false
   }
 };
 

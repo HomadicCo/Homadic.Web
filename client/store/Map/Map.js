@@ -10,6 +10,7 @@ import MapSidebar from './Components/MapSidebar';
 import Avatar from '../../Components/Avatar/Avatar';
 import AddListingMarker from './Components/AddListingMarker';
 import ListingMarker from './Components/ListingMarker';
+import MapListingToggle from './Components/MapListingToggle';
 import MapStyle from '../../components/MapStyle/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import { icons } from '../../Images/Images';
@@ -114,13 +115,13 @@ class Map extends React.Component {
 
         return (
             <div className="d-flex profile-actions mr-3 mt-3">
-                <div className="ml-3 mt-1">
+                <div className="ml-3 mt-1 d-none">
                     {map.addNewListingMode ?
                         <button onClick={this.setAddNewListingMode.bind(null, false)} className="btn btn-sm btn-danger"><i className="fas fa-times" /> Cancel</button> :
                         <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-sm btn-success"><i className="fas fa-plus" /> Add</button>
                     }
                 </div>
-                <div className="ml-3">
+                <div className="ml-3 d-none">
                     <Avatar size={40} name={profile.data.name} id={profile.data.id} />
                 </div>
             </div>
@@ -131,7 +132,7 @@ class Map extends React.Component {
         const loginUrl = getLoginUrl(window.location.pathname);
 
         return (
-            <div className="d-flex profile-actions mr-3 mt-3">
+            <div className="d-flex profile-actions mr-3 mt-3 d-none">
                 <div className="ml-3">
                     <a href={loginUrl} className="btn btn-success btn-sm"><i className="fas fa-plus" /> Add</a>
                 </div>
@@ -326,8 +327,10 @@ class Map extends React.Component {
 
     render() {
         let { center, zoom } = this.state;
-        let { authentication, listings, map } = this.props;
+        let { authentication, listings, map, ui } = this.props;
         const metaDetails = getMetaDetails('Crowd sourced monthly rentals', location.pathname);
+        const sidebarClass = ui.mapView ? 'container map-sidebar d-none d-sm-block' : 'container map-sidebar';
+        const mapClass = ui.mapView ? 'map' : 'map d-none d-sm-block';
 
         return (
             <div>
@@ -343,36 +346,39 @@ class Map extends React.Component {
                     <meta property="og:url" content={metaDetails.link} />
                     <meta property="og:image" content="https://homadicstorage.blob.core.windows.net/icons/icon180.png" />
                 </Helmet>
-                {this.isLoading() ? <LoadingScreen /> :
-                    <div>
-                        <div className="container map-sidebar">
-                            <MapSidebar {...this.props} renderQueryParams={this.renderQueryParams} />
+                {
+                    this.isLoading() ? <LoadingScreen /> :
+                        <div>
+                            <div className={sidebarClass}>
+                                <MapSidebar {...this.props} renderQueryParams={this.renderQueryParams} />
+                            </div>
+                            <div className={mapClass}>
+                                <RenderMap
+                                    onMapLoad={this.handleMapLoad}
+                                    onMapClick={this.handleMapClick}
+                                    center={new google.maps.LatLng(center)}
+                                    zoom={zoom}
+                                    addNewListingMode={map.addNewListingMode}
+                                    onMapChanged={this.handleMapChanged}
+                                    onZoomChanged={this.handleZoomChanged}
+                                    onMarkerDragged={this.handleMarkerDrag}
+                                    setSelectedListing={this.setSelectedListing}
+                                    containerElement={
+                                        <div style={{ height: '100%' }} />
+                                    }
+                                    mapElement={
+                                        <div style={{ height: '100%' }} />
+                                    }
+                                    listings={listings.data}
+                                    map={map}
+                                    selectedListing={map.selectedListing}
+                                />
+                                {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
+                            </div>
                         </div>
-                        <div className="map">
-                            <RenderMap
-                                onMapLoad={this.handleMapLoad}
-                                onMapClick={this.handleMapClick}
-                                center={new google.maps.LatLng(center)}
-                                zoom={zoom}
-                                addNewListingMode={map.addNewListingMode}
-                                onMapChanged={this.handleMapChanged}
-                                onZoomChanged={this.handleZoomChanged}
-                                onMarkerDragged={this.handleMarkerDrag}
-                                setSelectedListing={this.setSelectedListing}
-                                containerElement={
-                                    <div style={{ height: '100%' }} />
-                                }
-                                mapElement={
-                                    <div style={{ height: '100%' }} />
-                                }
-                                listings={listings.data}
-                                map={map}
-                                selectedListing={map.selectedListing}
-                            />
-                            {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
-                        </div>
-                    </div>}
-            </div>
+                }
+                <MapListingToggle {...this.props} />
+            </div >
         )
     }
 }
