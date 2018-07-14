@@ -11,6 +11,7 @@ $vertical-margin: 87px;
 }
 
 .map-sidebar {
+    overflow-x: hidden;
     position: absolute;
     z-index: 999;
     overflow: auto;
@@ -24,7 +25,7 @@ $vertical-margin: 87px;
         .map-open-listing {
             bottom: 0;
             left: 0;
-            width: $sidebar-width;
+            width: 100%;
             position: fixed;
             z-index: 9999;
             background: $new-footer;
@@ -107,5 +108,8 @@ $vertical-margin: 87px;
     }
     .map {
         margin-left: $sidebar-width;
+    }
+    .map-sidebar .listing-selected .map-open-listing {
+        width: $sidebar-width;
     }
 }

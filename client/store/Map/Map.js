@@ -351,7 +351,7 @@ class Map extends React.Component {
                 {
                     this.isLoading() ? <LoadingScreen /> :
                         <div>
-                            <div className={sidebarClass}>
+                            <div className={sidebarClass} style={{ overflowX: 'hidden' }}>
                                 <MapSidebar {...this.props} renderQueryParams={this.renderQueryParams} />
                             </div>
                             <div className={mapClass}>

@@ -65,7 +65,7 @@ class MapSidebar extends React.Component {
             map.filterMode ?
                 <ListingsFilter {...this.props} /> :
                 listings.fetching ? <LoadingPlane /> :
-                    <div className="listing-snippets">
+                    <div className="row listing-snippets">
                         {listings.data.length > 0 ? listings.data.map((listing, i) => <Link key={i} onClick={this.showSelectedListing.bind(null, listing)}><ListingSnippet listing={listing} /></Link>) : this.renderNoSnippets()}
                     </div>
         )

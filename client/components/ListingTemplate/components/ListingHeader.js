@@ -13,7 +13,7 @@ class ListingHeader extends React.Component {
     clickThumbsUp(value) {
         let { handleThumbsUp, listings } = this.props;
 
-        handleThumbsUp(listings.selected.listing.slug, value);
+        handleThumbsUp(listings.selected.slug, value);
     }
 
     renderFullHeader() {

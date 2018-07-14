@@ -16,7 +16,7 @@ class ListingSnippet extends React.Component {
         let { listing } = this.props;
 
         return (
-            <div className="listing-snippet">
+            <div className="col-12 listing-snippet">
                 {listing.hero != null ? <img className="hero" src={listing.hero.hero} /> : undefined}
                 <div className="content-box content-box-sm">
                     <div className="row no-gutters">
