@@ -1,7 +1,7 @@
 // hover over listings
 export function setSelectedListing(listing) {
     return {
-        type: 'SET_HOVERED_LISTING',
+        type: 'SET_LISTING_PREVIEW',
         listing
     }
 }

@@ -8,6 +8,9 @@ function ui(state = [], action) {
         case 'SET_MAP_VIEW':
             newState.mapView = action.value;
             return newState;
+        case 'SET_RETURN_TO_MAPVIEW':
+            newState.returnToMapView = action.value;
+            return newState;
     }
     return state;
 }

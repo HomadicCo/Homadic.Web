@@ -7,9 +7,15 @@ export function setLoadingStatus(value) {
 }
 
 export function toggleMapView(value) {
-    console.log(value);
     return {
         type: 'SET_MAP_VIEW',
+        value
+    }
+}
+
+export function setReturnToMapView(value) {
+    return {
+        type: 'SET_RETURN_TO_MAPVIEW',
         value
     }
 }

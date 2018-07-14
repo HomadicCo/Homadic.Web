@@ -196,16 +196,17 @@ class Map extends React.Component {
         setSelectedListing(null);
         setAddNewListingMode(value);
 
-        if (!value) {
+        if (!value)
             setAddNewListingCoordinates(undefined);
-        }
     }
 
-    setSelectedListing(listing) {
-        let { setSelectedListing } = this.props;
+    setSelectedListing(listing, returnToMapView = false) {
+        let { setSelectedListing, toggleMapView, setReturnToMapView } = this.props;
 
         this.setState({ center: { lat: listing.coordinates.lat, lng: listing.coordinates.lng } });
+        toggleMapView(false);
         setSelectedListing(listing);
+        setReturnToMapView(returnToMapView);
 
         this.renderQueryParams({
             add: [{ key: 'listing', value: listing.slug }]
@@ -328,7 +329,7 @@ class Map extends React.Component {
 
     render() {
         let { center, zoom } = this.state;
-        let { authentication, listings, map, ui } = this.props;
+        let { authentication, listings, map, ui, toggleMapView } = this.props;
         const metaDetails = getMetaDetails('Crowd sourced monthly rentals', location.pathname);
         const sidebarClass = ui.mapView ? 'container map-sidebar d-none d-sm-block' : 'container map-sidebar';
         const mapClass = ui.mapView ? 'map' : 'map d-none d-sm-block';
@@ -373,6 +374,8 @@ class Map extends React.Component {
                                     listings={listings.data}
                                     map={map}
                                     selectedListing={map.selectedListing}
+                                    ui={ui}
+                                    toggleMapView={toggleMapView}
                                 />
                                 {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
                             </div>

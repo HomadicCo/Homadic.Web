@@ -16,12 +16,15 @@ class MapSidebar extends React.Component {
     }
 
     closeSelectedListing() {
-        let { setSelectedListing } = this.props;
+        let { setSelectedListing, toggleMapView, ui } = this.props;
 
         this.props.renderQueryParams({
             remove: [{ key: 'listing' }]
         });
         setSelectedListing(null);
+
+        if (ui.returnToMapView)
+            toggleMapView(true);
     }
 
     renderActionButton() {

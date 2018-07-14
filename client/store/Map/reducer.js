@@ -2,7 +2,7 @@ function map(state = [], action) {
     var newState = Object.assign({}, state);
 
     switch (action.type) {
-        case 'SET_HOVERED_LISTING':
+        case 'SET_LISTING_PREVIEW':
             newState.selectedListing = action.listing;
             return newState;
         case 'SET_ADD_NEW_PLACE_MODE':

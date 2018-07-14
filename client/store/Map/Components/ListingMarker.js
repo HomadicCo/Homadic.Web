@@ -9,7 +9,7 @@ class ListingMarker extends React.Component {
     }
 
     render() {
-        let { setSelectedListing, onMarkerDragged, listing } = this.props;
+        let { setSelectedListing, onMarkerDragged, listing, ui } = this.props;
         const icon = {
             url: icons[listing.type],
             scaledSize: new google.maps.Size(40, 40)
@@ -21,7 +21,7 @@ class ListingMarker extends React.Component {
                     lat: listing.coordinates.lat,
                     lng: listing.coordinates.lng,
                 }}
-                onClick={() => setSelectedListing(listing)}
+                onClick={() => setSelectedListing(listing, ui.mapView)}
                 options={{ icon }}
                 onDragEnd={onMarkerDragged}
             />
