@@ -18,7 +18,7 @@ class ListingHeader extends React.Component {
 
     renderFullHeader() {
         return (
-            <span><ThumbsUpDown {...this.props} clickThumbsUp={this.clickThumbsUp} /> <span className="btn btn-sm btn-action mx-1"><i className="fas fa-pencil-alt" /> Edit</span></span>
+            <span><ThumbsUpDown {...this.props} clickThumbsUp={this.clickThumbsUp} /> <span className="btn btn-sm btn-action ml-2 d-none d-sm-inline"><i className="fas fa-pencil-alt" /> Edit</span></span>
         )
     }
 
@@ -33,7 +33,7 @@ class ListingHeader extends React.Component {
                             <h5><Link className="logo logo-sm" to="/">{'{ Homadic }'}</Link></h5>
                         </div>
                         <div className="col ml-auto d-flex justify-content-end">
-                            <h5>{full ? this.renderFullHeader() : undefined} <Avatar size={30} name={profile.data.name} id={profile.data.id} /></h5>
+                            <h5>{full ? this.renderFullHeader() : undefined} <Avatar className="ml-2" size={30} name={profile.data.name} id={profile.data.id} /></h5>
                         </div>
                     </div>
                 </div>
