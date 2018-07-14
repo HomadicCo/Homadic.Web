@@ -23,6 +23,7 @@ const RenderMap = withGoogleMap(props => (
         onZoomChanged={props.onZoomChanged}
         onDragEnd={props.onMapChanged}
         center={props.center}
+        gestureHandling='greedy'
         options={{
             styles: MapStyle,
             mapTypeControl: false,
