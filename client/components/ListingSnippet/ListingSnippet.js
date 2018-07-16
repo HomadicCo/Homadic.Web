@@ -29,10 +29,10 @@ class ListingSnippet extends React.Component {
                     </div>
                     <p className="property-type text-muted"><small><ListingType type={listing.type} size={24} /></small></p>
                     <div className="row">
-                        <div className="col">
+                        <div className="col-9">
                             <Amenities listing={listing} size={20} colClass="col-1" />
                         </div>
-                        <div className="col ml-auto d-flex justify-content-end">
+                        <div className="col-3 ml-auto d-flex justify-content-end">
                             <ThumbsUpDown listing={listing} clickThumbsUp={this.clickThumbsUp} />
                         </div>
                     </div>
