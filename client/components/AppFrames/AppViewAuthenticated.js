@@ -46,8 +46,7 @@ class AppView extends React.Component {
 
         return (
             <div>
-                {React.cloneElement(this.props.children, this.props)}
-                {ui.loading ? <LoadingScreen /> : undefined}
+                {ui.loading ? <LoadingScreen /> : React.cloneElement(this.props.children, this.props)}
             </div>
         )
     }

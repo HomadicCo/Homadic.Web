@@ -33,10 +33,12 @@ class ListingPreview extends React.Component {
     fetchFurtherListingData(slug) {
         let { listing } = this.props;
 
-        this.setState({ images: { loading: false, data: [listing.hero] }, reviews: { loading: false, data: [] }, userReview: null });
+        if (listing.hero != null) {
+            this.setState({ images: { loading: false, data: [listing.hero] }, reviews: { loading: false, data: [] }, userReview: null });
+        }
 
         apiGetListingImages(slug).then((response) => {
-            this.setState({ ...this.state, images: { loading: false, data: [listing.hero].concat(response.data.data) } });
+            this.setState({ ...this.state, images: { loading: false, data: this.state.images.data.concat(response.data.data) } });
         })
         apiGetReviews(slug).then((response) => {
             this.setState({ ...this.state, reviews: { loading: false, data: response.data.data } });

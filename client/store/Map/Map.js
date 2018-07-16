@@ -116,13 +116,13 @@ class Map extends React.Component {
 
         return (
             <div className="d-flex profile-actions mr-3 mt-3">
-                <div className="ml-3 mt-1 d-none">
+                <div className="ml-3 mt-1 d-none d-sm-block">
                     {map.addNewListingMode ?
                         <button onClick={this.setAddNewListingMode.bind(null, false)} className="btn btn-sm btn-danger"><i className="fas fa-times" /> Cancel</button> :
                         <button onClick={this.setAddNewListingMode.bind(null, true)} className="btn btn-sm btn-success"><i className="fas fa-plus" /> Add</button>
                     }
                 </div>
-                <div className="ml-3 d-none">
+                <div className="ml-3 d-none d-sm-block">
                     <Avatar size={40} name={profile.data.name} id={profile.data.id} />
                 </div>
             </div>

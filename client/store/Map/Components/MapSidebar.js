@@ -48,7 +48,7 @@ class MapSidebar extends React.Component {
         let { filter } = this.props;
 
         return (
-            <div className="text-center">
+            <div className="col text-center">
                 <p>No listings for this area <i className="far fa-frown" /></p>
                 <div className="btn-group">
                     {!filter.empty ? <button className="btn btn-default btn" onClick={this.clearFilter}>Clear filter <i className="fas fa-times" /></button> : undefined}
