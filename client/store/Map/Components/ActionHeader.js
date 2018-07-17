@@ -1,6 +1,6 @@
 import React from 'react';
 import PlacesTypeahead from '../../../Components/PlacesTypeahead/PlacesTypeahead';
-
+import {Link} from 'react-router';
 class MapSidebar extends React.Component {
     constructor(props) {
         super(props);
@@ -54,6 +54,9 @@ class MapSidebar extends React.Component {
         return (
             <div className="row map-sidebar-header pt-3">
                 <div className="col-12">
+                    <div className="d-inline float-left">
+                        <h5 style={{marginTop:'3px', marginRight:'10px'}}><Link style={{padding:'5px 5px'}} className="logo" to="/">{'{ H }'}</Link></h5>
+                    </div>
                     <div className="d-inline float-left">
                         <PlacesTypeahead {...this.props} classNames={classNames} inputProps={inputProps} />
                     </div>
