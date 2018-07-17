@@ -7,7 +7,6 @@ import ImageGallery from 'react-image-gallery';
 import PointOfInterest from '../../../components/PointOfInterest/PointOfInterest';
 import Amenities from '../../../components/ListingTemplate/components/Amenities';
 import Avatar from '../../../Components/Avatar/Avatar';
-import ListingType from '../../../components/ListingType/ListingType';
 import ThumbsUpDown from '../../../components/ThumbsUpDown/ThumbsUpDown';
 
 class ListingPreview extends React.Component {
@@ -134,7 +133,7 @@ class ListingPreview extends React.Component {
                         <span className="blue"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
                     </div>
                 </div>
-                <p className="property-type text-muted"><small><ListingType type={listing.type} size={24} /></small></p>
+                <p className="description">{listing.description}</p>
                 <div className="row">
                     <div className="col">
                         <Amenities listing={listing} size={20} colClass="col-1" />

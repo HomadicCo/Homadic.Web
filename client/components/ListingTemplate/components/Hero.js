@@ -20,7 +20,7 @@ class Hero extends React.Component {
 
         return (
             <div className="row justify-content-md-center">
-                <div className="col-md-8 col-s-12">
+                <div className="col-md-8 col-s-12 my-2">
                     <Amenities listing={listing} margin={20} displayLabel />
                 </div>
             </div>
@@ -38,10 +38,15 @@ class Hero extends React.Component {
                     </div>
                 </div>
                 <div className="row justify-content-md-center">
-                    <div className="col-md-8 my-2">
-                        <p className="lead">{getBaseRate(listing)} {listing.currency} <img src={icons[listing.type]} className="icon" /> <small className="text-muted">{this.renderRentalType()}</small></p>
+                    <div className="col-lg-8 mt-2">
+                        <p className="lead listing-price">{getBaseRate(listing)} {listing.currency} <img src={icons[listing.type]} className="icon" /> <small className="text-muted">{this.renderRentalType()}</small></p>
                     </div>
                 </div>
+                {listing.description != undefined ? <div className="row justify-content-md-center">
+                    <div className="col-lg-8 my-2">
+                        <p className="lead">{listing.description}</p>
+                    </div>
+                </div> : undefined}
                 {full ? this.renderAmenities(listing) : undefined}
             </div>
         )

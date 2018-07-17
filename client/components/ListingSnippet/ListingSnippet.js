@@ -26,12 +26,12 @@ class ListingSnippet extends React.Component {
                             <span className="blue"><strong>${listing.rates.base_rate.toLocaleString('en', { useGrouping: true })}</strong></span>
                         </div>
                     </div>
-                    <p className="text-muted description">{listing.description}</p>
+                    <p className="description">{listing.description}</p>
                     <div className="row">
-                        <div className="col-9">
+                        <div className="col-8">
                             <Amenities listing={listing} size={20} colClass="col-1" />
                         </div>
-                        <div className="col-3 ml-auto d-flex justify-content-end">
+                        <div className="col-4 ml-auto d-flex justify-content-end">
                             <ThumbsUpDown listing={listing} clickThumbsUp={this.clickThumbsUp} />
                         </div>
                     </div>
