@@ -15,20 +15,23 @@ export const cities = [
     {
         name: 'Chiang Mai',
         slug: '/chiang-mai-thailand?lat=18.788946&lng=98.985361',
-        unsplashImg: 'BfAkZvMrNSM',
-        country: 'Thailand'
+        unsplash: 'BfAkZvMrNSM',
+        country: 'Thailand',
+        country_code: 'th'
     },
     {
         name: 'Bangkok',
         slug: '/bangkok-thailand?lat=13.740907&lng=100.548714',
-        unsplashImg: 'g5Uh7nP60FA',
-        country: 'Thailand'
+        unsplash: 'g5Uh7nP60FA',
+        country: 'Thailand',
+        country_code: 'th'
     },
     {
         name: 'Puerto Vallarta',
         slug: '/puerto-vallarta-jalisco-mexico?lat=20.635737&lng=-105.223186',
-        unsplashImg: 'XpImribKrww',
-        country: 'Mexico'
+        unsplash: 'XpImribKrww',
+        country: 'Mexico',
+        country_code: 'mx'
     },
 ]
 
