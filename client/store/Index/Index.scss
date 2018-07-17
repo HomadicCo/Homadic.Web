@@ -2,7 +2,6 @@ $input-color: #fff;
 $input-background: rgba(26, 145, 161, 0.6);
 .index {
     h4 {
-        color: $white;
         line-height: 1.5;
     }
     .index-typeahead {
@@ -52,7 +51,7 @@ $input-background: rgba(26, 145, 161, 0.6);
         }
     }
     .how-it-works {
-        position: absolute;
+        position: fixed;
         right: 0;
         bottom: 0;
     }
@@ -64,7 +63,7 @@ $input-background: rgba(26, 145, 161, 0.6);
     background-position: center;
     background-image: none;
     height: 100vh;
-    filter: grayscale(30%);
+    filter: grayscale(40%);
     position: fixed;
     width: 102%;
     height: 102%;
@@ -73,8 +72,13 @@ $input-background: rgba(26, 145, 161, 0.6);
     z-index: -1;
 }
 
-.index-bg {
-    background-image: url(https://source.unsplash.com/XSZF9CYzSK0/992x558);
+@media (min-width: 768px) {
+    .index h4 {
+        color: $white;
+    }
+    .index-bg {
+        background-image: url(https://source.unsplash.com/XSZF9CYzSK0/1200x675);
+    }
 }
 
 @media (min-width: 992px) {
@@ -97,4 +101,38 @@ $input-background: rgba(26, 145, 161, 0.6);
 
 #PlacesAutocomplete__google-logo {
     display: none;
+}
+
+.city-snippet {
+    box-shadow: $box-shadow;
+    border-radius: $radius;
+    a {
+        color: $font-color;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    .city-hero {
+        height: 180px;
+        background-color: #fff;
+        background-size: cover;
+        background-position: center;
+        border-radius: $radius $radius 0 0;
+    }
+    .city-details {
+        background-color: #fff;
+        text-align: left;
+        border-radius: 0 0 $radius $radius;
+        .lead {
+            margin-top: -10px;
+        }
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        .city-details {
+            background: #ECEFF1;
+            color: $font-color;
+        }
+    }
 }

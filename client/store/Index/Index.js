@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { getMetaDetails } from '../../functions';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
 import Header from './components/Header';
+import Cities from './components/Cities';
 import { labels } from '../../data';
 
 class Index extends React.Component {
@@ -68,6 +69,9 @@ class Index extends React.Component {
                         </div>
                         <div className="col-12 mb-5 mt-3">
                             <h4>{labels.indexSlogan}</h4>
+                        </div>
+                        <div className="col-12 mb-5">
+                            <Cities />
                         </div>
                     </div>
                     <div className="how-it-works">
