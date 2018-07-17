@@ -7,15 +7,6 @@ const MapStyle = [
                 visibility: 'off'
             }
         ]
-    },
-    {
-        featureType: 'poi.medical',
-        elementType: 'labels',
-        stylers: [
-            {
-                visibility: 'on'
-            }
-        ]
     }
 ];
 
