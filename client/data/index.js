@@ -21,7 +21,7 @@ export const cities = [
     },
     {
         name: 'Ho Chi Minh',
-        slug: '/ho-chi-minh-ho-chi-minh-city-vietnam?lat=10.777993&lng=106.696869',
+        slug: '/ho-chi-minh-ho-chi-minh-city-vietnam?lat=10.777993&lng=106.696869&z=13',
         unsplash: 'HdtIiGcIQtU',
         country: 'Vietnam',
         country_code: 'vn'
@@ -35,21 +35,21 @@ export const cities = [
     },
     {
         name: 'Mexico City',
-        slug: '/mexico-city-cdmx-mexico?lat=19.422814&lng=-99.152348',
+        slug: '/mexico-city-cdmx-mexico?lat=19.422814&lng=-99.152348&z=13',
         unsplash: 'KbR06h9dNQwy',
         country: 'Mexico City',
         country_code: 'mx'
     },
     {
         name: 'Patong, Phuket',
-        slug: '/patong-kathu-district-phuket-thailand?lat=7.892113&lng=98.303735',
+        slug: '/patong-kathu-district-phuket-thailand?lat=7.892113&lng=98.303735&z=15',
         unsplash: '5F_c9i3JP0I',
         country: 'Thailand',
         country_code: 'th'
     },
     {
         name: 'Puerto Vallarta',
-        slug: '/puerto-vallarta-jalisco-mexico?lat=20.635737&lng=-105.223186',
+        slug: '/puerto-vallarta-jalisco-mexico?lat=20.626821&lng=-105.223615',
         unsplash: 'XpImribKrww',
         country: 'Mexico',
         country_code: 'mx'
