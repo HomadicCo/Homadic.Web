@@ -75,7 +75,8 @@ $vertical-margin: 87px;
     .search-this-area {
         z-index: 100;
         position: fixed;
-        bottom: 15px;
+        bottom: 25px;
+        left: 15px;
     }
 }
 
@@ -108,6 +109,10 @@ $vertical-margin: 87px;
     }
     .map {
         margin-left: $sidebar-width;
+        .search-this-area {
+            bottom: 15px;
+            left: ($sidebar-width + 15px);
+        }
     }
     .map-sidebar .listing-selected .map-open-listing {
         width: $sidebar-width;

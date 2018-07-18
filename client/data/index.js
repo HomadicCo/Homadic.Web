@@ -13,6 +13,20 @@ export const bedrooms = [
 
 export const cities = [
     {
+        name: 'Bangkok',
+        slug: '/bangkok-thailand?lat=13.740907&lng=100.548714&z=12',
+        unsplash: 'g5Uh7nP60FA',
+        country: 'Thailand',
+        country_code: 'th'
+    },
+    {
+        name: 'Ho Chi Minh',
+        slug: '/ho-chi-minh-ho-chi-minh-city-vietnam?lat=10.777993&lng=106.696869',
+        unsplash: 'HdtIiGcIQtU',
+        country: 'Vietnam',
+        country_code: 'vn'
+    },
+    {
         name: 'Chiang Mai',
         slug: '/chiang-mai-thailand?lat=18.788946&lng=98.985361',
         unsplash: 'BfAkZvMrNSM',
@@ -20,9 +34,16 @@ export const cities = [
         country_code: 'th'
     },
     {
-        name: 'Bangkok',
-        slug: '/bangkok-thailand?lat=13.740907&lng=100.548714',
-        unsplash: 'g5Uh7nP60FA',
+        name: 'Mexico City',
+        slug: '/mexico-city-cdmx-mexico?lat=19.422814&lng=-99.152348',
+        unsplash: 'KbR06h9dNQwy',
+        country: 'Mexico City',
+        country_code: 'mx'
+    },
+    {
+        name: 'Patong, Phuket',
+        slug: '/patong-kathu-district-phuket-thailand?lat=7.892113&lng=98.303735',
+        unsplash: '5F_c9i3JP0I',
         country: 'Thailand',
         country_code: 'th'
     },

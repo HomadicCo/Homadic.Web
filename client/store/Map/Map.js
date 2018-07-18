@@ -5,7 +5,7 @@ import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import queryString from 'query-string';
 import { Helmet } from 'react-helmet';
-import { getCoordinateDistance, getLoginUrl, getListingBySlug, getMetaDetails } from '../../functions'
+import { getLoginUrl, getListingBySlug, getMetaDetails } from '../../functions'
 import MapSidebar from './Components/MapSidebar';
 import Avatar from '../../Components/Avatar/Avatar';
 import AddListingMarker from './Components/AddListingMarker';
@@ -29,7 +29,7 @@ const RenderMap = withGoogleMap(props => (
             mapTypeControl: false,
             streetViewControl: false,
             fullscreenControl: false,
-            minZoom: 14,
+            minZoom: 12,
             draggableCursor: props.addNewListingMode ? 'url(' + icons.dart + ') 10 16, crosshair' : undefined
         }}
     >
@@ -214,9 +214,9 @@ class Map extends React.Component {
     }
 
     searchThisArea() {
-        let { center } = this.state;
+        let { center, zoom } = this.state;
 
-        this.getListings(center);
+        this.getListings({ ...center, zoom });
         this.setState({ searchedCenter: center, searchThisArea: false });
     }
 
@@ -294,20 +294,19 @@ class Map extends React.Component {
     }
 
     handleMapChanged() {
-        let { center, searchedCenter } = this.state;
+        let { center, zoom } = this.state;
         const centerObj = this._map.getCenter();
+        const nextZoom = this._map.getZoom();
         const lat = centerObj.lat();
         const lng = centerObj.lng();
 
         const nextCenter = { lat, lng };
-        if (nextCenter !== this.state.center) {
+        if (nextCenter !== center || nextZoom !== zoom) {
             this.setState({
                 center: nextCenter,
             });
 
-            if (getCoordinateDistance(center, searchedCenter) > 5000) {
-                this.searchThisArea();
-            }
+            this.setState({ searchThisArea: true });
 
             this.renderQueryParams({
                 add: [
@@ -328,7 +327,7 @@ class Map extends React.Component {
     }
 
     render() {
-        let { center, zoom } = this.state;
+        let { center, zoom, searchThisArea } = this.state;
         let { authentication, listings, map, ui, toggleMapView } = this.props;
         const metaDetails = getMetaDetails('Crowd sourced monthly rentals', location.pathname);
         const sidebarClass = ui.mapView ? 'container map-sidebar d-none d-sm-block' : 'container map-sidebar';
@@ -378,10 +377,12 @@ class Map extends React.Component {
                                     toggleMapView={toggleMapView}
                                 />
                                 {authentication.isLoggedIn ? this.renderLoggedIn() : this.renderLoggedOut()}
+                                {searchThisArea ? <button className="btn btn-action search-this-area" onClick={this.searchThisArea}>Search this area</button> : undefined}
                             </div>
                         </div>
                 }
                 <MapListingToggle {...this.props} />
+
             </div >
         )
     }
