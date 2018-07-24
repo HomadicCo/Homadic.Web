@@ -12,6 +12,7 @@ import Logout from './components/Logout/Logout';
 import Index from './store/Index/Index';
 import AddListing from './store/AddListing/AddListing';
 import Listing from './store/Listing/Listing';
+import ListingHistory from './store/ListingHistory/ListingHistory';
 import Map from './store/Map/Map';
 import Profile from './store/Profile/Profile';
 import AddImages from './components/ListingTemplate/components/AddImages';
@@ -40,6 +41,7 @@ const router = (
                 <Route path="/listing/:listingSlug/amenities" component={AddImages} />
                 <Route path="/listing/:listingSlug/bills" component={AddImages} />
                 <Route path="/listing/:listingSlug/contact-details" component={AddImages} />
+                <Route path="/listing/:listingSlug/history" component={ListingHistory} />
                 <Route path="/listing/:listingSlug/images" component={AddImages} />
                 <Route path="/listing/:listingSlug/rooms" component={AddImages} />
                 <Route path="/listing/:listingSlug/social-details" component={AddImages} />

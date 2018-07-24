@@ -10,7 +10,7 @@ import addListing from './addListing/reducer';
 import authentication from './Authentication/reducer';
 import filter from './Filter/reducer';
 import listings from './Listing/reducer';
-import listingVersions from './ListingVersion/reducer';
+import listingHistory from './ListingHistory/reducer';
 import map from './Map/reducer';
 import profile from './Profile/reducer';
 import ui from './UI/reducer';
@@ -32,7 +32,7 @@ const defaultState = {
     data: [],
     fetching: false
   },
-  listingVersions: {
+  listingHistory: {
     selected: {},
     data: [],
     fetching: false
@@ -55,7 +55,7 @@ const appReducer = combineReducers({
   authentication,
   filter,
   listings,
-  listingVersions,
+  listingHistory,
   map,
   profile,
   routing: routerReducer,

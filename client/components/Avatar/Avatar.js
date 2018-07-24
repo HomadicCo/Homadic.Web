@@ -7,7 +7,7 @@ class Avatar extends React.Component {
     }
 
     render() {
-        let { id, name, size, className } = this.props;
+        let { id, name, size, className, currentUser = true, style } = this.props;
         let pixelSize = String(size) + 'px';
         let avatarSrc = '';
 
@@ -26,7 +26,9 @@ class Avatar extends React.Component {
         }
 
         return (
-            <Link to="/profile"><img className={customClass} alt={name} src={avatarSrc} height={pixelSize} width={pixelSize} /></Link>
+            currentUser ?
+                <Link to="/profile"><img className={customClass} style={style} alt={name} src={avatarSrc} height={pixelSize} width={pixelSize} /></Link> :
+                <img className={customClass} style={style} alt={name} src={avatarSrc} height={pixelSize} width={pixelSize} />
         )
     }
 }

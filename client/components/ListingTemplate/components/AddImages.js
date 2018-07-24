@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory, } from 'react-router';
 import Dropzone from 'react-dropzone';
 import { apiGetListing, apiPostListingImage } from '../../../api';
-import ListingHeader from './ListingHeader';
+import ListingHeader from '../../ListingHeader/ListingHeader';
 import Hero from '../components/Hero';
 import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen';
 import LoadingPlane from '../../../components/LoadingScreen/LoadingPlane';

@@ -2,7 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 import Hero from './components/Hero';
-import ListingHeader from './components/ListingHeader';
+import ListingHeader from '../ListingHeader/ListingHeader';
 import Internet from './components/Internet';
 import Nearby from './components/Nearby';
 import Notes from './components/Notes';

@@ -8,7 +8,7 @@ import * as AddListingActions from './AddListing/actions';
 import * as AuthenticationActions from './Authentication/actions';
 import * as FilterActions from './Filter/actions';
 import * as ListingActions from './Listing/actions';
-import * as ListingVersionActions from './ListingVersion/actions';
+import * as ListingHistoryActions from './ListingHistory/actions';
 import * as MapActions from './Map/actions';
 import * as ProfileActions from './Profile/actions';
 import * as UIActions from './UI/actions';
@@ -19,7 +19,7 @@ function mapStateToProps(state) {
         addListing: state.addListing,
         filter: state.filter,
         listings: state.listings,
-        listingVersions: state.listingVersions,
+        listingHistory: state.listingHistory,
         map: state.map,
         profile: state.profile,
         ui: state.ui,
@@ -32,7 +32,7 @@ function mapDispatchToProps(dispatch) {
         ...AddListingActions,
         ...FilterActions,
         ...ListingActions,
-        ...ListingVersionActions,
+        ...ListingHistoryActions,
         ...MapActions,
         ...ProfileActions,
         ...UIActions

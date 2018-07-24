@@ -94,3 +94,8 @@ export function apiPostListingImage(slug, formData) {
 export function apiPostListing(listing) {
     return Axios.post('listing', listing, getAuthHeader());
 }
+
+// listing editing
+export function apiGetListingHistory(slug) {
+    return Axios.get('listing/' + slug + '/history', getAuthHeader());
+}
