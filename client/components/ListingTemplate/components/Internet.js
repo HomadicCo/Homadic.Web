@@ -7,14 +7,14 @@ class Internet extends React.Component {
     }
 
     renderWiFiLabel() {
-        let { wifi } = this.props.listing;
+        let { wifi } = this.props;
 
         const i = internetType.findIndex((type) => type.value == wifi.type);
         return internetType[i].name;
     }
 
     render() {
-        let { listing } = this.props;
+        let { wifi } = this.props;
 
         return (
             <div id="internet" className="content-box">
@@ -24,14 +24,14 @@ class Internet extends React.Component {
                     <div className="col-4 capitalize">
                         <p><i className="fas fa-wifi" /> {this.renderWiFiLabel()}</p>
                     </div>
-                    {listing.wifi.download ? <div className="col-4 capitalize">
-                        <p><i className="fas fa-download" /> {listing.wifi.download}mbps</p>
+                    {wifi.download ? <div className="col-4 capitalize">
+                        <p><i className="fas fa-download" /> {wifi.download}mbps</p>
                     </div> : undefined}
-                    {listing.wifi.upload ? <div className="col-4 capitalize">
-                        <p><i className="fas fa-upload" /> {listing.wifi.upload}mbps</p>
+                    {wifi.upload ? <div className="col-4 capitalize">
+                        <p><i className="fas fa-upload" /> {wifi.upload}mbps</p>
                     </div> : undefined}
-                    {listing.wifi.notes ? <div className="col-12">
-                        <p><strong>Notes:</strong> {listing.wifi.notes}</p>
+                    {wifi.notes ? <div className="col-12">
+                        <p><strong>Notes:</strong> {wifi.notes}</p>
                     </div> : undefined}
                 </div>
             </div>

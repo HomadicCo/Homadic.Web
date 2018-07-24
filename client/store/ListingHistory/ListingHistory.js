@@ -54,20 +54,23 @@ class ListingVersions extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h3 className="my-4 text-truncate"><i className="fas fa-history" /> {this.props.listings.selected.name}</h3>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">User</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Changed</th>
-                                <th scope="col">Active</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {orderedListingHistory.map((v, i) => { return (this.renderVersion(v, i)) })}
-                        </tbody>
-                    </table>
+                    <div className="col">
+                        <h3 className="my-4 text-truncate"><i className="fas fa-history" /> {this.props.listings.selected.name}</h3>
+                        <p><i className="fas fa-gavel"></i> Please note this area is under construction, all changes are logged but this needs work.</p>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Changed</th>
+                                    <th scope="col">Active</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {orderedListingHistory.map((v, i) => { return (this.renderVersion(v, i)) })}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         )

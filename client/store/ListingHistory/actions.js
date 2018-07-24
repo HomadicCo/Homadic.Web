@@ -1,7 +1,7 @@
 /* global Promise */
-import { apiGetListingHistory } from '../../api';
+import { apiGetListingHistory, apiGetListingVersion } from '../../api';
 
-// update listings
+// set listing history
 export function setListingHistoryStore(data) {
     return {
         type: 'SET_LISTING_HISTORY_STORE',
@@ -9,7 +9,15 @@ export function setListingHistoryStore(data) {
     }
 }
 
-// fetching listings
+// set selected listing version
+export function setSelectedListingVersion(data) {
+    return {
+        type: 'SET_SELECTED_LISTING_VERSION',
+        data
+    }
+}
+
+// listing history loading status
 export function setFetchingListingHistoryStatus(value) {
     return {
         type: 'SET_FETCHING_LISTING_HISTORY_STATUS',
@@ -35,3 +43,23 @@ export function handleGetListingHistory(slug) {
         });
     };
 }
+
+export function handleGetListingVersion(slug, versionId) {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+            dispatch(setFetchingListingHistoryStatus(true));
+            const request = apiGetListingVersion(slug, versionId);
+
+            request.then(response => {
+                dispatch(setSelectedListingVersion(response.data));
+                dispatch(setFetchingListingHistoryStatus(false));
+                resolve(response.data.data);
+            }).catch(error => {
+                dispatch(setFetchingListingHistoryStatus(false));
+                console.error(error);
+                reject(error);
+            });
+        });
+    };
+}
+

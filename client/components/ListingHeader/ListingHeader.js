@@ -14,26 +14,26 @@ class ListingHeader extends React.Component {
     clickThumbsUp(value) {
         let { handleThumbsUp, listings } = this.props;
 
-        handleThumbsUp(listings.selected.slug, value);
+        handleThumbsUp(listings.slug, value);
     }
 
     renderEditDropDown() {
-        let { selected } = this.props.listings;
+        let { params } = this.props;
 
         return (
             <DropDownMenu icon={<i className="fas fa-pencil-alt mr-1" />} name="Edit" customClass="ml-2">
-                <Link className="dropdown-item text-truncate" href={'/listing/' + selected.slug}><span className="blue"><i className="fas fa-home mr-1" /> View listing</span></Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/history'}><i className="fas fa-history mr-1"></i> History</Link>
+                <Link className="dropdown-item text-truncate" href={'/listing/' + params.listingSlug}><span className="blue"><i className="fas fa-home mr-1" /> View listing</span></Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/history'}><i className="fas fa-history mr-1"></i> History</Link>
                 <div className="dropdown-divider"></div>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/amenities'}><i className="fas fa-dumbbell mr-1" /> Amenities</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/bills'}><i className="fas fa-money-bill-wave mr-1" /> Bills</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/contact-details'}><i className="fas fa-users mr-1" /> Contact Details</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/images'}><i className="fas fa-images mr-1" /> Images</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/notes'}><i className="fas fa-align-left mr-1" /> Notes</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/rooms'}><i className="fas fa-bed mr-1" /> Rooms</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/social-details'}><i className="fab fa-facebook-square mr-1" /> Social Details</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/type'}><i className="fas fa-hotel mr-1" /> Type</Link>
-                <Link className="dropdown-item" href={'/listing/' + selected.slug + '/wifi'}><i className="fas fa-wifi mr-1" /> Wifi</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/amenities'}><i className="fas fa-dumbbell mr-1" /> Amenities</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/bills'}><i className="fas fa-money-bill-wave mr-1" /> Bills</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/contact-details'}><i className="fas fa-users mr-1" /> Contact Details</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/images'}><i className="fas fa-images mr-1" /> Images</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/notes'}><i className="fas fa-align-left mr-1" /> Notes</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/rooms'}><i className="fas fa-bed mr-1" /> Rooms</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/social-details'}><i className="fab fa-facebook-square mr-1" /> Social Details</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/type'}><i className="fas fa-hotel mr-1" /> Type</Link>
+                <Link className="dropdown-item" href={'/listing/' + params.listingSlug + '/wifi'}><i className="fas fa-wifi mr-1" /> Wifi</Link>
             </DropDownMenu>
         )
     }

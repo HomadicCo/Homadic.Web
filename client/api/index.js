@@ -99,3 +99,7 @@ export function apiPostListing(listing) {
 export function apiGetListingHistory(slug) {
     return Axios.get('listing/' + slug + '/history', getAuthHeader());
 }
+
+export function apiGetListingVersion(slug, versionId) {
+    return Axios.get('listing/' + slug + '/history/' + versionId, getAuthHeader());
+}
