@@ -36,7 +36,7 @@ class ListingVersions extends React.Component {
         let { params } = this.props;
 
         return (
-            <tr key={i}>
+            <tr key={i} style={version.active ? { background: '#ddd', fontWeight: 'bold' } : {}}>
                 <th scope="row"><Avatar id={version.user_id} name={version.first_name} style={{ marginTop: '-5px' }} currentUser={false} size={30} className={'mr-2'} /> {version.first_name}</th>
                 <td>{getHumanTime(version.date_created)}</td>
                 <td>{version.changed}</td>
@@ -54,7 +54,7 @@ class ListingVersions extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h3 className="my-4"><i className="fas fa-history" /> {this.props.listings.selected.name} history</h3>
+                    <h3 className="my-4 text-truncate"><i className="fas fa-history" /> {this.props.listings.selected.name}</h3>
                     <table className="table">
                         <thead>
                             <tr>
