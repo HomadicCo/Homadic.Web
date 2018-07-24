@@ -60,11 +60,11 @@ export function handleGetListings(listingsQuery) {
     };
 }
 
-export function handleGetListing(listingSlug) {
+export function handleGetListing(slug) {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
             dispatch(updateFetchingListingsStatus(true));
-            const request = apiGetListing(listingSlug);
+            const request = apiGetListing(slug);
 
             request.then(response => {
                 dispatch(updateSelectedListing(response.data));

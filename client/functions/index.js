@@ -1,5 +1,6 @@
 /* global Promise */
 import removeAccents from 'remove-accents';
+import moment from 'moment';
 
 export function setDocumentTitle(value) {
     document.title = (value === undefined ? 'Abstrack' : value + ' // Abstrack');
@@ -37,6 +38,10 @@ export function delay(t) {
     });
 }
 
+// turn a date into something readable
+export function getHumanTime(t) {
+    return moment.utc(t).fromNow();
+}
 
 // generate a rando guid
 export function guid() {

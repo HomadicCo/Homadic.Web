@@ -1,5 +1,7 @@
 import React from 'react';
 import { browserHistory, Link } from 'react-router';
+import moment from 'moment';
+import { getHumanTime } from '../../functions';
 import ListingHeader from '../../components/ListingHeader/ListingHeader';
 import LoadingPlane from '../../components/LoadingScreen/LoadingPlane';
 import Avatar from '../../Components/Avatar/Avatar';
@@ -15,7 +17,7 @@ class ListingVersions extends React.Component {
         setFetchingListingHistoryStatus(true);
 
         if (params.listingSlug) {
-            if (listings.selected == null || listings.selected == undefined) {
+            if (listings.selected.name == undefined || listings.selected.name == null) {
                 handleGetListing(params.listingSlug).then(() => {
                     handleGetListingHistory(params.listingSlug);
                 }).catch(() => {
@@ -36,7 +38,7 @@ class ListingVersions extends React.Component {
         return (
             <tr key={i}>
                 <th scope="row"><Avatar id={version.user_id} name={version.first_name} style={{ marginTop: '-5px' }} currentUser={false} size={30} className={'mr-2'} /> {version.first_name}</th>
-                <td>{version.date_created}</td>
+                <td>{getHumanTime(version.date_created)}</td>
                 <td>{version.changed}</td>
                 <td>{version.active ? 'True' : 'False'}</td>
                 <td><Link to={'/listing/' + params.listingSlug + '/history/' + version.id}>View</Link></td>
@@ -45,11 +47,14 @@ class ListingVersions extends React.Component {
     }
 
     renderHistoryTable() {
-        let { listingHistory } = this.props;
+        const orderedListingHistory = this.props.listingHistory.data.sort(function (left, right) {
+            return moment.utc(right.date_created).diff(moment.utc(left.date_created))
+        });
 
         return (
             <div className="container">
                 <div className="row">
+                    <h3 className="my-4"><i className="fas fa-history" /> {this.props.listings.selected.name} history</h3>
                     <table className="table">
                         <thead>
                             <tr>
@@ -60,7 +65,7 @@ class ListingVersions extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {listingHistory.data.map((v, i) => { return (this.renderVersion(v, i)) })}
+                            {orderedListingHistory.map((v, i) => { return (this.renderVersion(v, i)) })}
                         </tbody>
                     </table>
                 </div>
