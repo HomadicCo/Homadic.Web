@@ -16,9 +16,23 @@ class ListingHeader extends React.Component {
         handleThumbsUp(listings.selected.slug, value);
     }
 
+    renderEditDropDown() {
+        return (
+            <div className="btn-group">
+                <button type="button" className="btn btn-action btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i className="fas fa-pencil-alt" /> Edit</button>
+                <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">Action</a>
+                    <a className="dropdown-item" href="#">Another action</a>
+                    <a className="dropdown-item" href="#">Something else here</a>
+                    <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>)
+    }
+
     renderFullHeader() {
         return (
-            <span><ThumbsUpDown {...this.props} clickThumbsUp={this.clickThumbsUp} /> <span className="btn btn-sm btn-action ml-2 d-none d-sm-inline"><i className="fas fa-pencil-alt" /> Edit</span></span>
+            <span><ThumbsUpDown {...this.props} clickThumbsUp={this.clickThumbsUp} /> {this.renderEditDropDown()}</span>
         )
     }
 

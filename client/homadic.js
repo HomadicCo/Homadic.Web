@@ -37,7 +37,14 @@ const router = (
             <Route component={AppAuthenticated}>
                 <Route path="/add(/:step)" component={AddListing} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/listing/:listingSlug/amenities" component={AddImages} />
+                <Route path="/listing/:listingSlug/bills" component={AddImages} />
+                <Route path="/listing/:listingSlug/contact-details" component={AddImages} />
                 <Route path="/listing/:listingSlug/images" component={AddImages} />
+                <Route path="/listing/:listingSlug/rooms" component={AddImages} />
+                <Route path="/listing/:listingSlug/social-details" component={AddImages} />
+                <Route path="/listing/:listingSlug/type" component={AddImages} />
+                <Route path="/listing/:listingSlug/wifi" component={AddImages} />
             </Route>
             <Route path="/" component={App}>
                 <IndexRoute component={Index} />

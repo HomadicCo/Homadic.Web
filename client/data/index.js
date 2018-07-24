@@ -21,7 +21,7 @@ export const cities = [
     },
     {
         name: 'Ho Chi Minh',
-        slug: '/ho-chi-minh-ho-chi-minh-city-vietnam?lat=10.777993&lng=106.696869&z=13',
+        slug: '/ho-chi-minh-ho-chi-minh-city-vietnam?lat=10.782529&lng=106.694294&z=13',
         unsplash: 'HdtIiGcIQtU',
         country: 'Vietnam',
         country_code: 'vn'

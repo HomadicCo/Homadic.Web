@@ -63,9 +63,9 @@ class ListingTemplate extends React.Component {
                     {listingError != null ? <div className="alert alert-danger" role="alert"><i className="far fa-angry" style={{ fontSize: '1.2em' }} /> {listingError}</div> : undefined}
                     <Hero listing={listing} full />
                     <div className="container listing-content">
-                        <Rooms listing={listing} />
                         {previewMode ? undefined : <ImageGallery images={images} slug={listing.slug} />}
                         <Notes notes={listing.notes} />
+                        <Rooms listing={listing} />
                         <Internet listing={listing} />
                         {reviews == undefined ? undefined : <Reviews reviews={reviews} {...this.props} />}
                         <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
