@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { Helmet } from 'react-helmet';
 import { getMetaDetails } from '../../functions';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
@@ -75,7 +74,7 @@ class Index extends React.Component {
                         </div>
                     </div>
                     <div className="how-it-works">
-                        <Link to="#" className="btn btn-sm btn-action"><i className="fas fa-question-circle" /> How Homadic works</Link>
+                        <a href="https://github.com/HomadicCo/Homadic.Web/blob/master/README.md#what-is-homadic" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-action"><i className="fas fa-question-circle" /> How Homadic works</a>
                     </div>
                     <div className="index-bg" /></div>
             </div>
