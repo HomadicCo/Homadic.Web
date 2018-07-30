@@ -3,7 +3,7 @@ When I, [Nick Brooks](https://www.twitter.com/nickbrooks37), began travelling So
 
 There wasn't, however, one central repository for this information. A way to easily document, query, update, filter and compare this data. Something like most travel accommodation sites like AirBNB have...
 
-THe aim of Homadic is to make it easier to find great accommodation ahead of time, or even when you've hit the ground in your new city.
+The aim of Homadic is to make it easier to find great accommodation ahead of time, or even when you've hit the ground in your new city.
 
 ### Crowd-sourced
 Homadic is also crowd sourced allowing it to be community driven. All data comes from fellow remote workers and travellers who have done it all before you.
