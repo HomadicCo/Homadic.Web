@@ -1,4 +1,22 @@
-## Front End Stack
+# How Homadic Works
+When I, [Nick Brooks](https://www.twitter.com/nickbrooks37), began travelling South East Asia as a remote worker, I'd try and scope out a cities rental situation before I hit the ground. This information is readily available - scattered across the internet on sites like Facebook, YouTube and personal blogs. A lot of great people put good time and effort into providing this information. It's a unique rental requirement, somewhere between nightly hotel accommodation and renting for 6-12 months.
+
+There wasn't, however, one central repository for this information. A way to easily document, query, update, filter and compare this data. Something like most travel accommodation sites like AirBNB have...
+
+THe aim of Homadic is to make it easier to find great accommodation ahead of time, or even when you've hit the ground in your new city.
+
+### Crowd-sourced
+Homadic is also crowd sourced allowing it to be community driven. All data comes from fellow remote workers and travellers who have done it all before you.
+
+Users can sign in, add a new listing or update an existing listing, add photos or reviews with the information they know about places.
+
+### Automated nearby places
+Further to this, Homadic itself will poll location services for futher information about what's around a listing. Nearest subway or train station, nearest convenience store, nearest laundry and how long it will take to walk or drive to them. Soon you will be able to filter on these data points.
+
+# What's next?
+You can find out what we're building next by [browsing the `new feature` label](https://github.com/HomadicCo/Homadic.Web/labels/new%20feature).
+
+# Front End Stack
 - **[React](https://github.com/facebook/react)**
 - **[React Redux](https://github.com/reduxjs/react-redux)**
 - **[React Router](https://github.com/ReactTraining/react-router)**
@@ -9,7 +27,7 @@
 - **[Marked](https://github.com/markedjs/marked)** - Renders Markdown on the client.
 - **[Others](package.json)**
 
-## Server Stack
+# Server Stack
 Homadic is 100% serverless. Using Azure Functions and a combination of CosmosDB and Table Storage for data and file storage means I manage no servers and can focus on faster development!
 
 ### [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)
