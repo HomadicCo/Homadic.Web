@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { loadProgressBar } from 'axios-progress-bar'
 
 // Import CSS
 import Style from './styles/App.scss';
@@ -30,9 +29,6 @@ if (localStorage.getItem('test.apiUrl') == null) {
     ReactGA.initialize('UA-121445370-1');
     ReactGA.pageview(window.location.pathname + window.location.search);
 }
-
-// progress bar
-loadProgressBar();
 
 const router = (
     <Provider store={store}>

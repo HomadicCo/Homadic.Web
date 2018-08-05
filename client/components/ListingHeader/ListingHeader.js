@@ -12,9 +12,9 @@ class ListingHeader extends React.Component {
     }
 
     clickThumbsUp(value) {
-        let { handleThumbsUp, listings } = this.props;
+        let { handleThumbsUp, params } = this.props;
 
-        handleThumbsUp(listings.slug, value);
+        handleThumbsUp(params.listingSlug, value);
     }
 
     renderEditDropDown() {
