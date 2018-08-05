@@ -1,12 +1,12 @@
 import React from 'react';
 import { browserHistory, } from 'react-router';
 import Dropzone from 'react-dropzone';
-import { apiGetListing, apiPostListingImage } from '../../../api';
-import ListingHeader from '../../ListingHeader/ListingHeader';
-import Hero from '../components/Hero';
-import LoadingScreen from '../../../components/LoadingScreen/LoadingScreen';
-import LoadingPlane from '../../../components/LoadingScreen/LoadingPlane';
-import ImageGallery from '../../ImageGallery/ImageGallery';
+import { apiGetListing, apiPostListingImage } from '../../api';
+import ListingHeader from '../ListingHeader/ListingHeader';
+import Hero from '../ListingTemplate/components/Hero';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
+import LoadingPlane from '../../components/LoadingScreen/LoadingPlane';
+import ImageGallery from '../ListingHeader/ListingHeader';
 
 class AddImages extends React.Component {
     constructor(props) {
@@ -83,7 +83,7 @@ class AddImages extends React.Component {
 
         return (
             <div className="listing">
-                <ListingHeader {...this.props} />
+                <ListingHeader {...this.props} full />
                 <Hero listing={listing} />
                 <div className="container mb-4">
                     {uploadingImage ? <div className="text-center"><LoadingPlane /><p>Uploading image...</p></div> : this.renderDropZone()}

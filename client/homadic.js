@@ -16,7 +16,8 @@ import ListingHistory from './store/ListingHistory/ListingHistory';
 import ListingVersion from './components/ListingVersion/ListingVersion';
 import Map from './store/Map/Map';
 import Profile from './store/Profile/Profile';
-import AddImages from './components/ListingTemplate/components/AddImages';
+import AddImages from './components/EditListing/AddImages';
+import EditAmenities from './components/EditListing/EditAmenities';
 
 // Import Router
 import { Router, Route, IndexRoute } from 'react-router';
@@ -39,7 +40,7 @@ const router = (
             <Route component={AppAuthenticated}>
                 <Route path="/add(/:step)" component={AddListing} />
                 <Route path="/profile" component={Profile} />
-                <Route path="/listing/:listingSlug/amenities" component={AddImages} />
+                <Route path="/listing/:listingSlug/amenities" component={EditAmenities} />
                 <Route path="/listing/:listingSlug/bills" component={AddImages} />
                 <Route path="/listing/:listingSlug/contact-details" component={AddImages} />
                 <Route path="/listing/:listingSlug/images" component={AddImages} />
