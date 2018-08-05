@@ -2,7 +2,7 @@ import React from 'react';
 import { bedrooms, bathrooms, kitchen, laundry, rentalLengths } from '../../../data';
 import { generateRoomTitle } from '../../../functions';
 
-class Room extends React.Component {
+class EditRoom extends React.Component {
     constructor(props) {
         super(props);
 
@@ -141,4 +141,4 @@ class Room extends React.Component {
     }
 }
 
-export default Room;
+export default EditRoom;

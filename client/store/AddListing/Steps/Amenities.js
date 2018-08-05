@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { internetType } from '../../../data';
+import EditAmenities from '../../../components/EditComponents/EditAmenities';
+import EditInternet from '../../../components/EditComponents/EditInternet';
 
 class Amenities extends React.Component {
     constructor(props) {
@@ -61,77 +62,8 @@ class Amenities extends React.Component {
 
         return (
             <form autoComplete="off" ref={(c) => { this.amenitiesForm = c; }} noValidate>
-                <h1 className="fancy blue display-4 mb-4">Amenities</h1>
-                <div className="form-row">
-                    <div className="col">
-                        <label className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" name="amenities.air_conditioning" defaultChecked={listing.amenities.air_conditioning} value={listing.amenities.air_conditioning} onChange={this.handleChange} />
-                            <span className="custom-control-indicator" />
-                            <span className="custom-control-description">Air Conditioning</span>
-                        </label>
-                    </div>
-                    <div className="col">
-                        <label className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" name="amenities.gym" defaultChecked={listing.amenities.gym} value={listing.amenities.gym} onChange={this.handleChange} />
-                            <span className="custom-control-indicator" />
-                            <span className="custom-control-description">Gym</span>
-                        </label>
-                    </div>
-                    <div className="col">
-                        <label className="custom-control custom-checkbox">
-                            <input type="checkbox" className="custom-control-input" name="amenities.pool" defaultChecked={listing.amenities.pool} value={listing.amenities.pool} onChange={this.handleChange} />
-                            <span className="custom-control-indicator" />
-                            <span className="custom-control-description">Pool</span>
-                        </label>
-                    </div>
-                </div>
-                <div className="content-header">
-                    <h5>Internet</h5>
-                </div>
-                <div className="form-row">
-                    <div className="form-group col-md-3">
-                        <label htmlFor="inputInternetType" className="col-form-label">Internet Type <i className="text-muted fas fa-wifi" /></label>
-                        <select id="inputInternetType" className="form-control" name="wifi.type" value={listing.wifi.type} onChange={this.handleChange}>
-                            {internetType.map((type, i) => (<option key={i} value={type.value}>{type.name}</option>))}
-                        </select>
-                    </div>
-                </div>
-
-                {listing.wifi.type != 'none' ?
-                    <div>
-                        <div className="form-row">
-                            {(['paid', 'canInstall'].indexOf(listing.wifi.type) > -1) ?
-                                <div className="form-group col-md-3">
-                                    <label htmlFor="inputInternetCost" className="col-form-label mr-2">Cost per month <i className="text-muted far fa-dollar" /></label>
-                                    <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                                        <div className="input-group-addon">{listing.currency}</div>
-                                        <input type="text" className="form-control" id="inputInternetCost" data-type="int" name="wifi.rate" value={listing.wifi.rate} onChange={this.handleChange} />
-                                    </div>
-                                </div> : undefined}
-                            <div className="form-group col-md-3">
-                                <label htmlFor="inputInternetDownload" className="col-form-label mr-2">Download <i className="text-muted fas fa-cloud-download-alt" /></label>
-                                <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <input type="number" className="form-control" id="inputInternetDownload" data-type="int" max={100} name="wifi.download" value={listing.wifi.download} onChange={this.handleChange} />
-                                    <div className="input-group-addon">mbps</div>
-                                </div>
-                            </div>
-                            <div className="form-group col-md-3">
-                                <label htmlFor="inputInternetUpload" className="col-form-label mr-2">Upload <i className="text-muted fas fa-cloud-upload-alt" /></label>
-                                <div className="input-group mb-2 mr-sm-2 mb-sm-0">
-                                    <input type="number" className="form-control" id="inputInternetUpload" data-type="int" max={100} name="wifi.upload" value={listing.wifi.upload} onChange={this.handleChange} />
-                                    <div className="input-group-addon">mbps</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="form-row">
-                            <div className="form-group col-xs-12">
-                                <a href="http://www.speedtest.net/?ref=https:/homadic.co" className="btn btn-action btn-sm" rel="noopener noreferrer" target="_blank"><i className="fas fa-rocket"></i> SpeedTest</a>
-                            </div>
-                        </div>
-                    </div> : undefined}
-
-                <label htmlFor="inputInternetNotes" className="col-form-label">Notes</label>
-                <textarea id="inputInternetNotes" className="form-control" placeholder="Special notes on the internet, internet is life!" name="wifi.notes" value={listing.wifi.notes} onChange={this.handleChange} maxLength={1000} />
+                <EditAmenities handleChange={this.handleChange} amenities={listing.amenities} />
+                <EditInternet handleChange={this.handleChange} wifi={listing.wifi} currency={listing.currency} />
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
                         <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><i className="fas fa-caret-left" /> Rooms</button>

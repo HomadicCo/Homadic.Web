@@ -36,7 +36,7 @@ export const cities = [
     {
         name: 'Mexico City',
         slug: '/mexico-city-cdmx-mexico?lat=19.422814&lng=-99.152348&z=13',
-        unsplash: 'KbR06h9dNQwy',
+        unsplash: 'KbR06h9dNQw',
         country: 'Mexico City',
         country_code: 'mx'
     },

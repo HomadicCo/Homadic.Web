@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import Notes from '../../../components/ListingTemplate/components/Notes';
+import EditNotes from '../../../components/EditComponents/EditNotes';
 
 class NotesEditor extends React.Component {
     constructor(props) {
@@ -13,7 +13,6 @@ class NotesEditor extends React.Component {
         this.handleNextClick = this.handleNextClick.bind(this);
         this.handlePrevClick = this.handlePrevClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.setPreviewMode = this.setPreviewMode.bind(this);
     }
 
     componentWillMount() {
@@ -51,55 +50,14 @@ class NotesEditor extends React.Component {
         this.props.updateInputProp(key, value);
     }
 
-    setPreviewMode(value, e) {
-        e.preventDefault();
-        this.setState({ previewMode: value })
-    }
-
-    renderPreviewToggle() {
-        let { previewMode } = this.state;
-
-        return (
-            <div className="btn-group mb-2">
-                <button type="button" className={previewMode ? 'btn btn-sm btn-light' : 'btn btn-sm btn-action'} onClick={this.setPreviewMode.bind(null, false)}><i className="fas fa-pencil-alt" /> Editor</button>
-                <button type="button" className={previewMode ? 'btn btn-sm btn-action' : 'btn btn-sm btn-light'} onClick={this.setPreviewMode.bind(null, true)}><i className="fas fa-eye" /> Preview</button>
-            </div>
-        )
-    }
-
-    renderPreviewMode() {
-        let { notes } = this.props.addListing.listing;
-        let { previewMode } = this.state;
-
-        return (
-            <div hidden={!previewMode}>
-                {this.renderPreviewToggle()}
-                <Notes notes={notes} />
-            </div>
-        )
-    }
-
-    renderEditor() {
-        let { listing } = this.props.addListing;
-        let { previewMode } = this.state;
-
-        return (
-            <div hidden={previewMode}>
-                <form autoComplete="off" ref={(c) => { this.notesForm = c; }} noValidate>
-                    <h1 className="fancy blue display-4 mb-4">Notes</h1>
-                    <p><a href="https://guides.github.com/features/mastering-markdown/" rel="noopener noreferrer" target="_blank">Markdown</a> is enabled. And you can add YouTube clips!</p>
-                    {this.renderPreviewToggle()}
-                    <textarea id="inputNotes" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="notes" maxLength={9000} value={listing.notes} onChange={this.handleChange} />
-                </form>
-            </div>
-        )
-    }
-
     render() {
+        let { listing } = this.props.addListing;
+
         return (
             <div>
-                {this.renderPreviewMode()}
-                {this.renderEditor()}
+                <form autoComplete="off" ref={(c) => { this.notesForm = c; }} noValidate>
+                    <EditNotes notes={listing.notes} handleChange={this.handleChange} />
+                </form>
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
                         <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><i className="fas fa-caret-left" /> Amenities</button>
