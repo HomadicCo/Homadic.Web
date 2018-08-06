@@ -1,16 +1,15 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { apiGetListing, apiUpdateContactDetails } from '../../api';
+import { apiGetListing, apiUpdateRooms } from '../../api';
 import ListingHeader from '../ListingHeader/ListingHeader';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
 import Hero from '../ListingTemplate/components/Hero';
-import ContactDetailsEditor from '../EditComponents/ContactDetailsEditor';
+import RoomsEditor from '../EditComponents/RoomsEditor';
 
-class EditContactDetails extends React.Component {
+class EditRooms extends React.Component {
     constructor(props) {
         super(props);
 
-        this.handleChange = this.handleChange.bind(this);
         this.handleSaveChanges = this.handleSaveChanges.bind(this);
         this.handleGoBack = this.handleGoBack.bind(this);
 
@@ -21,13 +20,11 @@ class EditContactDetails extends React.Component {
     }
 
     componentWillMount() {
-        let { params, setNewListing } = this.props;
-
-        this.setState({ loading: true, error: undefined });
+        let { setNewListing, params } = this.props;
 
         apiGetListing(params.listingSlug).then((response) => {
             setNewListing(response.data);
-            this.setState({ loading: false, error: undefined });
+            this.setState({ loading: false });
         }).catch(() => {
             browserHistory.push('/');
         });
@@ -41,26 +38,15 @@ class EditContactDetails extends React.Component {
 
     handleSaveChanges(e) {
         e.preventDefault();
-        let { slug, contact_details } = this.props.addListing.listing;
+        let { slug, rooms } = this.props.addListing.listing;
 
         this.setState({ loading: true, error: undefined });
 
-        apiUpdateContactDetails(slug, contact_details).then(() => {
+        apiUpdateRooms(slug, rooms).then(() => {
             browserHistory.push('/listing/' + slug + '?updated=true');
         }).catch((e) => {
             this.setState({ loading: false, error: e });
         });
-    }
-
-    handleChange(e) {
-        const target = e.target;
-        let value = target.type === 'checkbox' ? target.checked : target.value;
-        let key = target.name;
-
-        // check if int or string
-        value = target.getAttribute('data-type') === 'int' ? parseFloat(value) : value;
-
-        this.props.updateInputProp(key, value);
     }
 
     renderLoaded() {
@@ -69,10 +55,8 @@ class EditContactDetails extends React.Component {
         return (
             <div className="listing">
                 <Hero listing={listing} />
-                <div className="content-box">
-                    <ContactDetailsEditor contactDetails={listing.contact_details} handleChange={this.handleChange} />
-                </div>
-                <div className="text-center">
+                <RoomsEditor rooms={listing.rooms} {...this.props} />
+                <div className="text-center mt-4">
                     <div className="btn-group" role="group" aria-label="Do stuff">
                         <button className="btn" onClick={this.handleGoBack}><i className="far fa-save"></i> Back</button>
                         <button className="btn btn-action" onClick={this.handleSaveChanges}><i className="far fa-save"></i> Save</button>
@@ -97,4 +81,4 @@ class EditContactDetails extends React.Component {
     }
 }
 
-export default EditContactDetails;
+export default EditRooms;

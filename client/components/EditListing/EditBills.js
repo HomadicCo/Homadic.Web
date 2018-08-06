@@ -1,7 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import { apiGetListing, apiUpdateBills } from '../../api';
-import { setNestedKey } from '../../functions';
 import ListingHeader from '../ListingHeader/ListingHeader';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
 import Hero from '../ListingTemplate/components/Hero';
@@ -18,15 +17,15 @@ class EditBills extends React.Component {
         this.state = {
             error: undefined,
             loading: true,
-            listing: {}
         }
     }
 
     componentWillMount() {
-        let { params } = this.props;
+        let { params, setNewListing } = this.props;
 
         apiGetListing(params.listingSlug).then((response) => {
-            this.setState({ listing: response.data, loading: false });
+            setNewListing(response.data);
+            this.setState({ loading: false });
         }).catch(() => {
             browserHistory.push('/');
         });
@@ -40,14 +39,14 @@ class EditBills extends React.Component {
 
     handleSaveChanges(e) {
         e.preventDefault();
-        let { slug, bills } = this.state.listing;
+        let { slug, bills } = this.props.addListing.listing;
 
-        this.setState({ ...this.state, loading: true, error: undefined });
+        this.setState({ loading: true, error: undefined });
 
         apiUpdateBills(slug, bills).then(() => {
             browserHistory.push('/listing/' + slug + '?updated=true');
         }).catch((e) => {
-            this.setState({ ...this.state, loading: false, error: e });
+            this.setState({ loading: false, error: e });
         });
     }
 
@@ -59,11 +58,11 @@ class EditBills extends React.Component {
         // check if int or string
         value = target.getAttribute('data-type') === 'int' ? parseFloat(value) : value;
 
-        this.setState(Object.assign({}, setNestedKey(this.state.listing, key, value)));
+        this.props.updateInputProp(key, value);
     }
 
     renderLoaded() {
-        let { listing } = this.state;
+        let { listing } = this.props.addListing;
 
         return (
             <div className="listing">

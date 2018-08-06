@@ -1,4 +1,4 @@
-import { setNestedKey } from '../../functions';
+import { guid, setNestedKey } from '../../functions';
 
 //only return if id is not noteId
 function dontRemove(roomId, room) {
@@ -11,6 +11,12 @@ function AddListing(state = [], action) {
     switch (action.type) {
         case 'CLEAR_NEW_LISTING':
             newState.listing = action.emptyListing;
+            return newState;
+        case 'SET_NEW_LISTING':
+            action.listing.rooms.forEach((room) => {
+                room.id = guid();
+            })
+            newState.listing = action.listing;
             return newState;
         case 'SET_VALIDATION_VALUE':
             newState.valid[action.key] = action.value;

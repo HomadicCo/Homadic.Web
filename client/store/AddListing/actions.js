@@ -11,6 +11,13 @@ export function clearNewListing() {
     }
 }
 
+export function setNewListing(listing) {
+    return {
+        type: 'SET_NEW_LISTING',
+        listing
+    }
+}
+
 // change status
 export function setFetchingNearbyResultsStatus(value) {
     return {
