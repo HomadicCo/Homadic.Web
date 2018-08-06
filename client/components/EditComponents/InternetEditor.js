@@ -1,7 +1,7 @@
 import React from 'react';
 import { internetType } from '../../data';
 
-class EditInternet extends React.Component {
+class InternetEditor extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -63,4 +63,4 @@ class EditInternet extends React.Component {
     }
 }
 
-export default EditInternet;
+export default InternetEditor;

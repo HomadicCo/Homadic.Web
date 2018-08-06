@@ -1,6 +1,6 @@
 import React from 'react';
 
-class EditAmenities extends React.Component {
+class AmenitiesEditor extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -10,7 +10,7 @@ class EditAmenities extends React.Component {
 
         return (
             <div>
-                <h1 className="fancy blue display-4 mb-4">Amenities</h1>
+                <h3 className="fancy blue mb-4">Amenities</h3>
                 <div className="form-row">
                     <div className="col">
                         <label className="custom-control custom-checkbox">
@@ -39,4 +39,4 @@ class EditAmenities extends React.Component {
     }
 }
 
-export default EditAmenities;
+export default AmenitiesEditor;

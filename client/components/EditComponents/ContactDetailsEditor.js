@@ -1,6 +1,6 @@
 import React from 'react';
 
-class EditSocialDetails extends React.Component {
+class ContactDetailsEditor extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -39,4 +39,4 @@ class EditSocialDetails extends React.Component {
     }
 }
 
-export default EditSocialDetails;
+export default ContactDetailsEditor;

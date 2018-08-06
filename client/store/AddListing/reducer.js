@@ -1,31 +1,8 @@
+import { setNestedKey } from '../../functions';
+
 //only return if id is not noteId
 function dontRemove(roomId, room) {
     return roomId !== room.id;
-}
-
-function setNested(obj, key, value) {
-    if (typeof key === 'string') {
-        key = key.split('.');
-    }
-
-    if (key.length > 1) {
-        let p = key.shift();
-        let keyIsArray = p.match(/\[(\d*)\]/g);
-        let i = null;
-
-        if (keyIsArray) {
-            i = parseFloat(keyIsArray[0].match(/(\d+)/g));
-            p = p.replace(/\[(\d*)\]/g, '');
-        }
-
-        if (obj[p] === null || typeof obj[p] !== 'object') {
-            obj[p] = {};
-        }
-
-        i === null ? setNested(obj[p], key, value) : setNested(obj[p][i], key, value);
-    } else {
-        obj[key[0]] = value;
-    }
 }
 
 function AddListing(state = [], action) {
@@ -42,7 +19,7 @@ function AddListing(state = [], action) {
             newState.ui.gmid = action.gmid;
             return newState;
         case 'UPDATE_INPUT_PROP':
-            setNested(newState.listing, action.key, action.value);
+            setNestedKey(newState.listing, action.key, action.value);
             return newState;
         case 'SET_NEARBY_RESULTS':
             newState.nearbyResults = action.data;

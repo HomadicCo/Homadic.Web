@@ -1,8 +1,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import EditNotes from '../../../components/EditComponents/EditNotes';
+import NotesEditor from '../../../components/EditComponents/NotesEditor';
 
-class NotesEditor extends React.Component {
+class Notes extends React.Component {
     constructor(props) {
         super(props);
 
@@ -56,7 +56,7 @@ class NotesEditor extends React.Component {
         return (
             <div>
                 <form autoComplete="off" ref={(c) => { this.notesForm = c; }} noValidate>
-                    <EditNotes notes={listing.notes} handleChange={this.handleChange} />
+                    <NotesEditor notes={listing.notes} handleChange={this.handleChange} />
                 </form>
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
@@ -69,4 +69,4 @@ class NotesEditor extends React.Component {
     }
 }
 
-export default NotesEditor;
+export default Notes;

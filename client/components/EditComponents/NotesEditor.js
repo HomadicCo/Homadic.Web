@@ -1,7 +1,7 @@
 import React from 'react';
 import Notes from '../ListingTemplate/components/Notes';
 
-class EditNotes extends React.Component {
+class NotesEditor extends React.Component {
     constructor(props) {
         super(props)
 
@@ -64,4 +64,4 @@ class EditNotes extends React.Component {
     }
 }
 
-export default EditNotes;
+export default NotesEditor;

@@ -7,12 +7,14 @@ class DropDownMenu extends React.Component {
             isToggleOn: false
         };
     }
+
     showDropdown(e) {
         e.preventDefault();
         this.setState(prevState => ({
             isToggleOn: !prevState.isToggleOn
         }));
     }
+
     render() {
         let { buttonClass = 'action', customClass, icon, name } = this.props;
         const classDropdownMenu = 'dropdown-menu' + (this.state.isToggleOn ? ' show' : '')

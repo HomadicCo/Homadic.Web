@@ -38,6 +38,16 @@ class ListingTemplate extends React.Component {
         })
     }
 
+    renderUpdatedAlert() {
+        return (
+            <div className="container">
+                <div className="alert alert-success" role="alert">
+                    <span><i className="far fa-grin-stars" style={{ fontSize: '1.2em' }} /> <strong>Thanks for your contribution!</strong> It can take a few moments for your changes to appear.</span>
+                </div>
+            </div>
+        )
+    }
+
     renderPreviewHeader() {
         let { profile } = this.props;
 
@@ -53,7 +63,7 @@ class ListingTemplate extends React.Component {
     }
 
     render() {
-        let { images, listing, previewMode, reviews } = this.props;
+        let { images, listing, previewMode, reviews, location } = this.props;
         let { listingError } = this.state;
 
         return (
@@ -61,6 +71,7 @@ class ListingTemplate extends React.Component {
                 {previewMode ? this.renderPreviewHeader() : <ListingHeader {...this.props} full />}
                 <div className="listing">
                     {listingError != null ? <div className="alert alert-danger" role="alert"><i className="far fa-angry" style={{ fontSize: '1.2em' }} /> {listingError}</div> : undefined}
+                    {location.query.updated == 'true' ? this.renderUpdatedAlert() : undefined}
                     <Hero listing={listing} full />
                     <div className="container listing-content">
                         {previewMode ? undefined : <ImageGallery images={images} slug={listing.slug} />}

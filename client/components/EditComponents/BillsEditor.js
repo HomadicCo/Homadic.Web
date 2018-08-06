@@ -1,7 +1,7 @@
 import React from 'react';
 import { currencies } from '../../data';
 
-class EditBills extends React.Component {
+class BillsEditor extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -42,4 +42,4 @@ class EditBills extends React.Component {
     }
 }
 
-export default EditBills;
+export default BillsEditor;

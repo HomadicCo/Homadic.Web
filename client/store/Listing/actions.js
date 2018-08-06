@@ -1,5 +1,5 @@
 /* global Promise */
-import { apiGetListing, apiGetListings, apiGetReview, apiPostThumbsUp, apiPostUserReview } from '../../api';
+import { apiGetListing, apiGetListings, apiGetReview, apiPostThumbsUp, apiPostUserReview, apiUpdateAmenities } from '../../api';
 
 // update listing
 export function updateSelectedListing(data) {
@@ -120,6 +120,21 @@ export function handleSubmitUserReview(slug, review) {
                 dispatch(updateSelectedUserReview(response.data));
                 dispatch(addOrReplaceReview(response.data));
                 resolve(response.data.data);
+            }).catch(error => {
+                console.error(error);
+                reject(error);
+            });
+        });
+    };
+}
+
+export function handleUpdateAmenities(slug, amenities) {
+    return () => {
+        return new Promise((resolve, reject) => {
+            const request = apiUpdateAmenities(slug, amenities);
+
+            request.then(response => {
+                resolve(response.data);
             }).catch(error => {
                 console.error(error);
                 reject(error);

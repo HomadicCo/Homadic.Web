@@ -1,7 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import EditAmenities from '../../../components/EditComponents/EditAmenities';
-import EditInternet from '../../../components/EditComponents/EditInternet';
+import AmenitiesEditor from '../../../components/EditComponents/AmenitiesEditor';
+import InternetEditor from '../../../components/EditComponents/InternetEditor';
 
 class Amenities extends React.Component {
     constructor(props) {
@@ -62,8 +62,8 @@ class Amenities extends React.Component {
 
         return (
             <form autoComplete="off" ref={(c) => { this.amenitiesForm = c; }} noValidate>
-                <EditAmenities handleChange={this.handleChange} amenities={listing.amenities} />
-                <EditInternet handleChange={this.handleChange} wifi={listing.wifi} currency={listing.currency} />
+                <AmenitiesEditor handleChange={this.handleChange} amenities={listing.amenities} />
+                <InternetEditor handleChange={this.handleChange} wifi={listing.wifi} currency={listing.currency} />
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
                         <button type="button" onClick={this.handlePrevClick} className="btn btn-outline-success mx-1"><i className="fas fa-caret-left" /> Rooms</button>

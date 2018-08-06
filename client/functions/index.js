@@ -162,3 +162,28 @@ export function getListingBySlug(slug, listings) {
     const i = listings.findIndex((l) => l.slug == slug);
     return listings[i];
 }
+
+export function setNestedKey(obj, key, value) {
+    if (typeof key === 'string') {
+        key = key.split('.');
+    }
+
+    if (key.length > 1) {
+        let p = key.shift();
+        let keyIsArray = p.match(/\[(\d*)\]/g);
+        let i = null;
+
+        if (keyIsArray) {
+            i = parseFloat(keyIsArray[0].match(/(\d+)/g));
+            p = p.replace(/\[(\d*)\]/g, '');
+        }
+
+        if (obj[p] === null || typeof obj[p] !== 'object') {
+            obj[p] = {};
+        }
+
+        i === null ? setNestedKey(obj[p], key, value) : setNestedKey(obj[p][i], key, value);
+    } else {
+        obj[key[0]] = value;
+    }
+}

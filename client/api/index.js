@@ -103,3 +103,7 @@ export function apiGetListingHistory(slug) {
 export function apiGetListingVersion(slug, versionId) {
     return Axios.get('listing/' + slug + '/history/' + versionId, getAuthHeader());
 }
+
+export function apiUpdateAmenities(slug, amenities) {
+    return Axios.post('listing/' + slug + '/amenities', amenities, getAuthHeader());
+}

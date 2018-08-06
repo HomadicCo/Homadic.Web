@@ -12,7 +12,7 @@ import ProgressFooter from './components/ProgressFooter';
 import ListingDetails from './Steps/ListingDetails';
 import Rooms from './Steps/Rooms';
 import Amenities from './Steps/Amenities';
-import NotesEditor from './Steps/NotesEditor';
+import Notes from './Steps/Notes';
 import PreviewListing from './Steps/PreviewListing';
 
 class AddListing extends React.Component {
@@ -42,7 +42,7 @@ class AddListing extends React.Component {
                 )
             case 'notes':
                 return (
-                    <NotesEditor {...this.props} />
+                    <Notes {...this.props} />
                 )
             case 'preview':
                 return (

@@ -2,8 +2,8 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import { apiGetGooglePlace } from '../../../api';
 import { emptyListing, rentalTypes } from '../../../data';
-import EditSocialDetails from '../../../components/EditComponents/EditSocialDetails';
-import EditContactDetails from '../../../components/EditComponents/EditContactDetails';
+import SocialDetailsEditor from '../../../components/EditComponents/SocialDetailsEditor';
+import ContactDetailsEditor from '../../../components/EditComponents/ContactDetailsEditor';
 
 class ListingDetails extends React.Component {
     constructor(props) {
@@ -72,8 +72,8 @@ class ListingDetails extends React.Component {
                         </select>
                     </div>
                 </div>
-                <EditContactDetails address={listing.address} contactDetails={listing.contact_details} handleChange={this.handleChange} full />
-                <EditSocialDetails socialDetails={listing.social_details} handleChange={this.handleChange} />
+                <ContactDetailsEditor address={listing.address} contactDetails={listing.contact_details} handleChange={this.handleChange} full />
+                <SocialDetailsEditor socialDetails={listing.social_details} handleChange={this.handleChange} />
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">
                         <button type="button" onClick={this.handleNextClick} className="btn btn-success mx-1">Next <i className="fas fa-caret-right" /></button>
