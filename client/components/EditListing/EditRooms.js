@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { apiGetListing, apiUpdateRooms } from '../../api';
+import { apiUpdateRooms } from '../../api';
 import ListingHeader from '../ListingHeader/ListingHeader';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
 import Hero from '../ListingTemplate/components/Hero';
@@ -15,17 +15,14 @@ class EditRooms extends React.Component {
 
         this.state = {
             error: undefined,
-            loading: true
+            loading: false
         }
     }
 
-    UNSAFE_componentWillMount() {
-        let { setNewListing, params } = this.props;
+    componentDidMount() {
+        let { params, handleSetNewListing } = this.props;
 
-        apiGetListing(params.listingSlug).then((response) => {
-            setNewListing(response.data);
-            this.setState({ loading: false });
-        }).catch(() => {
+        handleSetNewListing(params.listingSlug).catch(() => {
             browserHistory.push('/');
         });
     }
@@ -68,13 +65,14 @@ class EditRooms extends React.Component {
 
     render() {
         let { error, loading } = this.state;
+        let { ui } = this.props.addListing;
 
         return (
             <div className="listing">
                 <ListingHeader {...this.props} full />
                 <div className="container mb-4">
                     {error != undefined ? <div className="alert alert-danger">{error}</div> : undefined}
-                    {loading ? <LoadingPlane /> : this.renderLoaded()}
+                    {ui.fetchingNewListing || loading ? <LoadingPlane /> : this.renderLoaded()}
                 </div>
             </div>
         )
