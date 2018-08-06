@@ -11,7 +11,7 @@ class SocialDetailsEditor extends React.Component {
         return (
             <div>
                 <div className="content-header">
-                    <h5>Social Details</h5>
+                    <h3>Social Details</h3>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-4">

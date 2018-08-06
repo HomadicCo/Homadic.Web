@@ -12,7 +12,7 @@ class InternetEditor extends React.Component {
         return (
             <div>
                 <div className="content-header">
-                    <h5>Internet</h5>
+                    <h3>Internet</h3>
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-3">

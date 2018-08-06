@@ -55,7 +55,7 @@ class NotesEditor extends React.Component {
 
         return (
             <div>
-                <h1 className="fancy blue display-4 mb-4">Notes</h1>
+                <h3 className="fancy blue mb-4">Notes</h3>
                 <p><a href="https://guides.github.com/features/mastering-markdown/" rel="noopener noreferrer" target="_blank">Markdown</a> is enabled. And you can add YouTube clips!</p>
                 {this.renderPreviewToggle()}
                 {previewMode ? this.renderPreviewMode() : this.renderEditor()}

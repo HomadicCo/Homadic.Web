@@ -49,7 +49,7 @@ class Rooms extends React.Component {
 
         return (
             <form autoComplete="off" ref={(c) => { this.roomsForm = c; }} noValidate>
-                <BillsEditor bills={listing.bills} currency={listing.currency} handleChange={this.handleChange} />
+                <BillsEditor bills={listing.bills} currency={listing.currency} handleChange={this.handleChange} full />
                 <RoomsEditor rooms={listing.rooms} {...this.props} />
                 <div className="row justify-content-center mt-4">
                     <div className="col-auto">

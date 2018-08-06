@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 
 import Hero from './components/Hero';
 import ListingHeader from '../ListingHeader/ListingHeader';
+import Bills from './components/Bills';
 import Internet from './components/Internet';
 import Nearby from './components/Nearby';
 import Notes from './components/Notes';
@@ -77,11 +78,14 @@ class ListingTemplate extends React.Component {
                         {previewMode ? undefined : <ImageGallery images={images} slug={listing.slug} />}
                         <Notes notes={listing.notes} />
                         <Rooms rooms={listing.rooms} currency={listing.currency} />
-                        <Internet wifi={listing.wifi} />
                         {reviews == undefined ? undefined : <Reviews reviews={reviews} {...this.props} />}
+                        <div className="row">
+                            <Internet wifi={listing.wifi} column="col-md-6" />
+                            <Bills bills={listing.bills} slug={listing.slug} column="col-md-6" />
+                        </div>
                         <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
                         <LocationMap listing={listing} />
-                        <Contact contact_details={listing.contact_details} social_details={listing.social_details} />
+                        <Contact contact_details={listing.contact_details} social_details={listing.social_details} slug={listing.slug} />
                     </div>
                 </div>
             </div>

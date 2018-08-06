@@ -7,20 +7,22 @@ class BillsEditor extends React.Component {
     }
 
     render() {
-        let { bills, currency, handleChange } = this.props;
+        let { bills, currency, handleChange, full } = this.props;
 
         return (
             <div>
-                <h3 className="fancy blue display-4 mb-4">Bills</h3>
+                <h3 className="fancy blue mb-4">Bills</h3>
                 <div className="form-row">
-                    <div className="form-group col-md-2">
-                        <label htmlFor="inputCurrency" className="col-form-label">Currency <i className="text-muted fas fa-dollar-sign" /></label>
-                        <select id="inputCurrency" name="currency" value={currency} className="form-control" onChange={handleChange}>
-                            {currencies.map((currency, i) => (
-                                <option key={i} value={currency}>{currency}</option>)
-                            )}
-                        </select>
-                    </div>
+                    {full ?
+                        <div className="form-group col-md-2">
+                            <label htmlFor="inputCurrency" className="col-form-label">Currency <i className="text-muted fas fa-dollar-sign" /></label>
+                            <select id="inputCurrency" name="currency" value={currency} className="form-control" onChange={handleChange}>
+                                {currencies.map((currency, i) => (
+                                    <option key={i} value={currency}>{currency}</option>)
+                                )}
+                            </select>
+                        </div>
+                        : undefined}
                     <div className="form-group col">
                         <label htmlFor="inputElectricity" className="col-form-label">Electricity <i className="text-muted fas fa-plug" /></label>
                         <div className="input-group mb-2 mr-sm-2 mb-sm-0">

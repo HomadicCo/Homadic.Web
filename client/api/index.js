@@ -107,3 +107,31 @@ export function apiGetListingVersion(slug, versionId) {
 export function apiUpdateAmenities(slug, amenities) {
     return Axios.post('listing/' + slug + '/amenities', amenities, getAuthHeader());
 }
+
+export function apiUpdateBills(slug, bills) {
+    return Axios.post('listing/' + slug + '/bills', bills, getAuthHeader());
+}
+
+export function apiUpdateContactDetails(slug, contactDetails) {
+    return Axios.post('listing/' + slug + '/contactdetails', contactDetails, getAuthHeader());
+}
+
+export function apiUpdateNotes(slug, notes) {
+    return Axios.post('listing/' + slug + '/notes', notes, getAuthHeader());
+}
+
+export function apiUpdateRooms(slug, rooms) {
+    return Axios.post('listing/' + slug + '/rooms', rooms, getAuthHeader());
+}
+
+export function apiUpdateSocialDetails(slug, socialDetails) {
+    return Axios.post('listing/' + slug + '/socialdetails', socialDetails, getAuthHeader());
+}
+
+export function apiUpdateType(slug, type) {
+    return Axios.post('listing/' + slug + '/type', type, getAuthHeader());
+}
+
+export function apiUpdateWifi(slug, wifi) {
+    return Axios.post('listing/' + slug + '/wifi', wifi, getAuthHeader());
+}

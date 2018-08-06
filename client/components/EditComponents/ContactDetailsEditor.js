@@ -11,7 +11,7 @@ class ContactDetailsEditor extends React.Component {
         return (
             <div>
                 <div className="content-header">
-                    <h5>Contact details</h5>
+                    <h3>Contact details</h3>
                 </div>
                 {full ? <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>

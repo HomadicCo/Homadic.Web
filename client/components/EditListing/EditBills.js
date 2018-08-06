@@ -1,13 +1,13 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { apiGetListing, apiUpdateAmenities } from '../../api';
+import { apiGetListing, apiUpdateBills } from '../../api';
 import { setNestedKey } from '../../functions';
 import ListingHeader from '../ListingHeader/ListingHeader';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
 import Hero from '../ListingTemplate/components/Hero';
-import AmenitiesEditor from '../EditComponents/AmenitiesEditor';
+import BillsEditor from '../EditComponents/BillsEditor';
 
-class EditAmenities extends React.Component {
+class EditBills extends React.Component {
     constructor(props) {
         super(props);
 
@@ -40,11 +40,11 @@ class EditAmenities extends React.Component {
 
     handleSaveChanges(e) {
         e.preventDefault();
-        let { slug, amenities } = this.state.listing;
+        let { slug, bills } = this.state.listing;
 
         this.setState({ ...this.state, loading: true, error: undefined });
 
-        apiUpdateAmenities(slug, amenities).then(() => {
+        apiUpdateBills(slug, bills).then(() => {
             browserHistory.push('/listing/' + slug + '?updated=true');
         }).catch((e) => {
             this.setState({ ...this.state, loading: false, error: e });
@@ -69,7 +69,7 @@ class EditAmenities extends React.Component {
             <div className="listing">
                 <Hero listing={listing} />
                 <div className="content-box">
-                    <AmenitiesEditor amenities={listing.amenities} handleChange={this.handleChange} />
+                    <BillsEditor bills={listing.bills} currency={listing.currency} handleChange={this.handleChange} />
                 </div>
                 <div className="text-center">
                     <div className="btn-group" role="group" aria-label="Do stuff">
@@ -96,4 +96,4 @@ class EditAmenities extends React.Component {
     }
 }
 
-export default EditAmenities;
+export default EditBills;
