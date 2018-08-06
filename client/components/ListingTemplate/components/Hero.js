@@ -20,7 +20,7 @@ class Hero extends React.Component {
 
         return (
             <div className="row justify-content-md-center">
-                <div className="col-md-8 col-s-12 my-2">
+                <div className="col-md-8 col-s-12 my-2" style={{ overflowX: 'hidden' }}>
                     <Amenities listing={listing} margin={20} displayLabel />
                 </div>
             </div>

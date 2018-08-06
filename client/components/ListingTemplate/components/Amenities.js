@@ -77,11 +77,11 @@ class Amenities extends React.Component {
             <ul id="amenities" className={'amenities-icons ' + customClass}>
                 {this.renderWifi()}
                 {this.renderSubway()}
-                {listing.amenities.air_conditioning ? this.renderAmenity(icons.ac, 'A/C') : undefined}
                 {listing.rooms.filter(room => room.laundry != 'none').length > 0 ? this.renderAmenity(icons.laundry, 'Laundry') : undefined}
                 {listing.rooms.filter(room => room.kitchen != 'none').length > 0 ? this.renderAmenity(icons.kitchen, 'Kitchen') : undefined}
                 {listing.amenities.gym ? this.renderAmenity(icons.gym, 'Gym') : undefined}
                 {listing.amenities.pool ? this.renderAmenity(icons.pool, 'Pool') : undefined}
+                {listing.amenities.air_conditioning ? this.renderAmenity(icons.ac, 'A/C') : undefined}
             </ul>
         )
     }
