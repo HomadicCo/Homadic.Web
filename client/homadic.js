@@ -18,6 +18,8 @@ import Profile from './store/Profile/Profile';
 import AddImages from './components/EditListing/AddImages';
 import EditAmenities from './components/EditListing/EditAmenities';
 import EditBills from './components/EditListing/EditBills';
+import EditContactDetails from './components/EditListing/EditContactDetails';
+import EditNotes from './components/EditListing/EditNotes';
 
 // Import Router
 import { Router, Route, IndexRoute } from 'react-router';
@@ -39,8 +41,9 @@ const router = (
                 <Route path="/profile" component={Profile} />
                 <Route path="/listing/:listingSlug/amenities" component={EditAmenities} />
                 <Route path="/listing/:listingSlug/bills" component={EditBills} />
-                <Route path="/listing/:listingSlug/contact-details" component={AddImages} />
+                <Route path="/listing/:listingSlug/contact-details" component={EditContactDetails} />
                 <Route path="/listing/:listingSlug/images" component={AddImages} />
+                <Route path="/listing/:listingSlug/notes" component={EditNotes} />
                 <Route path="/listing/:listingSlug/rooms" component={AddImages} />
                 <Route path="/listing/:listingSlug/social-details" component={AddImages} />
                 <Route path="/listing/:listingSlug/type" component={AddImages} />

@@ -1,13 +1,13 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { apiGetListing, apiUpdateNotes } from '../../api';
+import { apiGetListing, apiUpdateContactDetails } from '../../api';
 import { setNestedKey } from '../../functions';
 import ListingHeader from '../ListingHeader/ListingHeader';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
 import Hero from '../ListingTemplate/components/Hero';
-import NotesEditor from '../EditComponents/NotesEditor';
+import ContactDetailsEditor from '../EditComponents/ContactDetailsEditor';
 
-class EditNotes extends React.Component {
+class EditContactDetails extends React.Component {
     constructor(props) {
         super(props);
 
@@ -40,11 +40,11 @@ class EditNotes extends React.Component {
 
     handleSaveChanges(e) {
         e.preventDefault();
-        let { slug, notes } = this.state.listing;
+        let { slug, contact_details } = this.state.listing;
 
         this.setState({ ...this.state, loading: true, error: undefined });
 
-        apiUpdateNotes(slug, notes).then(() => {
+        apiUpdateContactDetails(slug, contact_details).then(() => {
             browserHistory.push('/listing/' + slug + '?updated=true');
         }).catch((e) => {
             this.setState({ ...this.state, loading: false, error: e });
@@ -68,8 +68,10 @@ class EditNotes extends React.Component {
         return (
             <div className="listing">
                 <Hero listing={listing} />
-                <NotesEditor notes={listing.notes} handleChange={this.handleChange} />
-                <div className="text-center mt-4">
+                <div className="content-box">
+                    <ContactDetailsEditor contactDetails={listing.contact_details} handleChange={this.handleChange} />
+                </div>
+                <div className="text-center">
                     <div className="btn-group" role="group" aria-label="Do stuff">
                         <button className="btn" onClick={this.handleGoBack}><i className="far fa-save"></i> Back</button>
                         <button className="btn btn-action" onClick={this.handleSaveChanges}><i className="far fa-save"></i> Save</button>
@@ -94,4 +96,4 @@ class EditNotes extends React.Component {
     }
 }
 
-export default EditNotes;
+export default EditContactDetails;

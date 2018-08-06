@@ -10,9 +10,7 @@ class ContactDetailsEditor extends React.Component {
 
         return (
             <div>
-                <div className="content-header">
-                    <h3>Contact details</h3>
-                </div>
+                <h3 className="fancy blue">Contact details</h3>
                 {full ? <div className="form-group">
                     <label htmlFor="inputAddress" className="col-form-label">Address*</label>
                     <input type="text" name="address" value={address.address} className="form-control" id="inputAddress" placeholder="123 Nomad St" readOnly required />
@@ -22,16 +20,16 @@ class ContactDetailsEditor extends React.Component {
                 </div> : undefined}
                 <div className="form-row">
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputPhone" className="col-form-label">Phone</label>
-                        <input type="tel" name="contact_details.phone_number" value={contactDetails.phone_number} className="form-control" id="inputPhone" onChange={handleChange} maxLength={50} />
+                        <label htmlFor="inputUrl" className="col-form-label"><i className="fas fa-globe" /> URL</label>
+                        <input type="url" name="contact_details.website" value={contactDetails.website} className="form-control" id="inputUrl" onChange={handleChange} />
                     </div>
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputEmail" className="col-form-label">Email</label>
+                        <label htmlFor="inputEmail" className="col-form-label"><i className="fas fa-envelope" /> Email</label>
                         <input type="email" name="contact_details.email" value={contactDetails.email} className="form-control" id="inputEmail" onChange={handleChange} maxLength={50} />
                     </div>
                     <div className="form-group col-md-4">
-                        <label htmlFor="inputUrl" className="col-form-label">URL</label>
-                        <input type="url" name="contact_details.website" value={contactDetails.website} className="form-control" id="inputUrl" onChange={handleChange} />
+                        <label htmlFor="inputPhone" className="col-form-label"><i className="fas fa-phone" /> Phone</label>
+                        <input type="tel" name="contact_details.phone_number" value={contactDetails.phone_number} className="form-control" id="inputPhone" onChange={handleChange} maxLength={50} />
                     </div>
                 </div>
             </div>

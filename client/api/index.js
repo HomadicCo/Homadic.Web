@@ -117,7 +117,7 @@ export function apiUpdateContactDetails(slug, contactDetails) {
 }
 
 export function apiUpdateNotes(slug, notes) {
-    return Axios.post('listing/' + slug + '/notes', notes, getAuthHeader());
+    return Axios.post('listing/' + slug + '/notes', { notes }, getAuthHeader());
 }
 
 export function apiUpdateRooms(slug, rooms) {
@@ -129,7 +129,7 @@ export function apiUpdateSocialDetails(slug, socialDetails) {
 }
 
 export function apiUpdateType(slug, type) {
-    return Axios.post('listing/' + slug + '/type', type, getAuthHeader());
+    return Axios.post('listing/' + slug + '/type', { type }, getAuthHeader());
 }
 
 export function apiUpdateWifi(slug, wifi) {
