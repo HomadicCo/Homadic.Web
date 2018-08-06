@@ -11,9 +11,7 @@ class InternetEditor extends React.Component {
 
         return (
             <div>
-                <div className="content-header">
-                    <h3>Internet</h3>
-                </div>
+                <h3 className="fancy blue">Internet</h3>
                 <div className="form-row">
                     <div className="form-group col-md-3">
                         <label htmlFor="inputInternetType" className="col-form-label">Internet Type <i className="text-muted fas fa-wifi" /></label>

@@ -27,7 +27,7 @@ class RoomsEditor extends React.Component {
 
         return (
             <div>
-                <h3 className="fancy blue display-4 mb-4">Rooms</h3>
+                <h3 className="fancy blue mb-4">Rooms</h3>
                 {rooms.map((room, i) => <RoomEditor key={i} id={i} room={room} {...this.props} />)}
                 {rooms.length < 6 ? <button type="button" className="btn btn-action btn-sm" onClick={this.handleAddNewRoomClick}>Add room <i className="fas fa-plus" /></button> : <p>Only six rooms allowed for now.</p>}
             </div>
