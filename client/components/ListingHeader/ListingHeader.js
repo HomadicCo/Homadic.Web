@@ -50,13 +50,11 @@ class ListingHeader extends React.Component {
         return (
             <div className="bg-white fixed-top pt-2 box-shadow">
                 <div className="container">
-                    <div className="row">
-                        <div className="col">
-                            <h5><Link className="logo logo-sm" to="/">{'{ Homadic }'}</Link></h5>
-                        </div>
-                        <div className="col ml-auto d-flex justify-content-end">
-                            <h5>{full ? this.renderFullHeader() : undefined} <Avatar className="ml-2" size={30} name={profile.data.name} id={profile.data.id} /></h5>
-                        </div>
+                    <div className="float-left">
+                        <h5 className="d-md-none"><Link className="logo logo-sm" to="/">{'{ H }'}</Link></h5><h5 className="d-none d-md-block"><Link className="logo logo-sm" to="/">{'{ Homadic }'}</Link></h5>
+                    </div>
+                    <div className="ml-auto d-flex justify-content-end">
+                        <h5>{full ? this.renderFullHeader() : undefined} <Avatar className="ml-2" size={30} name={profile.data.name} id={profile.data.id} /></h5>
                     </div>
                 </div>
             </div>
