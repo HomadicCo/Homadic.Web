@@ -17,7 +17,7 @@ class DropDownMenu extends React.Component {
 
     render() {
         let { buttonClass = 'action', customClass, icon, name } = this.props;
-        const classDropdownMenu = 'dropdown-menu' + (this.state.isToggleOn ? ' show' : '')
+        const classDropdownMenu = 'dropdown-menu dropdown-menu-right' + (this.state.isToggleOn ? ' show' : '')
 
         return (
             <li className={'d-inline nav-item dropdown ' + customClass}>
