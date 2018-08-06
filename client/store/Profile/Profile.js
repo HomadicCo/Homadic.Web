@@ -15,7 +15,7 @@ class Profile extends React.Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { handleGetUserListings, profile } = this.props;
 
         if (profile.userListings != undefined) {

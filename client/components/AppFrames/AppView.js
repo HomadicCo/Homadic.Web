@@ -8,7 +8,7 @@ class AppView extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { authentication, handleGetProfile, setLoggedInStatus } = this.props;
 
         if (!authentication.isLoggedIn) {

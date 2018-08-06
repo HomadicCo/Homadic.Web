@@ -20,12 +20,12 @@ class AddImages extends React.Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { listingSlug } = this.props.params;
 
         if (listingSlug) {
-            apiGetListing(listingSlug).then((response) => {
-                this.setState({ ...this.state, listing: response.data });
+            apiGetListing(listingSlug).then((r) => {
+                this.setState({ listing: r.data });
             }).catch(() => {
                 browserHistory.push('/');
             });

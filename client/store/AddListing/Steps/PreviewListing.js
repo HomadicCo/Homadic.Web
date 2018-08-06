@@ -7,7 +7,7 @@ class PreviewListing extends React.Component {
         super(props)
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { valid } = this.props.addListing;
 
         if (!valid.rooms) {

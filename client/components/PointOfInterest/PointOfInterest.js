@@ -55,7 +55,7 @@ class PointOfInterest extends React.Component {
         return (
             <div className="nearby-place">
                 <p className="place-type text-truncate"><img src={icons[poi.place_type]} /> {label}</p>
-                <p className="place-name text-truncate"><a href={directionsUrl} target="_blank">{poi.name}</a></p>
+                <p className="place-name text-truncate"><a href={directionsUrl} target="_blank" rel="noopener noreferrer">{poi.name}</a></p>
                 <p className="transit-details small"><strong>{poi.distance_label}</strong> {poi.duration_label} {transitLabel} <img src={icons[poi.transit_mode]} /></p>
             </div>
         )

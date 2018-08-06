@@ -7,7 +7,7 @@ class Logout extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { handleLogout } = this.props;
 
         // clear the profile, local storage, redirect to home

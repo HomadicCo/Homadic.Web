@@ -47,12 +47,12 @@ class ListingPreview extends React.Component {
         })
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { listing } = this.props;
         this.fetchFurtherListingData(listing.slug)
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         let { listing } = this.props;
         if (listing.slug != nextProps.listing.slug)
             this.fetchFurtherListingData(nextProps.listing.slug)

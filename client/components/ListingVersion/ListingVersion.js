@@ -13,7 +13,7 @@ class ListingVersion extends React.Component {
         this.state = { error: undefined };
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { params, handleGetListingVersion } = this.props;
 
         handleGetListingVersion(params.listingSlug, params.versionId).then(() => {

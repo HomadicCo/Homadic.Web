@@ -20,7 +20,7 @@ class EditAmenities extends React.Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { params, setNewListing } = this.props;
 
         apiGetListing(params.listingSlug).then((response) => {

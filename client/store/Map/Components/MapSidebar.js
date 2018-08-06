@@ -16,7 +16,7 @@ class MapSidebar extends React.Component {
         this.clearFilter = this.clearFilter.bind(this);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.setSelectedListing(null);
     }
 

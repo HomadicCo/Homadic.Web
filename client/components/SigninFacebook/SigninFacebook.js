@@ -12,7 +12,7 @@ class SigninFacebook extends React.Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { handleGetProfile, handlePerformLogin } = this.props;
         const params = queryString.parse(location.search);
 

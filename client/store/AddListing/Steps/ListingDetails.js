@@ -14,7 +14,7 @@ class ListingDetails extends React.Component {
         this.handleNextClick = this.handleNextClick.bind(this);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { addListing, clearNewListing, setListingFromGoogleMaps, setLoadingStatus } = this.props;
 
         if (addListing.listing.google_place_id != addListing.ui.gmid) {

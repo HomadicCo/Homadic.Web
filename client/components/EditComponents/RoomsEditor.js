@@ -9,7 +9,7 @@ class RoomsEditor extends React.Component {
         this.handleAddNewRoomClick = this.handleAddNewRoomClick.bind(this);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { rooms } = this.props;
 
         if (rooms.length == 0) {

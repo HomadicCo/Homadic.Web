@@ -20,7 +20,7 @@ class EditContactDetails extends React.Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { params, setNewListing } = this.props;
 
         this.setState({ loading: true, error: undefined });

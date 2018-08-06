@@ -11,7 +11,7 @@ class ListingVersions extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { listings, params, handleGetListing, handleGetListingHistory, setFetchingListingHistoryStatus } = this.props;
 
         setFetchingListingHistoryStatus(true);

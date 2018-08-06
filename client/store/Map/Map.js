@@ -70,7 +70,7 @@ class Map extends React.Component {
         this.isLoading = this.isLoading.bind(this);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { query } = this.props.location;
 
         // clear listing preview
@@ -87,7 +87,7 @@ class Map extends React.Component {
         });
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         let { filter, location, setSelectedListing } = this.props;
 
         // check filter changes

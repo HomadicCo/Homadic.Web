@@ -41,7 +41,7 @@ class Index extends React.Component {
         }
 
         const inputProps = {
-            placeholder: 'Where would you like to live?', autoFocus: true
+            placeholder: 'Where would you like to live?'
         }
 
         const metaDetails = getMetaDetails('Crowd sourced monthly home rentals', '')

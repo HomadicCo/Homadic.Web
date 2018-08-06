@@ -12,7 +12,7 @@ class Rooms extends React.Component {
         this.handlePrevClick = this.handlePrevClick.bind(this);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { valid } = this.props.addListing;
 
         if (!valid.listing) {

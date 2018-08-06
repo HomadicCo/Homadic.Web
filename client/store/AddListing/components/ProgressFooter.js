@@ -22,11 +22,11 @@ class ProgressFooter extends React.Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.setStepClasses(this.props.params.step);
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps == this.props) return;
 
         let { step } = this.props.params;

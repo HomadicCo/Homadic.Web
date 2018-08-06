@@ -12,7 +12,7 @@ class Amenities extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { valid } = this.props.addListing;
 
         if (!valid.rooms) {

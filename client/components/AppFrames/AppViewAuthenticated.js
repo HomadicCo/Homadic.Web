@@ -8,11 +8,11 @@ class AppView extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.authenticate();
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (this.props.ui.loading == nextProps.ui.loading) return;
 
         if (this.props !== nextProps) {

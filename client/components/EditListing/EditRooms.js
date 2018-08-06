@@ -19,7 +19,7 @@ class EditRooms extends React.Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { setNewListing, params } = this.props;
 
         apiGetListing(params.listingSlug).then((response) => {

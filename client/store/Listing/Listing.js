@@ -15,7 +15,7 @@ class Listing extends React.Component {
         this.state = { fetching: true };
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { params, handleGetListing, handleGetUserReview } = this.props;
 
         if (params.listingSlug) {
