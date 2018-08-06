@@ -26,7 +26,7 @@ class Contact extends React.Component {
         return (
             <div id="contact" className="row">
                 {contact_details.website || contact_details.phone_number || contact_details.email ? <div className="col-md-6">
-                    <div className="content-box">
+                    <div className="content-box text-truncate">
                         <h3 className="fancy blue">Contact</h3>
                         <hr />
                         {contact_details.website ? <p><i className="fas fa-globe" /> <a href={contact_details.website} target="_blank" rel="noopener noreferrer">{contact_details.website}</a></p> : undefined}
@@ -35,7 +35,7 @@ class Contact extends React.Component {
                     </div>
                 </div> : this.renderEmpty('contact-details', 'Contact', 'Add contact details.')}
                 {social_details.instagram || social_details.twitter || social_details.facebook ? <div className="col-md-6">
-                    <div className="content-box">
+                    <div className="content-box text-truncate">
                         <h3 className="fancy blue">Social</h3>
                         <hr />
                         {social_details.facebook ? <p><i className="fab fa-facebook" /> <a href={social_details.facebook} target="_blank" rel="noopener noreferrer">{social_details.facebook}</a></p> : undefined}
