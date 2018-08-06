@@ -1,6 +1,7 @@
 /* global Promise */
-import { apiNearbyResults } from '../../api';
+import { apiGetListing, apiNearbyResults, apiPostListingImage } from '../../api';
 import { emptyListing } from '../../data';
+import { setUploadingNewImage } from '../UI/actions';
 import { guid } from '../../functions';
 
 // set values from google maps listing
@@ -15,6 +16,13 @@ export function setNewListing(listing) {
     return {
         type: 'SET_NEW_LISTING',
         listing
+    }
+}
+
+export function setFetchingNewListing(value) {
+    return {
+        type: 'SET_FETCHING_NEW_LISTING',
+        value
     }
 }
 
@@ -87,6 +95,13 @@ export function addRoomToListing(room) {
     }
 }
 
+export function addImagesToNewListing(images) {
+    return {
+        type: 'ADD_IMAGES_TO_NEW_LISTING',
+        images
+    }
+}
+
 export function setGmid(gmid) {
     return {
         type: 'SET_GMID',
@@ -107,6 +122,43 @@ export function handleGetNearbyResults(coordinates) {
                 resolve();
             }).catch(error => {
                 dispatch(setFetchingNearbyResultsStatus(false));
+                reject(error);
+            });
+        });
+    };
+}
+
+export function handleSetNewListing(slug) {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const request = apiGetListing(slug);
+            dispatch(setFetchingNewListing(true));
+
+            request.then(response => {
+                dispatch(setNewListing(response.data));
+                dispatch(setFetchingNewListing(false));
+                resolve();
+            }).catch(error => {
+                dispatch(setFetchingNewListing(false));
+                reject(error);
+            });
+        });
+    };
+}
+
+// handle getting nearby results from google through our Api
+export function handleUploadListingImage(slug, imageData) {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            const request = apiPostListingImage(slug, imageData);
+            dispatch(setUploadingNewImage(true));
+
+            request.then(response => {
+                dispatch(addImagesToNewListing(response.data));
+                dispatch(setUploadingNewImage(false));
+                resolve();
+            }).catch(error => {
+                dispatch(setUploadingNewImage(false));
                 reject(error);
             });
         });

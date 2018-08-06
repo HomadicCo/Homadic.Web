@@ -22,8 +22,7 @@ const defaultState = {
   addListing: {
     nearbyResults: [],
     listing: emptyListing,
-    valid: listingValidations,
-    ui: {}
+    valid: listingValidations
   },
   authentication: {},
   filter: defaultFilter,
@@ -73,7 +72,7 @@ const store = createStore(
   defaultState,
   composeEnhancers(
     applyMiddleware(thunk, routerMiddleware(browserHistory)),
-    persistState(['addListing'])
+    persistState(['addListing', 'profile'])
   )
 );
 

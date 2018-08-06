@@ -42,12 +42,10 @@ class AppView extends React.Component {
     }
 
     render() {
-        let { ui } = this.props;
+        let { profile, ui } = this.props;
 
         return (
-            <div>
-                {ui.loading ? <LoadingScreen /> : React.cloneElement(this.props.children, this.props)}
-            </div>
+            ui.loading || profile.updating ? <LoadingScreen /> : React.cloneElement(this.props.children, this.props)
         )
     }
 }

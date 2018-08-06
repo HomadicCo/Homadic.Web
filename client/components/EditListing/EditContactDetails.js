@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { apiGetListing, apiUpdateContactDetails } from '../../api';
+import { apiUpdateContactDetails } from '../../api';
 import ListingHeader from '../ListingHeader/ListingHeader';
 import LoadingPlane from '../LoadingScreen/LoadingPlane';
 import Hero from '../ListingTemplate/components/Hero';
@@ -16,26 +16,20 @@ class EditContactDetails extends React.Component {
 
         this.state = {
             error: undefined,
-            loading: true
+            loading: false
         }
     }
 
-    UNSAFE_componentWillMount() {
-        let { params, setNewListing } = this.props;
+    componentDidMount() {
+        let { params, handleSetNewListing } = this.props;
 
-        this.setState({ loading: true, error: undefined });
-
-        apiGetListing(params.listingSlug).then((response) => {
-            setNewListing(response.data);
-            this.setState({ loading: false, error: undefined });
-        }).catch(() => {
+        handleSetNewListing(params.listingSlug).catch(() => {
             browserHistory.push('/');
         });
     }
 
     handleGoBack(e) {
         e.preventDefault();
-
         browserHistory.push('/listing/' + this.props.params.listingSlug);
     }
 
@@ -84,13 +78,14 @@ class EditContactDetails extends React.Component {
 
     render() {
         let { error, loading } = this.state;
+        let { ui } = this.props.addListing;
 
         return (
             <div className="listing">
                 <ListingHeader {...this.props} full />
                 <div className="container mb-4">
                     {error != undefined ? <div className="alert alert-danger">{error}</div> : undefined}
-                    {loading ? <LoadingPlane /> : this.renderLoaded()}
+                    {ui.fetchingNewListing || loading ? <LoadingPlane /> : this.renderLoaded()}
                 </div>
             </div>
         )

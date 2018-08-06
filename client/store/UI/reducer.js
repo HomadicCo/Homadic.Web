@@ -11,6 +11,9 @@ function ui(state = [], action) {
         case 'SET_RETURN_TO_MAPVIEW':
             newState.returnToMapView = action.value;
             return newState;
+        case 'SET_UPLOADING_NEW_IMAGE':
+            newState.uploadingNewImage = action.value;
+            return newState;
     }
     return state;
 }

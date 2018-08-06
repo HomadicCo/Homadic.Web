@@ -19,3 +19,10 @@ export function setReturnToMapView(value) {
         value
     }
 }
+
+export function setUploadingNewImage(value) {
+    return {
+        type: 'SET_UPLOADING_NEW_IMAGE',
+        value
+    }
+}

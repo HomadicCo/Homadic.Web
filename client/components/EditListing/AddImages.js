@@ -1,12 +1,11 @@
 import React from 'react';
-import { browserHistory, } from 'react-router';
 import Dropzone from 'react-dropzone';
-import { apiGetListing, apiPostListingImage } from '../../api';
-import ListingHeader from '../ListingHeader/ListingHeader';
+import { browserHistory } from 'react-router';
 import Hero from '../ListingTemplate/components/Hero';
-import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
 import LoadingPlane from '../../components/LoadingScreen/LoadingPlane';
-import ImageGallery from '../ListingHeader/ListingHeader';
+import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
+import ListingHeader from '../ListingHeader/ListingHeader';
+import ImageGallery from '../ImageGallery/ImageGallery';
 
 class AddImages extends React.Component {
     constructor(props) {
@@ -15,33 +14,26 @@ class AddImages extends React.Component {
         this.onImageDrop = this.onImageDrop.bind(this);
         this.state = {
             invalidFile: false,
-            listing: undefined,
-            uploadingImage: false
+            error: undefined
         }
     }
 
-    UNSAFE_componentWillMount() {
-        let { listingSlug } = this.props.params;
+    componentDidMount() {
+        let { params, handleSetNewListing } = this.props;
 
-        if (listingSlug) {
-            apiGetListing(listingSlug).then((r) => {
-                this.setState({ listing: r.data });
-            }).catch(() => {
-                browserHistory.push('/');
-            });
-        } else {
+        handleSetNewListing(params.listingSlug).catch(() => {
             browserHistory.push('/');
-        }
+        });
     }
 
     onImageDrop(acceptedFiles, rejectedFiles) {
-        let { listing } = this.state;
-        let { listingSlug } = this.props.params;
-        this.setState({ invalidFile: false, uploadingImage: true });
+        let { addListing, handleUploadListingImage } = this.props;
+
+        this.setState({error: undefined });
 
         // log invalid file
         if (rejectedFiles.length > 0) {
-            this.setState({ invalidFile: true, uploadingImage: false });
+            this.setState({error: 'File is invalid.' });
             return;
         }
 
@@ -49,11 +41,9 @@ class AddImages extends React.Component {
         var formData = new FormData();
         formData.append(acceptedFiles[0].name, acceptedFiles[0]);
 
-        apiPostListingImage(listingSlug, formData).then((response) => {
-            var newImages = Object.assign(listing.images);
-            newImages.unshift(response.data);
-            this.setState({ listing: { ...listing, images: newImages }, uploadingImage: false });
-        })
+        handleUploadListingImage(addListing.listing.slug, formData).catch((e) => {
+            this.setState({error: e });
+        });
     }
 
     renderDropZoneContent() {
@@ -79,14 +69,18 @@ class AddImages extends React.Component {
     }
 
     renderLoaded() {
-        let { listing, uploadingImage } = this.state;
+        let { addListing, ui } = this.props;
+        let { error } = this.state;
+        let { listing } = addListing;
+        console.log(listing.images);
 
         return (
             <div className="listing">
                 <ListingHeader {...this.props} full />
+                {error != undefined ? <div className="alert alert-danger">{error}</div> : undefined}
                 <Hero listing={listing} />
                 <div className="container mb-4">
-                    {uploadingImage ? <div className="text-center"><LoadingPlane /><p>Uploading image...</p></div> : this.renderDropZone()}
+                    {ui.uploadingNewImage ? <div className="text-center"><LoadingPlane /><p>Uploading image...</p></div> : this.renderDropZone()}
                 </div>
                 <div className="container"><ImageGallery loading={listing == undefined} images={listing.images} isImageUploadPage /></div>
             </div>
@@ -94,10 +88,12 @@ class AddImages extends React.Component {
     }
 
     render() {
-        let { listing } = this.state;
+        let { ui } = this.props.addListing;
 
         return (
-            !listing ? <LoadingScreen /> : this.renderLoaded()
+            <div className="listing">
+                {ui.fetchingNewListing ? <LoadingScreen /> : this.renderLoaded()}
+            </div>
         )
     }
 }
