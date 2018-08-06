@@ -1,7 +1,8 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import { apiGetGooglePlace } from '../../../api';
-import { emptyListing, rentalTypes } from '../../../data';
+import { emptyListing } from '../../../data';
+import TypeEditor from '../../../components/EditComponents/TypeEditor';
 import SocialDetailsEditor from '../../../components/EditComponents/SocialDetailsEditor';
 import ContactDetailsEditor from '../../../components/EditComponents/ContactDetailsEditor';
 
@@ -66,10 +67,7 @@ class ListingDetails extends React.Component {
                         </div>
                     </div>
                     <div className="form-group col-md-3">
-                        <label htmlFor="inputListingType" className="col-form-label">Listing type*</label>
-                        <select id="inputListingType" name="type" value={listing.type} className="form-control" onChange={this.handleChange} required>
-                            {rentalTypes.map((type, i) => (<option key={i} value={type.value}>{type.name}</option>))}
-                        </select>
+                        <TypeEditor type={listing.type} handleChange={this.handleChange} />
                     </div>
                 </div>
                 <ContactDetailsEditor address={listing.address} contactDetails={listing.contact_details} handleChange={this.handleChange} full />
