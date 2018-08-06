@@ -21,6 +21,7 @@ import EditBills from './components/EditListing/EditBills';
 import EditContactDetails from './components/EditListing/EditContactDetails';
 import EditNotes from './components/EditListing/EditNotes';
 import EditRooms from './components/EditListing/EditRooms';
+import EditSocialDetails from './components/EditListing/EditSocialDetails';
 
 // Import Router
 import { Router, Route, IndexRoute } from 'react-router';
@@ -46,7 +47,7 @@ const router = (
                 <Route path="/listing/:listingSlug/images" component={AddImages} />
                 <Route path="/listing/:listingSlug/notes" component={EditNotes} />
                 <Route path="/listing/:listingSlug/rooms" component={EditRooms} />
-                <Route path="/listing/:listingSlug/social-details" component={AddImages} />
+                <Route path="/listing/:listingSlug/social-details" component={EditSocialDetails} />
                 <Route path="/listing/:listingSlug/type" component={AddImages} />
                 <Route path="/listing/:listingSlug/wifi" component={AddImages} />
             </Route>
