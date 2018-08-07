@@ -23,6 +23,7 @@ const defaultState = {
     nearbyResults: [],
     listing: emptyListing,
     valid: listingValidations,
+    ui: {}
   },
   authentication: {},
   filter: defaultFilter,

@@ -45,7 +45,7 @@ class NotesEditor extends React.Component {
 
         return (
             <div hidden={previewMode}>
-                <textarea id="inputNotes" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="notes" maxLength={9000} value={notes} onChange={handleChange} />
+                <textarea id="inputNotes" className="form-control" style={{ height: 300 }} placeholder="This is markdown enabled..." name="notes" maxLength={9000} value={notes ? notes : ''} onChange={handleChange} />
             </div>
         )
     }

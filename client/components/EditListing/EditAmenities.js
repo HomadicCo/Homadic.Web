@@ -63,6 +63,7 @@ class EditAmenities extends React.Component {
 
         return (
             <div className="listing">
+                <ListingHeader {...this.props} full />
                 <Hero listing={listing} />
                 <div className="content-box">
                     <AmenitiesEditor amenities={listing.amenities} handleChange={this.handleChange} />
@@ -79,14 +80,13 @@ class EditAmenities extends React.Component {
 
     render() {
         let { error, loading } = this.state;
-        let { addListing, ui } = this.props;
+        let { addListing, params, ui } = this.props;
 
         return (
             <div className="listing">
-                <ListingHeader {...this.props} full />
                 <div className="container mb-4">
                     {error != undefined ? <div className="alert alert-danger">{error}</div> : undefined}
-                    {ui.fetchingNewListing || loading || addListing.listing == undefined ? <LoadingPlane /> : this.renderLoaded()}
+                    {ui.fetchingNewListing || loading || addListing.listing.slug != params.listingSlug ? <LoadingPlane /> : this.renderLoaded()}
                 </div>
             </div>
         )

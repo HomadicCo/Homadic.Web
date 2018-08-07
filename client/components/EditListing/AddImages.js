@@ -29,11 +29,11 @@ class AddImages extends React.Component {
     onImageDrop(acceptedFiles, rejectedFiles) {
         let { addListing, handleUploadListingImage } = this.props;
 
-        this.setState({error: undefined });
+        this.setState({ error: undefined });
 
         // log invalid file
         if (rejectedFiles.length > 0) {
-            this.setState({error: 'File is invalid.' });
+            this.setState({ error: 'File is invalid.' });
             return;
         }
 
@@ -42,7 +42,7 @@ class AddImages extends React.Component {
         formData.append(acceptedFiles[0].name, acceptedFiles[0]);
 
         handleUploadListingImage(addListing.listing.slug, formData).catch((e) => {
-            this.setState({error: e });
+            this.setState({ error: e });
         });
     }
 
@@ -87,11 +87,11 @@ class AddImages extends React.Component {
     }
 
     render() {
-        let { ui } = this.props;
+        let { addListing, params, ui } = this.props;
 
         return (
             <div className="listing">
-                {ui.fetchingNewListing ? <LoadingScreen /> : this.renderLoaded()}
+                {ui.fetchingNewListing || addListing.listing.slug != params.listingSlug ? <LoadingScreen /> : this.renderLoaded()}
             </div>
         )
     }
