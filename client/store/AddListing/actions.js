@@ -103,10 +103,10 @@ export function setGmid(gmid) {
 }
 
 // handle getting nearby results from google through our Api
-export function handleGetNearbyResults(coordinates) {
+export function handleGetNearbyResults(type, coordinates) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            const request = apiNearbyResults(coordinates);
+            const request = apiNearbyResults(type, coordinates);
             dispatch(setFetchingNearbyResultsStatus(true));
 
             request.then(response => {
