@@ -26,6 +26,14 @@ export function updatingProfileStatus(value) {
     }
 }
 
+// profile is fetching status
+export function setLoadingUserListingsStatus(value) {
+    return {
+        type: 'SET_LOADING_USER_LISTINGS_STATUS',
+        value
+    }
+}
+
 export function handleGetProfile() {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
@@ -48,15 +56,15 @@ export function handleGetProfile() {
 export function handleGetUserListings() {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
-            dispatch(updatingProfileStatus(true));
+            dispatch(setLoadingUserListingsStatus(true));
             const request = apiGetUserListings();
 
             request.then(response => {
                 dispatch(setUserListingsStore(response.data.data));
-                dispatch(updatingProfileStatus(false));
+                dispatch(setLoadingUserListingsStatus(false));
                 resolve(response.data);
             }).catch(error => {
-                dispatch(updatingProfileStatus(false));
+                dispatch(setLoadingUserListingsStatus(false));
                 reject(error);
             });
         });

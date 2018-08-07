@@ -7,40 +7,27 @@ import LoadingPlane from '../../components/LoadingScreen/LoadingPlane';
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            loading: {
-                listings: true
-            }
-        }
     }
 
-    UNSAFE_componentWillMount() {
-        let { handleGetUserListings, profile } = this.props;
+    componentDidMount() {
+        let { handleGetUserListings } = this.props;
 
-        if (profile.userListings != undefined) {
-            this.setState({ loading: { listings: false } });
-        }
-        else {
-            handleGetUserListings().then(() =>
-                this.setState({ loading: { listings: false } })
-            );
-        }
+        handleGetUserListings();
     }
 
     renderContributions() {
         let { profile } = this.props;
 
         return (
-            <div className="row">
-                {profile.userListings.map((listing, i) => (<div key={i} className="col-md-4 listing-snippets"><Link to={'/listing/' + listing.slug}><ListingSnippet listing={listing} /></Link></div>))}
-            </div>
+            profile.userListings.length > 0 ?
+                <div className="row">
+                    {profile.userListings.map((listing, i) => (<div key={i} className="col-sm-6 col-lg-4 listing-snippets"><Link to={'/listing/' + listing.slug + '/history'}><ListingSnippet listing={listing} /></Link></div>))}
+                </div> : <p>You have not made any contributions.</p>
         )
     }
 
     render() {
         let { profile } = this.props;
-        let { loading } = this.state;
 
         return (
             <div className="container">
@@ -63,10 +50,8 @@ class Profile extends React.Component {
                         </div>
                     </div>
                 </div >
-                <div>
-                    <h3 className="fancy blue">Contributions</h3>
-                    {loading.listings ? <LoadingPlane /> : this.renderContributions()}
-                </div>
+                <h3 className="fancy blue">Contributions</h3>
+                {profile.updatingUserListings ? <LoadingPlane /> : this.renderContributions()}
             </div >
         )
     }

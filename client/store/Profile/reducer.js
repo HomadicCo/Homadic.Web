@@ -11,6 +11,9 @@ function profile(state = [], action) {
         case 'UPDATING_PROFILE_STATUS':
             newState.updating = action.value;
             return newState;
+        case 'SET_LOADING_USER_LISTINGS_STATUS':
+            newState.updatingUserListings = action.value;
+            return newState;
     }
     return state;
 }
