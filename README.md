@@ -13,6 +13,13 @@ Users can sign in, add a new listing or update an existing listing, add photos o
 ### Automated nearby places
 Further to this, Homadic itself will poll location services for futher information about what's around a listing. Nearest subway or train station, nearest convenience store, nearest laundry and how long it will take to walk or drive to them. Soon you will be able to filter on these data points.
 
+### Why can't I find a place on Google Maps?
+At the moment, to avoid a million different places being loaded in, the Google Maps Nearby Places search only fetches places with the selected keyword or [type attribute](https://developers.google.com/places/supported_types). If you can't find your place here, the best thing to do is add the `lodging` type to a place by suggesting an edit.
+
+![Imgur](https://i.imgur.com/1NgHK7C.jpg)
+
+ [Let me know if you can think of a more comprehensive way to find lodgings](https://github.com/HomadicCo/Homadic.Web/issues/7).
+
 ### What's next?
 You can find out what we're building next by [browsing the `new feature` label](https://github.com/HomadicCo/Homadic.Web/labels/new%20feature).
 
