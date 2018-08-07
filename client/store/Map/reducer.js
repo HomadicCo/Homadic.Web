@@ -11,6 +11,9 @@ function map(state = [], action) {
         case 'SET_FILTER_MODE':
             newState.filterMode = action.value;
             return newState;
+        case 'SET_MAP_NOT_FOUND':
+            newState.notFound = action.value;
+            return newState;
         case 'SET_ADD_NEW_PLACE_COORDINATES':
             newState.addNewListingCoordinates = action.coordinates;
             return newState;

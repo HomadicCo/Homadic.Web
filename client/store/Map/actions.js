@@ -14,6 +14,14 @@ export function setAddNewListingMode(value) {
     }
 }
 
+// toggle add new listing mode
+export function setMapNotFound(value) {
+    return {
+        type: 'SET_MAP_NOT_FOUND',
+        value
+    }
+}
+
 // toggle the filter mode
 export function setFilterMode(value) {
     return {

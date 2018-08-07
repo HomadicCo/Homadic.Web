@@ -13,6 +13,7 @@ import ListingMarker from './Components/ListingMarker';
 import MapListingToggle from './Components/MapListingToggle';
 import MapStyle from '../../components/MapStyle/MapStyle';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
+import NotFound from '../../components/NotFound/NotFound';
 import { icons } from '../../Images/Images';
 
 const RenderMap = withGoogleMap(props => (
@@ -240,6 +241,8 @@ class Map extends React.Component {
     getListings(params) {
         const filterParams = this.getFilterParams();
 
+        // set defaults
+        this.props.setMapNotFound(false);
         this.props.setSelectedListing(null);
 
         if (!params.lat || !params.lng) {
@@ -249,6 +252,8 @@ class Map extends React.Component {
                 ).then(({ lat, lng }) => {
                     this.props.handleGetListings({ ...filterParams, lat, lng, zoom: 14 });
                     this.setState({ center: { lat, lng }, searchedCenter: { lat, lng }, zoom: 14 });
+                }).catch(() => {
+                    this.props.setMapNotFound(true);
                 });
         } else {
             this.props.handleGetListings({ ...filterParams, lat: params.lat, lng: params.lng, zoom: params.zoom ? params.zoom : 14 });
@@ -318,17 +323,15 @@ class Map extends React.Component {
     }
 
     isLoading() {
-        let { center } = this.state;
         let { profile } = this.props;
 
         if (profile.updating) return true;
-        if (!center) return true;
         return false;
     }
 
-    render() {
-        let { center, zoom, searchThisArea } = this.state;
+    renderLoaded() {
         let { authentication, listings, map, ui, toggleMapView } = this.props;
+        let { center, zoom, searchThisArea } = this.state;
         const metaDetails = getMetaDetails('Crowd sourced monthly rentals', location.pathname);
         const sidebarClass = ui.mapView ? 'container map-sidebar d-none d-sm-block' : 'container map-sidebar';
         const mapClass = ui.mapView ? 'map' : 'map d-none d-sm-block';
@@ -348,7 +351,7 @@ class Map extends React.Component {
                     <meta property="og:image" content="https://homadicstorage.blob.core.windows.net/icons/icon180.png" />
                 </Helmet>
                 {
-                    this.isLoading() ? <LoadingScreen /> :
+                    map.notFound ? <NotFound /> :
                         <div>
                             <div className={sidebarClass} style={{ overflowX: 'hidden' }}>
                                 <MapSidebar {...this.props} renderQueryParams={this.renderQueryParams} />
@@ -384,6 +387,12 @@ class Map extends React.Component {
                 <MapListingToggle {...this.props} />
 
             </div >
+        )
+    }
+
+    render() {
+        return (
+            this.isLoading() ? <LoadingScreen /> : this.renderLoaded()
         )
     }
 }
