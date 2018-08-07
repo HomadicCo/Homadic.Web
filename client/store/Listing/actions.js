@@ -18,7 +18,7 @@ export function updateListingsStore(data) {
 }
 
 // fetching listings
-export function updateFetchingListingsStatus(value) {
+export function setFetchingListingStatus(value) {
     return {
         type: 'UPDATE_FETCHING_LISTINGS_STATUS',
         value
@@ -44,15 +44,15 @@ export function updateSelectedUserReview(data) {
 export function handleGetListings(listingsQuery) {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
-            dispatch(updateFetchingListingsStatus(true));
+            dispatch(setFetchingListingStatus(true));
             const request = apiGetListings(listingsQuery);
 
             request.then(response => {
                 dispatch(updateListingsStore(response.data.data));
-                dispatch(updateFetchingListingsStatus(false));
+                dispatch(setFetchingListingStatus(false));
                 resolve(response.data.data);
             }).catch(error => {
-                dispatch(updateFetchingListingsStatus(false));
+                dispatch(setFetchingListingStatus(false));
                 console.error(error);
                 reject(error);
             });
@@ -63,15 +63,15 @@ export function handleGetListings(listingsQuery) {
 export function handleGetListing(slug) {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
-            dispatch(updateFetchingListingsStatus(true));
+            dispatch(setFetchingListingStatus(true));
             const request = apiGetListing(slug);
 
             request.then(response => {
                 dispatch(updateSelectedListing(response.data));
-                dispatch(updateFetchingListingsStatus(false));
+                dispatch(setFetchingListingStatus(false));
                 resolve(response.data.data);
             }).catch(error => {
-                dispatch(updateFetchingListingsStatus(false));
+                dispatch(setFetchingListingStatus(false));
                 console.error(error);
                 reject(error);
             });

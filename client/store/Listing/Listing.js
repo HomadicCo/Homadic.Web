@@ -11,16 +11,14 @@ class Listing extends React.Component {
         super(props);
 
         this.clickThumbsUp = this.clickThumbsUp.bind(this);
-
-        this.state = { fetching: true };
     }
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         let { params, handleGetListing, handleGetUserReview } = this.props;
 
         if (params.listingSlug) {
-            handleGetListing(params.listingSlug).then(() => {
-                this.setState({ fetching: false });
+            handleGetListing(params.listingSlug).catch((e) => {
+                console.log(e);
             });
             handleGetUserReview(params.listingSlug);
         } else {
@@ -55,11 +53,10 @@ class Listing extends React.Component {
     }
 
     render() {
-        let { selected, selectedUserReview } = this.props.listings;
-        let { fetching } = this.state;
+        let { fetching, selected, selectedUserReview } = this.props.listings;
 
         return (
-            fetching ? <LoadingScreen /> :
+            fetching || selected == undefined ? <LoadingScreen /> :
                 <div>
                     {this.renderHelmet(selected)}
                     <ListingTemplate listing={selected} reviews={selected.reviews} userReview={selectedUserReview} images={selected.images} clickThumbsUp={this.clickThumbsUp} {...this.props} />
