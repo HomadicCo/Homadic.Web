@@ -6,28 +6,18 @@ import ListingHeader from '../../components/ListingHeader/ListingHeader';
 import LoadingPlane from '../../components/LoadingScreen/LoadingPlane';
 import Avatar from '../../Components/Avatar/Avatar';
 
-class ListingVersions extends React.Component {
+class ListingHistory extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    UNSAFE_componentWillMount() {
-        let { listings, params, handleGetListing, handleGetListingHistory, setFetchingListingHistoryStatus } = this.props;
-
-        setFetchingListingHistoryStatus(true);
+    componentDidMount() {
+        let { params, handleGetListingHistory } = this.props;
 
         if (params.listingSlug) {
-            if (listings.selected.name == undefined || listings.selected.name == null) {
-                handleGetListing(params.listingSlug).then(() => {
-                    handleGetListingHistory(params.listingSlug);
-                }).catch(() => {
-                    browserHistory.push('/');
-                })
-            }
-            else {
-                handleGetListingHistory(params.listingSlug);
-            }
-        } else {
+            handleGetListingHistory(params.listingSlug);
+        }
+        else {
             browserHistory.push('/');
         }
     }
@@ -47,7 +37,9 @@ class ListingVersions extends React.Component {
     }
 
     renderHistoryTable() {
-        const orderedListingHistory = this.props.listingHistory.data.sort(function (left, right) {
+        let { data, name } = this.props.listingHistory.data;
+
+        const orderedListingHistory = data.sort(function (left, right) {
             return moment.utc(right.date_created).diff(moment.utc(left.date_created))
         });
 
@@ -55,7 +47,7 @@ class ListingVersions extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <h3 className="my-4 text-truncate"><i className="fas fa-history" /> {this.props.listings.selected.name}</h3>
+                        <h3 className="my-4 text-truncate"><i className="fas fa-history" /> {name}</h3>
                         <p><i className="fas fa-gavel"></i> Please note this area is under construction, all changes are logged but this needs work.</p>
                         <table className="table">
                             <thead>
@@ -85,13 +77,15 @@ class ListingVersions extends React.Component {
     }
 
     render() {
+        let { data, fetching } = this.props.listingHistory;
+
         return (
             <div className="listing">
                 <ListingHeader full {...this.props} />
-                {this.props.listingHistory.fetching ? this.renderLoading() : this.renderHistoryTable()}
+                {fetching || data == undefined ? this.renderLoading() : this.renderHistoryTable()}
             </div>
         )
     }
 }
 
-export default ListingVersions;
+export default ListingHistory;

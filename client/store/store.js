@@ -32,8 +32,8 @@ const defaultState = {
     fetching: false
   },
   listingHistory: {
-    selected: {},
-    data: [],
+    selected: undefined,
+    data: undefined,
     fetching: false
   },
   map: {
