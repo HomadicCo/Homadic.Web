@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { cities } from '../../../data';
+import { cities } from '../../data';
 
 class Cities extends React.Component {
     constructor(props) {

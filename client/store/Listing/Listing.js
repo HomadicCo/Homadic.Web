@@ -1,10 +1,11 @@
 import React from 'react';
-import { browserHistory, } from 'react-router';
+import { browserHistory } from 'react-router';
 import { Helmet } from 'react-helmet';
 import { apiPostThumbsUp } from '../../api';
+import { getBaseRate, getMetaDetails } from '../../functions';
 import ListingTemplate from '../../components/ListingTemplate/ListingTemplate';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen';
-import { getBaseRate, getMetaDetails } from '../../functions';
+import NotFound from '../../components/NotFound/NotFound';
 
 class Listing extends React.Component {
     constructor(props) {
@@ -17,10 +18,9 @@ class Listing extends React.Component {
         let { params, handleGetListing, handleGetUserReview } = this.props;
 
         if (params.listingSlug) {
-            handleGetListing(params.listingSlug).catch((e) => {
-                console.log(e);
+            handleGetListing(params.listingSlug).then(() => {
+                handleGetUserReview(params.listingSlug);
             });
-            handleGetUserReview(params.listingSlug);
         } else {
             browserHistory.push('/');
         }
@@ -52,15 +52,23 @@ class Listing extends React.Component {
         </Helmet>)
     }
 
-    render() {
-        let { fetching, selected, selectedUserReview } = this.props.listings;
+    renderLoaded() {
+        let { notFound, selected, selectedUserReview } = this.props.listings;
 
         return (
-            fetching || selected == undefined ? <LoadingScreen /> :
+            notFound || selected == undefined ? <NotFound /> :
                 <div>
                     {this.renderHelmet(selected)}
                     <ListingTemplate listing={selected} reviews={selected.reviews} userReview={selectedUserReview} images={selected.images} clickThumbsUp={this.clickThumbsUp} {...this.props} />
                 </div>
+        )
+    }
+
+    render() {
+        let { fetching } = this.props.listings;
+
+        return (
+            fetching ? <LoadingScreen /> : this.renderLoaded()
         )
     }
 }

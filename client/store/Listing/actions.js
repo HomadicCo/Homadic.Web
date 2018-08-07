@@ -25,6 +25,14 @@ export function setFetchingListingStatus(value) {
     }
 }
 
+// not found
+export function setListingNotFound(value) {
+    return {
+        type: 'SET_LISTING_NOT_FOUND',
+        value
+    }
+}
+
 // fetching listings
 export function addOrReplaceReview(data) {
     return {
@@ -64,6 +72,7 @@ export function handleGetListing(slug) {
     return (dispatch) => {
         return new Promise((resolve, reject) => {
             dispatch(setFetchingListingStatus(true));
+            dispatch(setListingNotFound(false));
             const request = apiGetListing(slug);
 
             request.then(response => {
@@ -71,6 +80,7 @@ export function handleGetListing(slug) {
                 dispatch(setFetchingListingStatus(false));
                 resolve(response.data.data);
             }).catch(error => {
+                dispatch(setListingNotFound(true));
                 dispatch(setFetchingListingStatus(false));
                 console.error(error);
                 reject(error);

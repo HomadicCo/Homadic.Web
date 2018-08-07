@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { getMetaDetails } from '../../functions';
 import PlacesTypeahead from '../../Components/PlacesTypeahead/PlacesTypeahead';
 import Header from './components/Header';
-import Cities from './components/Cities';
+import Cities from '../../components/Cities/Cities';
 import { labels } from '../../data';
 
 class Index extends React.Component {

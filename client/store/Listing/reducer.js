@@ -11,6 +11,9 @@ function listings(state = [], action) {
         case 'UPDATE_FETCHING_LISTINGS_STATUS':
             newState.fetching = action.value;
             return newState;
+        case 'SET_LISTING_NOT_FOUND':
+            newState.notFound = action.value;
+            return newState;
         case 'UPDATE_SELECTED_USER_REVIEW':
             newState.selectedUserReview = action.data;
             return newState;
