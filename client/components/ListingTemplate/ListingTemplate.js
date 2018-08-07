@@ -83,7 +83,7 @@ class ListingTemplate extends React.Component {
                             <Internet wifi={listing.wifi} column="col-md-6" />
                             <Bills bills={listing.bills} slug={listing.slug} column="col-md-6" />
                         </div>
-                        <Nearby listing={listing} previewMode={previewMode} colClass="col-4" />
+                        <Nearby listing={listing} previewMode={previewMode} colClass="col-sm-6 col-lg-4" />
                         <LocationMap listing={listing} />
                         <Contact contact_details={listing.contact_details} social_details={listing.social_details} slug={listing.slug} />
                     </div>

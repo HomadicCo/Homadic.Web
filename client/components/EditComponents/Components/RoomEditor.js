@@ -119,7 +119,6 @@ class EditRoom extends React.Component {
 
     render() {
         let { addListing, room } = this.props;
-        console.log(addListing);
 
         return (
             <div>
