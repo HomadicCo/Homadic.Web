@@ -20,12 +20,9 @@ class SelectFromGoogleMaps extends React.Component {
     }
 
     fetchNearbyResults() {
-        let { map, handleGetNearbyResults, updateFetchingListingsStatus } = this.props;
+        let { map, handleGetNearbyResults } = this.props;
 
-        updateFetchingListingsStatus(true);
-        handleGetNearbyResults(map.addNewListingCoordinates).then(() => {
-            updateFetchingListingsStatus(false);
-        });
+        handleGetNearbyResults(map.addNewListingCoordinates);
     }
 
     render() {
