@@ -32,7 +32,7 @@ class SelectFromGoogleMaps extends React.Component {
             <div className="container">
                 {listings.fetching ? <LoadingPlane /> :
                     <div>
-                        <p className="mb-4">Select from listings on Google Maps within 200m of pin. Not here? Try moving your pin more accurately.</p>
+                        <p className="mb-4">Select from listings on Google Maps within 200m of pin, move pin for accuracy. <a href="https://github.com/HomadicCo/Homadic.Web#why-cant-i-find-a-place-on-google-maps" rel="noopener noreferrer" target="_blank">Still not here? Find out why.</a></p>
                         {addListing.nearbyResults.map((result, i) =>
                             <NearbyResult listing={result} key={i} {...this.props} />
                         )}

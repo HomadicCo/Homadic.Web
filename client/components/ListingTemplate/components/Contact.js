@@ -31,7 +31,7 @@ class Contact extends React.Component {
                         <hr />
                         {contact_details.website ? <p><i className="fas fa-globe" /> <a href={contact_details.website} target="_blank" rel="noopener noreferrer">{contact_details.website}</a></p> : undefined}
                         {contact_details.phone_number ? <p><i className="fas fa-phone" /> {contact_details.phone_number}</p> : undefined}
-                        {contact_details.email ? <p><i className="fas fa-envelope" /> <a href={'mailto' + contact_details.email} target="_blank" rel="noopener noreferrer">{contact_details.email}</a></p> : undefined}
+                        {contact_details.email ? <p><i className="fas fa-envelope" /> <a href={'mailto:' + contact_details.email} target="_blank" rel="noopener noreferrer">{contact_details.email}</a></p> : undefined}
                     </div>
                 </div> : this.renderEmpty('contact-details', 'Contact', 'Add contact details.')}
                 {social_details.instagram || social_details.twitter || social_details.facebook ? <div className="col-md-6">
