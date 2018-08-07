@@ -8,11 +8,11 @@ class AppView extends React.Component {
         super(props);
     }
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         this.authenticate();
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
+    getDerivedStateFromProps(nextProps) {
         if (this.props.ui.loading == nextProps.ui.loading) return;
 
         if (this.props !== nextProps) {
@@ -21,7 +21,7 @@ class AppView extends React.Component {
     }
 
     authenticate() {
-        let { authentication, handleGetProfile, setLoggedInStatus, setLoadingStatus } = this.props;
+        let { authentication, handleGetProfile, profile, setLoggedInStatus, setLoadingStatus } = this.props;
 
         if (!authentication.isLoggedIn) {
             setLoadingStatus(true);
@@ -31,7 +31,8 @@ class AppView extends React.Component {
             setLoggedInStatus(isLoggedIn);
 
             if (isLoggedIn) {
-                handleGetProfile();
+                if (profile.data == undefined)
+                    handleGetProfile();
             } else {
                 const loginUrl = getLoginUrl(window.location.pathname);
                 window.location = loginUrl;

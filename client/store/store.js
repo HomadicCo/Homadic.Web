@@ -41,7 +41,7 @@ const defaultState = {
     addNewListingMode: false,
     filterMode: false
   },
-  profile: { data: {}, userListings: [] },
+  profile: { data: undefined, userListings: [] },
   ui: {
     loading: false,
     reviewEditorOpen: false,

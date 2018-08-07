@@ -9,7 +9,7 @@ class AppView extends React.Component {
     }
 
     UNSAFE_componentWillMount() {
-        let { authentication, handleGetProfile, setLoggedInStatus } = this.props;
+        let { authentication, handleGetProfile, profile, setLoggedInStatus } = this.props;
 
         if (!authentication.isLoggedIn) {
             const auth = loadLocalStorage('auth');
@@ -17,7 +17,8 @@ class AppView extends React.Component {
             setLoggedInStatus(isLoggedIn);
 
             if (isLoggedIn) {
-                handleGetProfile();
+                if (profile.data == undefined)
+                    handleGetProfile();
             }
         }
     }
