@@ -72,7 +72,6 @@ class AddImages extends React.Component {
         let { addListing, ui } = this.props;
         let { error } = this.state;
         let { listing } = addListing;
-        console.log(listing.images);
 
         return (
             <div className="listing">
@@ -88,7 +87,7 @@ class AddImages extends React.Component {
     }
 
     render() {
-        let { ui } = this.props.addListing;
+        let { ui } = this.props;
 
         return (
             <div className="listing">

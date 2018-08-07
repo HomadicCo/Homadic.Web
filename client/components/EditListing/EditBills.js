@@ -79,14 +79,14 @@ class EditBills extends React.Component {
 
     render() {
         let { error, loading } = this.state;
-        let { ui } = this.props.addListing;
+        let { addListing, ui } = this.props;
 
         return (
             <div className="listing">
                 <ListingHeader {...this.props} full />
                 <div className="container mb-4">
                     {error != undefined ? <div className="alert alert-danger">{error}</div> : undefined}
-                    {ui.fetchingNewListing || loading ? <LoadingPlane /> : this.renderLoaded()}
+                    {ui.fetchingNewListing || loading || addListing.listing == undefined ? <LoadingPlane /> : this.renderLoaded()}
                 </div>
             </div>
         )

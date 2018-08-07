@@ -1,7 +1,7 @@
 /* global Promise */
 import { apiGetListing, apiNearbyResults, apiPostListingImage } from '../../api';
 import { emptyListing } from '../../data';
-import { setUploadingNewImage } from '../UI/actions';
+import { setFetchingNewListing, setUploadingNewImage } from '../UI/actions';
 import { guid } from '../../functions';
 
 // set values from google maps listing
@@ -16,13 +16,6 @@ export function setNewListing(listing) {
     return {
         type: 'SET_NEW_LISTING',
         listing
-    }
-}
-
-export function setFetchingNewListing(value) {
-    return {
-        type: 'SET_FETCHING_NEW_LISTING',
-        value
     }
 }
 

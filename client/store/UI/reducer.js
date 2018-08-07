@@ -14,6 +14,9 @@ function ui(state = [], action) {
         case 'SET_UPLOADING_NEW_IMAGE':
             newState.uploadingNewImage = action.value;
             return newState;
+        case 'SET_FETCHING_NEW_LISTING':
+            newState.fetchingNewListing = action.value;
+            return newState;
     }
     return state;
 }

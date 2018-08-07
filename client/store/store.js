@@ -22,7 +22,7 @@ const defaultState = {
   addListing: {
     nearbyResults: [],
     listing: emptyListing,
-    valid: listingValidations
+    valid: listingValidations,
   },
   authentication: {},
   filter: defaultFilter,
@@ -45,7 +45,8 @@ const defaultState = {
   ui: {
     loading: false,
     reviewEditorOpen: false,
-    mapView: false
+    mapView: false,
+    fetchingNewListing: false
   }
 };
 

@@ -26,3 +26,10 @@ export function setUploadingNewImage(value) {
         value
     }
 }
+
+export function setFetchingNewListing(value) {
+    return {
+        type: 'SET_UPLOADING_NEW_IMAGE',
+        value
+    }
+}

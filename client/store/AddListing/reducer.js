@@ -65,9 +65,6 @@ function AddListing(state = [], action) {
         case 'SET_FETCHING_NEARBY_RESULTS_STATUS':
             newState.ui.fetchingNearbyResults = action.value;
             return newState;
-        case 'SET_FETCHING_NEW_LISTING':
-            newState.ui.fetchingNewListing = action.value;
-            return newState;
         case 'ADD_ROOM_TO_LISTING':
             newState.ui.expandedRoom = action.id;
             newState.listing.rooms.push(Object.assign({}, action.room, { id: action.id }));
