@@ -1,4 +1,4 @@
-# What is Homadic?
+# What is Homadic? [https://homadic.co](https://homadic.co)
 When I, [Nick Brooks](https://www.twitter.com/nickbrooks37), began travelling South East Asia as a remote worker, I'd try and scope out a cities rental situation before I hit the ground. This information is readily available - scattered across the internet on sites like Facebook, YouTube and personal blogs. A lot of great people put good time and effort into providing this information. It's a unique rental requirement, somewhere between nightly hotel accommodation and renting for 6-12 months.
 
 There wasn't, however, one central repository for this information. A way to easily document, query, update, filter and compare this data. Something like most travel accommodation sites like AirBNB have...
