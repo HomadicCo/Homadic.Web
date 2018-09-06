@@ -5,6 +5,7 @@ import LoadingPlane from '../LoadingScreen/LoadingPlane';
 import { titleCase } from '../../functions';
 
 const tagList = [
+    'pool',
     'bedroom',
     'bathroom',
     'kitchen',
