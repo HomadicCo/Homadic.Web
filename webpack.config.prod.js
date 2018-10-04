@@ -29,7 +29,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: 'indexTemplate.html'
         }),
-        new CopyWebpackPlugin([{ from: 'web.config' }])
+        new CopyWebpackPlugin([{ from: '_redirects' }])
     ],
     module: {
         loaders: [
